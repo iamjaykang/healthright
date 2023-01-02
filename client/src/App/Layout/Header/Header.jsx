@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../../../assets/images/logo.png";
-import './header.css'
+import navLinks from "../../../assets/data/navLinks.json";
+import "./header.css";
 
 const Header = () => {
   return (
@@ -11,7 +12,11 @@ const Header = () => {
           <img className="logo" alt="logo" src={Logo} />
         </Link>
         <nav className="navbar">
-          <NavLink className="nav-link">Shop</NavLink>
+          {navLinks.map((navLink) => (
+            <NavLink key={navLink.id} className="nav-link" to={navLink.to}>
+              {navLink.title}
+            </NavLink>
+          ))}
         </nav>
       </header>{" "}
     </Fragment>
