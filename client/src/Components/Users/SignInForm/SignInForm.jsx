@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Button from "../../../App/Common/Button/Button";
 import MyTextInput from "../../../App/Common/Form/MyTextInput";
-import { createUserDocumentFromAuth, signInWithGooglePopup } from "../../../utils/firebase/firebase";
+import {
+  createUserDocumentFromAuth,
+  signInAuthUserWithEmailAndPassword,
+  signInWithGooglePopup,
+} from "../../../utils/firebase/firebase";
 import "./SignInForm.css";
 
 const initialFormValues = {
@@ -13,6 +17,10 @@ const SignInForm = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const { email, password } = formValues;
 
+  const resetFormValues = () => {
+    setFormValues(initialFormValues);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -21,6 +29,17 @@ const SignInForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await signInAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+      console.log(response);
+      resetFormValues();
+    } catch (error) {
+      throw error;
+    }
   };
 
   const logGoogleUser = async () => {
