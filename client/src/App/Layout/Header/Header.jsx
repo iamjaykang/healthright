@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../../../assets/images/logo.png";
 import navLinks from "../../../assets/data/navLinks.json";
-import "./header.css";
+import "./Header.css";
 
 const Header = () => {
   return (
