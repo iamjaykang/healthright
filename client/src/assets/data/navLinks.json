@@ -37,6 +37,6 @@
     {
       "id": 8,
       "title": "Sign In",
-      "to": "/sign-in"
+      "to": "/auth"
     }
   ]

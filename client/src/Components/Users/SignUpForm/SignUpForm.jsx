@@ -85,7 +85,7 @@ const SignUpForm = () => {
           name="confirmPassword"
           value={confirmPassword}
         />
-        <Button btnType='google' type="submit">Sign Up</Button>
+        <Button btnType='inverted' type="submit">Sign Up</Button>
       </form>
     </div>
   );
