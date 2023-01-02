@@ -95,6 +95,16 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
     const result = await signInWithEmailAndPassword(auth, email, password);
     return result.user;
   } catch (error) {
-    console.log("Error creating user:", error);
+    switch (error.code) {
+      case "auth/wrong-password":
+        console.log("Incorrect password or email");
+        break;
+      case "auth/user-not-found":
+        console.log("No user associated with this email");
+        break;
+      default:
+        console.log(error);
+        break;
+    }
   }
 };
