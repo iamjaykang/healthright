@@ -1,6 +1,6 @@
 import React from "react";
 import SignInForm from "../../Components/Users/SignInForm";
-import SignUpForm from "../../Components/Users/SignUpForm";
+import SignUpForm from "../../Components/Users/SignUpForm/SignUpForm";
 import {
   createUserDocumentFromAuth,
   signInWithGooglePopup,
