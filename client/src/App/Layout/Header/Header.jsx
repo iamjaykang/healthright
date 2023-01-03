@@ -7,12 +7,8 @@ import { UserContext } from "../../../Contexts/User";
 import { signOutUser } from "../../../utils/firebase/firebase";
 
 const Header = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
-  const handleSignOut = async () => {
-    await signOutUser()
-    setCurrentUser(null)
-  }
   return (
     <Fragment>
       <header className="header">
@@ -22,7 +18,7 @@ const Header = () => {
         <nav className="navbar">
           {navLinks.map((navLink) =>
             navLink.title === "Sign In" && currentUser ? (
-              <NavLink key={navLink.id} className="nav-link" to="#" onClick={handleSignOut}>
+              <NavLink key={navLink.id} className="nav-link" to="#" onClick={signOutUser}>
                 <span>Sign Out</span>
               </NavLink>
             ) : (

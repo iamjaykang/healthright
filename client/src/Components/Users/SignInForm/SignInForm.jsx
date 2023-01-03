@@ -1,7 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Button from "../../../App/Common/Button/Button";
 import MyTextInput from "../../../App/Common/Form/MyTextInput";
-import { UserContext } from "../../../Contexts/User";
 import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
@@ -18,8 +17,6 @@ const SignInForm = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const { email, password } = formValues;
 
-  const {setCurrentUser} = useContext(UserContext);
-
   const resetFormValues = () => {
     setFormValues(initialFormValues);
   };
@@ -34,20 +31,18 @@ const SignInForm = () => {
     e.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      setCurrentUser(response)
       resetFormValues();
     } catch (error) {
       throw error;
     }
   };
 
-  const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+  const signInWithGoogle = async () => {
+    await signInWithGooglePopup();
   };
   return (
     <div className="sign-in-container">
@@ -72,7 +67,7 @@ const SignInForm = () => {
         />
         <div className="btns-container">
           <Button type="submit">Sign In</Button>
-          <Button btnType="google" onClick={logGoogleUser}>
+          <Button btnType="google" onClick={signInWithGoogle}>
             Sign in with Google
           </Button>
         </div>
