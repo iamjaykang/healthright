@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import MyTextInput from "../../../App/Common/Form/MyTextInput";
-import './SignUpForm.css'
+import "./SignUpForm.css";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../../utils/firebase/firebase";
 import Button from "../../../App/Common/Button/Button";
+import { UserContext } from "../../../Contexts/User";
 
 const initialFormValues = {
   displayName: "",
@@ -17,6 +18,8 @@ const initialFormValues = {
 const SignUpForm = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const { displayName, email, password, confirmPassword } = formValues;
+
+  const { setCurrentUser } = useContext(UserContext);
 
   const resetFormValues = () => {
     setFormValues(initialFormValues);
@@ -36,10 +39,12 @@ const SignUpForm = () => {
     }
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(
+      const user = await createAuthUserWithEmailAndPassword(
         email,
         password
       );
+      setCurrentUser(user);
+
       await createUserDocumentFromAuth(user, { displayName });
       resetFormValues();
     } catch (error) {
@@ -85,7 +90,9 @@ const SignUpForm = () => {
           name="confirmPassword"
           value={confirmPassword}
         />
-        <Button btnType='inverted' type="submit">Sign Up</Button>
+        <Button btnType="inverted" type="submit">
+          Sign Up
+        </Button>
       </form>
     </div>
   );

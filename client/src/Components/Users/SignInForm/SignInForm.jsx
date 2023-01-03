@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "../../../App/Common/Button/Button";
 import MyTextInput from "../../../App/Common/Form/MyTextInput";
+import { UserContext } from "../../../Contexts/User";
 import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
@@ -16,6 +17,8 @@ const initialFormValues = {
 const SignInForm = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const { email, password } = formValues;
+
+  const {setCurrentUser} = useContext(UserContext);
 
   const resetFormValues = () => {
     setFormValues(initialFormValues);
@@ -35,7 +38,7 @@ const SignInForm = () => {
         email,
         password
       );
-      console.log(response);
+      setCurrentUser(response)
       resetFormValues();
     } catch (error) {
       throw error;
