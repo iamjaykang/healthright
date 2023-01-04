@@ -6,13 +6,16 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./App/Routes/Routes";
 import { UserProvider } from "./Contexts/User";
 import { ProductsProvider } from "./Contexts/Products";
+import { CartProvider } from "./Contexts/Cart";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
       <ProductsProvider>
-        <RouterProvider router={router} />
+        <CartProvider>
+          <RouterProvider router={router} />
+        </CartProvider>
       </ProductsProvider>
     </UserProvider>
   </React.StrictMode>

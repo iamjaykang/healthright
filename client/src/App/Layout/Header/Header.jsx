@@ -5,9 +5,13 @@ import navLinks from "../../../assets/data/navLinks.json";
 import "./Header.css";
 import { UserContext } from "../../../Contexts/User";
 import { signOutUser } from "../../../utils/firebase/firebase";
+import CartIcon from "../../../Components/CartIcon/CartIcon";
+import CartDropdown from "../../../Components/CartDropdown/CartDropdown";
+import { CartContext } from "../../../Contexts/Cart";
 
 const Header = () => {
   const { currentUser } = useContext(UserContext);
+  const { isCartOpen } = useContext(CartContext);
 
   return (
     <Fragment>
@@ -18,7 +22,12 @@ const Header = () => {
         <nav className="navbar">
           {navLinks.map((navLink) =>
             navLink.title === "Sign In" && currentUser ? (
-              <NavLink key={navLink.id} className="nav-link" to="#" onClick={signOutUser}>
+              <NavLink
+                key={navLink.id}
+                className="nav-link"
+                to="#"
+                onClick={signOutUser}
+              >
                 <span>Sign Out</span>
               </NavLink>
             ) : (
@@ -27,7 +36,9 @@ const Header = () => {
               </NavLink>
             )
           )}
+          <CartIcon />
         </nav>
+        {isCartOpen && <CartDropdown />}
       </header>{" "}
     </Fragment>
   );

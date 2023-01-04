@@ -3,7 +3,7 @@ import Button from "../../App/Common/Button/Button";
 import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
-  const { name, price, imgUrl, id } = product;
+  const { name, price, imgUrl } = product;
   return (
     <div className="product-card-container">
       <img src={imgUrl} alt={`${name}`} />
