@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Authentication from "../../Views/Authentication/Authentication";
-import Shop from "../../Views/Shop/Shop";
+import NewArrivals from "../../Views/NewArrivals/NewArrivals";
 import App from "../Layout/App";
 
 export const routes = [
@@ -8,7 +8,7 @@ export const routes = [
       path: "/",
       element: <App />,
       children: [
-        { path: "new", element: <Shop /> },
+        { path: "new-arrivals", element: <NewArrivals /> },
         { path: "auth", element: <Authentication /> },
       ],
     },

@@ -6,8 +6,8 @@
     },
     {
       "id": 2,
-      "title": "New",
-      "to": "/new"
+      "title": "New Arrivals",
+      "to": "/new-arrivals"
     },
     {
       "id": 3,
