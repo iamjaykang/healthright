@@ -3,7 +3,9 @@ import CategoryList from '../../Components/CategoryList/CategoryList'
 
 const Home = () => {
   return (
+    <div>
     <CategoryList />
+    </div>
   )
 }
 

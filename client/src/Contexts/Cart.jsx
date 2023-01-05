@@ -18,10 +18,42 @@ const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
-//actual value you want to access
+const updateCartItemQuantity = (cartItems, itemId, intent) => {
+  // find the cart item with the matching itemId
+  const existingCartItem = cartItems.find((cartItem) => cartItem.id === itemId);
+
+  // if the item exists and the intent is "increment", increment the quantity
+  if (existingCartItem && intent === "increment") {
+    return cartItems.map((cartItem) =>
+      cartItem.id === itemId
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    );
+  }
+
+  // if the item exists and the intent is "decrement" and the quantity is greater than 1, decrement the quantity
+  if (existingCartItem && intent === "decrement" && existingCartItem.quantity > 1) {
+    return cartItems.map((cartItem) =>
+      cartItem.id === itemId
+        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+        : cartItem
+    );
+  }
+
+  // if the item exists and the intent is "decrement" but the quantity is 1, remove the item from the cart
+  if (existingCartItem && intent === "decrement" && existingCartItem.quantity === 1) {
+    return cartItems.filter((cartItem) => cartItem.id !== itemId);
+  }
+
+  // return the original cart items if no changes were made
+  return cartItems;
+};
+
+// actual value you want to access
 export const CartContext = createContext({
   cartItems: null,
   addItemToCart: () => {},
+  updateItemQuantity: () => {},
   isCartOpen: false,
   setIsCartOpen: () => {},
   cartCount: 0,
@@ -44,11 +76,16 @@ export const CartProvider = ({ children }) => {
     setCartItems(addCartItem(cartItems, productToAdd));
   };
 
+  const updateItemQuantity = (itemId, intent) => {
+    setCartItems(updateCartItemQuantity(cartItems, itemId, intent));
+  };
+
   const value = {
     isCartOpen,
     setIsCartOpen,
     cartItems,
     addItemToCart,
+    updateItemQuantity,
     cartCount,
   };
 
