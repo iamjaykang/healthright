@@ -49,11 +49,25 @@ const updateCartItemQuantity = (cartItems, itemId, intent) => {
   return cartItems;
 };
 
+const removeCartItem = (cartItems, itemId) => {
+    // find the cart item with the matching itemId
+    const existingCartItem = cartItems.find((cartItem) => cartItem.id === itemId);
+
+      // if the item exists and the intent is "decrement" but the quantity is 1, remove the item from the cart
+  if (existingCartItem) {
+    return cartItems.filter((cartItem) => cartItem.id !== itemId);
+  }
+
+  // return the original cart items if no changes were made
+  return cartItems;
+}
+
 // actual value you want to access
 export const CartContext = createContext({
   cartItems: null,
   addItemToCart: () => {},
   updateItemQuantity: () => {},
+  removeItem: () => {},
   isCartOpen: false,
   setIsCartOpen: () => {},
   cartCount: 0,
@@ -80,12 +94,17 @@ export const CartProvider = ({ children }) => {
     setCartItems(updateCartItemQuantity(cartItems, itemId, intent));
   };
 
+  const removeItem = (itemId) => {
+    setCartItems(removeCartItem(cartItems, itemId));
+  }
+
   const value = {
     isCartOpen,
     setIsCartOpen,
     cartItems,
     addItemToCart,
     updateItemQuantity,
+    removeItem,
     cartCount,
   };
 

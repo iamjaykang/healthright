@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../Contexts/Cart";
 
 const CheckOutList = () => {
-  const { cartItems, updateItemQuantity } = useContext(CartContext);
+  const { cartItems, updateItemQuantity, removeItem } = useContext(CartContext);
 
   const handleIncrementClick = (itemId) => {
     updateItemQuantity(itemId, "increment");
@@ -35,12 +35,18 @@ const CheckOutList = () => {
                   <span>{item.name}</span>
                 </td>
                 <td>
-                  <button onClick={() => handleDecrementClick(item.id)}>-</button>
+                  <button onClick={() => handleDecrementClick(item.id)}>
+                    -
+                  </button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => handleIncrementClick(item.id)}>+</button>
+                  <button onClick={() => handleIncrementClick(item.id)}>
+                    +
+                  </button>
                 </td>
                 <td>{item.price}</td>
-                <td>x</td>
+                <td>
+                  <button onClick={() => removeItem(item.id)}>x</button>
+                </td>
               </tr>
             ))}
         </tbody>
