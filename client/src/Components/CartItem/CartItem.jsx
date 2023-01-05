@@ -3,7 +3,6 @@ import './CartItem.css';
 
 const CartItem = ({ cartItem }) => {
   const { name, quantity, price, imgUrl } = cartItem;
-  console.log(cartItem);
   return (
     <div className="cart-item-container">
       <img src={imgUrl} alt={`${name}`} />

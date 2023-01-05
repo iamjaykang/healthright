@@ -32,7 +32,11 @@ const updateCartItemQuantity = (cartItems, itemId, intent) => {
   }
 
   // if the item exists and the intent is "decrement" and the quantity is greater than 1, decrement the quantity
-  if (existingCartItem && intent === "decrement" && existingCartItem.quantity > 1) {
+  if (
+    existingCartItem &&
+    intent === "decrement" &&
+    existingCartItem.quantity > 1
+  ) {
     return cartItems.map((cartItem) =>
       cartItem.id === itemId
         ? { ...cartItem, quantity: cartItem.quantity - 1 }
@@ -41,7 +45,11 @@ const updateCartItemQuantity = (cartItems, itemId, intent) => {
   }
 
   // if the item exists and the intent is "decrement" but the quantity is 1, remove the item from the cart
-  if (existingCartItem && intent === "decrement" && existingCartItem.quantity === 1) {
+  if (
+    existingCartItem &&
+    intent === "decrement" &&
+    existingCartItem.quantity === 1
+  ) {
     return cartItems.filter((cartItem) => cartItem.id !== itemId);
   }
 
@@ -50,17 +58,17 @@ const updateCartItemQuantity = (cartItems, itemId, intent) => {
 };
 
 const removeCartItem = (cartItems, itemId) => {
-    // find the cart item with the matching itemId
-    const existingCartItem = cartItems.find((cartItem) => cartItem.id === itemId);
+  // find the cart item with the matching itemId
+  const existingCartItem = cartItems.find((cartItem) => cartItem.id === itemId);
 
-      // if the item exists and the intent is "decrement" but the quantity is 1, remove the item from the cart
+  // if the item exists and the intent is "decrement" but the quantity is 1, remove the item from the cart
   if (existingCartItem) {
     return cartItems.filter((cartItem) => cartItem.id !== itemId);
   }
 
   // return the original cart items if no changes were made
   return cartItems;
-}
+};
 
 // actual value you want to access
 export const CartContext = createContext({
@@ -71,12 +79,14 @@ export const CartContext = createContext({
   isCartOpen: false,
   setIsCartOpen: () => {},
   cartCount: 0,
+  cartTotal: 0,
 });
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     const newCartCount = cartItems.reduce(
@@ -84,7 +94,12 @@ export const CartProvider = ({ children }) => {
       0
     );
     setCartCount(newCartCount);
-  }, [cartItems]);
+    const newCartTotal = cartItems.reduce(
+      (total, cartItem) => total + cartItem.price * cartItem.quantity,
+      0
+    );
+    setCartTotal(newCartTotal);
+  }, [cartItems, cartTotal]);
 
   const addItemToCart = (productToAdd) => {
     setCartItems(addCartItem(cartItems, productToAdd));
@@ -96,7 +111,7 @@ export const CartProvider = ({ children }) => {
 
   const removeItem = (itemId) => {
     setCartItems(removeCartItem(cartItems, itemId));
-  }
+  };
 
   const value = {
     isCartOpen,
@@ -106,6 +121,7 @@ export const CartProvider = ({ children }) => {
     updateItemQuantity,
     removeItem,
     cartCount,
+    cartTotal
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

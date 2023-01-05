@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../Contexts/Cart";
 
 const CheckOutList = () => {
-  const { cartItems, updateItemQuantity, removeItem } = useContext(CartContext);
+  const { cartItems, updateItemQuantity, removeItem, cartTotal } = useContext(CartContext);
 
   const handleIncrementClick = (itemId) => {
     updateItemQuantity(itemId, "increment");
@@ -51,6 +51,7 @@ const CheckOutList = () => {
             ))}
         </tbody>
       </table>
+      <div>Total: ${cartTotal}</div>
     </div>
   );
 };
