@@ -5,18 +5,18 @@ import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./App/Routes/Routes";
 import { UserProvider } from "./Contexts/User";
-import { ProductsProvider } from "./Contexts/Products";
+import { BrandsProvider } from "./Contexts/Brands";
 import { CartProvider } from "./Contexts/Cart";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
-      <ProductsProvider>
+      <BrandsProvider>
         <CartProvider>
           <RouterProvider router={router} />
         </CartProvider>
-      </ProductsProvider>
+      </BrandsProvider>
     </UserProvider>
   </React.StrictMode>
 );
