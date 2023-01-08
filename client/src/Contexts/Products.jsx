@@ -1,6 +1,5 @@
 import React, { createContext, useState } from "react";
 
-import PRODUCTS from "../assets/data/shopData.json";
 
 //actual value you want to access
 export const ProductsContext = createContext({
@@ -9,7 +8,8 @@ export const ProductsContext = createContext({
 });
 
 export const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState(PRODUCTS);
+  const [products, setProducts] = useState([]);
+
   const value = { products };
 
   return (

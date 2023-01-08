@@ -7,10 +7,17 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+} from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -42,6 +49,29 @@ export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
 export const db = getFirestore();
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  // Create a reference to the collection using the provided key
+  const collectionRef = collection(db, collectionKey);
+
+  // Create a write batch to allow for multiple document writes in a single request
+  const batch = writeBatch(db);
+
+  // Iterate over the objects to be added
+  objectsToAdd.forEach((object) => {
+    // Create a reference to a document within the collection using the object's title field converted to lowercase
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+
+    // Set the object as the data for the document
+    batch.set(docRef, object);
+  });
+
+  // Commit the batch to save the changes
+  await batch.commit();
+};
 
 export const createUserDocumentFromAuth = async (
   userAuth,
@@ -114,6 +144,5 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) => {
-
-  onAuthStateChanged(auth, callback)
-}
+  onAuthStateChanged(auth, callback);
+};
