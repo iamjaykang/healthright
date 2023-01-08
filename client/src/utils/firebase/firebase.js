@@ -52,7 +52,8 @@ export const db = getFirestore();
 
 export const addCollectionAndDocuments = async (
   collectionKey,
-  objectsToAdd
+  objectsToAdd,
+  field
 ) => {
   // Create a reference to the collection using the provided key
   const collectionRef = collection(db, collectionKey);
@@ -62,8 +63,8 @@ export const addCollectionAndDocuments = async (
 
   // Iterate over the objects to be added
   objectsToAdd.forEach((object) => {
-    // Create a reference to a document within the collection using the object's title field converted to lowercase
-    const docRef = doc(collectionRef, object.title.toLowerCase());
+    // Create a reference to a document within the collection using value of the specified field of the object
+    const docRef = doc(collectionRef, object[field].toLowerCase());
 
     // Set the object as the data for the document
     batch.set(docRef, object);
