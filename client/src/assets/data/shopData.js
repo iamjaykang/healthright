@@ -43,14 +43,14 @@ const SHOP_DATA = [
     items: [
       {
         id: 6,
-        name: "PiOra Colo Plus Colostrum 300 tablets",
+        name: "PaiOra Colo Plus Colostrum 300 tablets",
         imgUrl:
           "https://i.ibb.co/bz3JVPV/P-100001-detail-piora-colo-plus-300t-1.jpg",
         price: 25,
       },
       {
         id: 7,
-        name: "PiOra Colo Deer Placenta 2500 120 capsules",
+        name: "PaiOra Colo Deer Placenta 2500 120 capsules",
         imgUrl:
           "https://i.ibb.co/fdswLnF/P-100004-Pai-Ora-Deer-Placenta-2500-120c-v2-1.jpg",
         price: 25,

@@ -1,6 +1,6 @@
 import React from "react";
 import categories from "../../assets/data/categories.json";
-import CategoryItem from "../CategoryItem/CategoryItem";
+import CategoryItem from "../CategoryItem/CategoryItem.component";
 import "./CategoryList.css";
 
 const CategoryList = () => {

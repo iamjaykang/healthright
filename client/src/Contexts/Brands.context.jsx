@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { getBrandsAndDocuments } from "../utils/firebase/firebase";
+import { getBrandsAndDocuments } from "../utils/firebase/firebase.utils";
 
 //actual value you want to access
 export const BrandsContext = createContext({

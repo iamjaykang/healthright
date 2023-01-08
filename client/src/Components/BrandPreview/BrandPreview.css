@@ -1,0 +1,16 @@
+.brand-preview-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.brand-preview-container .title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+.brand-preview-container .preview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}/*# sourceMappingURL=BrandPreview.css.map */

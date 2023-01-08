@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import Authentication from "../../Views/Authentication/Authentication";
-import CheckOut from "../../Views/CheckOut/CheckOut";
-import NewArrivals from "../../Views/NewArrivals/NewArrivals";
+import Authentication from "../../Views/Authentication/Authentication.view";
+import CheckOut from "../../Views/CheckOut/CheckOut.view";
+import Brands from "../../Views/Brands/Brands.view";
 import App from "../Layout/App";
 
 export const routes = [
@@ -9,7 +9,7 @@ export const routes = [
       path: "/",
       element: <App />,
       children: [
-        { path: "new-arrivals", element: <NewArrivals /> },
+        { path: "brands", element: <Brands /> },
         { path: "auth", element: <Authentication /> },
         { path: "check-out", element: <CheckOut /> },
       ],

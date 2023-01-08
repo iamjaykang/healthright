@@ -1,11 +1,11 @@
 import React, { useState} from "react";
-import MyTextInput from "../../../App/Common/Form/MyTextInput";
+import MyTextInput from "../../../App/Common/Form/MyTextInput.common";
 import "./SignUpForm.css";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
-} from "../../../utils/firebase/firebase";
-import Button from "../../../App/Common/Button/Button";
+} from "../../../utils/firebase/firebase.utils";
+import Button from "../../../App/Common/Button/Button.common";
 
 const initialFormValues = {
   displayName: "",

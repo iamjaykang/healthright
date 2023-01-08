@@ -3,11 +3,11 @@ import { Link, NavLink } from "react-router-dom";
 import Logo from "../../../assets/images/logo.png";
 import navLinks from "../../../assets/data/navLinks.json";
 import "./Header.css";
-import { UserContext } from "../../../Contexts/User";
-import { signOutUser } from "../../../utils/firebase/firebase";
-import CartIcon from "../../../Components/CartIcon/CartIcon";
-import CartDropdown from "../../../Components/CartDropdown/CartDropdown";
-import { CartContext } from "../../../Contexts/Cart";
+import { UserContext } from "../../../Contexts/User.context";
+import { signOutUser } from "../../../utils/firebase/firebase.utils";
+import CartIcon from "../../../Components/CartIcon/CartIcon.component";
+import CartDropdown from "../../../Components/CartDropdown/CartDropdown.component";
+import { CartContext } from "../../../Contexts/Cart.context";
 
 const Header = () => {
   const { currentUser } = useContext(UserContext);
