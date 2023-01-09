@@ -12,7 +12,17 @@
     {
       "id": 3,
       "title": "Brands",
-      "to": "/brands"
+      "to": "/brands",
+      "dropdown": [
+        {
+          "title": "Nzpurehealth",
+          "to": "/brands/nzpurehealth"
+        },
+        {
+          "title": "PaiOra",
+          "to": "/brands/paiora"
+        }
+      ]
     },
     {
       "id": 4,
