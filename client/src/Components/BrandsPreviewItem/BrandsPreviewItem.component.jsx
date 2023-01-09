@@ -1,12 +1,15 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard.component";
-import './BrandPreview.css';
+import { Link } from "react-router-dom";
+import "./BrandsPreviewItem.css";
 
-const BrandPreview = ({ title, products }) => {
+const BrandsPreviewItem = ({ title, products }) => {
   return (
-    <div className="brand-preview-container">
+    <div className="brand-preview-item">
       <h2>
-        <span className="title">{title.toUpperCase()}</span>
+        <Link to={`/brands/${title}`}>
+          <span className="title">{title.toUpperCase()}</span>
+        </Link>
       </h2>
       <div className="preview">
         {products
@@ -19,4 +22,4 @@ const BrandPreview = ({ title, products }) => {
   );
 };
 
-export default BrandPreview;
+export default BrandsPreviewItem;

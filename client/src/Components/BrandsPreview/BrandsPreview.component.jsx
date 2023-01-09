@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { BrandsContext } from "../../Contexts/Brands.context";
-import BrandPreview from "../BrandPreview/BrandPreview.component";
+import BrandsPreviewItem from "../BrandsPreviewItem/BrandsPreviewItem.component";
 import "./BrandsPreview.css";
 
 const BrandsPreview = () => {
@@ -11,7 +11,7 @@ const BrandsPreview = () => {
       {brandsMap &&
         Object.keys(brandsMap).map((title) => {
           const products = brandsMap[title];
-          return <BrandPreview key={title} title={title} products={products} />;
+          return <BrandsPreviewItem key={title} title={title} products={products} />;
         })}
     </>
   );

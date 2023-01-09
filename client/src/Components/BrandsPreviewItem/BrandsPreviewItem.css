@@ -1,16 +1,16 @@
-.brand-preview-container {
+.brand-preview-item {
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
 }
-.brand-preview-container .title {
+.brand-preview-item .title {
   font-size: 28px;
   margin-bottom: 25px;
   cursor: pointer;
 }
-.brand-preview-container .preview {
+.brand-preview-item .preview {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   -moz-column-gap: 20px;
        column-gap: 20px;
-}/*# sourceMappingURL=BrandPreview.css.map */
+}/*# sourceMappingURL=BrandsPreviewItem.css.map */

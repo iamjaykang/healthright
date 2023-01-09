@@ -3,9 +3,9 @@ import BrandsPreview from '../../Components/BrandsPreview/BrandsPreview.componen
 
 const Brands = () => {
   return (
-    <div>
+    <>
         <BrandsPreview />
-    </div>
+    </>
   )
 }
 
