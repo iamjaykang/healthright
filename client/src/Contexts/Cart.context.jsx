@@ -103,6 +103,17 @@ const cartReducer = (state, action) => {
         cartItems: addCartItem(state.cartItems, payload),
       };
 
+    //handle the UPDATE_ITEM_QUANTITY action and update the cartItems in state
+    case "UPDATE_ITEM_QUANTITY":
+      return {
+        ...state,
+        cartItems: updateCartItemQuantity(
+          state.cartItems,
+          payload.itemId,
+          payload.intent
+        ),
+      };
+
     default:
       throw new Error(`Unhandled type ${type} in cartReducer`);
   }
@@ -126,6 +137,13 @@ export const CartProvider = ({ children }) => {
     dispatch({
       type: CART_ACTION_TYPES.ADD_ITEM_TO_CART,
       payload: productToAdd,
+    });
+  };
+
+  const updateItemQuantity = (itemId, intent) => {
+    dispatch({
+      type: CART_ACTION_TYPES.UPDATE_ITEM_QUANTITY,
+      payload: { itemId, intent },
     });
   };
 
@@ -161,7 +179,7 @@ export const CartProvider = ({ children }) => {
     setIsCartOpen,
     cartItems,
     addItemToCart,
-    // updateItemQuantity,
+    updateItemQuantity,
     // removeItem,
     cartCount,
     cartTotal,
