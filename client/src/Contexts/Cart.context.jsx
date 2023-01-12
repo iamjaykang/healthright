@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext } from "react";
 import { useReducer } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
@@ -86,39 +86,28 @@ export const CartContext = createContext({
 //defining action type
 
 export const CART_ACTION_TYPES = {
-  ADD_ITEM_TO_CART: "ADD_ITEM_TO_CART",
-  UPDATE_ITEM_QUANTITY: "UPDATE_ITEM_QUANTITY",
-  REMOVE_ITEM: "REMOVE_ITEM",
-  SET_IS_CART_OPEN: "ADD_ITEM_TO_CART",
+  SET_CART_ITEMS: "SET_CART_ITEMS",
+  SET_IS_CART_OPEN: "SET_IS_CART_OPEN",
 };
 
 const cartReducer = (state, action) => {
   const { type, payload } = action;
 
+  //handle the SET_CART_ITEMS action and update the state
+
   switch (type) {
-    //handle the ADD_ITEM_TO_CART action and update the cartItems in state
-    case "ADD_ITEM_TO_CART":
+    case "SET_CART_ITEMS":
       return {
         ...state,
-        cartItems: addCartItem(state.cartItems, payload),
+        ...payload,
       };
 
-    //handle the UPDATE_ITEM_QUANTITY action and update the cartItems in state
-    case "UPDATE_ITEM_QUANTITY":
-      return {
-        ...state,
-        cartItems: updateCartItemQuantity(
-          state.cartItems,
-          payload.itemId,
-          payload.intent
-        ),
-      };
+  //handle the SET_IS_CART_OPEN action and update the state
 
-    //handle the REMOVE_ITEM action and update the cartItems in state
-    case "REMOVE_ITEM":
+    case "SET_IS_CART_OPEN":
       return {
         ...state,
-        cartItems: removeCartItem(state.cartItems, payload),
+        isCartOpen: payload,
       };
 
     default:
@@ -128,64 +117,58 @@ const cartReducer = (state, action) => {
 
 const INITIAL_STATE = {
   cartItems: [],
+  isCartOpen: false,
+  cartCount: 0,
+  cartTotal: 0,
 };
 
 export const CartProvider = ({ children }) => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-  const [cartTotal, setCartTotal] = useState(0);
-
   //using useReducer hook to handle state
 
-  const [{ cartItems }, dispatch] = useReducer(cartReducer, INITIAL_STATE);
+  const [{ cartItems, isCartOpen, cartCount, cartTotal }, dispatch] =
+    useReducer(cartReducer, INITIAL_STATE);
 
-  const addItemToCart = (productToAdd) => {
-    dispatch({
-      type: CART_ACTION_TYPES.ADD_ITEM_TO_CART,
-      payload: productToAdd,
-    });
-  };
-
-  const updateItemQuantity = (itemId, intent) => {
-    dispatch({
-      type: CART_ACTION_TYPES.UPDATE_ITEM_QUANTITY,
-      payload: { itemId, intent },
-    });
-  };
-
-  const removeItem = (itemId) => {
-    dispatch({
-      type: CART_ACTION_TYPES.REMOVE_ITEM,
-      payload: itemId,
-    });
-  };
-
-  console.log(cartItems);
-
-  useEffect(() => {
-    const newCartCount = cartItems.reduce(
+  const updateCartItemsReducer = (newCartItems) => {
+    const newCartCount = newCartItems.reduce(
       (total, cartItem) => total + cartItem.quantity,
       0
     );
-    setCartCount(newCartCount);
-    const newCartTotal = cartItems.reduce(
+    const newCartTotal = newCartItems.reduce(
       (total, cartItem) => total + cartItem.price * cartItem.quantity,
       0
     );
-    setCartTotal(newCartTotal);
-  }, [cartItems, cartTotal]);
 
-  // const addItemToCart = (productToAdd) => {
-  //   setCartItems(addCartItem(cartItems, productToAdd));
-  // };
+    dispatch({
+      type: CART_ACTION_TYPES.SET_CART_ITEMS,
+      payload: {
+        cartItems: newCartItems,
+        cartTotal: newCartTotal,
+        cartCount: newCartCount,
+      },
+    });
+  };
 
-  // const updateItemQuantity = (itemId, intent) => {
-  //   setCartItems(updateCartItemQuantity(cartItems, itemId, intent));
-  // };
+  const setIsCartOpen = (isCartOpen) =>
+    dispatch({
+      type: CART_ACTION_TYPES.SET_IS_CART_OPEN,
+      payload: isCartOpen,
+    });
 
-  // const removeItem = (itemId) => {
-  //   setCartItems(removeCartItem(cartItems, itemId));
-  // };
+  const addItemToCart = (productToAdd) => {
+    const newCartItems = addCartItem(cartItems, productToAdd);
+    updateCartItemsReducer(newCartItems);
+  };
+
+  const updateItemQuantity = (itemId, intent) => {
+    const newCartItems = updateCartItemQuantity(cartItems, itemId, intent);
+
+    updateCartItemsReducer(newCartItems);
+  };
+
+  const removeItem = (itemId) => {
+    const newCartItems = removeCartItem(cartItems, itemId);
+    updateCartItemsReducer(newCartItems);
+  };
 
   const value = {
     isCartOpen,
