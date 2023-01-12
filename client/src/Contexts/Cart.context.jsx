@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
+import { useReducer } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
   // find if cartItems contains productToAadd
@@ -82,11 +83,53 @@ export const CartContext = createContext({
   cartTotal: 0,
 });
 
+//defining action type
+
+export const CART_ACTION_TYPES = {
+  ADD_ITEM_TO_CART: "ADD_ITEM_TO_CART",
+  UPDATE_ITEM_QUANTITY: "UPDATE_ITEM_QUANTITY",
+  REMOVE_ITEM: "REMOVE_ITEM",
+  SET_IS_CART_OPEN: "ADD_ITEM_TO_CART",
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    //handle the ADD_ITEM_TO_CART action and update the cartItems in state
+    case "ADD_ITEM_TO_CART":
+      return {
+        ...state,
+        cartItems: addCartItem(state.cartItems, payload),
+      };
+
+    default:
+      throw new Error(`Unhandled type ${type} in cartReducer`);
+  }
+};
+
+const INITIAL_STATE = {
+  cartItems: [],
+};
+
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  // const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
+
+  //using useReducer hook to handle state
+
+  const [{ cartItems }, dispatch] = useReducer(cartReducer, INITIAL_STATE);
+
+  const addItemToCart = (productToAdd) => {
+    dispatch({
+      type: CART_ACTION_TYPES.ADD_ITEM_TO_CART,
+      payload: productToAdd,
+    });
+  };
+
+  console.log(cartItems);
 
   useEffect(() => {
     const newCartCount = cartItems.reduce(
@@ -101,27 +144,27 @@ export const CartProvider = ({ children }) => {
     setCartTotal(newCartTotal);
   }, [cartItems, cartTotal]);
 
-  const addItemToCart = (productToAdd) => {
-    setCartItems(addCartItem(cartItems, productToAdd));
-  };
+  // const addItemToCart = (productToAdd) => {
+  //   setCartItems(addCartItem(cartItems, productToAdd));
+  // };
 
-  const updateItemQuantity = (itemId, intent) => {
-    setCartItems(updateCartItemQuantity(cartItems, itemId, intent));
-  };
+  // const updateItemQuantity = (itemId, intent) => {
+  //   setCartItems(updateCartItemQuantity(cartItems, itemId, intent));
+  // };
 
-  const removeItem = (itemId) => {
-    setCartItems(removeCartItem(cartItems, itemId));
-  };
+  // const removeItem = (itemId) => {
+  //   setCartItems(removeCartItem(cartItems, itemId));
+  // };
 
   const value = {
     isCartOpen,
     setIsCartOpen,
     cartItems,
     addItemToCart,
-    updateItemQuantity,
-    removeItem,
+    // updateItemQuantity,
+    // removeItem,
     cartCount,
-    cartTotal
+    cartTotal,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
