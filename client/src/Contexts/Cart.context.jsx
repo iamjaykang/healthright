@@ -73,7 +73,7 @@ const removeCartItem = (cartItems, itemId) => {
 
 // actual value you want to access
 export const CartContext = createContext({
-  cartItems: null,
+  cartItems: [],
   addItemToCart: () => {},
   updateItemQuantity: () => {},
   removeItem: () => {},
@@ -114,6 +114,13 @@ const cartReducer = (state, action) => {
         ),
       };
 
+    //handle the REMOVE_ITEM action and update the cartItems in state
+    case "REMOVE_ITEM":
+      return {
+        ...state,
+        cartItems: removeCartItem(state.cartItems, payload),
+      };
+
     default:
       throw new Error(`Unhandled type ${type} in cartReducer`);
   }
@@ -124,7 +131,6 @@ const INITIAL_STATE = {
 };
 
 export const CartProvider = ({ children }) => {
-  // const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
@@ -144,6 +150,13 @@ export const CartProvider = ({ children }) => {
     dispatch({
       type: CART_ACTION_TYPES.UPDATE_ITEM_QUANTITY,
       payload: { itemId, intent },
+    });
+  };
+
+  const removeItem = (itemId) => {
+    dispatch({
+      type: CART_ACTION_TYPES.REMOVE_ITEM,
+      payload: itemId,
     });
   };
 
@@ -180,7 +193,7 @@ export const CartProvider = ({ children }) => {
     cartItems,
     addItemToCart,
     updateItemQuantity,
-    // removeItem,
+    removeItem,
     cartCount,
     cartTotal,
   };
