@@ -30,13 +30,14 @@ const Navbar = ({ currentUser }) => {
       <ul className="navbar-group">
         {navLinks.map((navLink) =>
           navLink.title === "Sign In" && currentUser ? (
-            <li key={navLink.id}>
+            <li className="nav-item" key={navLink.id}>
               <NavLink className="nav-link" to="#" onClick={signOutUser}>
                 <span>Sign Out</span>
               </NavLink>
             </li>
           ) : (
             <li
+              className="nav-item"
               key={navLink.id}
               onMouseEnter={() => handleMouseEnter(navLink.id)}
               onMouseLeave={handleMouseLeave}
@@ -56,7 +57,7 @@ const Navbar = ({ currentUser }) => {
             </li>
           )
         )}
-        <li>
+        <li className="nav-item">
           <CartIcon />
         </li>
       </ul>

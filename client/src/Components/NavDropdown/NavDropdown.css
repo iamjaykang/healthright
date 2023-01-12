@@ -1,7 +1,9 @@
 .dropdown {
   padding: 0;
   position: absolute;
+  z-index: 5;
   top: 100%;
+  background-color: #fff;
   left: 50%;
   transform: translateX(-50%);
   visibility: hidden;
