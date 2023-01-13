@@ -26,7 +26,6 @@ const App = () => {
       //setting current user
       dispatch(setCurrentUser(user));
     });
-
     return unsubscribe;
   }, [dispatch]);
 
