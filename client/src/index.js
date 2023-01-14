@@ -4,7 +4,6 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./App/Routes/Routes";
-import { CartProvider } from "./Contexts/Cart.context";
 import { Provider } from "react-redux";
 import store from "./stores/store";
 
@@ -12,9 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <CartProvider>
         <RouterProvider router={router} />
-      </CartProvider>
     </Provider>
   </React.StrictMode>
 );

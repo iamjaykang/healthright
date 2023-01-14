@@ -1,16 +1,27 @@
-import React, { useContext } from "react";
-import { CartContext } from "../../Contexts/Cart.context";
+import React from "react";
+
+import { updateItemQuantity, removeItem } from "../../stores/cart/cart.action";
+
+import { useDispatch, useSelector } from "react-redux";
+
 import "./CheckOutItem.css";
+import { selectCartItems } from "../../stores/cart/cart.selector";
 
 const CheckOutItem = ({ item }) => {
-  const { updateItemQuantity, removeItem } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
+
+  const dispatch = useDispatch();
 
   const handleIncrementClick = (itemId) => {
-    updateItemQuantity(itemId, "increment");
+    dispatch(updateItemQuantity(cartItems, itemId, "increment"));
   };
 
   const handleDecrementClick = (itemId) => {
-    updateItemQuantity(itemId, "decrement");
+    dispatch(updateItemQuantity(cartItems, itemId, "decrement"));
+  };
+
+  const handleRemoveItem = (itemId) => {
+    dispatch(removeItem(cartItems, itemId));
   };
   return (
     <>
@@ -28,7 +39,7 @@ const CheckOutItem = ({ item }) => {
 
         <span className="price">{item.price}</span>
 
-        <div onClick={() => removeItem(item.id)} className="remove-btn">
+        <div onClick={() => handleRemoveItem(item.id)} className="remove-btn">
           X
         </div>
       </div>
