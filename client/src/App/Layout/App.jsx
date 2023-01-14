@@ -6,10 +6,12 @@ import Header from "./Header/Header.layout";
 import "./App.css";
 import {
   createUserDocumentFromAuth,
+  getBrandsAndDocuments,
   onAuthStateChangedListener,
 } from "../../utils/firebase/firebase.utils";
 import { setCurrentUser } from "../../stores/user/user.action";
 import { useDispatch } from "react-redux";
+import { setBrands } from "../../stores/brands/brand.action";
 
 const App = () => {
   const location = useLocation();
@@ -27,6 +29,19 @@ const App = () => {
       dispatch(setCurrentUser(user));
     });
     return unsubscribe;
+  }, [dispatch]);
+
+  useEffect(() => {
+    const getBrandsMap = async () => {
+      // Retrieve the Map of brands to items
+      const brands = await getBrandsAndDocuments();
+
+      // Set the brands to the retrieved map
+      dispatch(setBrands(brands));
+    };
+
+    // Call the getBrandsMap function
+    getBrandsMap();
   }, [dispatch]);
 
   return (

@@ -1,12 +1,12 @@
-import React from 'react'
-import CategoryList from '../../Components/CategoryList/CategoryList.component'
+import React from "react";
+import CategoryList from "../../Components/CategoryList/CategoryList.component";
 
 const Home = () => {
   return (
     <>
-    <CategoryList />
+      <CategoryList />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
