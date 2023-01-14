@@ -1,7 +1,7 @@
 import React from "react";
 import BrandsPreviewItem from "../BrandsPreviewItem/BrandsPreviewItem.component";
 import "./BrandsPreview.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectBrandsMap } from "../../stores/brands/brand.selector";
 
 const BrandsPreview = () => {
