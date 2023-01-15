@@ -4,18 +4,11 @@ import Home from "../../Views/Home/Home.view";
 import Footer from "./Footer/Footer.layout";
 import Header from "./Header/Header.layout";
 import "./App.css";
-import {
-  createUserDocumentFromAuth,
-  onAuthStateChangedListener,
-} from "../../utils/firebase/firebase.utils";
-import { setCurrentUser } from "../../stores/user/user.action";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchBrandsAsync,
-  fetchBrandsLoading,
-} from "../../stores/brands/brand.action";
+import { fetchBrandsLoading } from "../../stores/brands/brand.action";
 import { selectBrandsIsLoading } from "../../stores/brands/brand.selector";
 import Spinner from "../../Components/Spinner/Spinner.component";
+import { checkUserSession } from "../../stores/user/user.action";
 
 const App = () => {
   const location = useLocation();
@@ -25,16 +18,7 @@ const App = () => {
   const isLoading = useSelector(selectBrandsIsLoading);
 
   useEffect(() => {
-    //listening to auth state changes
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      //creating user document if user exists
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      //setting current user
-      dispatch(setCurrentUser(user));
-    });
-    return unsubscribe;
+    dispatch(checkUserSession());
   }, [dispatch]);
 
   useEffect(() => {
@@ -43,15 +27,19 @@ const App = () => {
 
   return (
     <div className="page-container">
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <>
-          <Header />
-          <main>{location.pathname === "/" ? <Home /> : <Outlet />}</main>
-          <Footer />
-        </>
-      )}
+      <>
+        <Header />
+        <main>
+          {isLoading ? (
+            <Spinner />
+          ) : location.pathname === "/" ? (
+            <Home />
+          ) : (
+            <Outlet />
+          )}
+        </main>
+        <Footer />
+      </>
     </div>
   );
 };

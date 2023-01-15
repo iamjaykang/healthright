@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Button from "../../../App/Common/Button/Button.common";
 import MyTextInput from "../../../App/Common/Form/MyTextInput.common";
-import {
-  createUserDocumentFromAuth,
-  signInAuthUserWithEmailAndPassword,
-  signInWithGooglePopup,
-} from "../../../utils/firebase/firebase.utils";
 import "./SignInForm.css";
+import { useDispatch } from "react-redux";
+import {
+  emailSignInLoading,
+  googleSignInLoading,
+} from "../../../stores/user/user.action";
 
 const initialFormValues = {
   email: "",
@@ -16,6 +16,7 @@ const initialFormValues = {
 const SignInForm = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const { email, password } = formValues;
+  const dispatch = useDispatch();
 
   const resetFormValues = () => {
     setFormValues(initialFormValues);
@@ -31,18 +32,15 @@ const SignInForm = () => {
     e.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      dispatch(emailSignInLoading(email, password));
       resetFormValues();
     } catch (error) {
       throw error;
     }
   };
 
-  const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+  const signInWithGoogle = () => {
+    dispatch(googleSignInLoading());
   };
   return (
     <div className="sign-in-container">

@@ -11,7 +11,6 @@ export const selectBrands = createSelector(
 
 // Selector that returns a map of brands to items
 export const selectBrandsMap = createSelector([selectBrands], (brands) => {
-  console.log(brands)
   // Using the reduce method to create a new object where the key is the lowercase version of the "title" property of each brand, and the value is the "items" property of that brand
   return brands.reduce((acc, brand) => {
     // Destructure the title and items fields from the brand data
