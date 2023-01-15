@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./CategoryItem.css";
 
 const CategoryItem = ({ category }) => {
@@ -6,12 +7,19 @@ const CategoryItem = ({ category }) => {
     <li className="category-container">
       <div
         className="background-image"
-        style={{ backgroundImage: `url(${category.imageUrl})` }}
+        style={{
+          backgroundImage: `url(${category.imageUrl})`,
+          backgroundSize:
+            category.title === "Nzpurehealth" || category.title === "kuku"
+              ? "70%"
+              : "100%",
+          backgroundRepeat: "no-repeat",
+        }}
       />
-      <div className="category-body-container">
+      <Link to={category.to} className="category-body-container">
         <h2>{category.title}</h2>
         <p>Shop Now</p>
-      </div>
+      </Link>
     </li>
   );
 };

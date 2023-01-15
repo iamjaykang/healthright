@@ -6,16 +6,16 @@ import App from "../Layout/App";
 import Brand from "../../Views/Brand/Brand.view";
 
 export const routes = [
-    {
-      path: "/",
-      element: <App />,
-      children: [
-        { path: "brands", element: <Brands /> },
-        { path: "brands/:brand", element: <Brand /> },
-        { path: "auth", element: <Authentication /> },
-        { path: "check-out", element: <CheckOut /> },
-      ],
-    },
-  ];
-  
-  export const router = createBrowserRouter(routes);
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "brands", element: <Brands /> },
+      { path: "brands/:brand", element: <Brand /> },
+      { path: "auth", element: <Authentication /> },
+      { path: "check-out", element: <CheckOut /> },
+    ],
+  },
+];
+
+export const router = createBrowserRouter(routes);

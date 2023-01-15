@@ -5,7 +5,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
     margin: 0 7.5px 15px;
     overflow: hidden;
 
@@ -57,12 +56,13 @@
         font-weight: bold;
         margin: 0 6px 0;
         font-size: 22px;
-        color: #4a4a4a;
+        color: #000;
       }
 
       p {
         font-weight: lighter;
         font-size: 16px;
+        color: #000;
       }
     }
   }

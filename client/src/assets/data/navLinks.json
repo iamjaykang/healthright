@@ -5,15 +5,18 @@
       "to": "/"
     },
     {
-      "id": 2,
-      "title": "New Arrivals",
-      "to": "/new-arrivals"
-    },
-    {
       "id": 3,
       "title": "Brands",
       "to": "/brands",
       "dropdown": [
+        {
+          "title": "kuku",
+          "to": "/brands/kuku"
+        },
+        {
+          "title": "Nu.Wise",
+          "to": "/brands/nu.wise"
+        },
         {
           "title": "Nzpurehealth",
           "to": "/brands/nzpurehealth"
@@ -23,26 +26,6 @@
           "to": "/brands/paiora"
         }
       ]
-    },
-    {
-      "id": 4,
-      "title": "Health & Supplements",
-      "to": "/health"
-    },
-    {
-      "id": 5,
-      "title": "Skin Care",
-      "to": "/skin-care"
-    },
-    {
-      "id": 6,
-      "title": "Immune Support",
-      "to": "/immune-support"
-    },
-    {
-      "id": 7,
-      "title": "Joint & Mobility",
-      "to": "/joint"
     },
     {
       "id": 8,

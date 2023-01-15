@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "kuku",
+    "imageUrl": "https://i.ibb.co/mSctSr0/kuku-complete-joint-health-horizontal.png",
+    "to": "/brands/kuku"
+  },
+  {
+    "id": 2,
+    "title": "Nu.wise",
+    "imageUrl": "https://i.ibb.co/HqK0QHv/nuwise-logo.png",
+    "to": "/brands/nu.wise"
+  },
+  {
+    "id": 3,
+    "title": "Nzpurehealth",
+    "imageUrl": "https://i.ibb.co/RbKGyq1/download.png",
+    "to": "/brands/nzpurehealth"
+  },
+  {
+    "id": 4,
+    "title": "PaiOra",
+    "imageUrl": "https://i.ibb.co/FDC40qv/paiora-logo4.png",
+    "to": "/brands/paiora"
+  }
+]

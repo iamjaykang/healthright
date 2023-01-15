@@ -5,6 +5,7 @@ import Footer from "./Footer/Footer.layout";
 import Header from "./Header/Header.layout";
 import "./App.css";
 import {
+  addCollectionAndDocuments,
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
 } from "../../utils/firebase/firebase.utils";
@@ -13,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBrandsAsync } from "../../stores/brands/brand.action";
 import { selectBrandsIsLoading } from "../../stores/brands/brand.selector";
 import Spinner from "../../Components/Spinner/Spinner.component";
+import SHOP_DATA from "../../assets/data/shopData";
 
 const App = () => {
   const location = useLocation();

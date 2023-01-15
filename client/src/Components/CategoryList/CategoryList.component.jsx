@@ -1,15 +1,18 @@
 import React from "react";
-import categories from "../../assets/data/categories.json";
+import brands from "../../assets/data/brands.json";
 import CategoryItem from "../CategoryItem/CategoryItem.component";
 import "./CategoryList.css";
 
 const CategoryList = () => {
   return (
+    <>
+    <h2 className="title">BRANDS</h2>
     <ul className="categories-container">
-      {categories.map((category) => (
-        <CategoryItem key={category.id} category={category} />
+      {brands.map((brand) => (
+        <CategoryItem key={brand.id} category={brand} />
       ))}
     </ul>
+    </>
   );
 };
 
