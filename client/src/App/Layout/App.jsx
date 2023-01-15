@@ -5,6 +5,7 @@ import Footer from "./Footer/Footer.layout";
 import Header from "./Header/Header.layout";
 import "./App.css";
 import {
+  addCollectionAndDocuments,
   createUserDocumentFromAuth,
   getBrandsAndDocuments,
   onAuthStateChangedListener,
@@ -12,6 +13,7 @@ import {
 import { setCurrentUser } from "../../stores/user/user.action";
 import { useDispatch } from "react-redux";
 import { setBrands } from "../../stores/brands/brand.action";
+import SHOP_DATA from "../../assets/data/shopData";
 
 const App = () => {
   const location = useLocation();
@@ -43,6 +45,8 @@ const App = () => {
     // Call the getBrandsMap function
     getBrandsMap();
   }, [dispatch]);
+
+
 
   return (
     <div className="page-container">
