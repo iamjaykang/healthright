@@ -1,7 +1,10 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard.component";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./BrandsPreviewItem.css";
+import { selectBrandsIsLoading } from "../../stores/brands/brand.selector";
+import Spinner from "../Spinner/Spinner.component";
 
 const BrandsPreviewItem = ({ title, products }) => {
   return (

@@ -5,20 +5,21 @@ import Footer from "./Footer/Footer.layout";
 import Header from "./Header/Header.layout";
 import "./App.css";
 import {
-  addCollectionAndDocuments,
   createUserDocumentFromAuth,
-  getBrandsAndDocuments,
   onAuthStateChangedListener,
 } from "../../utils/firebase/firebase.utils";
 import { setCurrentUser } from "../../stores/user/user.action";
-import { useDispatch } from "react-redux";
-import { setBrands } from "../../stores/brands/brand.action";
-import SHOP_DATA from "../../assets/data/shopData";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBrandsAsync } from "../../stores/brands/brand.action";
+import { selectBrandsIsLoading } from "../../stores/brands/brand.selector";
+import Spinner from "../../Components/Spinner/Spinner.component";
 
 const App = () => {
   const location = useLocation();
 
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectBrandsIsLoading);
 
   useEffect(() => {
     //listening to auth state changes
@@ -34,25 +35,20 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const getBrandsMap = async () => {
-      // Retrieve the Map of brands to items
-      const brands = await getBrandsAndDocuments();
-
-      // Set the brands to the retrieved map
-      dispatch(setBrands(brands));
-    };
-
-    // Call the getBrandsMap function
-    getBrandsMap();
+    dispatch(fetchBrandsAsync());
   }, [dispatch]);
-
-
 
   return (
     <div className="page-container">
-      <Header />
-      <main>{location.pathname === "/" ? <Home /> : <Outlet />}</main>
-      <Footer />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <Header />
+          <main>{location.pathname === "/" ? <Home /> : <Outlet />}</main>
+          <Footer />
+        </>
+      )}
     </div>
   );
 };
