@@ -27,12 +27,12 @@
     {
       "id": 4,
       "title": "Health & Supplements",
-      "to": "/health"
+      "to": "/supplements"
     },
     {
       "id": 5,
-      "title": "Skin Care",
-      "to": "/skin-care"
+      "title": "Sleep Support",
+      "to": "/sleep-support"
     },
     {
       "id": 6,

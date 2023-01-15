@@ -19,6 +19,7 @@ import {
   writeBatch,
   query,
   getDocs,
+  FieldValue,
 } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -33,7 +34,7 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -68,8 +69,8 @@ export const addCollectionAndDocuments = async (
     // Create a reference to a document within the collection using value of the specified field of the object
     const docRef = doc(collectionRef, object[field].toLowerCase());
 
-    // Set the object as the data for the document
-    batch.set(docRef, object);
+    // Set the object as the data for the document. The merge option is set to true, which means that if the document already exists in the collection, the provided object will merge with the existing data, rather than overwriting it.
+    batch.set(docRef, object, { merge: true });
   });
 
   // Commit the batch to save the changes
