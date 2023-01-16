@@ -1,5 +1,10 @@
-import {useSelector} from 'react-redux'
-import { selectCartItems, selectCartTotal } from '../../stores/cart/cart.selector';
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import Button from "../../App/Common/Button/Button.common";
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../stores/cart/cart.selector";
 import CheckOutItem from "../CheckOutItem/CheckOutItem.component";
 import "./CheckOutList.css";
 
@@ -29,6 +34,9 @@ const CheckOutList = () => {
       {cartItems &&
         cartItems.map((item) => <CheckOutItem key={item.id} item={item} />)}
       <span className="total">Total: ${cartTotal}</span>
+      <Link to='/check-out/payment'>
+        <Button>Check Out</Button>
+      </Link>
     </div>
   );
 };

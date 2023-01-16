@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./BrandsPreviewItem.css";
 import { selectBrandsIsLoading } from "../../stores/brands/brand.selector";
-import Spinner from "../Spinner/Spinner.component";
+import Spinner from "../../App/Common/Spinner/Spinner.common";
 
 const BrandsPreviewItem = ({ title, products }) => {
   return (

@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonSpinner from "../ButtonSpinner/ButtonSpinner.common";
 import "./Button.css";
 
 /*
@@ -14,13 +15,14 @@ const BUTTON_TYPES_CLASSES = {
   inverted: "inverted",
 };
 
-const Button = ({ children, btnType, ...otherProps }) => {
+const Button = ({ children, btnType, isLoading, ...otherProps }) => {
   return (
     <button
       className={`btn-container ${BUTTON_TYPES_CLASSES[btnType]}`}
       {...otherProps}
+      disabled={isLoading}
     >
-      {children}
+      {isLoading ? <ButtonSpinner /> : children}
     </button>
   );
 };

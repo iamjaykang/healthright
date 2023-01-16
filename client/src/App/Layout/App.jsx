@@ -7,7 +7,7 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBrandsLoading } from "../../stores/brands/brand.action";
 import { selectBrandsIsLoading } from "../../stores/brands/brand.selector";
-import Spinner from "../../Components/Spinner/Spinner.component";
+import Spinner from "../Common/Spinner/Spinner.common";
 import { checkUserSession } from "../../stores/user/user.action";
 
 const App = () => {
