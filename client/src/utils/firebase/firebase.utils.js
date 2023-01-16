@@ -33,7 +33,7 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -126,8 +126,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   try {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    return result.user;
+    return await createUserWithEmailAndPassword(auth, email, password);
   } catch (error) {
     if (error.code === "auth/email-already-in-use") {
       console.log("Cannot create user, email already in use");
@@ -165,14 +164,14 @@ export const onAuthStateChangedListener = (callback) => {
 };
 
 export const getCurrentUser = () => {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
       auth,
       (userAuth) => {
         unsubscribe();
-        resolve(userAuth)
+        resolve(userAuth);
       },
       reject
-    )
-  })
-}
+    );
+  });
+};

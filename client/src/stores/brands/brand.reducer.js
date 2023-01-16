@@ -13,7 +13,7 @@ export const brandsReducer = (state = INITIAL_STATE, action = {}) => {
     case BRANDS_ACTION_TYPES.FETCH_BRANDS_LOADING:
       return { ...state, isLoading: true };
     case BRANDS_ACTION_TYPES.FETCH_BRANDS_SUCCESS:
-      return { ...state, brands: payload, isLoading: false };
+      return { ...state, brands: payload, isLoading: false, error: null };
     case BRANDS_ACTION_TYPES.FETCH_BRANDS_FAILED:
       return { ...state, error: payload, isLoading: false };
 

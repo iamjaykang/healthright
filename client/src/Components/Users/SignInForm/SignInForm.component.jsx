@@ -28,7 +28,7 @@ const SignInForm = () => {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     try {

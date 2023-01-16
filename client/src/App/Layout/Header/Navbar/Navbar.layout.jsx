@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import navLinks from "../../../../assets/data/navLinks.json";
-import { signOutUser } from "../../../../utils/firebase/firebase.utils";
 import CartIcon from "../../../../Components/CartIcon/CartIcon.component";
 import "./Navbar.css";
 import NavDropdown from "../../../../Components/NavDropdown/NavDropdown.component";
+import {useDispatch} from 'react-redux'
+import { signOutLoading } from "../../../../stores/user/user.action";
 
 const Navbar = ({ currentUser }) => {
   const [dropdownOpen, setDropdownOpen] = useState({});
   const [hovered, setHovered] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (hovered) {
@@ -24,6 +26,8 @@ const Navbar = ({ currentUser }) => {
     setDropdownOpen({ [hovered]: false });
     setHovered(null);
   };
+
+  const signOutUser = () => dispatch(signOutLoading())
 
   return (
     <nav className="navbar">
