@@ -71,7 +71,7 @@ export function* signInWithGoogle() {
 export function* signInWithEmail({ payload: { email, password } }) {
   try {
     // call the firebase function to signin with email and password
-    const { user } = yield call(
+    const user = yield call(
       signInAuthUserWithEmailAndPassword,
       email,
       password
