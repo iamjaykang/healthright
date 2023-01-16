@@ -4,7 +4,7 @@ import SignUpForm from "../../Components/Users/SignUpForm/SignUpForm.component";
 import { selectUserIsLoading } from "../../stores/user/user.selector";
 import { useSelector } from "react-redux";
 import "./Authentication.css";
-import Spinner from "../../Components/Spinner/Spinner.component";
+import Spinner from "../../App/Common/Spinner/Spinner.common";
 
 const Authentication = () => {
   const isLoading = useSelector(selectUserIsLoading);
