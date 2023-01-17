@@ -5,14 +5,14 @@ import "./CategoryList.css";
 
 const CategoryList = () => {
   return (
-    <>
-    <h2 className="title">BRANDS</h2>
-    <ul className="categories-container">
-      {brands.map((brand) => (
-        <CategoryItem key={brand.id} category={brand} />
-      ))}
-    </ul>
-    </>
+    <div className="categories-container">
+      <h2 className="title">FEATURED BRANDS</h2>
+      <ul className="categories-wrapper">
+        {brands.map((brand) => (
+          <CategoryItem key={brand.id} category={brand} />
+        ))}
+      </ul>
+    </div>
   );
 };
 

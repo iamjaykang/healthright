@@ -1,8 +1,80 @@
 .page-container {
+  max-width: 1440px;
   display: grid;
-  grid-template-rows: 100px auto 70px;
-  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  place-items: center;
+  margin: 0 auto;
 }
-.page-container main {
-  padding: 20px 40px;
+.page-container .header {
+  position: absolute;
+  top: 20px;
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  align-items: center;
+  z-index: 1;
+}
+.page-container .header .brand {
+  margin: auto 0 auto 40px;
+  width: 180px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+.page-container .header .brand .logo {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+.page-container .header .navbar {
+  height: 100%;
+}
+.page-container .header .navbar .navbar-group {
+  display: flex;
+  height: 100%;
+  margin: auto 0 auto 30px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.page-container .header .navbar .navbar-group .nav-item {
+  list-style: none;
+  margin: 0 40px;
+  position: relative;
+}
+.page-container .header .navbar .navbar-group .nav-item .nav-link {
+  color: white;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.page-container footer {
+  background-color: #192216;
+  color: #fff;
+  padding: 20px;
+  width: 100%;
+  margin-top: auto;
+}
+.page-container footer .container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.page-container footer .container .copyright {
+  font-size: 0.8em;
+}
+.page-container footer .container .social-links {
+  list-style: none;
+  display: flex;
+}
+.page-container footer .container .social-links li {
+  margin-right: 10px;
+}
+.page-container footer .container .social-links li a {
+  color: #fff;
+  text-decoration: none;
+}
+.page-container footer .container .social-links li a:hover {
+  text-decoration: underline;
 }/*# sourceMappingURL=App.css.map */

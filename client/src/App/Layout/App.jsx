@@ -27,7 +27,6 @@ const App = () => {
 
   return (
     <div className="page-container">
-      <>
         <Header />
         <main>
           {isLoading ? (
@@ -39,7 +38,6 @@ const App = () => {
           )}
         </main>
         <Footer />
-      </>
     </div>
   );
 };

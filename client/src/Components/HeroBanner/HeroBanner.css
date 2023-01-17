@@ -1,0 +1,50 @@
+.hero-banner {
+  position: relative;
+  min-height: 962px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-banner .hero-banner-content-container {
+  position: absolute;
+  max-width: 600px;
+  top: 80px;
+  left: 10px;
+  padding: 10px;
+  line-height: 2;
+}
+@media only screen and (min-width: 768px) {
+  .hero-banner .hero-banner-content-container {
+    /* styles for screens larger than 768px */
+    top: 100px;
+    left: 20px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .hero-banner .hero-banner-content-container {
+    /* styles for screens larger than 992px */
+    top: 120px;
+    left: 30px;
+  }
+}
+.hero-banner .hero-banner-content-container .hero-banner-title {
+  color: #fff;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+.hero-banner .hero-banner-content-container .hero-banner-subtitle {
+  color: #bf9d37;
+  font-size: 1.1em;
+}
+.hero-banner .hero-banner-content-container .hero-banner-description {
+  color: #c8c8c8;
+}
+.hero-banner .hero-banner-content-container .hero-banner-btn-container button {
+  font-weight: bold;
+  height: 60px;
+  width: 160px;
+  border-radius: 30px;
+  border: 10px solid #bf9d37;
+}/*# sourceMappingURL=HeroBanner.css.map */

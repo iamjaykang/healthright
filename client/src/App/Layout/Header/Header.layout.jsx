@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../../assets/images/logo.png";
-import "./Header.css";
 import CartDropdown from "../../../Components/CartDropdown/CartDropdown.component";
 import Navbar from "./Navbar/Navbar.layout";
 import { useSelector } from "react-redux";
@@ -16,7 +14,7 @@ const Header = () => {
     <>
       <header className="header">
         <Link className="brand" to="/">
-          <img className="logo" alt="logo" src={Logo} />
+          <span className="logo">Healthright</span>
         </Link>
         <Navbar currentUser={currentUser} />
         {isCartOpen && <CartDropdown />}
