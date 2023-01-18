@@ -5,6 +5,11 @@
     grid-template-columns: 1fr 1fr;
     padding: 0 80px 60px 80px;
 
+    @media only screen and (max-width: 769px) {
+        /* styles for screens smaller than 769px */
+       display: none;
+    }
+
     .benefits {
         color: white;
         padding-top: 40px;

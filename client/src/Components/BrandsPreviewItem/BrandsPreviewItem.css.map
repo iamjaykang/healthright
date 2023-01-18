@@ -1,1 +1,1 @@
-{"version":3,"sources":["BrandsPreviewItem.scss","BrandsPreviewItem.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,sBAAA;EACA,cAAA;ACCJ;ADCI;EACE,kBAAA;ACCN;ADCI;EACE,eAAA;EACA,mBAAA;EACA,eAAA;ACCN;ADEI;EACE,aAAA;EACA,qCAAA;EACA,qBAAA;OAAA,gBAAA;ACAN","file":"BrandsPreviewItem.css"}
+{"version":3,"sources":["BrandsPreviewItem.scss","BrandsPreviewItem.css"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,sBAAA;EACA,cAAA;ACCF;ADCE;EACE,kBAAA;ACCJ;ADEE;EACE,eAAA;EACA,mBAAA;EACA,eAAA;ACAJ;ADGE;EACE,eAAA;ACDJ","file":"BrandsPreviewItem.css"}

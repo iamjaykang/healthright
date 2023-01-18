@@ -33,6 +33,11 @@
   background-size: cover;
   background-position: center;
 }
+@media only screen and (max-width: 769px) {
+  .category-container .background-image {
+    width: 50%;
+  }
+}
 .category-container .category-body-container {
   height: 90px;
   padding: 0 25px;

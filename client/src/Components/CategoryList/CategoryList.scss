@@ -14,5 +14,10 @@
     padding: 0;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    @media only screen and (max-width: 769px) {
+      flex-direction: column;
+      margin: 0 auto;
+    }
   }
 }

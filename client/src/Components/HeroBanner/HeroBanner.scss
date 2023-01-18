@@ -7,18 +7,18 @@
     align-items: center;
     justify-content: center;
 
-    @media only screen and (max-width: 1024px) {
-        /* styles for screens smaller than 1024px */
+    /* Media query for screens smaller than 768px */
+    @media only screen and (max-width: 768px) {
         display: none;
     }
 
-    @media only screen and (max-width: 1441px) {
-        /* styles for screens larger than 1440px */
+    @media only screen and (min-width: 1441px) {
+        /* styles for screens smaller than 1440px */
         min-height: 800px;
     }
 
     @media only screen and (min-width: 2000px) {
-        /* styles for screens larger than 1440px */
+        /* styles for screens larger than 2000px */
         min-height: 1600px;
     }
 

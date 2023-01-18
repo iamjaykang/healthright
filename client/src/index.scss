@@ -5,12 +5,19 @@
 body {
     margin: 0;
     font-family: 'Noto Sans Tangsa', sans-serif, Menlo, Monaco, Consolas, 'Courier New', monospace;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding-top: 80px;
+    padding-top: 60px;
 }
 
 a {
     text-decoration: none;
     color: black;
+}
+
+df-messenger {
+    --df-messenger-button-titlebar-color: #bf9d37;
+
+    @media only screen and (max-width: 769px) {
+        /* styles for screens smaller than 769px */
+        display: none;
+    }
 }

@@ -1,11 +1,4 @@
 .page-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  place-items: center;
   min-height: 100vh;
-}
-.page-container main {
-  position: relative;
+  min-width: auto;
 }/*# sourceMappingURL=App.css.map */
