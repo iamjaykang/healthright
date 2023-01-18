@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CartDropdown from "../../../Components/CartDropdown/CartDropdown.component";
 import Navbar from "./Navbar/Navbar.layout";
+import './Header.css'
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../stores/user/user.selector";
 import { selectIsCartOpen } from "../../../stores/cart/cart.selector";

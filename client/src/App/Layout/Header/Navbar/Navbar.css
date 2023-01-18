@@ -1,0 +1,22 @@
+.navbar {
+  height: 100%;
+}
+.navbar .navbar-group {
+  display: flex;
+  height: 100%;
+  margin: auto 0 auto 30px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.navbar .navbar-group .nav-item {
+  list-style: none;
+  margin: 0 40px;
+  position: relative;
+  font-weight: bolder;
+}
+.navbar .navbar-group .nav-item .nav-link {
+  color: white;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+}/*# sourceMappingURL=Navbar.css.map */

@@ -4,6 +4,7 @@ import navLinks from "../../../../assets/data/navLinks.json";
 import CartIcon from "../../../../Components/CartIcon/CartIcon.component";
 import NavDropdown from "../../../../Components/NavDropdown/NavDropdown.component";
 import {useDispatch} from 'react-redux'
+import './Navbar.css'
 import { signOutLoading } from "../../../../stores/user/user.action";
 
 const Navbar = ({ currentUser }) => {

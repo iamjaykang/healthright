@@ -4,7 +4,7 @@ import CheckOutList from "../../Components/CheckOutList/CheckOutList.component";
 const CheckOut = () => {
   return (
     <>
-      <h2>Check Out Page</h2>
+      <h2>Check Out</h2>
       <div>
         <CheckOutList />
       </div>

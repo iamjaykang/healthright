@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className="about-container">
       <div className="benefits">
-        <h3 className="benefits-title">Benefits of NZ Supplements</h3>
+        <h3 className="benefits-title">Potential Benefits of NZ Supplements</h3>
         <ul className="benefits-list">
             <li className="benefits-item">Lorem ipsum dolor sit amet</li>
             <li className="benefits-item">Lorem ipsum dolor sit amet</li>

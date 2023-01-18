@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./HeroBanner.css";
 
 const HeroBanner = (props) => {
@@ -14,7 +15,9 @@ const HeroBanner = (props) => {
           <p className="hero-banner-description">{props.description}</p>
         </div>
         <div className="hero-banner-btn-container">
-          <button>Opening Soon</button>
+          <Link to='/brands'>
+          <button>Shop now</button>
+          </Link>
         </div>
       </div>
     </div>

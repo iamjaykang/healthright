@@ -1,7 +1,10 @@
 .brand-preview-item {
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
+  margin: 30px 0;
+}
+.brand-preview-item h2 {
+  text-align: center;
 }
 .brand-preview-item .title {
   font-size: 28px;

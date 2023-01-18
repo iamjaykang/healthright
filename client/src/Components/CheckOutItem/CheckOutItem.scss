@@ -1,15 +1,14 @@
 .checkout-item-container {
     width: 100%;
-    display: flex;
     min-height: 100px;
     border-bottom: 1px solid darkgrey;
-    padding: 15px 0;
     font-size: 20px;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
 
     .img-container {
         width: 23%;
-        padding-right: 15px;
 
         img {
             width: 100%;
@@ -21,10 +20,16 @@
     .quantity,
     .price {
         width: 23%;
+
+    }
+
+    .name {
+        padding-left:50px;
     }
 
     .quantity {
         display: flex;
+        padding-left: 120px;
 
         div {
             cursor: pointer;
@@ -35,8 +40,14 @@
         }
     }
 
+    .price {
+        span {
+            padding-left: 120px;
+        }
+    }
+
     .remove-btn {
+        margin: 0 auto;
         cursor: pointer;
-        margin: 0 15px;
     }
 }

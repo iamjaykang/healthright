@@ -9,7 +9,7 @@ const BrandsPreview = () => {
   const brandsMap = useSelector(selectBrandsMap);
 
   return (
-    <>
+    <div className="brands-preview-container">
       {brandsMap &&
         Object.keys(brandsMap).map((title) => {
           const products = brandsMap[title];
@@ -17,7 +17,7 @@ const BrandsPreview = () => {
             <BrandsPreviewItem key={title} title={title} products={products} />
           );
         })}
-    </>
+    </div>
   );
 };
 

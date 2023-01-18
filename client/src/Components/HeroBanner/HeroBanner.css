@@ -1,11 +1,29 @@
 .hero-banner {
   position: relative;
-  min-height: 962px;
-  background-size: contain;
+  min-height: 800px;
+  background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media only screen and (max-width: 1024px) {
+  .hero-banner {
+    /* styles for screens smaller than 1024px */
+    display: none;
+  }
+}
+@media only screen and (max-width: 1441px) {
+  .hero-banner {
+    /* styles for screens larger than 1440px */
+    min-height: 800px;
+  }
+}
+@media only screen and (min-width: 2000px) {
+  .hero-banner {
+    /* styles for screens larger than 1440px */
+    min-height: 1600px;
+  }
 }
 .hero-banner .hero-banner-content-container {
   position: absolute;
@@ -26,7 +44,15 @@
   .hero-banner .hero-banner-content-container {
     /* styles for screens larger than 992px */
     top: 120px;
-    left: 30px;
+    left: 140px;
+  }
+}
+@media only screen and (min-width: 1441px) {
+  .hero-banner .hero-banner-content-container {
+    /* styles for screens larger than 1441px */
+    top: 180px;
+    left: 200px;
+    max-width: 800px;
   }
 }
 .hero-banner .hero-banner-content-container .hero-banner-title {

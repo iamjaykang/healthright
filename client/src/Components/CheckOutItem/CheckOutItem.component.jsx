@@ -29,15 +29,18 @@ const CheckOutItem = ({ item }) => {
         <div className="img-container">
           <img src={item.imgUrl} alt={`${item.name}`} />
         </div>
-        <span className="name">{item.name}</span>
+        <div className="name">
+          <span>{item.name}</span>
+        </div>
 
         <div className="quantity">
           <div onClick={() => handleDecrementClick(item.id)}>-</div>
           <span className="value">{item.quantity}</span>
           <div onClick={() => handleIncrementClick(item.id)}>+</div>
         </div>
-
-        <span className="price">{item.price}</span>
+        <div className="price">
+          <span>${item.price}</span>
+        </div>
 
         <div onClick={() => handleRemoveItem(item.id)} className="remove-btn">
           X
