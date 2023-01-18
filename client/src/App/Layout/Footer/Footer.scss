@@ -5,6 +5,10 @@ footer {
     width: 100%;
     margin-top: auto;
 
+    @media only screen and(max-width: 769px) {
+        display: none;
+    }
+
     .container {
         margin: 0 auto;
 
@@ -24,8 +28,9 @@ footer {
 
                 .footer-info-list {
                     padding: 0;
+
                     li {
-                        
+
                         list-style: none;
                         line-height: 2;
 

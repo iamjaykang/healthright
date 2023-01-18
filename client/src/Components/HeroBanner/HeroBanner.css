@@ -6,22 +6,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Media query for screens smaller than 768px */
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
   .hero-banner {
-    /* styles for screens smaller than 1024px */
     display: none;
   }
 }
-@media only screen and (max-width: 1441px) {
+@media only screen and (min-width: 1441px) {
   .hero-banner {
-    /* styles for screens larger than 1440px */
+    /* styles for screens smaller than 1440px */
     min-height: 800px;
   }
 }
 @media only screen and (min-width: 2000px) {
   .hero-banner {
-    /* styles for screens larger than 1440px */
+    /* styles for screens larger than 2000px */
     min-height: 1600px;
   }
 }

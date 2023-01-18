@@ -12,8 +12,5 @@
   cursor: pointer;
 }
 .brand-preview-item .preview {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  -moz-column-gap: 20px;
-       column-gap: 20px;
+  padding: 0 20px;
 }/*# sourceMappingURL=BrandsPreviewItem.css.map */
