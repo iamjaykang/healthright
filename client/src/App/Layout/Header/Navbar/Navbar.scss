@@ -23,6 +23,12 @@
                 position: relative;
                 cursor: pointer;
                 white-space: nowrap;
+
+                &:hover {
+                    +.dropdown {
+                        display: block;
+                    }
+                }
             }
         }
     }

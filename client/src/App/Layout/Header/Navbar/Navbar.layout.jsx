@@ -10,6 +10,7 @@ import { signOutLoading } from "../../../../stores/user/user.action";
 const Navbar = ({ currentUser }) => {
   const [dropdownOpen, setDropdownOpen] = useState({});
   const [hovered, setHovered] = useState(null);
+  let timeoutId;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,12 +20,15 @@ const Navbar = ({ currentUser }) => {
   }, [hovered]);
 
   const handleMouseEnter = (id) => {
+    clearTimeout(timeoutId);
     setHovered(id);
   };
 
   const handleMouseLeave = () => {
-    setDropdownOpen({ [hovered]: false });
-    setHovered(null);
+    timeoutId = setTimeout(() => {
+      setDropdownOpen({ [hovered]: false });
+      setHovered(null);
+    }, 300);
   };
 
   const signOutUser = () => dispatch(signOutLoading())

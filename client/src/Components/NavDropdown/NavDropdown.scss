@@ -2,7 +2,7 @@
     padding: 0;
     position: absolute;
     z-index: 5;
-    margin-top: 10px;
+    margin-top: 25px;
     background-color: #fff;
     left: 50%;
     transform: translateX(-50%);
@@ -10,7 +10,7 @@
     list-style: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-    li {
+    .dropdown-item {
         display: block;
 
         a {
@@ -24,16 +24,8 @@
             }
         }
     }
-}
-
-.nav-link {
-    &:hover {
-        +.dropdown {
-            display: block;
-        }
+    
+    &.open {
+        visibility: visible;
     }
-}
-
-.dropdown.open {
-    visibility: visible;
 }
