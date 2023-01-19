@@ -11,6 +11,23 @@
     background-color: #515B43;
     z-index: 10;
 
+    .nav-outer-container {
+        display: block;
+
+        @media only screen and (max-width:768px) {
+            display: none;
+        }
+    }
+
+    .hm-outer-container {
+        display: none;
+        height: 100%;
+
+        @media only screen and (max-width:768px) {
+            display: block;
+        }
+    }
+
 
     .brand {
         margin: auto 0 auto 40px;
@@ -19,8 +36,9 @@
         display: flex;
         align-items: center;
 
-        @media only screen and(max-width: 769px) {
-            margin: auto 0 auto 20px;
+        @media only screen and(max-width: 768px) {
+            margin: 0 auto;
+            text-align: center;
         }
 
         .logo {
@@ -30,6 +48,7 @@
 
             @media only screen and(max-width: 769px) {
                 font-size: 1em;
+                margin: 0 auto;
             }
         }
     }

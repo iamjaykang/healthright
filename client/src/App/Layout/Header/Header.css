@@ -11,6 +11,23 @@
   background-color: #515B43;
   z-index: 10;
 }
+.header .nav-outer-container {
+  display: block;
+}
+@media only screen and (max-width: 768px) {
+  .header .nav-outer-container {
+    display: none;
+  }
+}
+.header .hm-outer-container {
+  display: none;
+  height: 100%;
+}
+@media only screen and (max-width: 768px) {
+  .header .hm-outer-container {
+    display: block;
+  }
+}
 .header .brand {
   margin: auto 0 auto 40px;
   width: 180px;
@@ -18,9 +35,10 @@
   display: flex;
   align-items: center;
 }
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 768px) {
   .header .brand {
-    margin: auto 0 auto 20px;
+    margin: 0 auto;
+    text-align: center;
   }
 }
 .header .brand .logo {
@@ -31,5 +49,6 @@
 @media only screen and (max-width: 769px) {
   .header .brand .logo {
     font-size: 1em;
+    margin: 0 auto;
   }
 }/*# sourceMappingURL=Header.css.map */

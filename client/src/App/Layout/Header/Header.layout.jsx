@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CartDropdown from "../../../Components/CartDropdown/CartDropdown.component";
 import Navbar from "./Navbar/Navbar.layout";
-import './Header.css'
+import "./Header.css";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../stores/user/user.selector";
 import { selectIsCartOpen } from "../../../stores/cart/cart.selector";
+import HamburgerMenu from "./HamburgerMenu/HamburgerMenu.layout";
 
 const Header = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -17,9 +18,14 @@ const Header = () => {
         <Link className="brand" to="/">
           <span className="logo">Healthright</span>
         </Link>
-        <Navbar currentUser={currentUser} />
+        <div className="nav-outer-container">
+          <Navbar currentUser={currentUser} />
+        </div>
+        <div className="hm-outer-container">
+          <HamburgerMenu currentUser={currentUser} />
+        </div>
         {isCartOpen && <CartDropdown />}
-      </header>{" "}
+      </header>
     </>
   );
 };

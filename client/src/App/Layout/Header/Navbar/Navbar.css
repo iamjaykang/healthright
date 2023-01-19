@@ -1,11 +1,6 @@
 .navbar {
   height: 100%;
 }
-@media only screen and (max-width: 769px) {
-  .navbar {
-    display: none;
-  }
-}
 .navbar .navbar-group {
   display: flex;
   height: 100%;
