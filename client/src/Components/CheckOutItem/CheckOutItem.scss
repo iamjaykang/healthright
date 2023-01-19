@@ -20,16 +20,15 @@
     .quantity,
     .price {
         width: 23%;
-
     }
 
     .name {
-        padding-left:50px;
+        padding-left:3rem;
     }
 
     .quantity {
         display: flex;
-        padding-left: 120px;
+        padding-left: 4rem;
 
         div {
             cursor: pointer;
@@ -42,12 +41,12 @@
 
     .price {
         span {
-            padding-left: 120px;
+            padding-left: 4rem;
         }
     }
 
     .remove-btn {
-        margin: 0 auto;
         cursor: pointer;
+        padding-right: 2rem;
     }
 }
