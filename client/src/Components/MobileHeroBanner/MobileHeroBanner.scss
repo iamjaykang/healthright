@@ -1,6 +1,6 @@
 .hero-banner-mobile {
     position: relative;
-    min-height: 400px;
+    min-height: 300px;
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -18,5 +18,6 @@
         width: 160px;
         border-radius: 30px;
         border: 10px solid #bf9d37;
+        text-decoration: none;
     }
 }

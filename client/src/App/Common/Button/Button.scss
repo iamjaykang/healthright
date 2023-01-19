@@ -5,7 +5,7 @@
     letter-spacing: 0.5px;
     line-height: 50px;
     padding: 0 35px 0 35px;
-    font-size: 15px;
+    font-size: 1em;
     background-color: #515B43;
     color: white;
     text-transform: uppercase;
@@ -15,6 +15,9 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+    @media only screen and(max-width:768px) {
+        font-size: 0.7em;
+      }
 
     &:hover {
         background-color: white;
