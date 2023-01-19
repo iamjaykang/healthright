@@ -16,9 +16,9 @@ export const routes = [
       { path: "brands", element: <Brands /> },
       { path: "brands/:brand", element: <Brand /> },
       { path: "auth", element: <Authentication /> },
-      { path: "check-out", element: <CheckOut /> },
+      { path: "checkout", element: <CheckOut /> },
       {
-        path: "check-out/payment",
+        path: "checkout/payment",
         element: (
           <Elements stripe={stripePromise}>
             <Payment />

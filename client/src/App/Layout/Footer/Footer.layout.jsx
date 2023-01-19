@@ -10,16 +10,16 @@ const Footer = () => {
             <h3 className="footer-info-heading">Help & Support</h3>
             <ul className="footer-info-list">
               <li>
-                <a href="#">Delivery</a>
+                <button>Delivery</button>
               </li>
               <li>
-                <a href="#">Reviews</a>
+                <button>Reviews</button>
               </li>
               <li>
-                <a href="#">Terms & Conditions</a>
+                <button>Terms & Conditions</button>
               </li>
               <li>
-                <a href="#">FAQs</a>
+                <button>FAQs</button>
               </li>
             </ul>
           </div>
@@ -27,16 +27,16 @@ const Footer = () => {
             <h3 className="footer-info-heading">About us</h3>
             <ul className="footer-info-list">
               <li>
-                <a href="#">Our Story</a>
+                <button>Our Story</button>
               </li>
               <li>
-                <a href="#">Why Healthright</a>
+                <button>Why Healthright</button>
               </li>
               <li>
-                <a href="#">Our Impact</a>
+                <button>Our Impact</button>
               </li>
               <li>
-                <a href="#">How we work</a>
+                <button>How we work</button>
               </li>
             </ul>
           </div>
@@ -44,13 +44,13 @@ const Footer = () => {
             <h3 className="footer-info-heading">Resources</h3>
             <ul className="footer-info-list">
               <li>
-                <a href="#">Blog</a>
+                <button>Blog</button>
               </li>
               <li>
-                <a href="#">Brands</a>
+                <button>Brands</button>
               </li>
               <li>
-                <a href="#">Shop Your Way</a>
+                <button>Shop Your Way</button>
               </li>
             </ul>
           </div>
@@ -58,16 +58,16 @@ const Footer = () => {
             <h3 className="footer-info-heading">Get in touch</h3>
             <ul className="footer-info-list">
               <li>
-                <a href="#">Contact us</a>
+                <button>Contact us</button>
               </li>
               <li>
-                <a href="#">LiveChat</a>
+                <button>LiveChat</button>
               </li>
               <li>
-                <a href="#">Facebook</a>
+                <button>Facebook</button>
               </li>
               <li>
-                <a href="#">Instagram</a>
+                <button>Instagram</button>
               </li>
             </ul>
           </div>

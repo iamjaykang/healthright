@@ -7,7 +7,6 @@ import desktopBgImg from "../../assets/images/banner-desktop.png";
 import mobileBgImg from "../../assets/images/banner.png";
 import About from "../../Components/About/About.component";
 import MobileHeroBanner from "../../Components/MobileHeroBanner/MobileHeroBanner.component";
-import ProductCarousel from "../../Components/ProductCarousel/ProductCarousel.component";
 
 const Home = () => {
   return (
@@ -21,7 +20,6 @@ const Home = () => {
       <MobileHeroBanner bgImg={mobileBgImg} />
       <About />
       <CategoryList />
-      {/* <ProductCarousel /> */}
       <BrandsPreview />
     </>
   );

@@ -34,7 +34,7 @@ const CheckOutList = () => {
       {cartItems &&
         cartItems.map((item) => <CheckOutItem key={item.id} item={item} />)}
       <span className="total">Total: ${cartTotal}</span>
-      <Link to='/check-out/payment'>
+      <Link to='/checkout/payment'>
         <Button>Check Out</Button>
       </Link>
     </div>

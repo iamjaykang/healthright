@@ -13,9 +13,6 @@ const HamburgerMenu = ({ currentUser }) => {
   const isOpen = useSelector((state) => state.burgerMenu.isOpen);
   const dispatch = useDispatch();
 
-  const handleStateChange = (state) => {
-    dispatch(toggleMenu(state));
-  };
 
   const closeMenu = () => {
     dispatch(toggleMenu(false));
@@ -27,8 +24,7 @@ const HamburgerMenu = ({ currentUser }) => {
     <Menu
       right
       isOpen={isOpen}
-      customBurgerIcon={<img src={burgerIcon} />}
-      //   onStateChange={() => handleStateChange}
+      customBurgerIcon={<img src={burgerIcon} alt='burger-icon' />}
       width={300}
     >
       {navLinks.map((navLink) =>
