@@ -20,11 +20,11 @@
   width: 23%;
 }
 .checkout-item-container .name {
-  padding-left: 50px;
+  padding-left: 3rem;
 }
 .checkout-item-container .quantity {
   display: flex;
-  padding-left: 120px;
+  padding-left: 4rem;
 }
 .checkout-item-container .quantity div {
   cursor: pointer;
@@ -33,9 +33,9 @@
   margin: 0 10px;
 }
 .checkout-item-container .price span {
-  padding-left: 120px;
+  padding-left: 4rem;
 }
 .checkout-item-container .remove-btn {
-  margin: 0 auto;
   cursor: pointer;
+  padding-right: 2rem;
 }/*# sourceMappingURL=CheckOutItem.css.map */
