@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Authentication from "../../Views/Authentication/Authentication.view";
 import CheckOut from "../../Views/CheckOut/CheckOut.view";
 import Brands from "../../Views/Brands/Brands.view";
@@ -7,6 +7,7 @@ import Brand from "../../Views/Brand/Brand.view";
 import Payment from "../../Views/Payment/Payment.view";
 import { stripePromise } from "../../utils/stripe/stripe.utils";
 import { Elements } from "@stripe/react-stripe-js";
+import NotFoundPage from "../../Views/NotFoundPage/NotFoundPage.view";
 
 export const routes = [
   {
@@ -25,6 +26,8 @@ export const routes = [
           </Elements>
         ),
       },
+      { path: "not-found", element: <NotFoundPage /> },
+      { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },
 ];

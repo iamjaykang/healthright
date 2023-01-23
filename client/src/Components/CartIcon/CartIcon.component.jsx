@@ -8,14 +8,18 @@ import {
 } from "../../stores/cart/cart.selector";
 import { setIsCartOpen } from "../../stores/cart/cart.action";
 
-const CartIcon = () => {
+const CartIcon = ({ isMobileMenu }) => {
   const dispatch = useDispatch();
 
   const cartCount = useSelector(selectCartCount);
 
   const isCartOpen = useSelector(selectIsCartOpen);
 
-  const toggleIsCartOpen = () => dispatch(setIsCartOpen(!isCartOpen));
+  const toggleIsCartOpen = () => {
+    if (!isMobileMenu) {
+      dispatch(setIsCartOpen(!isCartOpen));
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -23,9 +27,9 @@ const CartIcon = () => {
         dispatch(setIsCartOpen(false));
       }
     };
-  
+
     document.addEventListener("click", handleClickOutside);
-  
+
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };

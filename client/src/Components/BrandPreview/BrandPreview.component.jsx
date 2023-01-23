@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard.component";
 import { useSelector } from "react-redux";
 import { selectBrandsMap } from "../../stores/brands/brand.selector";
-import './BrandPreview.css'
+import "./BrandPreview.css";
 
 const BrandPreview = () => {
   const { brand } = useParams();
   const brandsMap = useSelector(selectBrandsMap);
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setProducts(brandsMap[brand]);
+    if (!brandsMap[brand]) {
+      navigate("/not-found");
+    } else {
+      setProducts(brandsMap[brand]);
+    }
   }, [brand, brandsMap]);
   return (
     <>

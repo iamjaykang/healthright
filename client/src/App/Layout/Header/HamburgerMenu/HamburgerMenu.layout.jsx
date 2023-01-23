@@ -43,8 +43,8 @@ const HamburgerMenu = ({ currentUser }) => {
         )
       )}
       <div>
-        <Link onClick={closeMenu} to="/check-out">
-          <CartIcon />
+        <Link onClick={closeMenu} to="/checkout">
+          <CartIcon isMobileMenu={true}/>
         </Link>
       </div>
     </Menu>

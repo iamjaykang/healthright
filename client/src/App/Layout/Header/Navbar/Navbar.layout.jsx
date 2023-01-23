@@ -66,7 +66,7 @@ const Navbar = ({ currentUser }) => {
           )
         )}
         <li className="nav-item">
-          <CartIcon />
+          <CartIcon isMobileMenu={false}/>
         </li>
       </ul>
     </nav>

@@ -13,30 +13,29 @@ const CheckOutList = () => {
   const cartTotal = useSelector(selectCartTotal);
 
   return (
-    <div className="checkout-container">
-      <div className="checkout-header">
-        <div className="header-block">
-          <span>Product</span>
+    <div className="checkout-list">
+      <h2>Check out</h2>
+      <table className="checkout-table-container">
+        <thead>
+          <tr className="row-block">
+            <th className="header-block">Product</th>
+            <th className="header-block">Quantity</th>
+            <th className="header-block">Price</th>
+            <th className="header-block">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartItems && cartItems.map((item) => <CheckOutItem item={item} />)}
+        </tbody>
+      </table>
+      <div className="total-container">
+        <div className="total-amount">
+          <span>Total: ${cartTotal}</span>
         </div>
-        <div className="header-block">
-          <span>Name</span>
-        </div>
-        <div className="header-block">
-          <span>Quantity</span>
-        </div>
-        <div className="header-block">
-          <span>Price</span>
-        </div>
-        <div className="header-block">
-          <span>Remove</span>
-        </div>
+        <Link to="/checkout/payment">
+          <Button classNamecheckout-button>Check Out</Button>
+        </Link>
       </div>
-      {cartItems &&
-        cartItems.map((item) => <CheckOutItem key={item.id} item={item} />)}
-      <span className="total">Total: ${cartTotal}</span>
-      <Link to='/checkout/payment'>
-        <Button>Check Out</Button>
-      </Link>
     </div>
   );
 };
