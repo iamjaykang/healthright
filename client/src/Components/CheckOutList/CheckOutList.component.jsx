@@ -33,9 +33,9 @@ const CheckOutList = () => {
           <span>Total: ${cartTotal}</span>
         </div>
       </div>
-        <Link to="/checkout/payment">
-          <Button>Check Out</Button>
-        </Link>
+      <Link to="/checkout/payment">
+        <Button>Check Out</Button>
+      </Link>
     </div>
   );
 };
