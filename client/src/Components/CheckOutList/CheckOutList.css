@@ -30,4 +30,8 @@
 }
 .checkout-list table thead .row-block .header-block {
   width: 25%;
+}
+.checkout-list .total {
+  font-size: 2em;
+  padding: 20px 0;
 }/*# sourceMappingURL=CheckOutList.css.map */

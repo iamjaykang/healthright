@@ -29,13 +29,13 @@ const CheckOutList = () => {
         </tbody>
       </table>
       <div className="total-container">
-        <div className="total-amount">
+        <div className="total">
           <span>Total: ${cartTotal}</span>
         </div>
-        <Link to="/checkout/payment">
-          <Button classNamecheckout-button>Check Out</Button>
-        </Link>
       </div>
+        <Link to="/checkout/payment">
+          <Button>Check Out</Button>
+        </Link>
     </div>
   );
 };
