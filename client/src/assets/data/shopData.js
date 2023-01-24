@@ -39,7 +39,7 @@ const SHOP_DATA = [
     ],
   },
   {
-    title: "PaiOra",
+    title: "paiora",
     items: [
       {
         id: 1,
@@ -90,7 +90,7 @@ const SHOP_DATA = [
     ],
   },
   {
-    title: "Nu.wise",
+    title: "nu.wise",
     items: [
       {
         id: 1,

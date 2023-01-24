@@ -1,29 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard.component";
-import { useSelector } from "react-redux";
-import { selectBrandsMap } from "../../stores/brands/brand.selector";
+import { useSelector, useDispatch } from "react-redux";
 import "./BrandPreview.css";
+import Spinner from "../../App/Common/Spinner/Spinner.common";
+import { fetchSingleBrandLoading } from "../../stores/singleBrand/singleBrand.action";
+import {
+  selectShouldNavigate,
+  selectSingleBrand,
+  selectSingleBrandIsLoading,
+} from "../../stores/singleBrand/singleBrand.selector";
 
 const BrandPreview = () => {
   const { brand } = useParams();
-  const brandsMap = useSelector(selectBrandsMap);
-  const [products, setProducts] = useState([]);
+  const singleBrandItems = useSelector(selectSingleBrand);
+  const singleBrandIsLoading = useSelector(selectSingleBrandIsLoading);
+  const shouldNavigate = useSelector(selectShouldNavigate);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!brandsMap[brand]) {
+    if (shouldNavigate) {
       navigate("/not-found");
-    } else {
-      setProducts(brandsMap[brand]);
     }
-  }, [brand, brandsMap]);
+  }, [navigate, shouldNavigate]);
+
+  useEffect(() => {
+      dispatch(fetchSingleBrandLoading(brand));
+  }, [dispatch, brand,shouldNavigate]);
+
+  if (singleBrandIsLoading) return <Spinner />;
+
   return (
     <>
       <h2 className="preview-title">{brand.toUpperCase()}</h2>
       <div className="preview-item-container">
-        {products &&
-          products.map((product) => (
+        {singleBrandItems &&
+          singleBrandItems.items &&
+          singleBrandItems.items.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
       </div>
