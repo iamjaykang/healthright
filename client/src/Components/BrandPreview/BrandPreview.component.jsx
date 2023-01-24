@@ -20,8 +20,8 @@ const BrandPreview = () => {
   }, [brand, brandsMap]);
   return (
     <>
-      <h2 className="brand-title">{brand.toUpperCase()}</h2>
-      <div className="brand-container">
+      <h2 className="preview-title">{brand.toUpperCase()}</h2>
+      <div className="preview-item-container">
         {products &&
           products.map((product) => (
             <ProductCard key={product.id} product={product} />

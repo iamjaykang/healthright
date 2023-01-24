@@ -1,14 +1,18 @@
- .brand-title {
-        margin: 30px auto;
-        font-size: 38px;
-        margin-bottom: 25px;
-        text-align: center;
-    }
+ .preview-title {
+     margin: 30px auto;
+     font-size: 38px;
+     margin-bottom: 25px;
+     text-align: center;
+ }
 
-    .brand-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        column-gap: 20px;
-        row-gap: 50px;
-    }
+ .preview-item-container {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     column-gap: 20px;
+     row-gap: 50px;
 
+     @media only screen and (max-width:768px) {
+         grid-template-columns: repeat(2, 1fr);
+         padding: 20px;
+     }
+ }
