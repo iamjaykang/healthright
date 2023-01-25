@@ -55,10 +55,4 @@
 .checkout-list .total-container .total .value {
   font-size: 1.5em;
   font-weight: bold;
-}
-@media only screen and (max-width: 768px) {
-  .checkout-list .total-container .total {
-    display: flex;
-    justify-content: space-between;
-  }
 }/*# sourceMappingURL=CheckOutList.css.map */

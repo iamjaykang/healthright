@@ -2,11 +2,12 @@
     width: 100%;
     align-items: center;
     display: grid;
-    grid-template-columns: 40% 20% 20% 20%;
+    grid-template-columns: 50% 25% 25%;
     grid-template-rows: auto;
+
     @media only screen and(max-width:768px) {
         font-size: 0.8em;
-      }
+    }
 
     .product,
     .price,
@@ -14,7 +15,6 @@
         text-align: center;
         align-items: center;
         margin: 0 auto;
-
     }
 
     .product {
@@ -28,32 +28,42 @@
             display: inline-block;
             width: 60%;
             height: auto;
-            
-            @media only screen and(max-width:768px) {
-                width: 100%;
-                img {
-                    width: 100%;
-                }
-            }
 
             img {
                 width: 80%;
             }
+
+            @media only screen and(max-width:768px) {
+                width: 100%;
+
+                img {
+                    width: 100%;
+                }
+            }
         }
     }
 
-    .quantity {
+    .quantity-container {
         display: flex;
+        flex-direction: column;
         column-gap: 1em;
         margin: 0 auto;
 
-        div {
-            cursor: pointer;
+        .quantity {
+            display: flex;
+            column-gap: 1em;
+            margin: 0 auto;
+            border-bottom: 2px solid black;
+            padding: 5px;
+
+            div {
+                cursor: pointer;
+            }
         }
     }
 
     .remove {
-        margin: 0 auto;
+        margin: 5px auto;
         cursor: pointer;
     }
 }

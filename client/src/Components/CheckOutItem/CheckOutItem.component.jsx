@@ -33,14 +33,16 @@ const CheckOutItem = ({ item }) => {
           <span>{item.name}</span>
         </div>
       </div>
-      <div className="quantity">
-        <div onClick={() => handleDecrementClick(item.id)}>-</div>
-        <span className="value">{item.quantity}</span>
-        <div onClick={() => handleIncrementClick(item.id)}>+</div>
-      </div>
       <div className="price">${item.price}</div>
-      <div className="remove">
-        <div onClick={() => handleRemoveItem(item.id)}>Remove</div>
+      <div className="quantity-container">
+        <div className="quantity">
+          <div onClick={() => handleDecrementClick(item.id)}>-</div>
+          <span className="value">{item.quantity}</span>
+          <div onClick={() => handleIncrementClick(item.id)}>+</div>
+        </div>
+        <div className="remove">
+          <div onClick={() => handleRemoveItem(item.id)}>Remove</div>
+        </div>
       </div>
     </div>
   );
