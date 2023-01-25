@@ -19,20 +19,9 @@ const CheckOutList = () => {
         <div className="checkout-list-empty">Your Cart is Empty!</div>
       ) : (
         <>
-          <table className="checkout-table-container">
-            <thead>
-              <tr className="row-block">
-                <th className="header-block">Product</th>
-                <th className="header-block">Quantity</th>
-                <th className="header-block">Price</th>
-                <th className="header-block">Remove</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems &&
-                cartItems.map((item) => <CheckOutItem item={item} />)}
-            </tbody>
-          </table>
+          <div>
+            {cartItems && cartItems.map((item) => <CheckOutItem item={item} />)}
+          </div>
           <div className="total-container">
             <div className="total">
               <span className="text">Total:</span>

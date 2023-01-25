@@ -2,7 +2,7 @@
     width: 100%;
     align-items: center;
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 40% 20% 20% 20%;
     grid-template-rows: auto;
     @media only screen and(max-width:768px) {
         font-size: 0.8em;
@@ -26,11 +26,18 @@
 
         .img-container {
             display: inline-block;
-            width: 100%;
+            width: 60%;
             height: auto;
+            
+            @media only screen and(max-width:768px) {
+                width: 100%;
+                img {
+                    width: 100%;
+                }
+            }
 
             img {
-                width: 100%;
+                width: 80%;
             }
         }
     }

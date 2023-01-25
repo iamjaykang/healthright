@@ -24,25 +24,25 @@ const CheckOutItem = ({ item }) => {
     dispatch(removeItem(cartItems, itemId));
   };
   return (
-    <tr className="checkout-item">
-      <td className="product">
+    <div className="checkout-item">
+      <div className="product">
         <div className="img-container">
           <img src={item.imgUrl} alt={item.name} />
         </div>
         <div className="name">
           <span>{item.name}</span>
         </div>
-      </td>
-      <td className="quantity">
+      </div>
+      <div className="quantity">
         <div onClick={() => handleDecrementClick(item.id)}>-</div>
         <span className="value">{item.quantity}</span>
         <div onClick={() => handleIncrementClick(item.id)}>+</div>
-      </td>
-      <td className="price">${item.price}</td>
-      <td className="remove">
+      </div>
+      <div className="price">${item.price}</div>
+      <div className="remove">
         <div onClick={() => handleRemoveItem(item.id)}>Remove</div>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 };
 
