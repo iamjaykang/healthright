@@ -14,28 +14,36 @@ const CheckOutList = () => {
 
   return (
     <div className="checkout-list">
-      <h2>Check out</h2>
-      <table className="checkout-table-container">
-        <thead>
-          <tr className="row-block">
-            <th className="header-block">Product</th>
-            <th className="header-block">Quantity</th>
-            <th className="header-block">Price</th>
-            <th className="header-block">Remove</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cartItems && cartItems.map((item) => <CheckOutItem item={item} />)}
-        </tbody>
-      </table>
-      <div className="total-container">
-        <div className="total">
-          <span>Total: ${cartTotal}</span>
-        </div>
-      </div>
-      <Link to="/checkout/payment">
-        <Button>Check Out</Button>
-      </Link>
+      <h2>CART</h2>
+      {cartItems.length === 0 ? (
+        <div className="checkout-list-empty">Your Cart is Empty!</div>
+      ) : (
+        <>
+          <table className="checkout-table-container">
+            <thead>
+              <tr className="row-block">
+                <th className="header-block">Product</th>
+                <th className="header-block">Quantity</th>
+                <th className="header-block">Price</th>
+                <th className="header-block">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cartItems &&
+                cartItems.map((item) => <CheckOutItem item={item} />)}
+            </tbody>
+          </table>
+          <div className="total-container">
+            <div className="total">
+              <span className="text">Total:</span>
+              <span className="value"> ${cartTotal}</span>
+            </div>
+          </div>
+          <Link to="/checkout/payment">
+            <Button>Check Out</Button>
+          </Link>
+        </>
+      )}
     </div>
   );
 };

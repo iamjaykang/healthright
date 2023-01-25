@@ -1,7 +1,6 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
 
 import {
-  getBrandsAndDocuments,
   getSingleBrandAndDocuments,
 } from "../../utils/firebase/firebase.utils";
 

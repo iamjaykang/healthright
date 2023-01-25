@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard.component";
 import { useSelector, useDispatch } from "react-redux";
