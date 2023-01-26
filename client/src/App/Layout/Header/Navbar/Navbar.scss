@@ -19,6 +19,9 @@
                 position: relative;
                 cursor: pointer;
                 white-space: nowrap;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
                 &:hover {
                     +.dropdown {

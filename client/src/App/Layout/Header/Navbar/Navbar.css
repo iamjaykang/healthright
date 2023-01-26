@@ -18,6 +18,9 @@
   position: relative;
   cursor: pointer;
   white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .navbar .navbar-group .nav-item .nav-link:hover + .dropdown {
   display: block;
