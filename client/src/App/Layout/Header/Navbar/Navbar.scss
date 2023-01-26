@@ -20,8 +20,14 @@
                 cursor: pointer;
                 white-space: nowrap;
                 display: flex;
-                justify-content: center;
                 align-items: center;
+
+                svg {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    margin-left: auto;
+                }
 
                 &:hover {
                     +.dropdown {

@@ -19,8 +19,13 @@
   cursor: pointer;
   white-space: nowrap;
   display: flex;
-  justify-content: center;
   align-items: center;
+}
+.navbar .navbar-group .nav-item .nav-link svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: auto;
 }
 .navbar .navbar-group .nav-item .nav-link:hover + .dropdown {
   display: block;
