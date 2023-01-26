@@ -1,0 +1,27 @@
+.mobile-dropdown {
+    padding: 0;
+    position: relative;
+    z-index: 5;
+    background: #7f8b6f;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: auto;
+    display: none;
+    list-style: none;
+
+    .dropdown-item {
+        display: block;
+        cursor: pointer;
+
+        a {
+            display: block;
+            padding: 5px 15px;
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+    
+    &.open {
+        display: block;
+    }
+}

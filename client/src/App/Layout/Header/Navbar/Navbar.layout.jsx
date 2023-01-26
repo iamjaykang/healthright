@@ -34,8 +34,8 @@ const Navbar = ({ currentUser }) => {
     // set a timeout to close the dropdown after 300ms
     timeoutId = setTimeout(() => {
       if (hovered === id) {
-      setDropdownOpen({ [hovered]: false });
-      setHovered(null);
+        setDropdownOpen({ [hovered]: false });
+        setHovered(null);
       }
     }, 300);
   };
@@ -57,8 +57,12 @@ const Navbar = ({ currentUser }) => {
             <li
               className="nav-item"
               key={navLink.id}
-              onMouseEnter={() => navLink.dropdown && handleMouseEnter(navLink.id)}
-              onMouseLeave={() => navLink.dropdown && handleMouseLeave(navLink.id)}
+              onMouseEnter={() =>
+                navLink.dropdown && handleMouseEnter(navLink.id)
+              }
+              onMouseLeave={() =>
+                navLink.dropdown && handleMouseLeave(navLink.id)
+              }
             >
               <NavLink className="nav-link" to={navLink.to}>
                 <span>{navLink.title}</span>
@@ -66,11 +70,11 @@ const Navbar = ({ currentUser }) => {
                 {navLink.dropdown &&
                   (dropdownOpen && hovered === navLink.id ? (
                     <span>
-                      <ExpandMoreIcon />
+                      <ExpandLessIcon />
                     </span>
                   ) : (
                     <span>
-                      <ExpandLessIcon />
+                      <ExpandMoreIcon />
                     </span>
                   ))}
               </NavLink>

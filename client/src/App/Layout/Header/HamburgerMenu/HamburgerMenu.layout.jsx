@@ -1,21 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { action as toggleMenu } from "redux-burger-menu";
 import { useDispatch, useSelector } from "react-redux";
-import navLinks from "../../../../assets/data/navLinks.json";
+import mobileNavLinks from "../../../../assets/data/mobileNavLinks.json";
 import { Link, NavLink } from "react-router-dom";
 import CartIcon from "../../../../Components/CartIcon/CartIcon.component";
 import Menu from "../../../../utils/menu/menu";
 import "./HamburgerMenu.css";
 import burgerIcon from "../../../../assets/images/bars-solid.svg";
 import { signOutLoading } from "../../../../stores/user/user.action";
+import MobileNavDropdown from "../../../../Components/MobileNavDropdown/MobileNavDropdown.component";
 
 const HamburgerMenu = ({ currentUser }) => {
   const isOpen = useSelector((state) => state.burgerMenu.isOpen);
+  const [hmDropdownOpen, setHmDropdownOpen] = useState({});
+  const [opened, setOpened] = useState(null);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    // if a nav item is being hovered over, set the corresponding dropdown to open
+    if (opened) {
+      setHmDropdownOpen({ [opened]: true });
+    }
+  }, [opened]);
 
   const closeMenu = () => {
+    setHmDropdownOpen({});
     dispatch(toggleMenu(false));
+  };
+
+  const toggleHmDropdown = (id) => {
+    setHmDropdownOpen((prevState) => {
+      return {
+        ...prevState,
+        [id]: !prevState[id],
+      };
+    });
   };
 
   const signOutUser = () => dispatch(signOutLoading());
@@ -24,10 +43,10 @@ const HamburgerMenu = ({ currentUser }) => {
     <Menu
       right
       isOpen={isOpen}
-      customBurgerIcon={<img src={burgerIcon} alt='burger-icon' />}
+      customBurgerIcon={<img src={burgerIcon} alt="burger-icon" />}
       width={300}
     >
-      {navLinks.map((navLink) =>
+      {mobileNavLinks.map((navLink) =>
         navLink.title === "Sign In" && currentUser ? (
           <div key={navLink.id}>
             <NavLink className="bm-link" to="#" onClick={signOutUser}>
@@ -36,15 +55,33 @@ const HamburgerMenu = ({ currentUser }) => {
           </div>
         ) : (
           <div key={navLink.id}>
-            <NavLink onClick={closeMenu} className="bm-link" to={navLink.to}>
+            <NavLink
+              onClick={
+                navLink.dropdown
+                  ? () => {
+                      toggleHmDropdown(navLink.id);
+                    }
+                  : closeMenu
+              }
+              className="bm-link"
+              to={navLink.to}
+            >
               <span>{navLink.title}</span>
             </NavLink>
+            {navLink.dropdown && (
+              <MobileNavDropdown
+                key={`dropdown-${navLink.id}`}
+                dropdown={navLink.dropdown}
+                dropdownOpen={hmDropdownOpen[navLink.id]}
+                closeMenu={closeMenu}
+              />
+            )}
           </div>
         )
       )}
       <div>
         <Link onClick={closeMenu} to="/checkout">
-          <CartIcon isMobileMenu={true}/>
+          <CartIcon isMobileMenu={true} />
         </Link>
       </div>
     </Menu>

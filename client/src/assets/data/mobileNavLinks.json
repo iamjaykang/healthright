@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "title": "Home",
+    "to": "/"
+  },
+  {
+    "id": 2,
+    "title": "Brands",
+    "dropdown": [
+      {
+        "id": 1,
+        "title": "All",
+        "to": "/brands"
+      },
+      {
+        "id": 2,
+        "title": "kuku",
+        "to": "/brands/kuku"
+      },
+      {
+        "id": 3,
+        "title": "Nu.Wise",
+        "to": "/brands/nu.wise"
+      },
+      {
+        "id": 4,
+        "title": "Nzpurehealth",
+        "to": "/brands/nzpurehealth"
+      },
+      {
+        "id": 5,
+        "title": "PaiOra",
+        "to": "/brands/paiora"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Sign In",
+    "to": "/auth"
+  }
+]
