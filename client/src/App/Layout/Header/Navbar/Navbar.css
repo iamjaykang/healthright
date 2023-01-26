@@ -26,7 +26,4 @@
   top: 50%;
   transform: translateY(-50%);
   margin-left: auto;
-}
-.navbar .navbar-group .nav-item .nav-link:hover + .dropdown {
-  display: block;
 }/*# sourceMappingURL=Navbar.css.map */

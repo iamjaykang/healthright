@@ -16,7 +16,7 @@ const Navbar = ({ currentUser }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-  // if a nav item is being hovered over, set the corresponding dropdown to open
+    // if a nav item is being hovered over, set the corresponding dropdown to open
     if (hovered) {
       setDropdownOpen({ [hovered]: true });
     }
@@ -30,11 +30,13 @@ const Navbar = ({ currentUser }) => {
   };
 
   // function to handle mouse leave event on a nav item
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (id) => {
     // set a timeout to close the dropdown after 300ms
     timeoutId = setTimeout(() => {
+      if (hovered === id) {
       setDropdownOpen({ [hovered]: false });
       setHovered(null);
+      }
     }, 300);
   };
 
@@ -55,14 +57,14 @@ const Navbar = ({ currentUser }) => {
             <li
               className="nav-item"
               key={navLink.id}
-              onMouseEnter={() => handleMouseEnter(navLink.id)}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => navLink.dropdown && handleMouseEnter(navLink.id)}
+              onMouseLeave={() => navLink.dropdown && handleMouseLeave(navLink.id)}
             >
               <NavLink className="nav-link" to={navLink.to}>
                 <span>{navLink.title}</span>
                 {/* if the navLink dropdown exists and is hovered over render expandMoreIcon else expandLessIcon */}
                 {navLink.dropdown &&
-                  (dropdownOpen[hovered] ? (
+                  (dropdownOpen && hovered === navLink.id ? (
                     <span>
                       <ExpandMoreIcon />
                     </span>
@@ -77,8 +79,6 @@ const Navbar = ({ currentUser }) => {
                   key={`dropdown-${navLink.id}`}
                   dropdown={navLink.dropdown}
                   dropdownOpen={dropdownOpen[navLink.id]}
-                  onMouseEnter={() => handleMouseEnter(navLink.id)}
-                  onMouseLeave={handleMouseLeave}
                 />
               )}
             </li>
