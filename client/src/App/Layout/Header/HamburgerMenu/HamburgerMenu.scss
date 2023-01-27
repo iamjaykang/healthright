@@ -11,12 +11,13 @@
 .bm-cross-button {
     height: 24px;
     width: 24px;
+
+    /* Color/shape of close button cross */
+    .bm-cross {
+        background: #bdc3c7;
+    }
 }
 
-/* Color/shape of close button cross */
-.bm-cross {
-    background: #bdc3c7;
-}
 
 /*
   Sidebar wrapper styles
@@ -25,26 +26,26 @@
 .bm-menu-wrap {
     position: fixed;
     height: 100%;
-}
 
-/* General sidebar styles */
-.bm-menu {
-    background: #7f8b6f;
-    padding: 2.5em 1.5em 0;
-    font-size: 1.15em;
-}
+    /* General sidebar styles */
+    .bm-menu {
+        background: #7f8b6f;
+        padding: 2.5em 1.5em 0;
+        font-size: 1.15em;
 
-/* Wrapper for item list */
-.bm-item-list {
-    color: #b8b7ad;
-    padding: 0.8em;
-}
+        /* Wrapper for item list */
+        .bm-item-list {
+            color: #b8b7ad;
+            padding: 0.8em;
 
-.bm-item {
-    justify-content: center;
-    list-style: none;
+            .bm-item {
+                justify-content: center;
+                list-style: none;
 
-    .bm-link {
-        color: white;
+                .bm-link {
+                    color: white;
+                }
+            }
+        }
     }
 }

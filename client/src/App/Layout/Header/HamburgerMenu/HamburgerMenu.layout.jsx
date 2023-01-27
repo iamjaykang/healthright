@@ -13,15 +13,7 @@ import MobileNavDropdown from "../../../../Components/MobileNavDropdown/MobileNa
 const HamburgerMenu = ({ currentUser }) => {
   const isOpen = useSelector((state) => state.burgerMenu.isOpen);
   const [hmDropdownOpen, setHmDropdownOpen] = useState({});
-  const [opened, setOpened] = useState(null);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    // if a nav item is being hovered over, set the corresponding dropdown to open
-    if (opened) {
-      setHmDropdownOpen({ [opened]: true });
-    }
-  }, [opened]);
 
   const closeMenu = () => {
     setHmDropdownOpen({});

@@ -11,10 +11,9 @@
 .bm-cross-button {
   height: 24px;
   width: 24px;
+  /* Color/shape of close button cross */
 }
-
-/* Color/shape of close button cross */
-.bm-cross {
+.bm-cross-button .bm-cross {
   background: #bdc3c7;
 }
 
@@ -25,25 +24,22 @@
 .bm-menu-wrap {
   position: fixed;
   height: 100%;
+  /* General sidebar styles */
 }
-
-/* General sidebar styles */
-.bm-menu {
+.bm-menu-wrap .bm-menu {
   background: #7f8b6f;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
+  /* Wrapper for item list */
 }
-
-/* Wrapper for item list */
-.bm-item-list {
+.bm-menu-wrap .bm-menu .bm-item-list {
   color: #b8b7ad;
   padding: 0.8em;
 }
-
-.bm-item {
+.bm-menu-wrap .bm-menu .bm-item-list .bm-item {
   justify-content: center;
   list-style: none;
 }
-.bm-item .bm-link {
+.bm-menu-wrap .bm-menu .bm-item-list .bm-item .bm-link {
   color: white;
 }/*# sourceMappingURL=HamburgerMenu.css.map */

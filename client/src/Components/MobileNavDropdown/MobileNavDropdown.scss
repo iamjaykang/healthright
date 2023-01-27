@@ -2,12 +2,14 @@
     padding: 0;
     position: relative;
     z-index: 5;
-    background: #7f8b6f;
+    background: #909987;
     left: 50%;
     transform: translateX(-50%);
+    height: 0px;
     margin: auto;
-    display: none;
     list-style: none;
+    transition: height 0.3s ease;
+    overflow: hidden;
 
     .dropdown-item {
         display: block;
@@ -18,10 +20,15 @@
             padding: 5px 15px;
             color: #fff;
             text-decoration: none;
+
+            &:hover {
+                background-color: #4b5345;
+            }
         }
     }
-    
+
     &.open {
-        display: block;
+        height: 180px;
+        overflow: auto;
     }
 }

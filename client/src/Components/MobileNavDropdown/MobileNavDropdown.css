@@ -2,12 +2,14 @@
   padding: 0;
   position: relative;
   z-index: 5;
-  background: #7f8b6f;
+  background: #909987;
   left: 50%;
   transform: translateX(-50%);
+  height: 0px;
   margin: auto;
-  display: none;
   list-style: none;
+  transition: height 0.3s ease;
+  overflow: hidden;
 }
 .mobile-dropdown .dropdown-item {
   display: block;
@@ -19,6 +21,10 @@
   color: #fff;
   text-decoration: none;
 }
+.mobile-dropdown .dropdown-item a:hover {
+  background-color: #4b5345;
+}
 .mobile-dropdown.open {
-  display: block;
+  height: 180px;
+  overflow: auto;
 }/*# sourceMappingURL=MobileNavDropdown.css.map */
