@@ -8,7 +8,7 @@ const Payment = () => {
       <h2>Payment</h2>
       <PaymentForm />
       <p style={{ color: "red", textAlign: "center" }}>
-        *Testing only, use Card number: 4242 4242 4242 4242
+        *Test payments only, use Card number: 4242 4242 4242 4242
       </p>
     </div>
   );
