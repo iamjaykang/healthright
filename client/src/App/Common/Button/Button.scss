@@ -15,10 +15,6 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
-    @media only screen and(max-width:768px) {
-        font-size: 0.5em;
-        min-width: 145px;
-      }
 
     &:hover {
         background-color: white;

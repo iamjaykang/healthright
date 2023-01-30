@@ -1,10 +1,12 @@
 .sign-in-container {
   display: flex;
   flex-direction: column;
-  width: 420px;
+  width: 440px;
 }
-.sign-in-container h2 {
-  margin: 10px 0;
+@media only screen and (max-width: 768px) {
+  .sign-in-container {
+    width: 90%;
+  }
 }
 .sign-in-container .btns-container {
   display: flex;

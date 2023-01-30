@@ -55,7 +55,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
+  font-size: 1.2em;
 }
 .product-card-container .card-info .name {
   width: 100%;

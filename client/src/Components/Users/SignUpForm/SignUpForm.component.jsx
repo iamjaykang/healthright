@@ -45,14 +45,14 @@ const SignUpForm = ({ setFormType }) => {
   return (
     <div className="sign-up-container">
       <h2>Don't have an account?</h2>
-      <div className="form-action-container">
+      <p className="form-action-container">
         <span>
           Sign up with your email and password or
           <button className="link-btn" onClick={() => setFormType("sign in")}>
             Sign in instead
           </button>
         </span>
-      </div>
+      </p>
       <form onSubmit={handleSubmit}>
         <MyTextInput
           label="Display Name"

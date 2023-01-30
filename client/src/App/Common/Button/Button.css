@@ -16,12 +16,6 @@
   display: flex;
   justify-content: center;
 }
-@media only screen and (max-width: 768px) {
-  .btn-container {
-    font-size: 0.5em;
-    min-width: 145px;
-  }
-}
 .btn-container:hover {
   background-color: white;
   color: black;

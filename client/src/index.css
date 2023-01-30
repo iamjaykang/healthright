@@ -1,11 +1,11 @@
 * {
   box-sizing: border-box;
+  font-family: "Noto Sans Tangsa", sans-serif, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 body {
   margin: 0;
-  font-family: "Noto Sans Tangsa", sans-serif, Menlo, Monaco, Consolas, "Courier New", monospace;
-  padding-top: 60px;
+  padding-top: 30px;
 }
 
 a {

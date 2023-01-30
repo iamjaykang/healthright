@@ -8,23 +8,16 @@
     margin: 0 auto;
 
     .form-action-container {
-        width: 50%;
-        display: flex;
+        display: inline-flex;
+        flex-wrap: wrap;
 
-        span {
+        .link-btn {
             font-size: 1em;
-            white-space: nowrap;
-
-            .link-btn {
-                font-size: 1em;
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
-                color: blue;
-                text-decoration: none;
-            }
+            background-color: inherit;
+            border: none;
+            cursor: pointer;
+            color: blue;
         }
-
     }
 
 }

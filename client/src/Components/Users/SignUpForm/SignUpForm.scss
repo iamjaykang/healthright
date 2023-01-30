@@ -1,10 +1,10 @@
 .sign-up-container {
     display: flex;
     flex-direction: column;
-    width: 420px;
+    width: 440px;
 
-    h2 {
-        margin: 10px 0;
+    @media only screen and(max-width:768px) {
+        width: 90%;
     }
 
     .btns-container {

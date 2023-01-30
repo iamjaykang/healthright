@@ -8,18 +8,13 @@
   margin: 0 auto;
 }
 .auth-container .form-action-container {
-  width: 50%;
-  display: flex;
+  display: inline-flex;
+  flex-wrap: wrap;
 }
-.auth-container .form-action-container span {
+.auth-container .form-action-container .link-btn {
   font-size: 1em;
-  white-space: nowrap;
-}
-.auth-container .form-action-container span .link-btn {
-  font-size: 1em;
-  background-color: transparent;
+  background-color: inherit;
   border: none;
   cursor: pointer;
   color: blue;
-  text-decoration: none;
 }/*# sourceMappingURL=Authentication.css.map */
