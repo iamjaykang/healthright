@@ -15,7 +15,7 @@ const Home = () => {
         bgImg={desktopBgImg}
         title="Welcome to Healthright"
         subtitle="Discover the best New Zealand's health supplements"
-        description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse ipsam accusamus totam ut temporibus. Dolores magni explicabo dolor officiis provident error, reiciendis molestiae quidem delectus, eveniet natus ullam deserunt vitae?"
+        description="Welcome to Healthright, your one-stop shop for premium New Zealand health supplements. Based in New Zealand, we are dedicated to providing our customers with the best products to support their wellness journey. Shop with us and experience the benefits of locally sourced and high-quality supplements. Get started on the path to better health today!"
       />
       <MobileHeroBanner bgImg={mobileBgImg} />
       <About />
