@@ -2,14 +2,6 @@ import React from "react";
 import ButtonSpinner from "../ButtonSpinner/ButtonSpinner.common";
 import "./Button.css";
 
-/*
-default
-
-inverted
-
-google sign in
-*/
-
 const BUTTON_TYPES_CLASSES = {
   google: "google-sign-in",
   inverted: "inverted",
