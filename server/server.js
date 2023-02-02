@@ -24,7 +24,7 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-// On process interruption, close the connection to the database.
+// On process interruption, close the connection to the database and exit the process.
 process.on("SIGINT", () => {
   db.sequelize
     .close()
