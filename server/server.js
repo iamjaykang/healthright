@@ -1,5 +1,4 @@
 const express = require("express");
-const { client } = require("./config/db.config");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const productRoutes = require("./routes/product.route");

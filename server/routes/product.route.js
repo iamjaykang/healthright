@@ -8,4 +8,7 @@ router.post("/", productController.create);
 // Retrieve all products
 router.get("/", productController.findAll);
 
+// Retrieve filtered products
+router.get("/:vendor", productController.getFilteredProducts);
+
 module.exports = router;

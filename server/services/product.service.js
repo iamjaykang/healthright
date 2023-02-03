@@ -81,3 +81,59 @@ exports.findAllProducts = async () => {
     throw error;
   }
 };
+
+// Get all products by Vendor
+exports.getVendorProducts = async (vendorName) => {
+  try {
+    // Find the vendor by name
+    const vendor = await ProductVendor.findOne({
+      where: {
+        vendor_name: {
+          [db.Sequelize.Op.iLike]: vendorName,
+        },
+      },
+    });
+
+    if (!vendor) {
+      throw new Error(`Vendor with name "${vendorName}" not found`);
+    }
+
+    // Get all the products for the found vendor
+    const products = await Product.findAll({
+      attributes: [
+        "id",
+        "name",
+        "description",
+        "price",
+        "product_image",
+        "createdAt",
+        "updatedAt",
+      ],
+      where: {
+        vendor_id: {
+          [db.Sequelize.Op.eq]: vendor.id,
+        },
+      },
+      include: [
+        {
+          model: ProductVendor,
+          as: "vendor",
+          attributes: ["vendor_name"],
+        },
+        // Include the related category information, using the alias "category"
+        {
+          model: ProductCategory,
+          as: "category",
+          attributes: ["category_name"],
+        },
+      ],
+    });
+
+    // Clean up the product data by only including the necessary information
+    const cleanedUpProducts = cleanUpProductDataUtil(products);
+
+    return cleanedUpProducts;
+  } catch (error) {
+    throw error;
+  }
+};

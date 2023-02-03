@@ -1,6 +1,5 @@
 const db = require("../models");
 const productService = require("../services/product.service");
-const Op = db.Sequelize.Op;
 
 // Create and Save a new Product
 exports.create = async (req, res) => {
@@ -14,15 +13,35 @@ exports.create = async (req, res) => {
 
 // Retrieve all Products from the database.
 exports.findAll = async (req, res) => {
-    try {
-      const products = await productService.findAllProducts();
-      res.send({ message: "Products retrieved successfully!", products });
-    } catch (error) {
-      res.status(500).send({
-        message: error.message || "Some error occurred while retrieving products."
-      });
-    }
-  };
+  try {
+    const products = await productService.findAllProducts();
+    res.send({ message: "Products retrieved successfully!", products });
+  } catch (error) {
+    res.status(500).send({
+      message:
+        error.message || "Some error occurred while retrieving products.",
+    });
+  }
+};
+
+// Get all filtered products by vendor from the database.
+exports.getFilteredProducts = async (req, res) => {
+  try {
+    // Change the params to lowercase
+    const vendor = req.params.vendor.toLowerCase();
+    const products = await productService.getVendorProducts(vendor);
+
+    res.status(200).send({
+      success: true,
+      data: products,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 // Find a single Product with an id
 exports.findOne = (req, res) => {};
