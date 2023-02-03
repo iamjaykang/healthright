@@ -1,4 +1,5 @@
 const db = require("../models");
+const cleanUpProductDataUtil = require("../utils/cleanUpProductData.util");
 const Product = db.products;
 const ProductCategory = db.productCategories;
 const ProductVendor = db.productVendors;
@@ -46,7 +47,15 @@ exports.findAllProducts = async () => {
     // Find all products and include the related vendor and category information
     const products = await Product.findAll({
       // Only select the necessary attributes from the products table
-      attributes: ["id","name", "description", "price", "product_image", "createdAt", "updatedAt"],
+      attributes: [
+        "id",
+        "name",
+        "description",
+        "price",
+        "product_image",
+        "createdAt",
+        "updatedAt",
+      ],
       include: [
         // Include the related vendor information, using the alias "vendor"
         {
@@ -64,17 +73,7 @@ exports.findAllProducts = async () => {
     });
 
     // Clean up the product data by only including the necessary information
-    const cleanedUpProducts = products.map((product) => ({
-      id: product.id,
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      product_image: product.product_image,
-      vendor: product.vendor.vendor_name,
-      category: product.category.category_name,
-      created_at: product.createdAt,
-      updated_at: product.updatedAt,
-    }));
+    const cleanedUpProducts = cleanUpProductDataUtil(products);
 
     // Return the cleaned up product data
     return cleanedUpProducts;
