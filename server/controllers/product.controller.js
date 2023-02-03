@@ -13,7 +13,16 @@ exports.create = async (req, res) => {
 };
 
 // Retrieve all Products from the database.
-exports.findAll = (req, res) => {};
+exports.findAll = async (req, res) => {
+    try {
+      const products = await productService.findAllProducts();
+      res.send({ message: "Products retrieved successfully!", products });
+    } catch (error) {
+      res.status(500).send({
+        message: error.message || "Some error occurred while retrieving products."
+      });
+    }
+  };
 
 // Find a single Product with an id
 exports.findOne = (req, res) => {};

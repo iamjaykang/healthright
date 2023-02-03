@@ -4,8 +4,7 @@ const ProductCategory = db.productCategories;
 const ProductVendor = db.productVendors;
 
 exports.createProduct = async (productData) => {
-  const { name, description, product_image, vendor_name, category_name, price, qty_in_stock } =
-  productData;
+  const { vendor_name, category_name } = productData;
 
   try {
     // Check if vendor exists
@@ -36,6 +35,49 @@ exports.createProduct = async (productData) => {
     const product = await Product.create(productData);
 
     return product;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Retrieve all Products from the database along with vendor and category details.
+exports.findAllProducts = async () => {
+  try {
+    // Find all products and include the related vendor and category information
+    const products = await Product.findAll({
+      // Only select the necessary attributes from the products table
+      attributes: ["id","name", "description", "price", "product_image", "createdAt", "updatedAt"],
+      include: [
+        // Include the related vendor information, using the alias "vendor"
+        {
+          model: ProductVendor,
+          as: "vendor",
+          attributes: ["vendor_name"],
+        },
+        // Include the related category information, using the alias "category"
+        {
+          model: ProductCategory,
+          as: "category",
+          attributes: ["category_name"],
+        },
+      ],
+    });
+
+    // Clean up the product data by only including the necessary information
+    const cleanedUpProducts = products.map((product) => ({
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      product_image: product.product_image,
+      vendor: product.vendor.vendor_name,
+      category: product.category.category_name,
+      created_at: product.createdAt,
+      updated_at: product.updatedAt,
+    }));
+
+    // Return the cleaned up product data
+    return cleanedUpProducts;
   } catch (error) {
     throw error;
   }

@@ -7,7 +7,6 @@ const productRoutes = require("./routes/product.route");
 // Create an instance of express.
 const app = express();
 
-
 // Set the port to either the environment variable or 5000 if not set.
 const port = process.env.PORT || 5000;
 
@@ -23,7 +22,7 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// endpoint handlers for the product-related functionality 
+// endpoint handlers for the product-related functionality
 app.use("/api/products", productRoutes);
 
 const db = require("./models");
@@ -45,8 +44,8 @@ app.get("/", (req, res) => {
 
 // On process interruption, close the connection to the database and exit the process.
 process.on("SIGINT", () => {
-  client
-    .end()
+  db.sequelize
+    .close()
     .then(() => {
       console.log(`Disconnected from the database.`);
       process.exit();

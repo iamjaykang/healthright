@@ -1,11 +1,8 @@
 const productCategoryModel = require("./productCategory.model");
 const productVendorModel = require("./productVendor.model");
 
-module.exports = (sequelize, DataTypes, Model) => {
-  class Product extends Model {}
-
-  Product.init(
-    {
+module.exports = (sequelize, DataTypes) => {
+  const Product = sequelize.define("product", {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -14,14 +11,14 @@ module.exports = (sequelize, DataTypes, Model) => {
       vendor_id: {
         type: DataTypes.INTEGER,
         references: {
-          model: productVendorModel(sequelize, DataTypes, Model),
+          model:productVendorModel(sequelize, DataTypes),
           key: "id",
         },
       },
       category_id: {
         type: DataTypes.INTEGER,
         references: {
-          model: productCategoryModel(sequelize, DataTypes, Model),
+          model: productCategoryModel(sequelize, DataTypes),
           key: "id",
         },
       },
@@ -47,10 +44,16 @@ module.exports = (sequelize, DataTypes, Model) => {
       },
     },
     {
-      sequelize,
-      modelName: "product",
+      timestamps: true,
     }
   );
-
+  Product.belongsTo(productVendorModel(sequelize, DataTypes), {
+    foreignKey: "vendor_id",
+    as: "vendor",
+  });
+  Product.belongsTo(productCategoryModel(sequelize, DataTypes), {
+    foreignKey: "category_id",
+    as: "category",
+  });
   return Product;
 };
