@@ -5,9 +5,13 @@ const productService = require("../services/product.service");
 exports.create = async (req, res) => {
   try {
     const product = await productService.createProduct(req.body);
-    res.status(201).send(product);
+    res.status(201).send({
+      success: true,
+      message: "Products created successfully!",
+      data: product,
+    });
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(500).send({ success: false, message: error.message });
   }
 };
 
@@ -15,9 +19,14 @@ exports.create = async (req, res) => {
 exports.findAll = async (req, res) => {
   try {
     const products = await productService.findAllProducts();
-    res.send({ message: "Products retrieved successfully!", products });
+    res.status(200).send({
+      success: true,
+      message: "Products retrieved successfully!",
+      data: products,
+    });
   } catch (error) {
     res.status(500).send({
+      success: false,
       message:
         error.message || "Some error occurred while retrieving products.",
     });
@@ -33,6 +42,7 @@ exports.getFilteredProductsByVendor = async (req, res) => {
 
     res.status(200).send({
       success: true,
+      message: "Products retrieved successfully!",
       data: products,
     });
   } catch (error) {
@@ -52,6 +62,7 @@ exports.getFilteredProductsByCategory = async (req, res) => {
 
     res.status(200).send({
       success: true,
+      message: "Products retrieved successfully!",
       data: products,
     });
   } catch (error) {
