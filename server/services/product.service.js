@@ -83,7 +83,7 @@ exports.findAllProducts = async () => {
 };
 
 // Get all products by Vendor
-exports.getVendorProducts = async (vendorName) => {
+exports.getProductsByVendor = async (vendorName) => {
   try {
     // Find the vendor by name
     const vendor = await ProductVendor.findOne({
@@ -112,6 +112,62 @@ exports.getVendorProducts = async (vendorName) => {
       where: {
         vendor_id: {
           [db.Sequelize.Op.eq]: vendor.id,
+        },
+      },
+      include: [
+        {
+          model: ProductVendor,
+          as: "vendor",
+          attributes: ["vendor_name"],
+        },
+        // Include the related category information, using the alias "category"
+        {
+          model: ProductCategory,
+          as: "category",
+          attributes: ["category_name"],
+        },
+      ],
+    });
+
+    // Clean up the product data by only including the necessary information
+    const cleanedUpProducts = cleanUpProductDataUtil(products);
+
+    return cleanedUpProducts;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Get all products by Category
+exports.getProductsByCategory = async (categoryName) => {
+  try {
+    // Find the category by name
+    const category = await ProductCategory.findOne({
+      where: {
+        category_name: {
+          [db.Sequelize.Op.iLike]: categoryName,
+        },
+      },
+    });
+
+    if (!category) {
+      throw new Error(`Category with name "${categoryName}" not found`);
+    }
+
+    // Get all the products for the found category
+    const products = await Product.findAll({
+      attributes: [
+        "id",
+        "name",
+        "description",
+        "price",
+        "product_image",
+        "createdAt",
+        "updatedAt",
+      ],
+      where: {
+        category_id: {
+          [db.Sequelize.Op.eq]: category.id,
         },
       },
       include: [

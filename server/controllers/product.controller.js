@@ -25,11 +25,30 @@ exports.findAll = async (req, res) => {
 };
 
 // Get all filtered products by vendor from the database.
-exports.getFilteredProducts = async (req, res) => {
+exports.getFilteredProductsByVendor = async (req, res) => {
   try {
     // Change the params to lowercase
     const vendor = req.params.vendor.toLowerCase();
-    const products = await productService.getVendorProducts(vendor);
+    const products = await productService.getProductsByVendor(vendor);
+
+    res.status(200).send({
+      success: true,
+      data: products,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// Get all filtered products by category from the database.
+exports.getFilteredProductsByCategory = async (req, res) => {
+  try {
+    // Change the params to lowercase
+    const category = req.params.category.toLowerCase();
+    const products = await productService.getProductsByCategory(category);
 
     res.status(200).send({
       success: true,
