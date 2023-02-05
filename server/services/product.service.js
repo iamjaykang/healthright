@@ -158,3 +158,70 @@ exports.searchProductsBySearchTerm = async (searchTerm) => {
     throw error;
   }
 };
+
+exports.updateProduct = async (id, newData) => {
+  try {
+    // Get the product by id, along with its associated vendor and category
+    const product = await Product.findByPk(id, {
+      include: [
+        { model: ProductVendor, as: "vendor" },
+        { model: ProductCategory, as: "category" },
+      ],
+    });
+
+    // If product is not found, throw an error
+    if (!product) {
+      throw new Error(`Product with id ${id} not found`);
+    }
+
+    // Destructure the new data
+    const {
+      name,
+      description,
+      product_image,
+      qty_in_stock,
+      price,
+      vendor_name,
+      category_name,
+    } = newData;
+
+    // If vendor_name is provided, find or create a vendor with the name
+    if (vendor_name) {
+      let vendor = await ProductVendor.findOne({
+        where: { vendor_name },
+      });
+      if (!vendor) {
+        vendor = await ProductVendor.create({ vendor_name });
+      }
+      // Update the product's vendor_id to the vendor's id
+      product.vendor_id = vendor.id;
+    }
+
+    // If category_name is provided, find or create a category with the name
+    if (category_name) {
+      let category = await ProductCategory.findOne({
+        where: { category_name },
+      });
+      if (!category) {
+        category = await ProductCategory.create({ category_name });
+      }
+      // Update the product's category_id to the category's id
+      product.category_id = category.id;
+    }
+
+    // Update the product's properties with the new data or keep the old data
+    product.name = name || product.name;
+    product.description = description || product.description;
+    product.product_image = product_image || product.product_image;
+    product.qty_in_stock = qty_in_stock || product.qty_in_stock;
+    product.price = price || product.price;
+
+    // Save the updated product
+    await product.save();
+
+    // Return the updated product
+    return product;
+  } catch (error) {
+    throw error;
+  }
+};

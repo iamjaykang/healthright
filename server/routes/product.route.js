@@ -20,4 +20,6 @@ router.get(
 // Retrieve search results for products
 router.get("/search", productController.searchProducts);
 
+router.put("/:product_id", productController.update);
+
 module.exports = router;
