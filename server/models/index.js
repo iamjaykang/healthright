@@ -1,24 +1,37 @@
-const dbConfig = require("../config/db.config.js");
+const dbConfig = require("../config/db.config");
+const env = process.env.NODE_ENV || "development";
 const { Sequelize, DataTypes } = require("sequelize");
 
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
-  pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle,
-  },
-});
+const sequelize = new Sequelize(
+  dbConfig[env].database,
+  dbConfig[env].username,
+  dbConfig[env].password,
+  {
+    host: dbConfig[env].host,
+    dialect: dbConfig[env].dialect,
+    port: dbConfig[env].port,
+    pool: {
+      max: dbConfig[env].pool.max,
+      min: dbConfig[env].pool.min,
+      acquire: dbConfig[env].pool.acquire,
+      idle: dbConfig[env].pool.idle,
+    },
+  }
+);
 
 const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.products= require("./products/product.model")(sequelize, DataTypes);
-db.productCategories = require("./products/productCategory.model")(sequelize, DataTypes);
-db.productVendors = require("./products/productVendor.model")(sequelize, DataTypes);
+db.products = require("./products/product.model")(sequelize, DataTypes);
+db.productCategories = require("./products/productCategory.model")(
+  sequelize,
+  DataTypes
+);
+db.productVendors = require("./products/productVendor.model")(
+  sequelize,
+  DataTypes
+);
 
 module.exports = db;
