@@ -3,6 +3,10 @@ const cleanUpProductDataUtil = require("../utils/cleanUpProductData.util");
 const Product = db.products;
 const ProductCategory = db.productCategories;
 const ProductVendor = db.productVendors;
+const productDetails = require("../config/constants.config")(
+  ProductVendor,
+  ProductCategory
+);
 
 exports.createProduct = async (productData) => {
   const { vendor_name, category_name } = productData;
@@ -46,30 +50,7 @@ exports.findAllProducts = async () => {
   try {
     // Find all products and include the related vendor and category information
     const products = await Product.findAll({
-      // Only select the necessary attributes from the products table
-      attributes: [
-        "id",
-        "name",
-        "description",
-        "price",
-        "product_image",
-        "createdAt",
-        "updatedAt",
-      ],
-      include: [
-        // Include the related vendor information, using the alias "vendor"
-        {
-          model: ProductVendor,
-          as: "vendor",
-          attributes: ["vendor_name"],
-        },
-        // Include the related category information, using the alias "category"
-        {
-          model: ProductCategory,
-          as: "category",
-          attributes: ["category_name"],
-        },
-      ],
+      ...productDetails,
     });
 
     // Clean up the product data by only including the necessary information
@@ -100,33 +81,12 @@ exports.getProductsByVendor = async (vendorName) => {
 
     // Get all the products for the found vendor
     const products = await Product.findAll({
-      attributes: [
-        "id",
-        "name",
-        "description",
-        "price",
-        "product_image",
-        "createdAt",
-        "updatedAt",
-      ],
+      ...productDetails,
       where: {
         vendor_id: {
           [db.Sequelize.Op.eq]: vendor.id,
         },
       },
-      include: [
-        {
-          model: ProductVendor,
-          as: "vendor",
-          attributes: ["vendor_name"],
-        },
-        // Include the related category information, using the alias "category"
-        {
-          model: ProductCategory,
-          as: "category",
-          attributes: ["category_name"],
-        },
-      ],
     });
 
     // Clean up the product data by only including the necessary information
@@ -156,36 +116,41 @@ exports.getProductsByCategory = async (categoryName) => {
 
     // Get all the products for the found category
     const products = await Product.findAll({
-      attributes: [
-        "id",
-        "name",
-        "description",
-        "price",
-        "product_image",
-        "createdAt",
-        "updatedAt",
-      ],
+      ...productDetails,
       where: {
         category_id: {
           [db.Sequelize.Op.eq]: category.id,
         },
       },
-      include: [
-        {
-          model: ProductVendor,
-          as: "vendor",
-          attributes: ["vendor_name"],
-        },
-        // Include the related category information, using the alias "category"
-        {
-          model: ProductCategory,
-          as: "category",
-          attributes: ["category_name"],
-        },
-      ],
     });
 
     // Clean up the product data by only including the necessary information
+    const cleanedUpProducts = cleanUpProductDataUtil(products);
+
+    return cleanedUpProducts;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Search Products by search term
+exports.searchProductsBySearchTerm = async (searchTerm) => {
+  try {
+    // Find all the products for the serach term
+    const products = await Product.findAll({
+      ...productDetails,
+      where: {
+        [db.Sequelize.Op.or]: [
+          { name: { [db.Sequelize.Op.iLike]: `%${searchTerm}%` } },
+          { description: { [db.Sequelize.Op.iLike]: `%${searchTerm}%` } },
+        ],
+      },
+    });
+
+    if (products.length === 0) {
+      throw new Error(`Failed to search product(s)`);
+    }
+
     const cleanedUpProducts = cleanUpProductDataUtil(products);
 
     return cleanedUpProducts;

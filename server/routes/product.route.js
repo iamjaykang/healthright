@@ -17,4 +17,7 @@ router.get(
   productController.getFilteredProductsByCategory
 );
 
+// Retrieve search results for products
+router.get("/search", productController.searchProducts);
+
 module.exports = router;

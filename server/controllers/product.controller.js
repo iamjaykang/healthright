@@ -1,4 +1,3 @@
-const db = require("../models");
 const productService = require("../services/product.service");
 
 // Create and Save a new Product
@@ -37,7 +36,7 @@ exports.findAll = async (req, res) => {
 exports.getFilteredProductsByVendor = async (req, res) => {
   try {
     // Change the params to lowercase
-    const vendor = req.params.vendor.toLowerCase();
+    const vendor = req.params.vendor;
     const products = await productService.getProductsByVendor(vendor);
 
     res.status(200).send({
@@ -57,7 +56,7 @@ exports.getFilteredProductsByVendor = async (req, res) => {
 exports.getFilteredProductsByCategory = async (req, res) => {
   try {
     // Change the params to lowercase
-    const category = req.params.category.toLowerCase();
+    const category = req.params.category;
     const products = await productService.getProductsByCategory(category);
 
     res.status(200).send({
@@ -67,6 +66,25 @@ exports.getFilteredProductsByCategory = async (req, res) => {
     });
   } catch (error) {
     res.status(500).send({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// Search products by query
+exports.searchProducts = async (req, res) => {
+  try {
+    const searchTerm = req.query.q;
+    const products = await productService.searchProductsBySearchTerm(
+      searchTerm
+    );
+    res.status(200).json({
+      success: true,
+      data: products,
+    });
+  } catch (error) {
+    res.status(500).json({
       success: false,
       message: error.message,
     });
