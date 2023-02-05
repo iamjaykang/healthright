@@ -35,7 +35,6 @@ exports.findAll = async (req, res) => {
 // Get all filtered products by vendor from the database.
 exports.getFilteredProductsByVendor = async (req, res) => {
   try {
-    // Change the params to lowercase
     const vendor = req.params.vendor;
     const products = await productService.getProductsByVendor(vendor);
 
@@ -55,7 +54,6 @@ exports.getFilteredProductsByVendor = async (req, res) => {
 // Get all filtered products by category from the database.
 exports.getFilteredProductsByCategory = async (req, res) => {
   try {
-    // Change the params to lowercase
     const category = req.params.category;
     const products = await productService.getProductsByCategory(category);
 

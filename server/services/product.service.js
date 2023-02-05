@@ -159,6 +159,7 @@ exports.searchProductsBySearchTerm = async (searchTerm) => {
   }
 };
 
+// Update Product by id
 exports.updateProduct = async (id, newData) => {
   try {
     // Get the product by id, along with its associated vendor and category
