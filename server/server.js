@@ -9,8 +9,8 @@ const app = express();
 // Set the port to either the environment variable or 5000 if not set.
 const port = process.env.PORT || 5000;
 
-var corsOptions = {
-  origin: "http://localhost:5000",
+let corsOptions = {
+  origin: [process.env.CORS_ORIGIN],
 };
 
 app.use(cors(corsOptions));

@@ -173,7 +173,7 @@ exports.searchProductsBySearchTerm = async (searchTerm) => {
 };
 
 // Update Product by id
-exports.updateProductById = async (id, newData) => {
+exports.updateProductById = async (id, newProductData) => {
   try {
     // Get the product by id, along with its associated vendor and category
     const product = await Product.findByPk(id, {
@@ -197,7 +197,7 @@ exports.updateProductById = async (id, newData) => {
       price,
       vendor_name,
       category_name,
-    } = newData;
+    } = newProductData;
 
     // If vendor_name is provided, find or create a vendor with the name
     if (vendor_name) {

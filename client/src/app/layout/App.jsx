@@ -4,7 +4,7 @@ import Home from "../../views/home/Home.view";
 import Footer from "./footer/Footer.layout";
 import Header from "./header/Header.layout";
 import "./App.css";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchBrandsLoading } from "../../stores/brands/brand.action";
 import { checkUserSession } from "../../stores/user/user.action";
 
@@ -25,13 +25,7 @@ const App = () => {
     <div className="page-container">
       <ScrollRestoration />
       <Header />
-      <main>
-        {location.pathname === "/" ? (
-          <Home />
-        ) : (
-          <Outlet />
-        )}
-      </main>
+      <main>{location.pathname === "/" ? <Home /> : <Outlet />}</main>
       <Footer />
     </div>
   );
