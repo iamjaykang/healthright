@@ -65,6 +65,9 @@ exports.getFilteredProductsByCategory = async (req, res, next) => {
 exports.searchProducts = async (req, res, next) => {
   try {
     const searchTerm = req.query.q;
+    if (!searchTerm) {
+      throw new BadRequestError("Search term is required");
+    }
     const products = await productService.searchProductsBySearchTerm(
       searchTerm
     );
@@ -82,7 +85,7 @@ exports.update = async (req, res, next) => {
   try {
     const { product_id } = req.params;
     const newData = req.body;
-    const product = await productService.updateProduct(product_id, newData);
+    const product = await productService.updateProductById(product_id, newData);
     res.status(200).send({
       message: "Product updated successfully.",
       data: product,
@@ -96,7 +99,7 @@ exports.update = async (req, res, next) => {
 exports.findOne = async (req, res, next) => {
   try {
     const { product_name } = req.params;
-    const product = await productService.findOneProduct(product_name);
+    const product = await productService.getProductByName(product_name);
     return res.status(200).send(product);
   } catch (error) {
     next(error);

@@ -8,6 +8,9 @@ router.post("/", productController.create);
 // Retrieve all products
 router.get("/", productController.findAll);
 
+// Retrieve search results for products
+router.get("/search", productController.searchProducts);
+
 // Retrieve a product by id
 router.get("/:product_name", productController.findOne);
 
@@ -19,9 +22,6 @@ router.get(
   "/category/:category",
   productController.getFilteredProductsByCategory
 );
-
-// Retrieve search results for products
-router.get("/search", productController.searchProducts);
 
 // Update product by id
 router.put("/:product_id", productController.update);

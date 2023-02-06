@@ -173,7 +173,7 @@ exports.searchProductsBySearchTerm = async (searchTerm) => {
 };
 
 // Update Product by id
-exports.updateProduct = async (id, newData) => {
+exports.updateProductById = async (id, newData) => {
   try {
     // Get the product by id, along with its associated vendor and category
     const product = await Product.findByPk(id, {
@@ -277,14 +277,14 @@ exports.deleteAllProducts = async () => {
   }
 };
 
-exports.findOneProduct = async (product_name) => {
+exports.getProductByName = async (product_name) => {
   try {
-    // Find the product by id
+    // Find the product by product name
     const product = await Product.findOne({
       ...productDetails,
       where: {
         name: {
-          [db.Sequelize.Op.iLike]: product_name,
+          [db.Sequelize.Op.iLike]: `%${product_name.toLowerCase()}%`,
         },
       },
     });
