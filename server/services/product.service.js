@@ -1,3 +1,4 @@
+const { NotFoundError } = require("../helpers/error.helper");
 const db = require("../models");
 const cleanUpProductDataUtil = require("../utils/cleanUpProductData.util");
 const Product = db.products;
@@ -53,6 +54,10 @@ exports.findAllProducts = async () => {
       ...productDetails,
     });
 
+    if (!products) {
+      throw new NotFoundError(`Failed to retrieve all products`);
+    }
+
     // Clean up the product data by only including the necessary information
     const cleanedUpProducts = cleanUpProductDataUtil(products);
 
@@ -76,7 +81,7 @@ exports.getProductsByVendor = async (vendorName) => {
     });
 
     if (!vendor) {
-      throw new Error(`Vendor with name "${vendorName}" not found`);
+      throw new NotFoundError(`Vendor not found`);
     }
 
     // Get all the products for the found vendor
@@ -88,6 +93,10 @@ exports.getProductsByVendor = async (vendorName) => {
         },
       },
     });
+
+    if (!products) {
+      throw new NotFoundError(`No product(s) found for the vendor`);
+    }
 
     // Clean up the product data by only including the necessary information
     const cleanedUpProducts = cleanUpProductDataUtil(products);
@@ -111,7 +120,7 @@ exports.getProductsByCategory = async (categoryName) => {
     });
 
     if (!category) {
-      throw new Error(`Category with name "${categoryName}" not found`);
+      throw new NotFoundError(`Category not found`);
     }
 
     // Get all the products for the found category
@@ -123,6 +132,10 @@ exports.getProductsByCategory = async (categoryName) => {
         },
       },
     });
+
+    if (!products) {
+      throw new NotFoundError(`No product(s) found for the category`);
+    }
 
     // Clean up the product data by only including the necessary information
     const cleanedUpProducts = cleanUpProductDataUtil(products);
@@ -148,7 +161,7 @@ exports.searchProductsBySearchTerm = async (searchTerm) => {
     });
 
     if (products.length === 0) {
-      throw new Error(`Failed to search product(s)`);
+      throw new NotFoundError(`No products found for the given search term`);
     }
 
     const cleanedUpProducts = cleanUpProductDataUtil(products);
@@ -172,7 +185,7 @@ exports.updateProduct = async (id, newData) => {
 
     // If product is not found, throw an error
     if (!product) {
-      throw new Error(`Product with id ${id} not found`);
+      throw new NotFoundError(`Product with the id not found`);
     }
 
     // Destructure the new data
@@ -222,6 +235,68 @@ exports.updateProduct = async (id, newData) => {
 
     // Return the updated product
     return product;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Delete Product by id
+exports.deleteProduct = async (id) => {
+  try {
+    // Check if product exists
+    const product = await Product.findByPk(id);
+    if (!product) {
+      throw new NotFoundError(`Product Not Found`);
+    }
+    // Delete the product
+    await Product.destroy({ where: { id } });
+
+    return product;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Delete all Products
+exports.deleteAllProducts = async () => {
+  try {
+    // Check if there are any products
+    const productCount = await Product.count();
+    if (productCount === 0) {
+      throw new NotFoundError("No product(s) to delete");
+    }
+
+    // Delete all products
+    await Product.destroy({
+      where: {},
+      truncate: false,
+    });
+    return {};
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.findOneProduct = async (product_name) => {
+  try {
+    // Find the product by id
+    const product = await Product.findOne({
+      ...productDetails,
+      where: {
+        name: {
+          [db.Sequelize.Op.iLike]: product_name,
+        },
+      },
+    });
+
+    if (!product) {
+      throw new NotFoundError(`"${product_name}" not found`);
+    }
+
+    // Clean up the product data by only including the necessary information
+    const cleanedUpProduct = cleanUpProductDataUtil([product])[0];
+
+    return cleanedUpProduct;
   } catch (error) {
     throw error;
   }

@@ -25,6 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/products", productRoutes);
 
 const db = require("./models");
+const errorHandler = require("./middleware/errorHandler.middleware");
+const { NotFoundError } = require("./helpers/error.helper");
 
 if (process.env.NODE_ENV !== "production") {
   db.sequelize.sync({ force: false }).then(() => {
@@ -32,12 +34,20 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
+app.use(() => {
+  const error = new NotFoundError("Route not found");
+  throw error;
+});
+
+// Add the error handler middleware as the last middleware
+app.use(errorHandler);
+
 // Start the express server and log a message to the console.
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-app.get("/", (req, res) => {
+app.get("/", ( res) => {
   res.send("API is running..");
 });
 

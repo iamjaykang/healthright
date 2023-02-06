@@ -8,6 +8,9 @@ router.post("/", productController.create);
 // Retrieve all products
 router.get("/", productController.findAll);
 
+// Retrieve a product by id
+router.get("/:product_name", productController.findOne);
+
 // Retrieve filtered products by Vendor
 router.get("/vendor/:vendor", productController.getFilteredProductsByVendor);
 
@@ -20,6 +23,13 @@ router.get(
 // Retrieve search results for products
 router.get("/search", productController.searchProducts);
 
+// Update product by id
 router.put("/:product_id", productController.update);
+
+// Delete product by id
+router.delete("/:product_id", productController.delete);
+
+// Delete all products
+router.delete("/", productController.deleteAll);
 
 module.exports = router;
