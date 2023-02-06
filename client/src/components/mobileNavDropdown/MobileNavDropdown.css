@@ -1,0 +1,30 @@
+.mobile-dropdown {
+  padding: 0;
+  position: relative;
+  z-index: 5;
+  background: #909987;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 0px;
+  margin: auto;
+  list-style: none;
+  transition: height 0.3s ease;
+  overflow: hidden;
+}
+.mobile-dropdown .dropdown-item {
+  display: block;
+  cursor: pointer;
+}
+.mobile-dropdown .dropdown-item a {
+  display: block;
+  padding: 5px 15px;
+  color: #fff;
+  text-decoration: none;
+}
+.mobile-dropdown .dropdown-item a:hover {
+  background-color: #4b5345;
+}
+.mobile-dropdown.open {
+  height: 180px;
+  overflow: auto;
+}/*# sourceMappingURL=MobileNavDropdown.css.map */

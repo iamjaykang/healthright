@@ -1,0 +1,24 @@
+.hero-banner-mobile {
+    position: relative;
+    min-height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media only screen and (min-width: 769px) {
+        /* styles for screens larger than 769px */
+        display: none;
+    }
+
+    .banner-mobile-btn-container button {
+        font-weight: bold;
+        height: 60px;
+        width: 160px;
+        border-radius: 30px;
+        border: 10px solid #bf9d37;
+        text-decoration: none;
+        color: black;
+    }
+}

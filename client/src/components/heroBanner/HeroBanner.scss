@@ -1,0 +1,75 @@
+.hero-banner {
+    position: relative;
+    min-height: 800px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Media query for screens smaller than 768px */
+    @media only screen and (max-width: 768px) {
+        display: none;
+    }
+
+    @media only screen and (min-width: 1441px) {
+        /* styles for screens smaller than 1440px */
+        min-height: 800px;
+    }
+
+    @media only screen and (min-width: 2000px) {
+        /* styles for screens larger than 2000px */
+        min-height: 1600px;
+    }
+
+    .hero-banner-content-container {
+        position: absolute;
+        max-width: 600px;
+        top: 80px;
+        left: 10px;
+        padding: 10px;
+        line-height: 2;
+
+        @media only screen and (min-width: 768px) {
+            /* styles for screens larger than 768px */
+            top: 100px;
+            left: 20px;
+        }
+
+        @media only screen and (min-width: 992px) {
+            /* styles for screens larger than 992px */
+            top: 120px;
+            left: 140px;
+        }
+
+        @media only screen and (min-width: 1441px) {
+            /* styles for screens larger than 1441px */
+            top: 180px;
+            left: 200px;
+            max-width: 800px;
+        }
+
+        .hero-banner-title {
+            color: #fff;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .hero-banner-subtitle {
+            color: #bf9d37;
+            font-size: 1.1em;
+        }
+
+        .hero-banner-description {
+            color: #c8c8c8;
+        }
+
+        .hero-banner-btn-container button {
+            font-weight: bold;
+            height: 60px;
+            width: 160px;
+            border-radius: 30px;
+            border: 10px solid #bf9d37;
+        }
+    }
+}

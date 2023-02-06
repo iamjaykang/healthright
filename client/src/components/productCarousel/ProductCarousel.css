@@ -1,0 +1,8 @@
+.swiper-wrapper {
+  padding: 60px 0;
+}
+@media only screen and (max-width: 768px) {
+  .swiper-wrapper {
+    padding: 20px 0 60px 0;
+  }
+}/*# sourceMappingURL=ProductCarousel.css.map */
