@@ -7,6 +7,8 @@ import "./App.css";
 import { useDispatch } from "react-redux";
 import { fetchBrandsLoading } from "../../stores/brands/brand.action";
 import { checkUserSession } from "../../stores/user/user.action";
+import { fetchProductsLoading } from "../../stores/products/product.action";
+
 
 const App = () => {
   const location = useLocation();
@@ -15,10 +17,14 @@ const App = () => {
 
   useEffect(() => {
     dispatch(checkUserSession());
-  }, []);
+  });
 
   useEffect(() => {
     dispatch(fetchBrandsLoading());
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchProductsLoading());
   }, []);
 
   return (
