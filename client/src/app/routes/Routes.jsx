@@ -5,8 +5,6 @@ import Brands from "../../views/brands/Brands.view";
 import App from "../layout/App";
 import Brand from "../../views/brand/Brand.view";
 import Payment from "../../views/payment/Payment.view";
-import { stripePromise } from "../../utils/stripe/stripe.utils";
-import { Elements } from "@stripe/react-stripe-js";
 import NotFoundPage from "../../views/notFoundPage/NotFoundPage.view";
 
 export const routes = [

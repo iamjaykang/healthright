@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import Home from "../../views/home/Home.view";
 import Footer from "./footer/Footer.layout";
@@ -19,7 +19,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchProductsLoading());
-  }, []);
+  });
 
   return (
     <div className="page-container">

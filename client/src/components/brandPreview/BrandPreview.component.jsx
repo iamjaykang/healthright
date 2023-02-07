@@ -17,7 +17,7 @@ const BrandPreview = () => {
 
   useEffect(() => {
     dispatch(fetchProductsByVendorLoading(vendor));
-  }, [vendor]);
+  }, [vendor, dispatch]);
 
   if (fetchProductsByVendor) return <Spinner />;
 

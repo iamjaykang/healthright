@@ -6,16 +6,25 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import "./PaymentForm.css";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../stores/user/user.selector";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+
+  const currentUser = useSelector(selectCurrentUser);
+
+  console.log(currentUser);
 
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    if (currentUser) {
+      setEmail(currentUser.email);
+    }
     if (!stripe) {
       return;
     }
@@ -87,6 +96,11 @@ export default function CheckoutForm() {
     <form id="payment-form" onSubmit={handleSubmit}>
       <LinkAuthenticationElement
         id="link-authentication-element"
+        options={{
+          defaultValues: {
+            email: email,
+          },
+        }}
         onChange={(e) => {
           if (e && e.target) {
             setEmail(e.target.value);

@@ -18,7 +18,7 @@ const Payment = () => {
         setClientSecret(data.clientSecret)
       );
     }
-  }, []);
+  }, [Items]);
 
   const appearance = {
     theme: "stripe",
