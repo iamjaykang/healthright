@@ -2,19 +2,19 @@ import React from "react";
 import BrandsPreviewItem from "../brandsPreviewItem/BrandsPreviewItem.component";
 import "./BrandsPreview.css";
 import { useSelector } from "react-redux";
-import { selectBrandsMap } from "../../stores/brands/brand.selector";
+import { selectVendorsMap } from "../../stores/products/product.selector";
 
 const BrandsPreview = () => {
 
-  const brandsMap = useSelector(selectBrandsMap);
+  const vendorsMap = useSelector(selectVendorsMap);
 
   return (
     <div className="brands-preview-container">
-      {brandsMap &&
-        Object.keys(brandsMap).map((title) => {
-          const products = brandsMap[title];
+      {vendorsMap &&
+        Object.keys(vendorsMap).map((vendor) => {
+          const products = vendorsMap[vendor];
           return (
-            <BrandsPreviewItem key={title} title={title} products={products} />
+            <BrandsPreviewItem key={vendor} vendor={vendor} products={products} />
           );
         })}
     </div>

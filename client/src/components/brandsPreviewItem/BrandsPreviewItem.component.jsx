@@ -7,7 +7,7 @@ import "./BrandsPreviewItem.css";
 import ProductCarousel from "../productCarousel/ProductCarousel.component";
 import { useScreenWidth } from "../../utils/screenWidth/screenWidth.util";
 
-const BrandsPreviewItem = ({ title, products }) => {
+const BrandsPreviewItem = ({ vendor, products }) => {
   const [slidesPerView, setSlidesPerView] = useState(4);
   const screenWidth = useScreenWidth();
 
@@ -22,8 +22,8 @@ const BrandsPreviewItem = ({ title, products }) => {
   return (
     <div className="brand-preview-item">
       <h2>
-        <Link to={`/brands/${title}`}>
-          <span className="title">{title.toUpperCase()}</span>
+        <Link to={`/brands/${vendor}`}>
+          <span className="title">{vendor.toUpperCase()}</span>
         </Link>
       </h2>
       <div className="preview">
