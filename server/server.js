@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const productRoutes = require("./routes/product.route");
+const userRoutes = require("./routes/user.route");
 
 // Create an instance of express.
 const app = express();
@@ -23,6 +24,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // endpoint handlers for the product-related functionality
 app.use("/api/products", productRoutes);
+
+// endpoint handlers for the user-related functionality
+app.use("/api/users", userRoutes);
 
 const db = require("./models");
 const errorHandler = require("./middleware/errorHandler.middleware");
