@@ -53,7 +53,7 @@ export default function CheckoutForm() {
           break;
       }
     });
-  }, [stripe]);
+  }, [stripe, currentUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

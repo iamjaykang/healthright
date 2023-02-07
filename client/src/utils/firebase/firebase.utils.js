@@ -17,9 +17,6 @@ import {
   setDoc,
   collection,
   writeBatch,
-  query,
-  getDocs,
-  where,
 } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -75,32 +72,6 @@ export const addCollectionAndDocuments = async (
 
   // Commit the batch to save the changes
   await batch.commit();
-};
-
-export const getBrandsAndDocuments = async () => {
-  // Create a reference to the "brands" collection
-  const collectionRef = collection(db, "brands");
-
-  // Create a query for the collection
-  const q = query(collectionRef);
-
-  // Retrieve the query snapshot
-  const querySnapshot = await getDocs(q);
-
-  // Create a map of brands to items using the reduce method on the array of documents in the snapshot
-  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
-};
-
-export const getSingleBrandAndDocuments = async (brand) => {
-  // Create a query for the collection filtered by brand name
-  const q = query(collection(db, "brands"), where("title", "==", brand));
-
-  // Retrieve the query snapshot
-  const querySnapshot = await getDocs(q);
-  if (querySnapshot.size === 0) {
-    return null;
-  }
-  return querySnapshot.docs[0].data();
 };
 
 export const createUserDocumentFromAuth = async (
