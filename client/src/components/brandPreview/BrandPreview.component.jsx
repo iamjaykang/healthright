@@ -1,43 +1,32 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ProductCard from "../productCard/ProductCard.component";
 import { useSelector, useDispatch } from "react-redux";
 import "./BrandPreview.css";
 import Spinner from "../../app/common/spinner/Spinner.common";
-import { fetchSingleBrandLoading } from "../../stores/singleBrand/singleBrand.action";
-import {
-  selectShouldNavigate,
-  selectSingleBrand,
-  selectSingleBrandIsLoading,
-} from "../../stores/singleBrand/singleBrand.selector";
+import { fetchProductsByVendorLoading } from "../../stores/products/product.action";
+import { selectProductsFilteredByVendorArray, selectProductsIsLoading } from "../../stores/products/product.selector";
 
 const BrandPreview = () => {
-  const { brand } = useParams();
-  const singleBrandItems = useSelector(selectSingleBrand);
-  const singleBrandIsLoading = useSelector(selectSingleBrandIsLoading);
-  const shouldNavigate = useSelector(selectShouldNavigate);
-  const navigate = useNavigate();
+  const { vendor } = useParams();
+  const fetchProductsByVendor = useSelector(selectProductsIsLoading);
+
+  const filteredProductsByVendorArray = useSelector(selectProductsFilteredByVendorArray)
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (shouldNavigate) {
-      navigate("/not-found");
-    }
-  }, [navigate, shouldNavigate]);
+    dispatch(fetchProductsByVendorLoading(vendor));
+  }, [vendor]);
 
-  useEffect(() => {
-      dispatch(fetchSingleBrandLoading(brand));
-  }, [dispatch, brand,shouldNavigate]);
-
-  if (singleBrandIsLoading) return <Spinner />;
+  if (fetchProductsByVendor) return <Spinner />;
 
   return (
     <>
-      <h2 className="preview-title">{brand.toUpperCase()}</h2>
+      <h2 className="preview-title">{vendor.toUpperCase()}</h2>
       <div className="preview-item-container">
-        {singleBrandItems &&
-          singleBrandItems.items &&
-          singleBrandItems.items.map((product) => (
+        {filteredProductsByVendorArray &&
+          filteredProductsByVendorArray.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
       </div>

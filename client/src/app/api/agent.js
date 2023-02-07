@@ -1,6 +1,37 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+import { router } from "../routes/Routes";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status) {
+      const { status } = error.response;
+      switch (status) {
+        case 400:
+          toast.error("Bad Request");
+          break;
+        case 401:
+          toast.error("Unauthorized");
+          break;
+        case 404:
+          toast.error("Not Found");
+          router.navigate("/not-found");
+          break;
+        case 500:
+          toast.error("Server Error");
+          break;
+        default:
+          toast.error("An unknown error occurred");
+          break;
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 
 const responseBody = (response) => response.data;
 
@@ -13,6 +44,7 @@ const requests = {
 
 const Products = {
   list: () => requests.get("/products"),
+  listFilteredByVendor: (vendor) => requests.get(`/products/vendor/${vendor}`),
   details: (id) => requests.get(`/products/${id}`),
   create: (productData) => requests.post("/products", productData),
   update: (id, newProductData) => requests.put(`/products/${id}`, newProductData),

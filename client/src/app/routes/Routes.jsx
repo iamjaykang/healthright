@@ -15,7 +15,7 @@ export const routes = [
     element: <App />,
     children: [
       { path: "brands", element: <Brands /> },
-      { path: "brands/:brand", element: <Brand /> },
+      { path: "brands/:vendor", element: <Brand /> },
       { path: "auth", element: <Authentication /> },
       { path: "checkout", element: <CheckOut /> },
       {
