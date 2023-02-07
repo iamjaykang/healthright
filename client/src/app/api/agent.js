@@ -32,7 +32,6 @@ axios.interceptors.response.use(
   }
 );
 
-
 const responseBody = (response) => response.data;
 
 const requests = {
@@ -47,7 +46,8 @@ const Products = {
   listFilteredByVendor: (vendor) => requests.get(`/products/vendor/${vendor}`),
   details: (id) => requests.get(`/products/${id}`),
   create: (productData) => requests.post("/products", productData),
-  update: (id, newProductData) => requests.put(`/products/${id}`, newProductData),
+  update: (id, newProductData) =>
+    requests.put(`/products/${id}`, newProductData),
   delete: (id) => requests.del(`/products/${id}`),
 };
 
@@ -57,11 +57,17 @@ const Users = {
   create: (userData) => requests.post("/users", userData),
   update: (id, newUserData) => requests.put(`/users/${id}`, newUserData),
   delete: (id) => requests.del(`/users/${id}`),
-}
+};
+
+const Payments = {
+  create: (paymentData) =>
+    requests.post("/payment/create-payment-intent", paymentData),
+};
 
 const agent = {
   Products,
-  Users
+  Users,
+  Payments,
 };
 
 export default agent;

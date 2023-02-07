@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const productRoutes = require("./routes/product.route");
 const userRoutes = require("./routes/user.route");
+const paymentRoute = require("./routes/payment.route");
 
 // Create an instance of express.
 const app = express();
@@ -14,20 +15,19 @@ let corsOptions = {
   origin: [process.env.CORS_ORIGIN],
 };
 
-app.use(cors(corsOptions));
+process.env.NODE_ENV === "production"
+  ? app.use(cors(corsOptions))
+  : app.use(cors());
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", process.env.CORS_ORIGIN);
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(express.static("public"));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/api/payment", paymentRoute);
 
 // endpoint handlers for the product-related functionality
 app.use("/api/products", productRoutes);
@@ -58,7 +58,7 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-app.get("/", ( res) => {
+app.get("/", (res) => {
   res.send("API is running..");
 });
 

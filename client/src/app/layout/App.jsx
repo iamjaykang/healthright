@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import Home from "../../views/home/Home.view";
 import Footer from "./footer/Footer.layout";
@@ -7,7 +7,6 @@ import "./App.css";
 import { useDispatch } from "react-redux";
 import { checkUserSession } from "../../stores/user/user.action";
 import { fetchProductsLoading } from "../../stores/products/product.action";
-
 
 const App = () => {
   const location = useLocation();

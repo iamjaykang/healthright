@@ -5,6 +5,7 @@ const initialState = {
   productsArray: [],
   filteredProductsArray: [],
   error: null,
+  shouldNavigate: false,
 };
 
 const productsReducer = (state = initialState, action = {}) => {

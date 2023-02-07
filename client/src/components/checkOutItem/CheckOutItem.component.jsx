@@ -8,6 +8,7 @@ import "./CheckOutItem.css";
 import { selectCartItems } from "../../stores/cart/cart.selector";
 
 const CheckOutItem = ({ item }) => {
+  console.log(item)
   const cartItems = useSelector(selectCartItems);
 
   const dispatch = useDispatch();

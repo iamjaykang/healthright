@@ -21,9 +21,7 @@ export const routes = [
       {
         path: "checkout/payment",
         element: (
-          <Elements stripe={stripePromise}>
             <Payment />
-          </Elements>
         ),
       },
       { path: "not-found", element: <NotFoundPage /> },

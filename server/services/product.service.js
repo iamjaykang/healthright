@@ -1,6 +1,6 @@
 const { NotFoundError } = require("../helpers/error.helper");
 const db = require("../models");
-const cleanUpProductDataUtil = require("../utils/cleanUpProductData.util");
+const cleanUpProductDataHelper = require("../helpers/cleanUpProductData.helper");
 const Product = db.products;
 const ProductCategory = db.productCategories;
 const ProductVendor = db.productVendors;
@@ -59,7 +59,7 @@ exports.findAllProducts = async () => {
     }
 
     // Clean up the product data by only including the necessary information
-    const cleanedUpProducts = cleanUpProductDataUtil(products);
+    const cleanedUpProducts = cleanUpProductDataHelper(products);
 
     // Return the cleaned up product data
     return cleanedUpProducts;
@@ -99,7 +99,7 @@ exports.getProductsByVendor = async (vendorName) => {
     }
 
     // Clean up the product data by only including the necessary information
-    const cleanedUpProducts = cleanUpProductDataUtil(products);
+    const cleanedUpProducts = cleanUpProductDataHelper(products);
 
     return cleanedUpProducts;
   } catch (error) {
@@ -138,7 +138,7 @@ exports.getProductsByCategory = async (categoryName) => {
     }
 
     // Clean up the product data by only including the necessary information
-    const cleanedUpProducts = cleanUpProductDataUtil(products);
+    const cleanedUpProducts = cleanUpProductDataHelper(products);
 
     return cleanedUpProducts;
   } catch (error) {
@@ -164,7 +164,7 @@ exports.searchProductsBySearchTerm = async (searchTerm) => {
       throw new NotFoundError(`No products found for the given search term`);
     }
 
-    const cleanedUpProducts = cleanUpProductDataUtil(products);
+    const cleanedUpProducts = cleanUpProductDataHelper(products);
 
     return cleanedUpProducts;
   } catch (error) {
@@ -294,7 +294,7 @@ exports.getProductByName = async (product_name) => {
     }
 
     // Clean up the product data by only including the necessary information
-    const cleanedUpProduct = cleanUpProductDataUtil([product])[0];
+    const cleanedUpProduct = cleanUpProductDataHelper([product])[0];
 
     return cleanedUpProduct;
   } catch (error) {
