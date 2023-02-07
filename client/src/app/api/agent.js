@@ -19,8 +19,17 @@ const Products = {
   delete: (id) => requests.del(`/products/${id}`),
 };
 
+const Users = {
+  list: () => requests.get("/users"),
+  details: (id) => requests.get(`/users/${id}`),
+  create: (userData) => requests.post("/users", userData),
+  update: (id, newUserData) => requests.put(`/users/${id}`, newUserData),
+  delete: (id) => requests.del(`/users/${id}`),
+}
+
 const agent = {
   Products,
+  Users
 };
 
 export default agent;
