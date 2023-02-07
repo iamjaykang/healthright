@@ -5,7 +5,6 @@ import Footer from "./footer/Footer.layout";
 import Header from "./header/Header.layout";
 import "./App.css";
 import { useDispatch } from "react-redux";
-import { fetchBrandsLoading } from "../../stores/brands/brand.action";
 import { checkUserSession } from "../../stores/user/user.action";
 import { fetchProductsLoading } from "../../stores/products/product.action";
 
@@ -18,10 +17,6 @@ const App = () => {
   useEffect(() => {
     dispatch(checkUserSession());
   });
-
-  useEffect(() => {
-    dispatch(fetchBrandsLoading());
-  }, []);
 
   useEffect(() => {
     dispatch(fetchProductsLoading());
