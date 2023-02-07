@@ -33,5 +33,6 @@ db.productVendors = require("./products/productVendor.model")(
   sequelize,
   DataTypes
 );
+db.users = require("./users/user.model")(sequelize, DataTypes);
 
 module.exports = db;
