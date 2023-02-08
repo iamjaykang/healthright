@@ -4,8 +4,8 @@ import CartDropdown from "../../../components/cartDropdown/CartDropdown.componen
 import Navbar from "./navbar/Navbar.layout";
 import "./Header.css";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../../stores/user/user.selector";
-import { selectIsCartOpen } from "../../../stores/cart/cart.selector";
+import { selectCurrentUser } from "../../../app/stores/user/user.selector";
+import { selectIsCartOpen } from "../../../app/stores/cart/cart.selector";
 import HamburgerMenu from "./hamburgerMenu/HamburgerMenu.layout";
 
 const Header = () => {

@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import agent from "../../app/api/agent";
 import PaymentForm from "../../components/paymentForm/PaymentForm.component";
-import { selectCartItems } from "../../stores/cart/cart.selector";
-import { stripePromise } from "../../utils/stripe/stripe.utils";
+import { selectCartItems } from "../../app/stores/cart/cart.selector";
+import { stripePromise } from "../../app/utils/stripe/stripe.utils";
 import "./Payment.css";
 
 const Payment = () => {

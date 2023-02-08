@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import mobileNavLinks from "../../../../assets/data/mobileNavLinks.json";
 import { Link, NavLink } from "react-router-dom";
 import CartIcon from "../../../../components/cartIcon/CartIcon.component";
-import Menu from "../../../../utils/menu/menu";
+import Menu from "../../../utils/menu/menu";
 import "./HamburgerMenu.css";
 import burgerIcon from "../../../../assets/images/bars-solid.svg";
-import { signOutLoading } from "../../../../stores/user/user.action";
+import { signOutLoading } from "../../../../app/stores/user/user.action";
 import MobileNavDropdown from "../../../../components/mobileNavDropdown/MobileNavDropdown.component";
 
 const HamburgerMenu = ({ currentUser }) => {

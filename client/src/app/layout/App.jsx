@@ -5,8 +5,8 @@ import Footer from "./footer/Footer.layout";
 import Header from "./header/Header.layout";
 import "./App.css";
 import { useDispatch } from "react-redux";
-import { checkUserSession } from "../../stores/user/user.action";
-import { fetchProductsLoading } from "../../stores/products/product.action";
+import { checkUserSession } from "../../app/stores/user/user.action";
+import { fetchProductsLoading } from "../../app/stores/products/product.action";
 
 const App = () => {
   const location = useLocation();

@@ -3,7 +3,7 @@ import MyTextInput from "../../../app/common/form/MyTextInput.common";
 import "./SignUpForm.css";
 import Button from "../../../app/common/button/Button.common";
 import { useDispatch } from "react-redux";
-import { signUpLoading } from "../../../stores/user/user.action";
+import { signUpLoading } from "../../../app/stores/user/user.action";
 
 const initialFormValues = {
   displayName: "",

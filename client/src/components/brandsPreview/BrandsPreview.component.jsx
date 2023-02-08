@@ -2,7 +2,7 @@ import React from "react";
 import BrandsPreviewItem from "../brandsPreviewItem/BrandsPreviewItem.component";
 import "./BrandsPreview.css";
 import { useSelector } from "react-redux";
-import { selectVendorsMap } from "../../stores/products/product.selector";
+import { selectVendorsMap } from "../../app/stores/products/product.selector";
 
 const BrandsPreview = () => {
 

@@ -1,11 +1,11 @@
 import React from "react";
 
-import { updateItemQuantity, removeItem } from "../../stores/cart/cart.action";
+import { updateItemQuantity, removeItem } from "../../app/stores/cart/cart.action";
 
 import { useDispatch, useSelector } from "react-redux";
 
 import "./CheckOutItem.css";
-import { selectCartItems } from "../../stores/cart/cart.selector";
+import { selectCartItems } from "../../app/stores/cart/cart.selector";
 
 const CheckOutItem = ({ item }) => {
   const cartItems = useSelector(selectCartItems);

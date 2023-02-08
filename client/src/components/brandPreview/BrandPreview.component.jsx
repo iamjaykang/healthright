@@ -4,8 +4,8 @@ import ProductCard from "../productCard/ProductCard.component";
 import { useSelector, useDispatch } from "react-redux";
 import "./BrandPreview.css";
 import Spinner from "../../app/common/spinner/Spinner.common";
-import { fetchProductsByVendorLoading } from "../../stores/products/product.action";
-import { selectProductsFilteredByVendorArray, selectProductsIsLoading } from "../../stores/products/product.selector";
+import { fetchProductsByVendorLoading } from "../../app/stores/products/product.action";
+import { selectProductsFilteredByVendorArray, selectProductsIsLoading } from "../../app/stores/products/product.selector";
 
 const BrandPreview = () => {
   const { vendor } = useParams();

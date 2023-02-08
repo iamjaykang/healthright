@@ -4,7 +4,7 @@ import SignUpForm from "../../components/users/signUpForm/SignUpForm.component";
 import {
   selectCurrentUser,
   selectUserIsLoading,
-} from "../../stores/user/user.selector";
+} from "../../app/stores/user/user.selector";
 import { useSelector } from "react-redux";
 import "./Authentication.css";
 import Spinner from "../../app/common/spinner/Spinner.common";

@@ -1,5 +1,5 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
-import agent from "../../app/api/agent";
+import agent from "../../api/agent";
 import {
   fetchProductsSuccess,
   fetchProductsFailed,

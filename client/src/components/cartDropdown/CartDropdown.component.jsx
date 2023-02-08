@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Button from "../../app/common/button/Button.common";
-import { selectCartItems } from "../../stores/cart/cart.selector";
+import { selectCartItems } from "../../app/stores/cart/cart.selector";
 import CartItem from "../cartItem/CartItem.component";
 import "./CartDropdown.css";
 

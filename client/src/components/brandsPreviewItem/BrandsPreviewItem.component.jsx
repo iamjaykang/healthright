@@ -5,7 +5,7 @@ import { SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "./BrandsPreviewItem.css";
 import ProductCarousel from "../productCarousel/ProductCarousel.component";
-import { useScreenWidth } from "../../utils/screenWidth/screenWidth.util";
+import { useScreenWidth } from "../../app/utils/screenWidth/screenWidth.util";
 
 const BrandsPreviewItem = ({ vendor, products }) => {
   const [slidesPerView, setSlidesPerView] = useState(4);

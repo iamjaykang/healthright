@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../../app/common/button/Button.common";
-import { addItemToCart } from "../../stores/cart/cart.action";
-import { selectCartItems } from "../../stores/cart/cart.selector";
+import { addItemToCart } from "../../app/stores/cart/cart.action";
+import { selectCartItems } from "../../app/stores/cart/cart.selector";
 import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {

@@ -4,7 +4,7 @@ import Button from "../../app/common/button/Button.common";
 import {
   selectCartItems,
   selectCartTotal,
-} from "../../stores/cart/cart.selector";
+} from "../../app/stores/cart/cart.selector";
 import CheckOutItem from "../checkOutItem/CheckOutItem.component";
 import "./CheckOutList.css";
 

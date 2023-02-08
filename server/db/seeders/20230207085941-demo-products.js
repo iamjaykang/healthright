@@ -1,6 +1,6 @@
 "use strict";
 
-const productService = require("../services/product.service");
+const productService = require("../../services/product.service");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {

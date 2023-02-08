@@ -5,8 +5,8 @@ import "./CartIcon.css";
 import {
   selectCartCount,
   selectIsCartOpen,
-} from "../../stores/cart/cart.selector";
-import { setIsCartOpen } from "../../stores/cart/cart.action";
+} from "../../app/stores/cart/cart.selector";
+import { setIsCartOpen } from "../../app/stores/cart/cart.action";
 
 const CartIcon = ({ isMobileMenu }) => {
   const dispatch = useDispatch();

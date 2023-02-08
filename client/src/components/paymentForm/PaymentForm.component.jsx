@@ -7,7 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import "./PaymentForm.css";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../stores/user/user.selector";
+import { selectCurrentUser } from "../../app/stores/user/user.selector";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
