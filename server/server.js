@@ -13,6 +13,7 @@ const port = process.env.PORT || 5000;
 
 let corsOptions = {
   origin: [process.env.CORS_ORIGIN],
+  optionsSuccessStatus: 200
 };
 
 process.env.NODE_ENV === "production"
