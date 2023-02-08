@@ -33,9 +33,9 @@ module.exports = {
     username: process.env.PROD_DB_USERNAME,
     password: process.env.PROD_DB_PASSWORD,
     database: process.env.PROD_DB_NAME,
-    host: process.env.PROD_DB_HOSTNAME,
+    host: process.env.PROD_DB_HOST,
     dialect: process.env.DB_DIALECT,
-    port: process.env.DB_PORT,
+    port: process.env.PROD_DB_PORT,
     pool: {
       max: 5,
       min: 0,

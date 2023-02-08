@@ -4,6 +4,7 @@ const cors = require("cors");
 const productRoutes = require("./routes/product.route");
 const userRoutes = require("./routes/user.route");
 const paymentRoute = require("./routes/payment.route");
+const path = require("path");
 
 // Create an instance of express.
 const app = express();
@@ -19,7 +20,7 @@ process.env.NODE_ENV === "production"
   ? app.use(cors(corsOptions))
   : app.use(cors());
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../client", "build")));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -37,7 +38,6 @@ app.use("/api/users", userRoutes);
 
 const db = require("./models");
 const errorHandler = require("./middleware/errorHandler.middleware");
-const { NotFoundError } = require("./helpers/error.helper");
 
 if (process.env.NODE_ENV !== "production") {
   db.sequelize.sync({ force: false }).then(() => {
@@ -45,9 +45,8 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-app.use(() => {
-  const error = new NotFoundError("Route not found");
-  throw error;
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
 });
 
 // Add the error handler middleware as the last middleware
@@ -55,11 +54,7 @@ app.use(errorHandler);
 
 // Start the express server and log a message to the console.
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
-
-app.get("/", (res) => {
-  res.send("API is running..");
+  console.log(`Server running on port ${port}`);
 });
 
 // On process interruption, close the connection to the database and exit the process.
