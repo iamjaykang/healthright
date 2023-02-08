@@ -4,7 +4,6 @@ const cors = require("cors");
 const productRoutes = require("./routes/product.route");
 const userRoutes = require("./routes/user.route");
 const paymentRoute = require("./routes/payment.route");
-const path = require("path");
 
 // Create an instance of express.
 const app = express();
@@ -19,8 +18,6 @@ let corsOptions = {
 process.env.NODE_ENV === "production"
   ? app.use(cors(corsOptions))
   : app.use(cors());
-
-app.use(express.static(path.join(__dirname, "../client", "build")));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -44,10 +41,6 @@ if (process.env.NODE_ENV !== "production") {
     console.log("re-sync db.");
   });
 }
-
-app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
-});
 
 // Add the error handler middleware as the last middleware
 app.use(errorHandler);
