@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/api/*"
+  to = "$API_ROOT/:splat"
+  status = 200
+  force = true
