@@ -5,10 +5,10 @@ module.exports = function cleanUpProductData(products) {
     name: product.name,
     description: product.description,
     price: product.price,
-    product_image: product.product_image,
+    productImage: product.product_image,
     vendor: product.vendor.vendor_name,
     category: product.category.category_name,
-    created_at: product.createdAt,
-    updated_at: product.updatedAt,
+    createdAt: product.createdAt,
+    updatedAt: product.updatedAt,
   }));
 };

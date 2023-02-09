@@ -10,31 +10,31 @@ const productDetails = require("../config/constants.config")(
 );
 
 exports.createProduct = async (productData) => {
-  const { vendor_name, category_name } = productData;
+  const { vendorName, categoryName } = productData;
 
   try {
     // Check if vendor exists
-    const vendor = await ProductVendor.findOne({ where: { vendor_name } });
+    const vendor = await ProductVendor.findOne({ where: { vendorName } });
     if (!vendor) {
       // If vendor does not exist, create a new vendor
-      const newVendor = await ProductVendor.create({ vendor_name });
-      productData.vendor_id = newVendor.id;
+      const newVendor = await ProductVendor.create({ vendorName });
+      productData.vendorId = newVendor.id;
     } else {
       // If vendor exists, use the existing vendor's id
-      productData.vendor_id = vendor.id;
+      productData.vendorId = vendor.id;
     }
 
     // Check if category exists
     const category = await ProductCategory.findOne({
-      where: { category_name },
+      where: { categoryName },
     });
     if (!category) {
       // If category does not exist, create a new category
-      const newCategory = await ProductCategory.create({ category_name });
-      productData.category_id = newCategory.id;
+      const newCategory = await ProductCategory.create({ categoryName });
+      productData.categoryId = newCategory.id;
     } else {
       // If category exists, use the existing category's id
-      productData.category_id = category.id;
+      productData.categoryId = category.id;
     }
 
     // Create the product
@@ -74,7 +74,7 @@ exports.getProductsByVendor = async (vendorName) => {
     // Find the vendor by name
     const vendor = await ProductVendor.findOne({
       where: {
-        vendor_name: {
+        vendorName: {
           [db.Sequelize.Op.iLike]: vendorName,
         },
       },
@@ -88,7 +88,7 @@ exports.getProductsByVendor = async (vendorName) => {
     const products = await Product.findAll({
       ...productDetails,
       where: {
-        vendor_id: {
+        vendorId: {
           [db.Sequelize.Op.eq]: vendor.id,
         },
       },
@@ -113,7 +113,7 @@ exports.getProductsByCategory = async (categoryName) => {
     // Find the category by name
     const category = await ProductCategory.findOne({
       where: {
-        category_name: {
+        categoryName: {
           [db.Sequelize.Op.iLike]: categoryName,
         },
       },
@@ -127,7 +127,7 @@ exports.getProductsByCategory = async (categoryName) => {
     const products = await Product.findAll({
       ...productDetails,
       where: {
-        category_id: {
+        categoryId: {
           [db.Sequelize.Op.eq]: category.id,
         },
       },
@@ -192,42 +192,42 @@ exports.updateProductById = async (id, newProductData) => {
     const {
       name,
       description,
-      product_image,
-      qty_in_stock,
+      productImage,
+      qtyInStock,
       price,
-      vendor_name,
-      category_name,
+      vendorName,
+      categoryName,
     } = newProductData;
 
-    // If vendor_name is provided, find or create a vendor with the name
-    if (vendor_name) {
+    // If vendorName is provided, find or create a vendor with the name
+    if (vendorName) {
       let vendor = await ProductVendor.findOne({
-        where: { vendor_name },
+        where: { vendorName },
       });
       if (!vendor) {
-        vendor = await ProductVendor.create({ vendor_name });
+        vendor = await ProductVendor.create({ vendorName });
       }
-      // Update the product's vendor_id to the vendor's id
-      product.vendor_id = vendor.id;
+      // Update the product's vendorId to the vendor's id
+      product.vendorId = vendor.id;
     }
 
-    // If category_name is provided, find or create a category with the name
-    if (category_name) {
+    // If categoryName is provided, find or create a category with the name
+    if (categoryName) {
       let category = await ProductCategory.findOne({
-        where: { category_name },
+        where: { categoryName },
       });
       if (!category) {
-        category = await ProductCategory.create({ category_name });
+        category = await ProductCategory.create({ categoryName });
       }
-      // Update the product's category_id to the category's id
-      product.category_id = category.id;
+      // Update the product's categoryId to the category's id
+      product.categoryId = category.id;
     }
 
     // Update the product's properties with the new data or keep the old data
     product.name = name || product.name;
     product.description = description || product.description;
-    product.product_image = product_image || product.product_image;
-    product.qty_in_stock = qty_in_stock || product.qty_in_stock;
+    product.productImage = productImage || product.productImage;
+    product.qtyInStock = qtyInStock || product.qtyInStock;
     product.price = price || product.price;
 
     // Save the updated product
@@ -277,20 +277,20 @@ exports.deleteAllProducts = async () => {
   }
 };
 
-exports.getProductByName = async (product_name) => {
+exports.getProductByName = async (productName) => {
   try {
     // Find the product by product name
     const product = await Product.findOne({
       ...productDetails,
       where: {
         name: {
-          [db.Sequelize.Op.iLike]: `%${product_name.toLowerCase()}%`,
+          [db.Sequelize.Op.iLike]: `%${productName.toLowerCase()}%`,
         },
       },
     });
 
     if (!product) {
-      throw new NotFoundError(`"${product_name}" not found`);
+      throw new NotFoundError(`"${productName}" not found`);
     }
 
     // Clean up the product data by only including the necessary information

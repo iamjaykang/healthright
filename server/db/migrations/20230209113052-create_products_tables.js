@@ -3,13 +3,13 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, DataTypes) {
-    await queryInterface.createTable("product_categories", {
+    await queryInterface.createTable("productCategories", {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      category_name: {
+      categoryName: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
@@ -23,13 +23,13 @@ module.exports = {
       },
     });
 
-    await queryInterface.createTable("product_vendors", {
+    await queryInterface.createTable("productVendors", {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      vendor_name: {
+      vendorName: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
@@ -49,17 +49,17 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      vendor_id: {
+      vendorId: {
         type: DataTypes.INTEGER,
         references: {
-          model: "product_vendors",
+          model: "productVendors",
           key: "id",
         },
       },
-      category_id: {
+      categoryId: {
         type: DataTypes.INTEGER,
         references: {
-          model: "product_categories",
+          model: "productCategories",
           key: "id",
         },
       },
@@ -71,7 +71,7 @@ module.exports = {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      qty_in_stock: {
+      qtyInStock: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -79,7 +79,7 @@ module.exports = {
         type: DataTypes.DECIMAL,
         allowNull: false,
       },
-      product_image: {
+      productImage: {
         type: DataTypes.STRING(100),
         allowNull: true,
       },
@@ -96,7 +96,7 @@ module.exports = {
 
   async down(queryInterface) {
     await queryInterface.dropTable("products");
-    await queryInterface.dropTable("product_categories");
-    await queryInterface.dropTable("product_vendors");
+    await queryInterface.dropTable("productCategories");
+    await queryInterface.dropTable("productVendors");
   },
 };

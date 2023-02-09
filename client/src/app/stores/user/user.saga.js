@@ -1,4 +1,4 @@
-import { takeLatest, all, call, put } from "redux-saga/effects";
+import { takeLatest, all, call, put, select } from "redux-saga/effects";
 
 import { USER_ACTION_TYPES } from "./user.types";
 
@@ -19,8 +19,25 @@ import {
   signOutUser,
 } from "../../utils/firebase/firebase.utils";
 
+// Saga to get the snapshot of the user from firebase auth
+export function* getSnapshotFromUserAuth(userAuth) {
+  try {
+    // call the firebase function to get the user snapshot
+    const userSnapshot = yield call(
+      createUserDocumentFromAuth,
+      userAuth,
+    );
+    // dispatch the signin success action
+    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
+  } catch (error) {
+    //dispatch the signin failed action
+    yield put(signInFailed(error));
+  }
+}
+
 // Saga to handle the sign up functionality
-export function* signUp({ payload: { email, password, displayName } }) {
+export function* signUp({ payload }) {
+  const {email, password } = payload;
   try {
     // call the firebase function to signup the user
     const { user } = yield call(
@@ -29,7 +46,7 @@ export function* signUp({ payload: { email, password, displayName } }) {
       password
     );
     //dispatch the signup success action
-    yield put(signUpSuccess(user, { displayName }));
+    yield put(signUpSuccess(user));
   } catch (error) {
     //dispatch the signup failed action
     yield put(signUpFailed(error));
@@ -37,8 +54,8 @@ export function* signUp({ payload: { email, password, displayName } }) {
 }
 
 // Saga to handle the sign in after sign up functionality
-export function* signInAfterSignUp({ payload: { user, additionalDetails } }) {
-  yield call(getSnapshotFromUserAuth, user, additionalDetails);
+export function* signInAfterSignUp({ payload: { user } }) {
+  yield call(getSnapshotFromUserAuth, user);
 }
 
 // Saga to handle the signout functionality
@@ -68,7 +85,8 @@ export function* signInWithGoogle() {
 }
 
 // Saga to handle the sign in with email functionality
-export function* signInWithEmail({ payload: { email, password } }) {
+export function* signInWithEmail({ payload }) {
+  const { email, password } = payload;
   try {
     // call the firebase function to signin with email and password
     const user = yield call(
@@ -78,23 +96,6 @@ export function* signInWithEmail({ payload: { email, password } }) {
     );
     //call the getSnapshotFromUserAuth function
     yield call(getSnapshotFromUserAuth, user);
-  } catch (error) {
-    //dispatch the signin failed action
-    yield put(signInFailed(error));
-  }
-}
-
-// Saga to get the snapshot of the user from firebase auth
-export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
-  try {
-    // call the firebase function to get the user snapshot
-    const userSnapshot = yield call(
-      createUserDocumentFromAuth,
-      userAuth,
-      additionalDetails
-    );
-    // dispatch the signin success action
-    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (error) {
     //dispatch the signin failed action
     yield put(signInFailed(error));

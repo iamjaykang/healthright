@@ -6,7 +6,8 @@ import { useDispatch } from "react-redux";
 import { signUpLoading } from "../../../app/stores/user/user.action";
 
 const initialFormValues = {
-  displayName: "",
+  firstName: "",
+  lastName: "",
   email: "",
   password: "",
   confirmPassword: "",
@@ -15,7 +16,7 @@ const initialFormValues = {
 const SignUpForm = ({ setFormType }) => {
   const dispatch = useDispatch();
   const [formValues, setFormValues] = useState(initialFormValues);
-  const { displayName, email, password, confirmPassword } = formValues;
+  const { firstName, lastName, email, password, confirmPassword } = formValues;
 
   const resetFormValues = () => {
     setFormValues(initialFormValues);
@@ -35,7 +36,7 @@ const SignUpForm = ({ setFormType }) => {
     }
 
     try {
-      dispatch(signUpLoading(email, password, displayName));
+      dispatch(signUpLoading(email, password));
       resetFormValues();
     } catch (error) {
       throw error;
@@ -55,12 +56,20 @@ const SignUpForm = ({ setFormType }) => {
       </p>
       <form onSubmit={handleSubmit}>
         <MyTextInput
-          label="Display Name"
+          label="First Name"
           type="text"
           required
           onChange={handleChange}
-          name="displayName"
-          value={displayName}
+          name="firstName"
+          value={firstName}
+        />
+        <MyTextInput
+          label="Last Name"
+          type="text"
+          required
+          onChange={handleChange}
+          name="lastName"
+          value={lastName}
         />
         <MyTextInput
           label="Email"

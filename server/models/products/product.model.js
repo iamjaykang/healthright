@@ -15,14 +15,14 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      vendor_id: {
+      vendorId: {
         type: DataTypes.INTEGER,
         references: {
           model: productVendorModel,
           key: "id",
         },
       },
-      category_id: {
+      categoryId: {
         type: DataTypes.INTEGER,
         references: {
           model: productCategoryModel,
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      qty_in_stock: {
+      qtyInStock: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DECIMAL,
         allowNull: false,
       },
-      product_image: {
+      productImage: {
         type: DataTypes.STRING(100),
         allowNull: true,
       },
@@ -55,11 +55,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Product.belongsTo(productVendorModel, {
-    foreignKey: "vendor_id",
+    foreignKey: "vendorId",
     as: "vendor",
   });
   Product.belongsTo(productCategoryModel, {
-    foreignKey: "category_id",
+    foreignKey: "categoryId",
     as: "category",
   });
   return Product;

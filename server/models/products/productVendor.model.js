@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
-    const ProductVendor = sequelize.define("product_vendor", {
+    const ProductVendor = sequelize.define("productVendor", {
         id: {
           type: DataTypes.INTEGER,
           primaryKey: true,
           autoIncrement: true,
         },
-        vendor_name: {
+        vendorName: {
           type: DataTypes.STRING(100),
           allowNull: false,
         },

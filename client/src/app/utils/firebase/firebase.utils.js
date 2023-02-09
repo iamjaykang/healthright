@@ -15,8 +15,6 @@ import {
   doc,
   getDoc,
   setDoc,
-  collection,
-  writeBatch,
 } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -50,34 +48,10 @@ export const signInWithGooglePopup = () =>
 
 export const db = getFirestore();
 
-export const addCollectionAndDocuments = async (
-  collectionKey,
-  objectsToAdd,
-  field
-) => {
-  // Create a reference to the collection using the provided key
-  const collectionRef = collection(db, collectionKey);
-
-  // Create a write batch to allow for multiple document writes in a single request
-  const batch = writeBatch(db);
-
-  // Iterate over the objects to be added
-  objectsToAdd.forEach((object) => {
-    // Create a reference to a document within the collection using value of the specified field of the object
-    const docRef = doc(collectionRef, object[field].toLowerCase());
-
-    // Set the object as the data for the document
-    batch.set(docRef, object);
-  });
-
-  // Commit the batch to save the changes
-  await batch.commit();
-};
-
 export const createUserDocumentFromAuth = async (
   userAuth,
-  additionalInformation = {}
 ) => {
+
   if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
 
@@ -86,18 +60,16 @@ export const createUserDocumentFromAuth = async (
   // if user data does not exist
   // create / set the document with the data from userAuth in my collection
   if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
+    const { email } = userAuth;
     const createdAt = new Date();
 
     try {
       await setDoc(userDocRef, {
-        displayName,
         email,
         createdAt,
-        ...additionalInformation,
       });
     } catch (error) {
-      console.log("Error creating the user", error);
+      console.log("Error creating the user", error.message);
     }
   }
 
@@ -110,12 +82,8 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   try {
-    const authUser = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    return authUser;
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    return result
   } catch (error) {
     if (error.code === "auth/email-already-in-use") {
       console.log("Cannot create user, email already in use");

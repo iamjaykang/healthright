@@ -3,19 +3,24 @@ module.exports = (sequelize, DataTypes) => {
     "user",
     {
       id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
       },
-      display_name: {
-        type: DataTypes.STRING,
+      firstName: {
+        type: DataTypes.STRING(100),
         allowNull: true,
       },
-      email: {
-        type: DataTypes.STRING,
+      lastName: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
+      },
+      emailAddress: {
+        type: DataTypes.STRING(100),
         allowNull: false,
         unique: true,
       },
-      is_admin: {
+      isAdmin: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },

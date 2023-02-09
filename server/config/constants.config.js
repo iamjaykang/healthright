@@ -5,7 +5,7 @@ const productDetails = (ProductVendor, ProductCategory) => ({
     "name",
     "description",
     "price",
-    "product_image",
+    "productImage",
     "createdAt",
     "updatedAt",
   ],
@@ -14,13 +14,13 @@ const productDetails = (ProductVendor, ProductCategory) => ({
     {
       model: ProductVendor,
       as: "vendor",
-      attributes: ["vendor_name"],
+      attributes: ["vendorName"],
     },
     // Include the related category information, using the alias "category"
     {
       model: ProductCategory,
       as: "category",
-      attributes: ["category_name"],
+      attributes: ["categoryName"],
     },
   ],
 });
