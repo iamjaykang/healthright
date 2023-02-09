@@ -5,9 +5,9 @@ module.exports = function cleanUpProductData(products) {
     name: product.name,
     description: product.description,
     price: product.price,
-    productImage: product.product_image,
-    vendor: product.vendor.vendor_name,
-    category: product.category.category_name,
+    productImage: product.productImage,
+    vendor: product.vendor.vendorName,
+    category: product.category.categoryName,
     createdAt: product.createdAt,
     updatedAt: product.updatedAt,
   }));

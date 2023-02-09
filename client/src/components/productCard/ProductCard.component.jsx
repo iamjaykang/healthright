@@ -8,7 +8,7 @@ import "./ProductCard.css";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
 
-  const { name, price, product_image } = product;
+  const { name, price, productImage } = product;
 
   const cartItems = useSelector(selectCartItems);
 
@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card-container">
       <div className="card-img-container">
-      <img src={product_image} alt={`${name}`} />
+      <img src={productImage} alt={`${name}`} />
       </div>
       <div className="card-info">
         <span className="name">{name}</span>

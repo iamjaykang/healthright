@@ -27,7 +27,7 @@ const CheckOutItem = ({ item }) => {
     <div className="checkout-item">
       <div className="product">
         <div className="img-container">
-          <img src={item.product_image} alt={item.name} />
+          <img src={item.productImage} alt={item.name} />
         </div>
         <div className="name">
           <span>{item.name}</span>

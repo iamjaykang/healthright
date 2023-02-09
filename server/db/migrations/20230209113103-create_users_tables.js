@@ -36,6 +36,26 @@ module.exports = {
       },
     });
 
+    await queryInterface.createTable("countries", {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      countryName: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+    });
+
     await queryInterface.createTable("addresses", {
       id: {
         type: DataTypes.INTEGER,
@@ -87,26 +107,6 @@ module.exports = {
       },
     });
 
-    await queryInterface.createTable("countries", {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      countryName: {
-        type: DataTypes.STRING(100),
-        allowNull: false,
-      },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-    });
-
     await queryInterface.createTable("userAddresses", {
       userId: {
         type: DataTypes.INTEGER,
@@ -118,7 +118,7 @@ module.exports = {
       addressId: {
         type: DataTypes.INTEGER,
         references: {
-          model: "adresses",
+          model: "addresses",
           key: "id",
         },
       },
