@@ -17,7 +17,7 @@ module.exports = {
         type: DataTypes.STRING(100),
         allowNull: true,
       },
-      email: {
+      emailAddress: {
         type: DataTypes.STRING(100),
         allowNull: false,
         unique: true,
