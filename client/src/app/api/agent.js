@@ -34,6 +34,16 @@ axios.interceptors.response.use(
 
 const responseBody = (response) => response.data;
 
+axios.interceptors.request.use((config) => {
+  const cookie = document.cookie
+    .split("; ")
+    .find((c) => c.startsWith("idToken="));
+  if (cookie && config.headers) {
+    config.headers.authorization = `Bearer ${cookie.split("=")[1]}`;
+  }
+  return config;
+});
+
 const requests = {
   get: (url) => axios.get(url).then(responseBody),
   post: (url, body) => axios.post(url, body).then(responseBody),
