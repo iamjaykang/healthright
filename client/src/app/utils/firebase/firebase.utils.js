@@ -127,6 +127,7 @@ export const getCurrentUser = () => {
 
 export const setIdTokenInCookie = (idToken, expirationDate) => {
   document.cookie = `idToken=${idToken}; expires=${expirationDate}; path=/; secure; HttpOnly`;
+  console.log(idToken)
 };
 
 auth.onAuthStateChanged((user) => {

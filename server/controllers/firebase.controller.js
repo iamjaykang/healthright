@@ -1,4 +1,5 @@
 const firebase = require("../config/firebaseAdmin.config");
+const { UnauthorizedError } = require("../helpers/error.helper");
 
 exports.setCustomUserClaims = async (req, res, next) => {
   try {
@@ -13,6 +14,6 @@ exports.setCustomUserClaims = async (req, res, next) => {
     res.status(200).send({ message: "Custom claims set successfully" });
   } catch (error) {
     // Return an error response to the client
-    next(error)
+    next(error);
   }
 };
