@@ -5,6 +5,7 @@ const productRoutes = require("./routes/product.route");
 const userRoutes = require("./routes/user.route");
 const paymentRoute = require("./routes/payment.route");
 const firebaseRoutes = require("./routes/firebase.route");
+var cookieParser = require('cookie-parser')
 
 // Create an instance of express.
 const app = express();
@@ -20,6 +21,8 @@ let corsOptions = {
 process.env.NODE_ENV === "production"
   ? app.use(cors(corsOptions))
   : app.use(cors());
+
+app.use(cookieParser())
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());

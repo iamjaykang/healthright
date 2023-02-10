@@ -1,9 +1,19 @@
 const { BadRequestError } = require("../helpers/error.helper");
 const productService = require("../services/product.service");
+const firebase = require("../config/firebaseAdmin.config");
 
 // Create and Save a new Product
 exports.create = async (req, res, next) => {
   try {
+    // Verify the user's token
+    const idToken = req.headers.authorization.split("Bearer ")[1];
+    const decodedToken = await firebase.auth().verifyIdToken(idToken);
+
+    // Check if the user is an admin
+    if (!decodedToken.admin) {
+      return res.status(403).send({ error: "Unauthorized" });
+    }
+
     const product = await productService.createProduct(req.body);
     res.status(201).send({
       success: true,
