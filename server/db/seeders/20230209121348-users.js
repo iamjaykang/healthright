@@ -57,7 +57,7 @@ module.exports = {
       {
         firstName: "John",
         lastName: "Doe",
-        email: "johndoe@example.com",
+        emailAddress: "johndoe@example.com",
         isAdmin: false,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -65,7 +65,7 @@ module.exports = {
       {
         firstName: "Jane",
         lastName: "Doe",
-        email: "janedoe@example.com",
+        emailAddress: "janedoe@example.com",
         isAdmin: false,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -73,7 +73,7 @@ module.exports = {
       {
         firstName: "Admin",
         lastName: "User",
-        email: "admin@example.com",
+        emailAddress: "admin@example.com",
         isAdmin: true,
         createdAt: new Date(),
         updatedAt: new Date(),

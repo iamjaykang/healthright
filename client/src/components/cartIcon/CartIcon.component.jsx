@@ -23,7 +23,7 @@ const CartIcon = ({ isMobileMenu }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!event.target.closest(".cart-icon-container")) {
+      if (isCartOpen && !event.target.closest(".cart-icon-container")) {
         dispatch(setIsCartOpen(false));
       }
     };
@@ -33,9 +33,12 @@ const CartIcon = ({ isMobileMenu }) => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [dispatch]);
+  }, [dispatch, isCartOpen]);
   return (
-    <div className="cart-icon-container" onClick={toggleIsCartOpen}>
+    <div
+      className="cart-icon-container"
+      onClick={toggleIsCartOpen}
+    >
       <ShoppingIcon className="shopping-icon" />
       <span className="item-count">{cartCount}</span>
     </div>
