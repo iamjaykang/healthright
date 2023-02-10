@@ -4,6 +4,7 @@ const cors = require("cors");
 const productRoutes = require("./routes/product.route");
 const userRoutes = require("./routes/user.route");
 const paymentRoute = require("./routes/payment.route");
+const firebaseRoutes = require("./routes/firebase.route");
 
 // Create an instance of express.
 const app = express();
@@ -13,7 +14,7 @@ const port = process.env.PORT || 5000;
 
 let corsOptions = {
   origin: [process.env.CORS_ORIGIN],
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
 };
 
 process.env.NODE_ENV === "production"
@@ -25,6 +26,9 @@ app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Use the firebaseRoutes for handling API calls for custom user claims
+app.use("/api/firebase", firebaseRoutes);
 
 app.use("/api/payment", paymentRoute);
 
@@ -46,7 +50,6 @@ if (process.env.NODE_ENV !== "production") {
 app.get("/", (req, res) => {
   res.send("API is running");
 });
-
 
 // Add the error handler middleware as the last middleware
 app.use(errorHandler);
