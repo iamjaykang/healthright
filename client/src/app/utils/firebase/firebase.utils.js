@@ -10,12 +10,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-} from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -48,10 +43,7 @@ export const signInWithGooglePopup = () =>
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (
-  userAuth,
-) => {
-
+export const createUserDocumentFromAuth = async (userAuth) => {
   if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
 
@@ -83,7 +75,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 
   try {
     const result = await createUserWithEmailAndPassword(auth, email, password);
-    return result
+    return result;
   } catch (error) {
     if (error.code === "auth/email-already-in-use") {
       console.log("Cannot create user, email already in use");
@@ -132,3 +124,17 @@ export const getCurrentUser = () => {
     );
   });
 };
+
+export const setIdTokenInCookie = (idToken, expirationDate) => {
+  document.cookie = `idToken=${idToken}; expires=${expirationDate}; path=/; secure; HttpOnly`;
+};
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    user.getIdToken().then((idToken) => {
+      // set the expiration date for the cookie
+      const expirationDate = new Date(new Date().getTime() + 60 * 60 * 1000);
+      setIdTokenInCookie(idToken, expirationDate);
+    });
+  }
+});
