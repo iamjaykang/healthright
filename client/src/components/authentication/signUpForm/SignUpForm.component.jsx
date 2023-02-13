@@ -49,10 +49,10 @@ const SignUpForm = ({ setFormType }) => {
       <p className="form-action-container">
         <span>
           Sign up with your email and password or
+        </span>
           <button className="link-btn" onClick={() => setFormType("sign in")}>
             Sign in instead
           </button>
-        </span>
       </p>
       <form onSubmit={handleSubmit}>
         <MyTextInput

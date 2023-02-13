@@ -17,6 +17,10 @@ export const googleSignInLoading = () =>
 export const emailSignInLoading = (email, password) =>
   createAction(USER_ACTION_TYPES.EMAIL_SIGN_IN_LOADING, { email, password });
 
+// Action to indicate that the email sign in process has started
+export const adminEmailSignInLoading = (email, password) =>
+  createAction(USER_ACTION_TYPES.ADMIN_SIGN_IN_LOADING, { email, password });
+
 // Action to indicate that the sign in process was successful
 export const signInSuccess = (user) => {
   return createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, {
@@ -57,3 +61,11 @@ export const signOutSuccess = () =>
 // Action to indicate that the sign out process failed
 export const signOutFailed = (error) =>
   createAction(USER_ACTION_TYPES.SIGN_OUT_FAILED, error);
+
+// Action to set requires admin auth
+export const setRequiresAdminAuth = (requiresAdminAuth) =>
+  createAction(USER_ACTION_TYPES.SET_REQUIRES_ADMIN_AUTH, requiresAdminAuth);
+
+// Action to set auth form type
+export const setAuthFormType = (authFormType) =>
+  createAction(USER_ACTION_TYPES.SET_AUTH_FORM_TYPE, authFormType);

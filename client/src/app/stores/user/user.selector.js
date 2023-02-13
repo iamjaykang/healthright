@@ -12,3 +12,13 @@ export const selectUserIsLoading = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.isLoading
 );
+
+export const selectRequiresAdminAuth = createSelector(
+  [selectUserReducer],
+  (userSlice) => userSlice.requiresAdminAuth
+);
+
+export const selectAuthFormType = createSelector(
+  [selectUserReducer],
+  (userSlice) => userSlice.authFormType
+);

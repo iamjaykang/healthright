@@ -4,6 +4,8 @@ const INITIAL_STATE = {
   currentUser: null,
   isLoading: false,
   error: null,
+  requiresAdminAuth: false,
+  authFormType: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action = {}) => {
@@ -67,6 +69,21 @@ const userReducer = (state = INITIAL_STATE, action = {}) => {
       return {
         ...state,
         error: payload,
+      };
+    case USER_ACTION_TYPES.SET_AUTH_FORM_TYPE:
+      return {
+        ...state,
+        authFormType: payload,
+      };
+    case USER_ACTION_TYPES.SET_REQUIRES_ADMIN_AUTH:
+      return {
+        ...state,
+        requiresAdminAuth: payload,
+      };
+    case USER_ACTION_TYPES.ADMIN_SIGN_IN_LOADING:
+      return {
+        ...state,
+        isLoading: true,
       };
     default:
       return state;
