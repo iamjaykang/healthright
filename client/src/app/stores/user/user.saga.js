@@ -14,6 +14,7 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
   getCurrentUser,
+  signInAuthUserForAdmin,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
   signOutUser,
@@ -102,6 +103,20 @@ export function* signInWithEmail({ payload }) {
   }
 }
 
+// Saga to handle the sign in with admin email functionality
+export function* signInWithAdminEmail({ payload }) {
+  const { email, password } = payload;
+  try {
+    // call the firebase function to signin with email and password
+    const user = yield call(signInAuthUserForAdmin, email, password);
+    //call the getSnapshotFromUserAuth function
+    yield call(getSnapshotFromUserAuth, user);
+  } catch (error) {
+    //dispatch the signin failed action
+    yield put(signInFailed(error));
+  }
+}
+
 // Saga to check if user is authenticated
 export function* isUserAuthenticated() {
   try {
@@ -131,6 +146,11 @@ export function* onEmailSignInLoading() {
   yield takeLatest(USER_ACTION_TYPES.EMAIL_SIGN_IN_LOADING, signInWithEmail);
 }
 
+// Saga to listen to the admin email signin loading action
+export function* onAdminEmailSignInLoading() {
+  yield takeLatest(USER_ACTION_TYPES.ADMIN_SIGN_IN_LOADING, signInWithAdminEmail);
+}
+
 // Saga to listen to the signup loading action
 export function* onSignUpLoading() {
   yield takeLatest(USER_ACTION_TYPES.SIGN_UP_LOADING, signUp);
@@ -154,5 +174,6 @@ export function* userSaga() {
     call(onSignUpLoading),
     call(onSignUpSuccess),
     call(onSignOutLoading),
+    call(onAdminEmailSignInLoading)
   ]);
 }
