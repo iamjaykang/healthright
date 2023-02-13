@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "./BrandsPreviewItem.css";
-import ProductCarousel from "../../productCarousel/ProductCarousel.component";
+import ProductCarousel from "../../productCarousel/ProductCarousel.common";
 import { useScreenWidth } from "../../../utils/screenWidth/screenWidth.util";
 
 const BrandsPreviewItem = ({ vendor, products }) => {

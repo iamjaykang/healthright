@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import navLinks from "../../../../assets/data/navLinks.json";
-import CartIcon from "../../../common/cartIcon/CartIcon.component";
+import CartIcon from "../../../common/cartIcon/CartIcon.common";
 import NavDropdown from "./navDropdown/NavDropdown.component";
 import { useDispatch } from "react-redux";
 import "./Navbar.css";

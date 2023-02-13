@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CartDropdown from "./cartDropdown/CartDropdown.component";
+import CartDropdown from "./cartDropdown/CartDropdown.layout";
 import Navbar from "./navbar/Navbar.layout";
 import "./Header.css";
 import { useSelector } from "react-redux";

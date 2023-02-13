@@ -5,7 +5,7 @@ import Button from "../../../common/button/Button.common";
 import {
   selectCartItems,
 } from "../../../stores/cart/cart.selector";
-import CartItem from "./cartItem/CartItem.component";
+import CartItem from "./cartItem/CartItem.layout";
 import "./CartDropdown.css";
 
 const CartDropdown = () => {
