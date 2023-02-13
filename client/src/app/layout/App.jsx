@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
-import Home from "../../views/home/Home.view";
+import HomePage from "../../components/home/HomePage.component";
 import Footer from "./footer/Footer.layout";
 import Header from "./header/Header.layout";
 import "./App.css";
@@ -25,7 +25,7 @@ const App = () => {
     <div className="page-container">
       <ScrollRestoration />
       <Header />
-      <main>{location.pathname === "/" ? <Home /> : <Outlet />}</main>
+      <main>{location.pathname === "/" ? <HomePage /> : <Outlet />}</main>
       <Footer />
     </div>
   );

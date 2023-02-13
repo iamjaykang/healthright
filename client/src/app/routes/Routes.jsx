@@ -1,11 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Authentication from "../../views/authentication/Authentication.view";
-import CheckOut from "../../views/checkOut/CheckOut.view";
-import Brands from "../../views/brands/Brands.view";
+import Authentication from "../../components/authentication/AuthenticationPage.component";
+import Brands from "../../components/brands/BrandsPage.component";
 import App from "../layout/App";
-import Brand from "../../views/brand/Brand.view";
-import Payment from "../../views/payment/Payment.view";
-import NotFoundPage from "../../views/notFoundPage/NotFoundPage.view";
+import Brand from "../../components/brand/BrandPage.component";
+import PaymentPage from "../../components/payment/PaymentPage.component";
+import NotFoundPage from "../../components/notFound/NotFoundPage.component";
+import CheckOutPage from "../../components/checkOut/CheckOutPage.component";
 
 export const routes = [
   {
@@ -15,11 +15,11 @@ export const routes = [
       { path: "brands", element: <Brands /> },
       { path: "brands/:vendor", element: <Brand /> },
       { path: "auth", element: <Authentication /> },
-      { path: "checkout", element: <CheckOut /> },
+      { path: "checkout", element: <CheckOutPage /> },
       {
         path: "checkout/payment",
         element: (
-            <Payment />
+            <PaymentPage />
         ),
       },
       { path: "not-found", element: <NotFoundPage /> },

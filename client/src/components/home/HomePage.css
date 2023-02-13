@@ -1,0 +1,18 @@
+.hero-banner-mobile {
+  display: none;
+}
+
+/* Media query for screens smaller than 768px */
+@media only screen and (max-width: 768px) {
+  .hero-banner {
+    /* Hide navigation items */
+    display: none;
+  }
+  .hero-banner-mobile {
+    /* Show hamburger menu icon */
+    display: block;
+  }
+  .about-container {
+    display: none;
+  }
+}/*# sourceMappingURL=HomePage.css.map */

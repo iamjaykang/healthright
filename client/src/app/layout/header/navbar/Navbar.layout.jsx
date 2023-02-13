@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import navLinks from "../../../../assets/data/navLinks.json";
-import CartIcon from "../../../../components/cartIcon/CartIcon.component";
-import NavDropdown from "../../../../components/navDropdown/NavDropdown.component";
+import CartIcon from "../../../common/cartIcon/CartIcon.component";
+import NavDropdown from "./navDropdown/NavDropdown.component";
 import { useDispatch } from "react-redux";
 import "./Navbar.css";
-import { signOutLoading } from "../../../../app/stores/user/user.action";
+import { signOutLoading } from "../../../stores/user/user.action";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
