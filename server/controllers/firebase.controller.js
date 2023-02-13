@@ -1,5 +1,4 @@
 const firebase = require("../config/firebaseAdmin.config");
-const { UnauthorizedError } = require("../helpers/error.helper");
 
 exports.setCustomUserClaims = async (req, res, next) => {
   try {

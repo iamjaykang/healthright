@@ -1,5 +1,5 @@
 const firebase = require("../config/firebaseAdmin.config");
-const { UnauthorizedError } = require("../helpers/error.helper");
+const { UnauthorizedError, ForbiddenError } = require("../helpers/error.helper");
 
 
 const checkAuthorization = async (req, res, next) => {
@@ -14,7 +14,7 @@ const checkAuthorization = async (req, res, next) => {
       // Check if the user is an admin or the right user
       const { id } = req.params;
       if (!decodedToken.admin && decodedToken.uid !== id) {
-        return res.status(403).send({ error: "ForbiddenError" });
+        throw new ForbiddenError("ForbiddenError: User is not authorized");
       }
   
       next();
