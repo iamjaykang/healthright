@@ -106,6 +106,36 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   }
 };
 
+export const signInAuthUserForAdmin = async (email, password) => {
+  if (!email || !password) return;
+
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    const user = result.user;
+    const isAdmin = await user.getIdTokenResult();
+
+    if (isAdmin.claims.admin) {
+      return user;
+    } else {
+      console.log("You are not authorized to sign in as an admin.");
+      signOutUser();
+      return null;
+    }
+  } catch (error) {
+    switch (error.code) {
+      case "auth/wrong-password":
+        console.log("Incorrect password or email");
+        break;
+      case "auth/user-not-found":
+        console.log("No user associated with this email");
+        break;
+      default:
+        console.log(error);
+        break;
+    }
+  }
+};
+
 export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) => {
