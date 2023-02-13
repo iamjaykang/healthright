@@ -10,7 +10,7 @@ import "./Authentication.css";
 import Spinner from "../../app/common/spinner/Spinner.common";
 import { useNavigate } from "react-router-dom";
 
-const Authentication = () => {
+const AuthenticationPage = () => {
   const currentUser = useSelector(selectCurrentUser);
   const isLoading = useSelector(selectUserIsLoading);
   const navigate = useNavigate();
@@ -42,4 +42,4 @@ const Authentication = () => {
   }
 };
 
-export default Authentication;
+export default AuthenticationPage;
