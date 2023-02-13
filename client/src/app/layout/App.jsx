@@ -15,10 +15,10 @@ const App = () => {
 
   useEffect(() => {
     dispatch(checkUserSession());
-  });
+  },[dispatch]);
 
   useEffect(() => {
-    dispatch(fetchProductsLoading());
+    dispatch(fetchProductsLoading(),[[dispatch]]);
   });
 
   return (
