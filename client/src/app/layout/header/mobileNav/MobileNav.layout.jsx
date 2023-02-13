@@ -5,7 +5,7 @@ import mobileNavLinks from "../../../../assets/data/mobileNavLinks.json";
 import { Link, NavLink } from "react-router-dom";
 import CartIcon from "../../../common/cartIcon/CartIcon.common";
 import Menu from "../../../utils/menu/menu";
-import "./HamburgerMenu.css";
+import "./MobileNav.css";
 import burgerIcon from "../../../../assets/images/bars-solid.svg";
 import { signOutLoading } from "../../../stores/user/user.action";
 import MobileNavDropdown from "./mobileNavDropdown/MobileNavDropdown.layout";
