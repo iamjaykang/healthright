@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   isLoading: false,
   error: null,
   requiresAdminAuth: false,
-  authFormType: false,
+  authIsSignUp: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action = {}) => {
@@ -73,7 +73,7 @@ const userReducer = (state = INITIAL_STATE, action = {}) => {
     case USER_ACTION_TYPES.SET_AUTH_FORM_TYPE:
       return {
         ...state,
-        authFormType: payload,
+        authIsSignUp: payload,
       };
     case USER_ACTION_TYPES.SET_REQUIRES_ADMIN_AUTH:
       return {

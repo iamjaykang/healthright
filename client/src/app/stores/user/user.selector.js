@@ -18,7 +18,7 @@ export const selectRequiresAdminAuth = createSelector(
   (userSlice) => userSlice.requiresAdminAuth
 );
 
-export const selectAuthFormType = createSelector(
+export const selectAuthIsSignUp = createSelector(
   [selectUserReducer],
-  (userSlice) => userSlice.authFormType
+  (userSlice) => userSlice.authIsSignUp
 );

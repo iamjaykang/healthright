@@ -67,5 +67,5 @@ export const setRequiresAdminAuth = (requiresAdminAuth) =>
   createAction(USER_ACTION_TYPES.SET_REQUIRES_ADMIN_AUTH, requiresAdminAuth);
 
 // Action to set auth form type
-export const setAuthFormType = (authFormType) =>
-  createAction(USER_ACTION_TYPES.SET_AUTH_FORM_TYPE, authFormType);
+export const setAuthIsSignUp = (authIsSignUp) =>
+  createAction(USER_ACTION_TYPES.SET_AUTH_FORM_TYPE, authIsSignUp);
