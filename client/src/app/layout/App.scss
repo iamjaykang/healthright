@@ -15,7 +15,7 @@
     height: 100vh;
 
     .dashboard-header {
-        height: 10%;
+        height: 8%;
         display: flex;
         background-color: $primary-color;
         justify-content: space-between;
@@ -70,13 +70,12 @@
 
     .dashboard-nav-main-section {
         flex: 1;
+        width: 100vw;
         display: flex;
-
 
         .dashboard-nav {
             width: 20%;
             background-color: $secondary-color;
-            padding: 20px;
 
             .dashboard-nav-list-item {
                 list-style: none;
@@ -88,20 +87,30 @@
                 }
             }
 
-            .dashboard-main-section {
-                flex: 1;
-                padding: 20px;
+        }
+
+        .dashboard-main-section {
+            flex: 1;
+            min-height: 100vh;
+            height: 100%;
+            margin-left: 20%;
+            padding: 1.5rem;
+            background: $theme-bg-light;
+
+            .app-wrapper {
+                height: 100%;
+
+                .app-content {
+                    height: 100%;
+                }
             }
         }
     }
 
     .dashboard-footer {
-        height: 5%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgb(100, 100, 100);
-        font-size: 14px;
-        color: $white-color;
+        padding: 20px;
+        text-align: center;
+        background: $theme-bg-light;
+        color: black;
     }
 }

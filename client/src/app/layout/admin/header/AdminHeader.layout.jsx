@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminHeader = () => {
   return (
-    <header className="dashboard-header">
+    <header className="dashboard-header fixed-top">
     <div className="dashboard-title">Healthright Dashboard</div>
     <div className="dashboard-user-info">
       <div className="dashboard-user-name">Jay Kang</div>

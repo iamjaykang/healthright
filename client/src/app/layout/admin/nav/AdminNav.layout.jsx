@@ -2,7 +2,7 @@ import React from "react";
 
 const AdminNav = () => {
   return (
-    <nav className="dashboard-nav">
+    <nav className="dashboard-nav dashboard-sidepanel">
       <ul className="dashboard-nav-list">
         <li className="dashboard-nav-list-item">
           <a href="/admin/dashboard" className="dashboard-nav-item">

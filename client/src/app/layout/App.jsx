@@ -3,7 +3,7 @@ import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import HomePage from "../../components/home/HomePage.component";
 import Footer from "./footer/Footer.layout";
 import Header from "./header/Header.layout";
-import "./App.css";
+import "./App.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   checkUserSession,
@@ -54,15 +54,15 @@ const App = () => {
       }
       return (
         <div className="dashboard-container">
-          <ScrollRestoration />
           <AdminHeader />
           <div className="dashboard-nav-main-section">
             <AdminNav />
             <main className="dashboard-main-section">
+              <ScrollRestoration />
               <Outlet />
+              <AdminFooter />
             </main>
           </div>
-          <AdminFooter />
         </div>
       );
 
