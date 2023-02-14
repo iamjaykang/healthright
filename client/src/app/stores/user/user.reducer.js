@@ -22,6 +22,11 @@ const userReducer = (state = INITIAL_STATE, action = {}) => {
         ...state,
         isLoading: true,
       };
+    case USER_ACTION_TYPES.CHECK_USER_SESSION:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case USER_ACTION_TYPES.SIGN_UP_LOADING:
       return {
         ...state,

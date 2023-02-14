@@ -22,3 +22,8 @@ export const selectAuthIsSignUp = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.authIsSignUp
 );
+
+export const selectAuthError = createSelector(
+  [selectUserReducer],
+  (userSlice) => userSlice.error
+);

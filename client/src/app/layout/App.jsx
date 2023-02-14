@@ -32,8 +32,8 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchProductsLoading(), [[dispatch]]);
-  });
+    dispatch(fetchProductsLoading());
+  }, [dispatch]);
 
   useEffect(() => {
     if (location.pathname.startsWith("/admin")) {
@@ -41,16 +41,13 @@ const App = () => {
     } else {
       dispatch(setRequiresAdminAuth(false));
     }
-  }, [dispatch, location.pathname, requiresAdminAuth, currentUser]);
+  }, [dispatch, location.pathname]);
 
   switch (requiresAdminAuth) {
     case true:
-      if (
-        currentUser === null &&
-        location.pathname === ("/admin/sign-in")
-      ) {
+      if (currentUser === null && location.pathname === "/admin/sign-in") {
         return (
-          <div>
+          <div className="app">
             <Outlet />
           </div>
         );

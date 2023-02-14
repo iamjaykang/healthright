@@ -5,6 +5,11 @@ const AdminNav = () => {
     <nav className="dashboard-nav">
       <ul className="dashboard-nav-list">
         <li className="dashboard-nav-list-item">
+          <a href="/admin/dashboard" className="dashboard-nav-item">
+            Overview
+          </a>
+        </li>
+        <li className="dashboard-nav-list-item">
           <a href="/admin/dashboard/orders" className="dashboard-nav-item">
             Orders
           </a>

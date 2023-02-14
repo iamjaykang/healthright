@@ -43,13 +43,13 @@ const AdminSignInForm = () => {
   };
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && currentUser.user.isAdmin) {
       navigate("/admin/dashboard");
     }
   }, [currentUser, navigate]);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="auth-form" onSubmit={handleSubmit}>
       <MyTextInput
         label="Email"
         type="email"

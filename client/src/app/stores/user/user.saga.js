@@ -122,7 +122,7 @@ export function* isUserAuthenticated() {
   try {
     // call the firebase function to get the current user
     const userAuth = yield call(getCurrentUser);
-    if (!userAuth) return;
+    if (!userAuth) return yield put(signInFailed("User auth doesn't exist"));;
     // call the getSnapshotFromUserAuth function
     yield call(getSnapshotFromUserAuth, userAuth);
   } catch (error) {

@@ -1,5 +1,6 @@
 import React from "react";
 import AdminSignInForm from "./adminSignInForm/AdminSignInForm.component";
+import './AdminAuthentication.css'
 
 const AdminAuthenticationPage = () => {
   return (
