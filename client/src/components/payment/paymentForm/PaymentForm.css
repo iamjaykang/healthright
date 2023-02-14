@@ -1,4 +1,4 @@
-form {
+.payment-form {
   width: 30vw;
   min-width: 500px;
   align-self: center;
@@ -8,17 +8,17 @@ form {
   /* Buttons and links */
   /* spinner/processing state, errors */
 }
-form #payment-element {
+.payment-form .payment-element {
   margin-bottom: 24px;
 }
-form #payment-message {
+.payment-form .payment-message {
   color: rgb(105, 115, 134);
   font-size: 16px;
   line-height: 20px;
   padding-top: 12px;
   text-align: center;
 }
-form button {
+.payment-form .payment-submit-btn {
   background: #5469d4;
   font-family: Arial, sans-serif;
   color: #ffffff;
@@ -33,19 +33,19 @@ form button {
   box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
   width: 100%;
 }
-form button:hover {
+.payment-form .payment-submit-btn:hover {
   filter: contrast(115%);
 }
-form button:disabled {
+.payment-form .payment-submit-btn:disabled {
   opacity: 0.5;
   cursor: default;
 }
-form .spinner,
-form .spinner:before,
-form .spinner:after {
+.payment-form .spinner,
+.payment-form .spinner:before,
+.payment-form .spinner:after {
   border-radius: 50%;
 }
-form .spinner {
+.payment-form .spinner {
   color: #ffffff;
   font-size: 22px;
   text-indent: -99999px;
@@ -56,12 +56,12 @@ form .spinner {
   box-shadow: inset 0 0 0 2px;
   transform: translateZ(0);
 }
-form .spinner:before,
-form .spinner:after {
+.payment-form .spinner:before,
+.payment-form .spinner:after {
   position: absolute;
   content: "";
 }
-form .spinner:before {
+.payment-form .spinner:before {
   width: 10.4px;
   height: 20.4px;
   background: #5469d4;
@@ -72,7 +72,7 @@ form .spinner:before {
   -webkit-animation: loading 2s infinite ease 1.5s;
   animation: loading 2s infinite ease 1.5s;
 }
-form .spinner:after {
+.payment-form .spinner:after {
   width: 10.4px;
   height: 10.2px;
   background: #5469d4;
@@ -100,7 +100,7 @@ form .spinner:after {
   }
 }
 @media only screen and (max-width: 600px) {
-  form form {
+  .payment-form form {
     width: 80vw;
     min-width: initial;
   }

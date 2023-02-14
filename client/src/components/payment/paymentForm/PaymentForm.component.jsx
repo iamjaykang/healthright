@@ -15,8 +15,6 @@ export default function CheckoutForm() {
 
   const currentUser = useSelector(selectCurrentUser);
 
-  console.log(currentUser);
-
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -93,9 +91,9 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form className="payment-form" onSubmit={handleSubmit}>
       <LinkAuthenticationElement
-        id="link-authentication-element"
+        className="link-authentication-element"
         options={{
           defaultValues: {
             email: email,
@@ -107,14 +105,17 @@ export default function CheckoutForm() {
           }
         }}
       />
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+      <PaymentElement
+        className="payment-element"
+        options={paymentElementOptions}
+      />
+      <button disabled={isLoading || !stripe || !elements} className="payment-submit-btn">
+        <span className="button-text">
+          {isLoading ? <div className="spinner"></div> : "Pay now"}
         </span>
       </button>
       {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {message && <div className="payment-message">{message}</div>}
     </form>
   );
 }

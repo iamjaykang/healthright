@@ -1,1 +1,1 @@
-{"version":3,"sources":["SignUpForm.scss","SignUpForm.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,sBAAA;EACA,YAAA;ACCJ;ADCI;EALJ;IAMQ,UAAA;ECEN;AACF;ADAI;EACI,aAAA;EACA,sBAAA;ACER","file":"SignUpForm.css"}
+{"version":3,"sources":["../../../assets/styles/components/_forms.scss","SignUpForm.css","SignUpForm.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,gBAAA;EACA,kBAAA;EACA,iIAAA;EAEA,kBAAA;EACA,aAAA;ACAJ;;ACLA;EACI,aAAA;EACA,sBAAA;EACA,YAAA;ADQJ;ACNI;EALJ;IAMQ,UAAA;EDSN;AACF;ACPI;EACI,aAAA;EACA,sBAAA;ADSR","file":"SignUpForm.css"}

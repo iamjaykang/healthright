@@ -8,21 +8,26 @@
     margin: 0 auto;
 
     .form-action-container {
-        display: inline-flex;
-        flex-wrap: wrap;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
 
         span {
             margin-right: 5px;
         }
 
         .link-btn {
+            font-size: 14px;
+            background: none;
             padding: 0;
-            font-size: 1em;
-            background-color: inherit;
             border: none;
-            cursor: pointer;
             color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+
+            &:hover {
+                color: purple;
+            }
         }
     }
-
 }

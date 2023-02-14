@@ -13,7 +13,7 @@ const initialFormValues = {
   confirmPassword: "",
 };
 
-const SignUpForm = ({ setFormType }) => {
+const SignUpForm = () => {
   const dispatch = useDispatch();
   const [formValues, setFormValues] = useState(initialFormValues);
   const { firstName, lastName, email, password, confirmPassword } = formValues;
@@ -45,16 +45,7 @@ const SignUpForm = ({ setFormType }) => {
 
   return (
     <div className="sign-up-container">
-      <h2>Don't have an account?</h2>
-      <p className="form-action-container">
-        <span>
-          Sign up with your email and password or
-        </span>
-          <button className="link-btn" onClick={() => setFormType("sign in")}>
-            Sign in instead
-          </button>
-      </p>
-      <form onSubmit={handleSubmit}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <MyTextInput
           label="First Name"
           type="text"

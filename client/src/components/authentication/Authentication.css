@@ -8,17 +8,22 @@
   margin: 0 auto;
 }
 .auth-container .form-action-container {
-  display: inline-flex;
-  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
 }
 .auth-container .form-action-container span {
   margin-right: 5px;
 }
 .auth-container .form-action-container .link-btn {
+  font-size: 14px;
+  background: none;
   padding: 0;
-  font-size: 1em;
-  background-color: inherit;
   border: none;
-  cursor: pointer;
   color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.auth-container .form-action-container .link-btn:hover {
+  color: purple;
 }/*# sourceMappingURL=Authentication.css.map */

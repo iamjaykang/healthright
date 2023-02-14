@@ -13,7 +13,7 @@ const initialFormValues = {
   password: "",
 };
 
-const SignInForm = ({ setFormType }) => {
+const SignInForm = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const { email, password } = formValues;
   const dispatch = useDispatch();
@@ -45,16 +45,7 @@ const SignInForm = ({ setFormType }) => {
 
   return (
     <div className="sign-in-container">
-      <h2>I already have an account</h2>
-
-      <p className="form-action-container">
-        <span>Sign in with your email and password or</span>
-        <button className="link-btn" onClick={() => setFormType("sign up")}>
-          Sign up instead
-        </button>
-      </p>
-
-      <form onSubmit={handleSubmit}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <MyTextInput
           label="Email"
           type="email"

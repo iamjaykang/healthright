@@ -1,6 +1,8 @@
+@import "assets/styles/styles";
+
 * {
     box-sizing: border-box;
-    font-family: 'Noto Sans Tangsa', sans-serif, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-family: $font-stack;
 }
 
 body {
