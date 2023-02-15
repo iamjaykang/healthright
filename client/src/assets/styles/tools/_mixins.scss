@@ -1,0 +1,13 @@
+@mixin screen($breakpoint) {
+    @each $breakpoint-name, $breakpoint-size in $breakpoints {
+      @if $breakpoint-name == $breakpoint {
+        @media screen and (min-width: $breakpoint-size) {
+          @content;
+        }
+      }
+    }
+  }
+  
+@mixin grid($cols) {
+    grid-template-columns: repeat($cols, 1fr);
+}

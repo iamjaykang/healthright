@@ -3,7 +3,6 @@ import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import HomePage from "../../components/home/HomePage.component";
 import Footer from "./footer/Footer.layout";
 import Header from "./header/Header.layout";
-import "./App.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   checkUserSession,
@@ -16,7 +15,7 @@ import {
 } from "../stores/user/user.selector";
 import AdminHeader from "./admin/header/AdminHeader.layout";
 import AdminFooter from "./admin/footer/AdminFooter.layout";
-import AdminNav from "./admin/nav/AdminNav.layout";
+import AdminSidePanel from "./admin/nav/AdminSidePanel.layout";
 
 const App = () => {
   const location = useLocation();
@@ -53,22 +52,22 @@ const App = () => {
         );
       }
       return (
-        <div className="dashboard-container">
+        <div className="dashboard">
           <AdminHeader />
-          <div className="dashboard-nav-main-section">
-            <AdminNav />
-            <main className="dashboard-main-section">
+          <body className="dashboard__body">
+            <AdminSidePanel />
+            <main className="dashboard__main-content">
               <ScrollRestoration />
               <Outlet />
               <AdminFooter />
             </main>
-          </div>
+          </body>
         </div>
       );
 
     default:
       return (
-        <div className="page-container">
+        <div className="app">
           <ScrollRestoration />
           <Header />
           <main>{location.pathname === "/" ? <HomePage /> : <Outlet />}</main>

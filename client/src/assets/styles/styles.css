@@ -238,19 +238,4 @@ body {
 
 .shadow-sm {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
-}
-
-.sign-in-container {
-  display: flex;
-  flex-direction: column;
-  width: 440px;
-}
-@media only screen and (max-width: 768px) {
-  .sign-in-container {
-    width: 90%;
-  }
-}
-.sign-in-container .btns-container {
-  display: flex;
-  flex-direction: column;
-}/*# sourceMappingURL=SignInForm.css.map */
+}/*# sourceMappingURL=styles.css.map */

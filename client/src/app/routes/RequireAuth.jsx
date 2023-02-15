@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Spinner from "../common/spinner/Spinner.common";
 import { signOutLoading } from "../stores/user/user.action";
 import {
@@ -14,7 +14,6 @@ const RequireAuth = () => {
   const currentUserIsLoading = useSelector(selectUserIsLoading);
   const authError = useSelector(selectAuthError);
   const location = useLocation();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {

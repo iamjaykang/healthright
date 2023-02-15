@@ -8,7 +8,7 @@ import NotFoundPage from "../../components/notFound/NotFoundPage.component";
 import CheckOutPage from "../../components/checkOut/CheckOutPage.component";
 import RequireAuth from "./RequireAuth";
 import AdminAuthenticationPage from "../../components/admin/authentication/AdminAuthentication.component";
-import AdminHome from "../../components/admin/dashboard/home/AdminHome.component";
+import AdminOverview from "../../components/admin/dashboard/home/AdminOverview.component";
 import AdminOrders from "../../components/admin/dashboard/orders/AdminOrders.components";
 
 export const routes = [
@@ -22,7 +22,7 @@ export const routes = [
         children: [
           {
             path: "/admin/dashboard",
-            element: <AdminHome />,
+            element: <AdminOverview />,
           },
           {
             path: "/admin/dashboard/orders",
