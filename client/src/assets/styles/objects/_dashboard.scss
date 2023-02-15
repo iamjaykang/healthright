@@ -10,10 +10,14 @@
         height: 8%;
         display: flex;
         background-color: $white-color;
-        justify-content: right;
+        justify-content: space-between;
         align-items: center;
         color: $black-color;
         padding: 20px;
+
+        @include screen(md) {
+            justify-content: right;
+        }
     }
 
     &__user {
@@ -65,13 +69,13 @@
         display: flex;
     }
 
-    &__sidepanel {
+    &__sidePanel {
         width: 20%;
         background-color: $white-color;
         display: none;
         min-height: 100vh;
         height: 100%;
-        z-index: 200;
+        z-index: 500;
         font-size: 1rem;
         border-right: 1px solid #e7e9ed;
 

@@ -53,15 +53,15 @@ const App = () => {
       }
       return (
         <div className="dashboard">
-          <AdminHeader />
-          <div className="dashboard__body">
-            <AdminSidePanel />
-            <main className="dashboard__main-content">
-              <ScrollRestoration />
-              <Outlet />
-              <AdminFooter />
-            </main>
-          </div>
+            <AdminHeader />
+            <div className="dashboard__body">
+              <AdminSidePanel />
+              <main className="dashboard__main-content">
+                <ScrollRestoration />
+                <Outlet />
+                <AdminFooter />
+              </main>
+            </div>
         </div>
       );
 

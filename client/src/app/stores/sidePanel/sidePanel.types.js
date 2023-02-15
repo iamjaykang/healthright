@@ -1,0 +1,3 @@
+export const SIDE_PANEL_ACTION_TYPES = {
+  SET_IS_SIDE_PANEL_OPEN: "sidePanel/SET_IS_SIDE_PANEL_OPEN",
+};
