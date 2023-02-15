@@ -1,6 +1,7 @@
 import React from "react";
 import BarChart from "./charts/BarChart.component";
 import LineChart from "./charts/LineChart.component";
+import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
 const AdminOverview = () => {
   return (
@@ -12,19 +13,9 @@ const AdminOverview = () => {
             <h4 className="dashboard__stats-card-text">Total Sales</h4>
             <div className="dashboard__stats-card-figure">$12,628</div>
             <div className="dashboard__stats-card-meta text-success">
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                className="bi bi-arrow-up"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
-                />
-              </svg>
+              <AiOutlineArrowUp
+                style={{ width: "1rem", height: "1rem", viewBox: "0 0 16 16" }}
+              />
               20%
             </div>
           </div>
@@ -34,19 +25,9 @@ const AdminOverview = () => {
             <h4 className="dashboard__stats-card-text">Expenses</h4>
             <div className="dashboard__stats-card-figure">$2,250</div>
             <div className="dashboard__stats-card-meta text-success">
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                className="bi bi-arrow-down"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
-                />
-              </svg>
+              <AiOutlineArrowDown
+                style={{ width: "1rem", height: "1rem", viewBox: "0 0 16 16" }}
+              />
               5%
             </div>
           </div>
@@ -75,9 +56,7 @@ const AdminOverview = () => {
         </div>
         <div className="dashboard__card shadow-sm">
           <div className="dashboard__card-header">
-            <div className="dashboard__card-title">
-              Orders
-            </div>
+            <div className="dashboard__card-title">Orders</div>
             <div className="dashboard__card-body">
               <BarChart />
             </div>
@@ -85,16 +64,81 @@ const AdminOverview = () => {
         </div>
       </div>
       <div className="dashboard__grid">
-      <div className="dashboard__card shadow-sm">
-          <div className="dashboard__card-title">Channels List</div>
+        <div className="dashboard__card dashboard__sales-card shadow-sm">
+          <div className="dashboard__card-title dashboard__sales-card">
+            Sales Channel
+          </div>
           <div className="dashboard__card-body">
-
+            <div className="dashboard__sales-table">
+              <table className="dashboard__table">
+                <thead>
+                  <tr>
+                    <th className="dashboard__table-header">Source</th>
+                    <th className="dashboard__table-header stat-cell">Views</th>
+                    <th className="dashboard__table-header stat-cell">Today</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="dashboard__table-cell meta-cell">
+                      google.com
+                    </td>
+                    <td className="dashboard__table-cell stat-cell">1000</td>
+                    <td className="dashboard__table-cell stat-cell text-success">
+                      +10%
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="dashboard__table-cell meta-cell">
+                      facebook.com
+                    </td>
+                    <td className="dashboard__table-cell stat-cell">800</td>
+                    <td className="dashboard__table-cell stat-cell text-danger">
+                      -5%
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      <div className="dashboard__card shadow-sm">
+        <div className="dashboard__card shadow-sm">
           <div className="dashboard__card-title">Top Selling Products</div>
           <div className="dashboard__card-body">
-
+            <div className="dashboard__product-table">
+              <table class="dashboard__table">
+                <thead>
+                  <tr>
+                    <th className="dashboard__table-header">Product</th>
+                    <th className="dashboard__table-header stat-cell">Sold</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="dashboard__table-cell product-cell">
+                      <img
+                        src="https://via.placeholder.com/50x50"
+                        alt="Product 1"
+                        class="dashboard__product-image"
+                      />
+                      <h3 class="dashboard__product-name">Product 1</h3>
+                    </td>
+                    <td class="dashboard__table-cell stat-cell">50</td>
+                  </tr>
+                  <tr>
+                    <td className="dashboard__table-cell product-cell">
+                      <img
+                        src="https://via.placeholder.com/50x50"
+                        alt="Product 2"
+                        class="dashboard__product-image"
+                      />
+                      <h3 class="dashboard__product-name">Product 2</h3>
+                    </td>
+                    <td class="dashboard__table-cell stat-cell">60</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

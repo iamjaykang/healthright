@@ -1,4 +1,5 @@
 .dashboard {
+    position: relative;
     display: flex;
     flex-direction: column;
     background-color: $theme-bg-light;
@@ -56,10 +57,9 @@
 
     &__body {
         margin-top: 4%;
+        background-color: $theme-bg-light;
         min-width: 0;
-        min-height: 100vh;
-        height: 100%;
-        max-height: 100vh;
+        height: 100vh;
         flex: 1;
         width: 100vw;
         display: flex;
@@ -104,13 +104,13 @@
 
     &__main-content {
         flex: 1;
-        min-height: 100vh;
+        height: 100%;
         background: $theme-bg-light;
     }
 
     &__overview {
         padding: 1.5rem;
-        height: 100vh;
+        height: 100%;
         width: auto;
         margin-top: 8%;
 
@@ -174,13 +174,44 @@
         }
     }
 
+    &__sales-table {
+        padding: 1rem;
+    }
+
+    &__table {
+        display: table;
+        width: 100%;
+        border-collapse: collapse;
+
+        &-header,&-cell {
+            padding: 0.3rem;
+        }
+
+        &-header {
+            color: $gray-color;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+        }
+    }
+
+    &__product-table {
+        padding: 1rem;
+    }
+
     &__footer {
+        margin-top: auto;
+        padding: 1rem;
         background: $theme-bg-light;
 
         &-text {
-            margin-left: 20%;
+            margin: 0;
             text-align: center;
             color: black;
+
+            @include screen(md) {
+                margin-left: 20%;
+            }
         }
     }
 }

@@ -10,15 +10,32 @@ a {
   color: black;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   font-weight: normal;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
+  font-size: 16px;
 }
 
 df-messenger {
@@ -29,6 +46,23 @@ df-messenger {
     /* styles for screens smaller than 769px */
     display: none;
   }
+}
+
+.product-cell {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard__product-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 1rem;
+}
+
+.dashboard__product-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .app {
@@ -42,6 +76,7 @@ df-messenger {
 }
 
 .dashboard {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: #f5f6fe;
@@ -71,7 +106,7 @@ df-messenger {
 .dashboard__user-dropdown-list {
   display: none;
   position: absolute;
-  height: 100%;
+  min-height: 100%;
   top: 100%;
   right: 0;
   z-index: 1;
@@ -82,21 +117,17 @@ df-messenger {
 }
 .dashboard__user-dropdown-list-item {
   margin: 5px 0;
+  list-style: none;
   cursor: pointer;
 }
 .dashboard__user-dropdown-list-item:hover {
   background-color: #f2f2f2;
 }
-.dashboard__user-info:hover + .dashboard__user-dropdown-list,
-.dashboard__user-info:hover + .dashboard__user-dropdown {
-  display: block !important;
-}
 .dashboard__body {
   margin-top: 4%;
+  background-color: #f5f6fe;
   min-width: 0;
-  min-height: 100vh;
-  height: 100%;
-  max-height: 100vh;
+  height: 100vh;
   flex: 1;
   width: 100vw;
   display: flex;
@@ -136,12 +167,12 @@ df-messenger {
 }
 .dashboard__main-content {
   flex: 1;
-  min-height: 100vh;
+  height: 100%;
   background: #f5f6fe;
 }
 .dashboard__overview {
   padding: 1.5rem;
-  height: 100vh;
+  height: 100%;
   width: auto;
   margin-top: 8%;
 }
@@ -208,13 +239,43 @@ df-messenger {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+.dashboard__sales-table {
+  padding: 1rem;
+}
+.dashboard__table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+.dashboard__table-header, .dashboard__table-cell {
+  padding: 0.3rem;
+}
+.dashboard__table-header {
+  color: #c8c8c8;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+}
+.dashboard__product-table {
+  padding: 1rem;
+}
 .dashboard__footer {
+  margin-top: auto;
   background: #f5f6fe;
 }
 .dashboard__footer-text {
-  margin-left: 20%;
+  margin: 0;
   text-align: center;
   color: black;
+}
+@media screen and (min-width: 768px) {
+  .dashboard__footer-text {
+    margin-left: 20%;
+  }
+}
+
+.dashboard__user-info:hover .dashboard__user-dropdown-list {
+  display: block;
 }
 
 .auth-form {
@@ -234,6 +295,7 @@ df-messenger {
   width: 100%;
 }
 .dashboard__card canvas {
+  padding: 20px;
   width: 100% !important;
   height: 100% !important;
 }
@@ -269,6 +331,18 @@ df-messenger {
 
 .text-success {
   color: #28a745;
+}
+
+.text-danger {
+  color: #D26D69;
+}
+
+.stat-cell {
+  text-align: right;
+}
+
+meta {
+  color: #bf9d37;
 }
 
 .fixed-top {

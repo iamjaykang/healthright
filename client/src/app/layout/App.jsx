@@ -54,14 +54,14 @@ const App = () => {
       return (
         <div className="dashboard">
           <AdminHeader />
-          <body className="dashboard__body">
+          <div className="dashboard__body">
             <AdminSidePanel />
             <main className="dashboard__main-content">
               <ScrollRestoration />
               <Outlet />
               <AdminFooter />
             </main>
-          </body>
+          </div>
         </div>
       );
 

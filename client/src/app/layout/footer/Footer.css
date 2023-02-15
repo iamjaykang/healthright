@@ -1,43 +1,43 @@
-footer {
+.app__footer {
   background-color: #192216;
   color: #fff;
   padding: 20px;
   width: 100%;
 }
 @media only screen and (max-width: 769px) {
-  footer {
+  .app__footer {
     display: none;
   }
 }
-footer .container {
+.app__footer .container {
   margin: 0 auto;
 }
-footer .container .footer-info {
+.app__footer .container .footer-info {
   padding: 30px 10px;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
 }
-footer .container .footer-info .footer-info-col {
+.app__footer .container .footer-info .footer-info-col {
   display: flex;
   flex-direction: column;
 }
-footer .container .footer-info .footer-info-col .footer-info-heading {
+.app__footer .container .footer-info .footer-info-col .footer-info-heading {
   color: white;
 }
-footer .container .footer-info .footer-info-col .footer-info-list {
+.app__footer .container .footer-info .footer-info-col .footer-info-list {
   padding: 0;
 }
-footer .container .footer-info .footer-info-col .footer-info-list li {
+.app__footer .container .footer-info .footer-info-col .footer-info-list li {
   list-style: none;
   line-height: 2;
 }
-footer .container .footer-info .footer-info-col .footer-info-list li button {
+.app__footer .container .footer-info .footer-info-col .footer-info-list li button {
   border: none;
   background-color: transparent;
   color: white;
 }
-footer .copyright {
+.app__footer .copyright {
   text-align: center;
   font-size: 0.8em;
 }/*# sourceMappingURL=Footer.css.map */
