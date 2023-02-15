@@ -5,6 +5,19 @@
         border-radius: 0.25rem;
         height: 100%;
         width: 100%;
+
+        canvas {
+            padding: 20px;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        &-title {
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-bottom: $gray-color 1px solid;
+        }
     }
 
     &__stats-card {
@@ -14,6 +27,7 @@
             position: relative;
             padding: 1rem;
             padding-right: 1.5rem;
+            width: 100%;
         }
 
         &-text {

@@ -21,6 +21,16 @@ body {
   padding: 0;
 }
 
+df-messenger {
+  --df-messenger-button-titlebar-color: #bf9d37;
+}
+@media only screen and (max-width: 769px) {
+  df-messenger {
+    /* styles for screens smaller than 769px */
+    display: none;
+  }
+}
+
 .app {
   min-height: 100vh;
   min-width: 100vw;
@@ -34,7 +44,9 @@ body {
 .dashboard {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  background-color: #f5f6fe;
+  min-height: 100vh;
+  height: 100%;
 }
 .dashboard__header {
   height: 8%;
@@ -59,6 +71,7 @@ body {
 .dashboard__user-dropdown-list {
   display: none;
   position: absolute;
+  height: 100%;
   top: 100%;
   right: 0;
   z-index: 1;
@@ -74,11 +87,16 @@ body {
 .dashboard__user-dropdown-list-item:hover {
   background-color: #f2f2f2;
 }
-.dashboard__user-info:hover + .dashboard__user-dropdown-list, .dashboard__user-info:hover + .dashboard__user-dropdown {
-  display: block;
+.dashboard__user-info:hover + .dashboard__user-dropdown-list,
+.dashboard__user-info:hover + .dashboard__user-dropdown {
+  display: block !important;
 }
 .dashboard__body {
   margin-top: 4%;
+  min-width: 0;
+  min-height: 100vh;
+  height: 100%;
+  max-height: 100vh;
   flex: 1;
   width: 100vw;
   display: flex;
@@ -119,17 +137,18 @@ body {
 .dashboard__main-content {
   flex: 1;
   min-height: 100vh;
-  height: 100%;
   background: #f5f6fe;
 }
 .dashboard__overview {
   padding: 1.5rem;
   height: 100vh;
   width: auto;
+  margin-top: 8%;
 }
 @media screen and (min-width: 768px) {
   .dashboard__overview {
     margin-left: 20%;
+    margin-top: 0;
   }
 }
 .dashboard__stats-grid {
@@ -170,6 +189,25 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+.dashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  padding: 1rem;
+}
+@media screen and (min-width: 576px) {
+  .dashboard__grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (min-width: 768px) {
+  .dashboard__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 .dashboard__footer {
   background: #f5f6fe;
 }
@@ -195,6 +233,16 @@ body {
   height: 100%;
   width: 100%;
 }
+.dashboard__card canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.dashboard__card-title {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: #c8c8c8 1px solid;
+}
 .dashboard__stats-card {
   text-align: center;
 }
@@ -202,6 +250,7 @@ body {
   position: relative;
   padding: 1rem;
   padding-right: 1.5rem;
+  width: 100%;
 }
 .dashboard__stats-card-text {
   margin: 0 0 0.5rem 0;

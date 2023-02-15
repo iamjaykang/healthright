@@ -1,7 +1,9 @@
 .dashboard {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    background-color: $theme-bg-light;
+    min-height: 100vh;
+    height: 100%;
 
     &__header {
         height: 8%;
@@ -31,6 +33,7 @@
         &-dropdown-list {
             display: none;
             position: absolute;
+            min-height: 100%;
             top: 100%;
             right: 0;
             z-index: 1;
@@ -42,24 +45,21 @@
 
         &-dropdown-list-item {
             margin: 5px 0;
+            list-style: none;
             cursor: pointer;
 
             &:hover {
                 background-color: #f2f2f2;
             }
         }
-
-        &-info:hover {
-
-            &+.dashboard__user-dropdown-list,
-            &+.dashboard__user-dropdown {
-                display: block;
-            }
-        }
     }
 
     &__body {
         margin-top: 4%;
+        min-width: 0;
+        min-height: 100vh;
+        height: 100%;
+        max-height: 100vh;
         flex: 1;
         width: 100vw;
         display: flex;
@@ -105,7 +105,6 @@
     &__main-content {
         flex: 1;
         min-height: 100vh;
-        height: 100%;
         background: $theme-bg-light;
     }
 
@@ -113,9 +112,11 @@
         padding: 1.5rem;
         height: 100vh;
         width: auto;
+        margin-top: 8%;
 
         @include screen(md) {
             margin-left: 20%;
+            margin-top: 0;
         }
     }
 
@@ -155,6 +156,24 @@
         }
     }
 
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        padding: 1rem;
+
+        @include screen(sm) {
+            @include grid(1);
+        }
+
+        @include screen(md) {
+            @include grid(2);
+        }
+    }
+
     &__footer {
         background: $theme-bg-light;
 
@@ -164,4 +183,8 @@
             color: black;
         }
     }
+}
+
+.dashboard__user-info:hover .dashboard__user-dropdown-list {
+    display: block;
 }

@@ -1,9 +1,0 @@
-df-messenger {
-  --df-messenger-button-titlebar-color: #bf9d37;
-}
-@media only screen and (max-width: 769px) {
-  df-messenger {
-    /* styles for screens smaller than 769px */
-    display: none;
-  }
-}/*# sourceMappingURL=index.css.map */

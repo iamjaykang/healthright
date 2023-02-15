@@ -72,7 +72,8 @@ const LineChart = () => {
     ],
   };
 
-  const options = {};
+  const options = {
+  };
 
   return <Line data={data} options={options} />;
 };

@@ -20,3 +20,12 @@ body {
     margin: 0;
     padding: 0;
 }
+
+df-messenger {
+    --df-messenger-button-titlebar-color: #bf9d37;
+
+    @media only screen and (max-width: 769px) {
+        /* styles for screens smaller than 769px */
+        display: none;
+    }
+}

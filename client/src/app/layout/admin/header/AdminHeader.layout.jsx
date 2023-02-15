@@ -2,7 +2,7 @@ import React from "react";
 
 const AdminHeader = () => {
   return (
-    <header className="dashboard__header fixed-top">
+    <header className="dashboard__header fixed-top shadow-sm">
       <div className="dashboard__user-info">
         <div className="dashboard__user-name">Jay Kang</div>
         <div className="dashboard__user-dropdown">
