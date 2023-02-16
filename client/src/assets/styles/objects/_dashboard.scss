@@ -7,7 +7,7 @@
     height: 100%;
 
     &__header {
-        height: 8%;
+        height: 3.5rem;
         display: flex;
         background-color: $white-color;
         justify-content: space-between;
@@ -157,6 +157,7 @@
 
     &__content-title {
         font-size: 1.3rem;
+        font-weight: 900;
     }
 
     &__grid {

@@ -25,7 +25,7 @@ const AdminProducts = () => {
                   <th className="dashboard__table-header">Status</th>
                   <th className="dashboard__table-header">Category</th>
                   <th className="dashboard__table-header">Vendor</th>
-                  <th className="dashboard__table-header stat-cell">
+                  <th className="dashboard__table-header text-center">
                     Inventory
                   </th>
                 </tr>
@@ -33,7 +33,7 @@ const AdminProducts = () => {
               <tbody className="dashboard__table-body">
                 {productsArray && productsArray.length !== 0 ? (
                   productsArray.map((product) => (
-                    <tr className="dashboard__table-row">
+                    <tr key={product.id} className="dashboard__table-row">
                       <td className="dashboard__table-cell stat-cell">
                         {product.id}
                       </td>
@@ -54,7 +54,7 @@ const AdminProducts = () => {
                       </td>
                       <td className="dashboard__table-cell">
                         <span className="dashboard__table-cell-category">
-                          Category 1
+                          {product.category}
                         </span>
                       </td>
                       <td className="dashboard__table-cell">
@@ -62,7 +62,7 @@ const AdminProducts = () => {
                           {product.vendor}
                         </span>
                       </td>
-                      <td className="dashboard__table-cell stat-cell">
+                      <td className="dashboard__table-cell text-center">
                         <span className="dashboard__table-cell-inventory">
                           5
                         </span>
