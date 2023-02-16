@@ -20,6 +20,11 @@
         }
     }
 
+    &__add-product-card {
+        display: flex;
+        flex-direction: column;
+    }
+
     &__stats-card {
         text-align: center;
 

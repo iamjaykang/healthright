@@ -78,14 +78,15 @@
 
     &__overview,
     &__products,
-    &__orders {
+    &__orders,
+    &__add-product {
         padding: 1.5rem;
         height: 100%;
         margin-top: 2rem;
 
         @include screen(md) {
             margin-left: 20%;
-            margin-top: 0;
+            margin-top: 2rem;
         }
     }
     &__products-btn-container {

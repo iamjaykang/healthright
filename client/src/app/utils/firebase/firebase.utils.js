@@ -156,7 +156,7 @@ export const getCurrentUser = () => {
 };
 
 export const setIdTokenInCookie = (idToken, expirationDate) => {
-  document.cookie = `idToken=${idToken}; expires=${expirationDate}; path=/; secure; HttpOnly`;
+  document.cookie = `idToken=${idToken}; expires=${expirationDate}; path=/; secure;`;
 };
 
 auth.onAuthStateChanged((user) => {

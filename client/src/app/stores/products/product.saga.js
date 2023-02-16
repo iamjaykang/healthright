@@ -5,6 +5,8 @@ import {
   fetchProductsFailed,
   fetchProductsByVendorSuccess,
   fetchProductsByVendorFailed,
+  addProductSuccess,
+  addProductFailed,
 } from "./product.action";
 import { PRODUCTS_ACTION_TYPES } from "./product.types";
 
@@ -29,6 +31,15 @@ export function* fetchProductsByVendor({ payload: vendor }) {
   }
 }
 
+export function* addProduct({ payload }) {
+  try {
+    const { product } = yield call(agent.Products.create, payload);
+    yield put(addProductSuccess(product));
+  } catch (error) {
+    yield put(addProductFailed(error));
+  }
+}
+
 export function* onFetchProducts() {
   yield takeLatest(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_LOADING, fetchProducts);
 }
@@ -40,6 +51,14 @@ export function* onFetchProductsByVendor() {
   );
 }
 
+export function* onAddProduct() {
+  yield takeLatest(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_LOADING, addProduct);
+}
+
 export function* productsSaga() {
-  yield all([call(onFetchProducts), call(onFetchProductsByVendor)]);
+  yield all([
+    call(onFetchProducts),
+    call(onFetchProductsByVendor),
+    call(onAddProduct),
+  ]);
 }

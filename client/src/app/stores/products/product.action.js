@@ -21,3 +21,12 @@ export const fetchProductsByVendorSuccess = (productsArray) =>
 
 export const fetchProductsByVendorFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_BY_VENDOR_FAILED, error);
+
+export const addProductLoading = (productData) =>
+  createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_LOADING, productData);
+
+export const addProductSuccess = (product) =>
+  createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_SUCCESS, product);
+
+export const addProductFailed = (error) =>
+  createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_FAILED, error);

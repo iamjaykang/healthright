@@ -9,6 +9,7 @@ const initialState = {
 };
 
 const productsReducer = (state = initialState, action = {}) => {
+
   const { type, payload } = action;
 
   switch (type) {
@@ -45,6 +46,23 @@ const productsReducer = (state = initialState, action = {}) => {
         ...state,
         isLoading: false,
         error: payload,
+      };
+    case PRODUCTS_ACTION_TYPES.ADD_PRODUCT_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case PRODUCTS_ACTION_TYPES.ADD_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        productsArray: [...state.productsArray.data, payload],
+      };
+    case PRODUCTS_ACTION_TYPES.ADD_PRODUCT_FAILED:
+      return {
+        ...state,
+        error: payload,
+        isLoading: false,
       };
     default:
       return state;
