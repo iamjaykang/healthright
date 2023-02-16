@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import "react-quill/dist/quill.snow.css";
 import { useDispatch } from "react-redux";
+import ProductFormQuillInput from "../../../../../app/common/productForm/ProductFormQuillInput.common";
 import ProductFormTextInput from "../../../../../app/common/productForm/ProductFormTextInput.common";
 import { addProductLoading } from "../../../../../app/stores/products/product.action";
 
@@ -49,67 +51,78 @@ const AdminAddProduct = () => {
 
   return (
     <div className="dashboard__add-product">
-      <h2 className="dashboard__add-product-title">Add Product</h2>
+      <h2 className="dashboard__content-title">Add Product</h2>
       <form className="dashboard__add-product-form" onSubmit={handleSubmit}>
-        <div className="dashboard__card dashboard__add-product-card shadow-sm">
-          <ProductFormTextInput
-            label="Name"
-            type="text"
-            required
-            onChange={handleInputChange}
-            name="name"
-            value={name}
-          />
-          <ProductFormTextInput
-            label="Description"
-            type="text"
-            required
-            onChange={handleInputChange}
-            name="description"
-            value={description}
-          />
+        <div className="dashboard__add-product-form--left">
+          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+            <ProductFormTextInput
+              label="Name"
+              type="text"
+              required
+              onChange={handleInputChange}
+              name="name"
+              value={name}
+            />
+            <ProductFormQuillInput
+              label="Description"
+              onChange={(value) =>
+                setFormData({ ...formData, description: value })
+              }
+              value={description}
+            />
+          </div>
+          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+            <ProductFormTextInput
+              label="Media"
+              type="text"
+              required
+              onChange={handleInputChange}
+              name="productImage"
+              value={productImage}
+            />
+          </div>
+          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+            <ProductFormTextInput
+              label="Pricing"
+              type="number"
+              required
+              onChange={handleInputChange}
+              name="price"
+              value={price}
+            />
+          </div>
+          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+            <ProductFormTextInput
+              label="Quantity in Stock"
+              type="number"
+              required
+              onChange={handleInputChange}
+              name="qtyInStock"
+              value={qtyInStock}
+            />
+          </div>
         </div>
-        <ProductFormTextInput
-          label="Product Image"
-          type="text"
-          required
-          onChange={handleInputChange}
-          name="productImage"
-          value={productImage}
-        />
-        <ProductFormTextInput
-          label="Price"
-          type="text"
-          required
-          onChange={handleInputChange}
-          name="price"
-          value={price}
-        />
-        <ProductFormTextInput
-          label="Quantity in Stock"
-          type="number"
-          required
-          onChange={handleInputChange}
-          name="qtyInStock"
-          value={qtyInStock}
-        />
-        <ProductFormTextInput
-          label="Category Name"
-          type="text"
-          required
-          onChange={handleInputChange}
-          name="categoryName"
-          value={categoryName}
-        />
-        <ProductFormTextInput
-          label="Vendor"
-          type="text"
-          required
-          onChange={handleInputChange}
-          name="vendorName"
-          value={vendorName}
-        />
-        <button className="dashboard__add-product-submit" type="submit">
+        <div className="dashboard__add-product-form--right">
+          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+            <ProductFormTextInput
+              label="Category Name"
+              type="text"
+              required
+              onChange={handleInputChange}
+              name="categoryName"
+              value={categoryName}
+            />
+            <ProductFormTextInput
+              label="Vendor"
+              type="text"
+              required
+              onChange={handleInputChange}
+              name="vendorName"
+              value={vendorName}
+            />
+          </div>
+        </div>
+        <button className="dashboard__add-product-btn" type="submit">
           Add Product
         </button>
       </form>

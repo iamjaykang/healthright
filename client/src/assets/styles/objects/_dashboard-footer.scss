@@ -1,0 +1,17 @@
+.dashboard {
+    &__footer {
+        margin-top: auto;
+        padding: 1rem;
+        background: $theme-bg-light;
+
+        &-text {
+            margin: 0;
+            text-align: center;
+            color: black;
+
+            @include screen(md) {
+                margin-left: 20%;
+            }
+        }
+    }
+}

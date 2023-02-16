@@ -59,9 +59,9 @@ const App = () => {
               <main className="dashboard__main-content">
                 <ScrollRestoration />
                 <Outlet />
-                <AdminFooter />
               </main>
             </div>
+                <AdminFooter />
         </div>
       );
 

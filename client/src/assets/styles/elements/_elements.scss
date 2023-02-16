@@ -1,2 +1,25 @@
-@import './table-cells';
-@import './sidepanel-navLink';
+a {
+    text-decoration: none;
+    color: black
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: normal;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}

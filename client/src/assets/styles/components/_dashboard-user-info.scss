@@ -1,0 +1,44 @@
+.dashboard {
+    &__user {
+        &-info {
+            display: flex;
+            align-items: center;
+        }
+
+        &-name {
+            margin-right: 10px;
+        }
+
+        &-dropdown {
+            position: relative;
+            cursor: pointer;
+        }
+
+        &-dropdown-list {
+            display: none;
+            position: absolute;
+            min-height: 100%;
+            top: 100%;
+            right: 0;
+            z-index: 1;
+            background-color: $gray-color;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        &-dropdown-list-item {
+            margin: 5px 0;
+            list-style: none;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f2f2f2;
+            }
+        }
+    }
+}
+
+.dashboard__user-info:hover .dashboard__user-dropdown-list {
+    display: block;
+}

@@ -3,7 +3,7 @@
         position: relative;
         background: $white-color;
         border-radius: 0.25rem;
-        height: 100%;
+        height: auto;
         width: 100%;
 
         canvas {
@@ -23,6 +23,8 @@
     &__add-product-card {
         display: flex;
         flex-direction: column;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
     }
 
     &__stats-card {

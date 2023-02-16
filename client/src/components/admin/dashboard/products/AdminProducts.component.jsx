@@ -11,7 +11,7 @@ const AdminProducts = () => {
       <div className="dashboard__products-header">
         <h2 className="dashboard__content-title products-title">Products</h2>
         <div className="dashboard__products-btn-container">
-          <Link to="/admin/dashboard/products/add" className="dashboard__products-add-btn">Add Product</Link>
+          <Link to="/admin/dashboard/products/add" className="dashboard__add-products-btn">Add Product</Link>
         </div>
       </div>
       <div className="dashboard__card shadow-sm">

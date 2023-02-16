@@ -1,0 +1,15 @@
+.dashboard {
+    &__header {
+        height: 3.5rem;
+        display: flex;
+        background-color: $white-color;
+        justify-content: space-between;
+        align-items: center;
+        color: $black-color;
+        padding: 20px;
+
+        @include screen(md) {
+            justify-content: right;
+        }
+    }
+}
