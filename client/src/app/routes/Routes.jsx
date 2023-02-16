@@ -10,6 +10,7 @@ import RequireAuth from "./RequireAuth";
 import AdminAuthenticationPage from "../../components/admin/authentication/AdminAuthentication.component";
 import AdminOverview from "../../components/admin/dashboard/overview/AdminOverview.component";
 import AdminOrders from "../../components/admin/dashboard/orders/AdminOrders.components";
+import AdminProducts from "../../components/admin/dashboard/products/AdminProducts.component";
 
 export const routes = [
   {
@@ -27,6 +28,10 @@ export const routes = [
           {
             path: "/admin/dashboard/orders",
             element: <AdminOrders />,
+          },
+          {
+            path: "/admin/dashboard/products",
+            element: <AdminProducts />,
           },
         ],
       },

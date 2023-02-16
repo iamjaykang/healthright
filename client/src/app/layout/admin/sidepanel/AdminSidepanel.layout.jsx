@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { AiOutlineHome } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
-import { BsCardList, BsPerson } from "react-icons/bs";
-import { TiLeaf } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsSidepanelOpen } from "../../../stores/sidepanel/sidepanel.selector";
 import { useScreenWidth } from "../../../utils/screenWidth/screenWidth.util";
 import { setIsSidepanelOpen } from "../../../stores/sidepanel/sidepanel.action";
+import { BsPerson } from "react-icons/bs";
+import { GoHome, GoPackage, GoArchive } from "react-icons/go";
 
 const AdminSidepanel = () => {
   const isSidepanelOpen = useSelector(selectIsSidepanelOpen);
@@ -25,8 +24,9 @@ const AdminSidepanel = () => {
       setIsMobile(true);
     } else {
       setIsMobile(false);
+      dispatch(setIsSidepanelOpen(false));
     }
-  }, [screenWidth]);
+  }, [dispatch,screenWidth]);
 
   return (
     <>
@@ -42,39 +42,47 @@ const AdminSidepanel = () => {
         <div className="dashboard__sidepanel-branding">Healthright</div>
         <ul className="dashboard__sidepanel-list">
           <li className="dashboard__sidepanel-list-item">
-            <AiOutlineHome />
             <NavLink
               to="/admin/dashboard"
               className="dashboard__sidepanel-item"
             >
-              Overview
+              <span className="dashboard__nav-link-icon">
+                <GoHome />
+              </span>
+              <span className="dashboard__nav-link-text">Overview</span>
             </NavLink>
           </li>
           <li className="dashboard__sidepanel-list-item">
-            <BsCardList />
             <NavLink
               to="/admin/dashboard/orders"
               className="dashboard__sidepanel-item"
             >
-              Orders
+              <span className="dashboard__nav-link-icon">
+                <GoPackage />
+              </span>
+              <span className="dashboard__nav-link-text">Orders</span>
             </NavLink>
           </li>
           <li className="dashboard__sidepanel-list-item">
-            <TiLeaf />
             <NavLink
               to="/admin/dashboard/products"
               className="dashboard__sidepanel-item"
             >
-              Products
+              <span className="dashboard__nav-link-icon">
+                <GoArchive />
+              </span>
+              <span className="dashboard__nav-link-text">Products</span>
             </NavLink>
           </li>
           <li className="dashboard__sidepanel-list-item">
-            <BsPerson />
             <NavLink
               to="/admin/dashboard/customers"
               className="dashboard__sidepanel-item"
             >
-              Customers
+              <span className="dashboard__nav-link-icon">
+                <BsPerson />
+              </span>
+              <span className="dashboard__nav-link-text">Customers</span>
             </NavLink>
           </li>
         </ul>

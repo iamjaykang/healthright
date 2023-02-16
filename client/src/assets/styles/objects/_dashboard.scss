@@ -69,43 +69,6 @@
         display: flex;
     }
 
-    &__sidepanel {
-        width: 20%;
-        background-color: $white-color;
-        display: none;
-        min-height: 100vh;
-        height: 100%;
-        z-index: 500;
-        font-size: 1rem;
-        border-right: 1px solid #e7e9ed;
-
-        @include screen(md) {
-            display: block;
-        }
-
-        &-branding {
-            padding: 1.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        &-list {
-            margin: 0;
-            padding: 0 0 0 3rem;
-        }
-
-        &-list-item {
-            padding: 10px;
-            list-style: none;
-        }
-
-        &-item {
-            margin-bottom: 10px;
-            color: $black-color;
-            cursor: pointer;
-        }
-    }
-
     &__main-content {
         flex: 1;
         height: 100%;

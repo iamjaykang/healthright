@@ -106,7 +106,7 @@ const AdminOverview = () => {
           <div className="dashboard__card-title">Top Selling Products</div>
           <div className="dashboard__card-body">
             <div className="dashboard__product-table">
-              <table class="dashboard__table">
+              <table className="dashboard__table">
                 <thead>
                   <tr>
                     <th className="dashboard__table-header">Product</th>
@@ -119,22 +119,22 @@ const AdminOverview = () => {
                       <img
                         src="https://via.placeholder.com/50x50"
                         alt="Product 1"
-                        class="dashboard__product-image"
+                        className="dashboard__product-image"
                       />
-                      <h3 class="dashboard__product-name">Product 1</h3>
+                      <h3 className="dashboard__product-name">Product 1</h3>
                     </td>
-                    <td class="dashboard__table-cell stat-cell">50</td>
+                    <td className="dashboard__table-cell stat-cell">50</td>
                   </tr>
                   <tr>
                     <td className="dashboard__table-cell product-cell">
                       <img
                         src="https://via.placeholder.com/50x50"
                         alt="Product 2"
-                        class="dashboard__product-image"
+                        className="dashboard__product-image"
                       />
-                      <h3 class="dashboard__product-name">Product 2</h3>
+                      <h3 className="dashboard__product-name">Product 2</h3>
                     </td>
-                    <td class="dashboard__table-cell stat-cell">60</td>
+                    <td className="dashboard__table-cell stat-cell">60</td>
                   </tr>
                 </tbody>
               </table>

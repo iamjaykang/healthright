@@ -1,4 +1,16 @@
 .dashboard__sidepanel {
+    width: 20%;
+    background-color: $white-color;
+    display: none;
+    min-height: 100vh;
+    height: 100%;
+    z-index: 500;
+    font-size: 1rem;
+    border-right: 1px solid #e7e9ed;
+
+    @include screen(md) {
+        display: block;
+    }
 
     &--mobile {
         // styles for mobile version
@@ -22,6 +34,31 @@
         top: 4%;
         color: $white-color;
         font-size: 2rem;
+    }
+
+    &-branding {
+        padding: 1.5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    &-list {
+        margin: 0;
+        padding: 0 0 0 1rem;
+        list-style: none;
+    }
+
+    &-list-item {
+        display: block;
+        padding: 0.875rem;
+    }
+
+    &-item {
+        margin-bottom: 1rem;
+        position: relative;
+        display: block;
+        color: $black-color;
+        cursor: pointer;
     }
 }
 

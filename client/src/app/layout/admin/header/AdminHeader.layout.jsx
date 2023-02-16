@@ -14,7 +14,7 @@ const AdminHeader = () => {
 
   return (
     <>
-    <div className={`dashboard__overlay${isSidepanelOpen && "--active"}`} onClick={toggleSidepanel}></div>
+    <div className={`dashboard__overlay${isSidepanelOpen ? "--active": ""}`} onClick={toggleSidepanel}></div>
     <header className="dashboard__header fixed-top shadow-sm">
         <button className="hamburger" onClick={toggleSidepanel}>
           <span className="hamburger__box">
