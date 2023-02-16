@@ -79,7 +79,6 @@
     &__overview, &__products, &__orders {
         padding: 1.5rem;
         height: 100%;
-        width: 100%;
         margin-top: 2rem;
 
         @include screen(md) {
