@@ -76,7 +76,9 @@
         background: $theme-bg-light;
     }
 
-    &__overview, &__products, &__orders {
+    &__overview,
+    &__products,
+    &__orders {
         padding: 1.5rem;
         height: 100%;
         margin-top: 2rem;
@@ -84,6 +86,35 @@
         @include screen(md) {
             margin-left: 20%;
             margin-top: 0;
+        }
+    }
+    &__products-btn-container {
+        margin-bottom: 1rem;
+    }
+
+    &__products-add-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: $primary-color;
+        color: $white-color;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #6F7C5A;
+        }
+    }
+
+    &__products-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-title {
+            margin-top: 1rem;
         }
     }
 
@@ -125,10 +156,6 @@
 
     &__content-title {
         font-size: 1.3rem;
-
-        &.products-title {
-            margin-bottom: 1rem;
-        }
     }
 
     &__grid {
