@@ -52,6 +52,9 @@ exports.findAllProducts = async () => {
     // Find all products and include the related vendor and category information
     const products = await Product.findAll({
       ...productDetails,
+      order: [
+        ['id', 'ASC']
+      ]
     });
 
     if (!products) {
