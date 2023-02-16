@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import agent from "../../../../../app/api/agent";
 import ProductFormTextInput from "../../../../../app/common/productForm/ProductFormTextInput.common";
 import { addProductLoading } from "../../../../../app/stores/products/product.action";
 
