@@ -1,0 +1,37 @@
+.dashboard {
+
+    &__table {
+        display: table;
+        overflow: auto;
+        width: 100%;
+        border-collapse: collapse;
+
+        &-header,
+        &-cell {
+            padding: 0.8rem;
+        }
+
+        &-head {
+            border-bottom: $gray-color 1px solid;
+        }
+
+        &-header {
+            color: $gray-color;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+        }
+    }
+
+    &__product-table {
+        padding: 1rem;
+    }
+
+    &__sales-table {
+        padding: 1rem;
+    }
+
+    &__table-container {
+        overflow-x: auto;
+      }
+}

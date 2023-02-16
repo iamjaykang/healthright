@@ -47,4 +47,11 @@
             color: $theme-primary-color-light;
         }
     }
+
+    &__products-card {
+        &-body {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+    }
 }
