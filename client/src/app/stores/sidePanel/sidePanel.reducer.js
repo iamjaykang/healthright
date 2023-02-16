@@ -1,17 +1,17 @@
-import { SIDE_PANEL_ACTION_TYPES } from "./sidePanel.types";
+import { SIDEPANEL_ACTION_TYPES } from "./sidepanel.types";
 
 const INITIAL_STATE = {
-  isSidePanelOpen: false,
+  isSidepanelOpen: false,
 };
 
-export const sidePanelReducer = (state = INITIAL_STATE, action = {}) => {
+export const sidepanelReducer = (state = INITIAL_STATE, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {
-    case SIDE_PANEL_ACTION_TYPES.SET_IS_SIDE_PANEL_OPEN:
+    case SIDEPANEL_ACTION_TYPES.SET_IS_SIDEPANEL_OPEN:
       return {
         ...state,
-        isSidePanelOpen: payload,
+        isSidepanelOpen: payload,
       };
 
     default:

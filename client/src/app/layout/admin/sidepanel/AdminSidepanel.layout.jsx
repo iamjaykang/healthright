@@ -5,17 +5,17 @@ import { RxCross2 } from "react-icons/rx";
 import { BsCardList, BsPerson } from "react-icons/bs";
 import { TiLeaf } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsSidePanelOpen } from "../../../stores/sidePanel/sidePanel.selector";
+import { selectIsSidepanelOpen } from "../../../stores/sidepanel/sidepanel.selector";
 import { useScreenWidth } from "../../../utils/screenWidth/screenWidth.util";
-import { setIsSidePanelOpen } from "../../../stores/sidePanel/sidePanel.action";
+import { setIsSidepanelOpen } from "../../../stores/sidepanel/sidepanel.action";
 
-const AdminsidePanel = () => {
-  const isSidePanelOpen = useSelector(selectIsSidePanelOpen);
+const AdminSidepanel = () => {
+  const isSidepanelOpen = useSelector(selectIsSidepanelOpen);
   const [isMobile, setIsMobile] = useState(false);
   const dispatch = useDispatch();
 
-  const closeSidePanel = () => {
-    dispatch(setIsSidePanelOpen(false));
+  const closeSidepanel = () => {
+    dispatch(setIsSidepanelOpen(false));
   };
 
   const screenWidth = useScreenWidth();
@@ -31,48 +31,48 @@ const AdminsidePanel = () => {
   return (
     <>
       <nav
-        className={`dashboard__sidePanel${isMobile ? "--mobile" : ""} ${
-          isSidePanelOpen ? "sidePanel--open " : ""
+        className={`dashboard__sidepanel${isMobile ? "--mobile" : ""} ${
+          isSidepanelOpen ? "sidepanel--open " : ""
         }fixed-left`}
       >
         <RxCross2
-          className="dashboard__sidePanel-close"
-          onClick={closeSidePanel}
+          className="dashboard__sidepanel-close"
+          onClick={closeSidepanel}
         />
-        <div className="dashboard__sidePanel-branding">Healthright</div>
-        <ul className="dashboard__sidePanel-list">
-          <li className="dashboard__sidePanel-list-item">
+        <div className="dashboard__sidepanel-branding">Healthright</div>
+        <ul className="dashboard__sidepanel-list">
+          <li className="dashboard__sidepanel-list-item">
             <AiOutlineHome />
             <NavLink
               to="/admin/dashboard"
-              className="dashboard__sidePanel-item"
+              className="dashboard__sidepanel-item"
             >
               Overview
             </NavLink>
           </li>
-          <li className="dashboard__sidePanel-list-item">
+          <li className="dashboard__sidepanel-list-item">
             <BsCardList />
             <NavLink
               to="/admin/dashboard/orders"
-              className="dashboard__sidePanel-item"
+              className="dashboard__sidepanel-item"
             >
               Orders
             </NavLink>
           </li>
-          <li className="dashboard__sidePanel-list-item">
+          <li className="dashboard__sidepanel-list-item">
             <TiLeaf />
             <NavLink
               to="/admin/dashboard/products"
-              className="dashboard__sidePanel-item"
+              className="dashboard__sidepanel-item"
             >
               Products
             </NavLink>
           </li>
-          <li className="dashboard__sidePanel-list-item">
+          <li className="dashboard__sidepanel-list-item">
             <BsPerson />
             <NavLink
               to="/admin/dashboard/customers"
-              className="dashboard__sidePanel-item"
+              className="dashboard__sidepanel-item"
             >
               Customers
             </NavLink>
@@ -83,4 +83,4 @@ const AdminsidePanel = () => {
   );
 };
 
-export default AdminsidePanel;
+export default AdminSidepanel;

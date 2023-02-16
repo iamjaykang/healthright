@@ -1,5 +1,5 @@
 import { createAction } from "../../utils/reducer/reducer.utils";
-import { SIDE_PANEL_ACTION_TYPES } from "./sidePanel.types";
+import { SIDEPANEL_ACTION_TYPES } from "./sidepanel.types";
 
-export const setIsSidePanelOpen = (isSidePanelOpen) =>
-  createAction(SIDE_PANEL_ACTION_TYPES.SET_IS_SIDE_PANEL_OPEN, isSidePanelOpen);
+export const setIsSidepanelOpen = (isSidepanelOpen) =>
+  createAction(SIDEPANEL_ACTION_TYPES.SET_IS_SIDEPANEL_OPEN, isSidepanelOpen);

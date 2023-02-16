@@ -1,8 +1,8 @@
 import { createSelector } from "reselect";
 
-const selectSidePanelReducer = (state) => state.sidePanel;
+const selectSidepanelReducer = (state) => state.sidepanel;
 
-export const selectIsSidePanelOpen = createSelector(
-  [selectSidePanelReducer],
-  (sidePanelSlice) => sidePanelSlice.isSidePanelOpen
+export const selectIsSidepanelOpen = createSelector(
+  [selectSidepanelReducer],
+  (sidepanelSlice) => sidepanelSlice.isSidepanelOpen
 );

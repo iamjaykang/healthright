@@ -1,4 +1,4 @@
-.dashboard__sidePanel {
+.dashboard__sidepanel {
 
     &--mobile {
         // styles for mobile version
@@ -9,7 +9,7 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         z-index: 1000;
 
-        &.sidePanel--open {
+        &.sidepanel--open {
             display: block;
             width: 60%;
         }

@@ -15,7 +15,7 @@ import {
 } from "../stores/user/user.selector";
 import AdminHeader from "./admin/header/AdminHeader.layout";
 import AdminFooter from "./admin/footer/AdminFooter.layout";
-import AdminSidePanel from "./admin/nav/AdminSidePanel.layout";
+import AdminSidepanel from "./admin/sidepanel/AdminSidepanel.layout";
 
 const App = () => {
   const location = useLocation();
@@ -55,7 +55,7 @@ const App = () => {
         <div className="dashboard">
             <AdminHeader />
             <div className="dashboard__body">
-              <AdminSidePanel />
+              <AdminSidepanel />
               <main className="dashboard__main-content">
                 <ScrollRestoration />
                 <Outlet />
