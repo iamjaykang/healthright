@@ -40,6 +40,12 @@ const RequireAuth = () => {
     }
   }
 
+  if (!currentUserIsLoading) {
+    if (currentUser && currentUser.user.isAdmin && authError === null && location.pathname === '/admin') {
+      return <Navigate to="/admin/sign-in" state={{ from: location }} />;
+    }
+  }
+
   return <Outlet />;
 };
 

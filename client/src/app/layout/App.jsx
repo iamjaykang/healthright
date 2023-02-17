@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
+import { Outlet, ScrollRestoration, useLocation, useNavigate } from "react-router-dom";
 import HomePage from "../../components/home/HomePage.component";
 import Footer from "./footer/Footer.layout";
 import Header from "./header/Header.layout";
@@ -25,6 +25,8 @@ const App = () => {
   const currentUser = useSelector(selectCurrentUser);
 
   const requiresAdminAuth = useSelector(selectRequiresAdminAuth);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(checkUserSession());

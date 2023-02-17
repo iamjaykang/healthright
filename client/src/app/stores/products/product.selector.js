@@ -6,19 +6,19 @@ const selectProductsReducer = (state) => state.products;
 // Selector that returns the "productsArray" property from the "products" slice
 export const selectProductsArray = createSelector(
   [selectProductsReducer],
-  (productsSlice) => productsSlice.productsArray.data
+  (productsSlice) => productsSlice.productsArray
 );
 
 // Selector that returns the "adminProductsArray" property from the "products" slice
 export const selectAdminProductsArray = createSelector(
   [selectProductsReducer],
-  (productsSlice) => productsSlice.adminProductsArray.data
+  (productsSlice) => productsSlice.adminProductsArray
 );
 
 // Selector that returns the "filteredProductsArray" property from the "products" slice
 export const selectProductsFilteredByVendorArray = createSelector(
   [selectProductsReducer],
-  (productsSlice) => productsSlice.filteredProductsArray.data
+  (productsSlice) => productsSlice.filteredProductsArray
 );
 
 // Selector that returns a map of vendors and their respective products
