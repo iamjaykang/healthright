@@ -4,10 +4,8 @@ const cleanUpProductDataHelper = require("../helpers/cleanUpProductData.helper")
 const Product = db.products;
 const ProductCategory = db.productCategories;
 const ProductVendor = db.productVendors;
-const productDetails = require("../config/constants.config")(
-  ProductVendor,
-  ProductCategory
-);
+const { productDetails, productDetailsForAdmin } =
+  require("../config/constants.config");
 
 exports.createProduct = async (productData) => {
   const { vendorName, categoryName } = productData;
@@ -51,10 +49,8 @@ exports.findAllProducts = async () => {
   try {
     // Find all products and include the related vendor and category information
     const products = await Product.findAll({
-      ...productDetails,
-      order: [
-        ['id', 'ASC']
-      ]
+      ...productDetails(ProductVendor, ProductCategory),
+      order: [["id", "ASC"]],
     });
 
     if (!products) {
@@ -66,6 +62,26 @@ exports.findAllProducts = async () => {
 
     // Return the cleaned up product data
     return cleanedUpProducts;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Retrieve all Products from the database along with vendor and category details.
+exports.findAllProductsForAdmin = async () => {
+  try {
+    // Find all products and include the related vendor and category information
+    const products = await Product.findAll({
+      ...productDetailsForAdmin(ProductVendor, ProductCategory),
+      order: [["id", "ASC"]],
+    });
+
+    if (!products) {
+      throw new NotFoundError(`Failed to retrieve all products`);
+    }
+
+    // Return the product data
+    return products;
   } catch (error) {
     throw error;
   }

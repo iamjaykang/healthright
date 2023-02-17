@@ -1,17 +1,31 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectProductsArray } from "../../../../app/stores/products/product.selector";
+import { fetchProductsAdminLoading } from "../../../../app/stores/products/product.action";
+import {
+  selectAdminProductsArray,
+  selectProductsArray,
+} from "../../../../app/stores/products/product.selector";
 
 const AdminProducts = () => {
-  const productsArray = useSelector(selectProductsArray);
+  const adminProductsArray = useSelector(selectAdminProductsArray);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProductsAdminLoading());
+  }, [dispatch]);
 
   return (
     <div className="dashboard__products">
       <div className="dashboard__products-header">
         <h2 className="dashboard__content-title products-title">Products</h2>
         <div className="dashboard__products-btn-container">
-          <Link to="/admin/dashboard/products/add" className="dashboard__add-products-btn">Add Product</Link>
+          <Link
+            to="/admin/dashboard/products/add"
+            className="dashboard__add-products-btn"
+          >
+            Add Product
+          </Link>
         </div>
       </div>
       <div className="dashboard__card shadow-sm">
@@ -31,8 +45,8 @@ const AdminProducts = () => {
                 </tr>
               </thead>
               <tbody className="dashboard__table-body">
-                {productsArray && productsArray.length !== 0 ? (
-                  productsArray.map((product) => (
+                {adminProductsArray && adminProductsArray.length !== 0 ? (
+                  adminProductsArray.map((product) => (
                     <tr key={product.id} className="dashboard__table-row">
                       <td className="dashboard__table-cell stat-cell">
                         {product.id}
@@ -48,23 +62,29 @@ const AdminProducts = () => {
                         </span>
                       </td>
                       <td className="dashboard__table-cell">
-                        <span className="dashboard__table-cell-status dashboard__table-cell-status--available">
-                          Available
+                        <span
+                          className={`dashboard__table-cell status-cell${
+                            product.productLive
+                              ? "--available"
+                              : "--unavailable"
+                          }`}
+                        >
+                          {product.productLive ? "Available" : "Draft"}
                         </span>
                       </td>
                       <td className="dashboard__table-cell">
                         <span className="dashboard__table-cell-category">
-                          {product.category}
+                          {product.category.categoryName}
                         </span>
                       </td>
                       <td className="dashboard__table-cell">
                         <span className="dashboard__table-cell-vendor">
-                          {product.vendor}
+                          {product.vendor.vendorName}
                         </span>
                       </td>
                       <td className="dashboard__table-cell text-center">
                         <span className="dashboard__table-cell-inventory">
-                          5
+                          {product.qtyInStock}
                         </span>
                       </td>
                     </tr>

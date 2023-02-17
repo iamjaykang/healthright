@@ -10,6 +10,15 @@ export const fetchProductsSuccess = (productsArray) =>
 export const fetchProductsFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_FAILED, error);
 
+export const fetchProductsAdminLoading = () =>
+  createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_ADMIN_LOADING);
+
+export const fetchProductsAdminSuccess = (adminProductsArray) =>
+  createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_ADMIN_SUCCESS, adminProductsArray);
+
+export const fetchProductsAdminFailed = (error) =>
+  createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_ADMIN_FAILED, error);
+
 export const fetchProductsByVendorLoading = (vendor) =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_BY_VENDOR_LOADING, vendor);
 

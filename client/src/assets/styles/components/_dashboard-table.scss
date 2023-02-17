@@ -15,8 +15,12 @@
             border-bottom: $gray-color 1px solid;
         }
 
+        &-body {
+            font-size: 0.875rem;
+        }
+
         &-header {
-            color: $gray-color;
+            color: $table-header;
             font-size: 1rem;
             font-weight: 500;
             text-align: left;
@@ -33,5 +37,5 @@
 
     &__table-container {
         overflow-x: auto;
-      }
+    }
 }

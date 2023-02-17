@@ -4,6 +4,7 @@ const initialState = {
   isLoading: false,
   productsArray: [],
   filteredProductsArray: [],
+  adminProductsArray: [],
   error: null,
   shouldNavigate: false,
 };
@@ -25,6 +26,23 @@ const productsReducer = (state = initialState, action = {}) => {
         productsArray: payload,
       };
     case PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
+      };
+    case PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_ADMIN_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_ADMIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        adminProductsArray: payload,
+      };
+    case PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_ADMIN_FAILED:
       return {
         ...state,
         isLoading: false,

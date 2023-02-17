@@ -1,6 +1,5 @@
 const {
   BadRequestError,
-  UnauthorizedError,
 } = require("../helpers/error.helper");
 const productService = require("../services/product.service");
 
@@ -22,6 +21,20 @@ exports.create = async (req, res, next) => {
 exports.findAll = async (req, res, next) => {
   try {
     const products = await productService.findAllProducts();
+    res.status(200).send({
+      success: true,
+      message: "Products retrieved successfully!",
+      data: products,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Retrieve all Products from the database for Admin.
+exports.findAllForAdmin = async (req, res, next) => {
+  try {
+    const products = await productService.findAllProductsForAdmin();
     res.status(200).send({
       success: true,
       message: "Products retrieved successfully!",

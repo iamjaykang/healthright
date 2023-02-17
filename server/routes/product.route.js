@@ -9,6 +9,9 @@ router.post("/", checkAuthorization, productController.create);
 // Retrieve all products
 router.get("/", productController.findAll);
 
+// Retrieve all products for Admin
+router.get("/admin", checkAuthorization, productController.findAllForAdmin);
+
 // Retrieve search results for products
 router.get("/search", productController.searchProducts);
 

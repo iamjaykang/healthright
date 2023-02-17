@@ -76,7 +76,11 @@ module.exports = {
         allowNull: false,
       },
       price: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10,2),
+        allowNull: false,
+      },
+      cost: {
+        type: DataTypes.DECIMAL(10,2),
         allowNull: false,
       },
       productImage: {
@@ -89,6 +93,10 @@ module.exports = {
       },
       updatedAt: {
         type: DataTypes.DATE,
+        allowNull: false,
+      },
+      productLive: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
     });

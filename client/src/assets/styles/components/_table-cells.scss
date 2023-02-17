@@ -7,6 +7,17 @@
     align-items: center;
 }
 
+.status-cell {
+    text-align: left;
+    &--available {
+        color: $success-color;
+    }
+
+    &--unavailable {
+        color: $neutral-color;
+    }
+}
+
 .dashboard__product-image {
     width: 50px;
     height: 50px;

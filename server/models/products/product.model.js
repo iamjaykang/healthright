@@ -42,12 +42,20 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       price: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10,2),
         allowNull: false,
+      },
+      cost: {
+        type: DataTypes.DECIMAL(10,2),
+        allowNull: true,
       },
       productImage: {
         type: DataTypes.STRING(100),
         allowNull: true,
+      },
+      productLive: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
       },
     },
     {
