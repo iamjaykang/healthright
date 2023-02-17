@@ -12,11 +12,14 @@ router.get("/", productController.findAll);
 // Retrieve all products for Admin
 router.get("/admin", checkAuthorization, productController.findAllForAdmin);
 
+// Retrieve product by Id for Admin
+router.get("/admin/:productId", checkAuthorization, productController.findOneByIdForAdmin);
+
 // Retrieve search results for products
 router.get("/search", productController.searchProducts);
 
 // Retrieve a product by id
-router.get("/:product_name", productController.findOne);
+router.get("/:productName", productController.findOne);
 
 // Retrieve filtered products by Vendor
 router.get("/vendor/:vendor", productController.getFilteredProductsByVendor);
@@ -28,10 +31,10 @@ router.get(
 );
 
 // Update product by id
-router.put("/:product_id", checkAuthorization, productController.update);
+router.put("/:productId", checkAuthorization, productController.update);
 
 // Delete product by id
-router.delete("/:product_id", checkAuthorization, productController.delete);
+router.delete("/:productId", checkAuthorization, productController.delete);
 
 // Delete all products
 router.delete("/", checkAuthorization, productController.deleteAll);

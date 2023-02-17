@@ -56,6 +56,7 @@ const Products = {
   listForAdmin: () => requests.get("/products/admin"),
   listFilteredByVendor: (vendor) => requests.get(`/products/vendor/${vendor}`),
   details: (id) => requests.get(`/products/${id}`),
+  detailsForAdmin: (productId) => requests.get(`/products/admin/${productId}`),
   create: (productData) => requests.post("/products", productData),
   update: (id, newProductData) =>
     requests.put(`/products/${id}`, newProductData),

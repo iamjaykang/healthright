@@ -1,6 +1,4 @@
-const {
-  BadRequestError,
-} = require("../helpers/error.helper");
+const { BadRequestError } = require("../helpers/error.helper");
 const productService = require("../services/product.service");
 
 // Create and Save a new Product
@@ -49,9 +47,9 @@ exports.findAllForAdmin = async (req, res, next) => {
 exports.getFilteredProductsByVendor = async (req, res, next) => {
   try {
     const vendor = req.params.vendor;
-    console.log(vendor)
+    console.log(vendor);
     const products = await productService.getProductsByVendor(vendor);
-    console.log(products)
+    console.log(products);
 
     res.status(200).send({
       success: true,
@@ -113,12 +111,27 @@ exports.update = async (req, res, next) => {
   }
 };
 
-// Find a single Product with an id
+// Find a single Product with name
 exports.findOne = async (req, res, next) => {
   try {
-    const { product_name } = req.params;
-    const product = await productService.getProductByName(product_name);
+    const { productName } = req.params;
+    const product = await productService.getProductByName(productName);
     return res.status(200).send(product);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Find a single Product with an id for admin
+exports.findOneByIdForAdmin = async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+    const product = await productService.getProductByIdForAdmin(productId);
+    return res.status(200).send({
+      success: true,
+      message: "Product retrieved successfully!",
+      data: product,
+    });
   } catch (error) {
     next(error);
   }

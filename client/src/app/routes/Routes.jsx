@@ -12,6 +12,7 @@ import AdminOverview from "../../components/admin/dashboard/overview/AdminOvervi
 import AdminOrders from "../../components/admin/dashboard/orders/AdminOrders.components";
 import AdminProducts from "../../components/admin/dashboard/products/AdminProducts.component";
 import AdminAddProduct from "../../components/admin/dashboard/products/addProduct/AdminAddProduct.component";
+import AdminEditProduct from "../../components/admin/dashboard/products/editProduct/AdminEditProduct.component";
 
 export const routes = [
   {
@@ -37,6 +38,10 @@ export const routes = [
           {
             path: "/admin/dashboard/products/add",
             element: <AdminAddProduct />,
+          },
+          {
+            path: "/admin/dashboard/products/edit/:productId",
+            element: <AdminEditProduct />,
           },
         ],
       },

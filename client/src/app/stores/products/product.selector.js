@@ -15,6 +15,12 @@ export const selectAdminProductsArray = createSelector(
   (productsSlice) => productsSlice.adminProductsArray
 );
 
+// Selector that returns the "adminProductsArray" property from the "products" slice
+export const selectAdminProduct = createSelector(
+  [selectProductsReducer],
+  (productsSlice) => productsSlice.adminProduct
+);
+
 // Selector that returns the "filteredProductsArray" property from the "products" slice
 export const selectProductsFilteredByVendorArray = createSelector(
   [selectProductsReducer],

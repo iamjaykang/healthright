@@ -217,6 +217,8 @@ exports.updateProductById = async (id, newProductData) => {
       price,
       vendorName,
       categoryName,
+      cost,
+      productLive
     } = newProductData;
 
     // If vendorName is provided, find or create a vendor with the name
@@ -249,6 +251,8 @@ exports.updateProductById = async (id, newProductData) => {
     product.productImage = productImage || product.productImage;
     product.qtyInStock = qtyInStock || product.qtyInStock;
     product.price = price || product.price;
+    product.cost = cost || product.cost;
+    product.productLive = productLive || product.productLive;
 
     // Save the updated product
     await product.save();
@@ -317,6 +321,28 @@ exports.getProductByName = async (productName) => {
     const cleanedUpProduct = cleanUpProductDataHelper([product])[0];
 
     return cleanedUpProduct;
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.getProductByIdForAdmin = async (productId) => {
+  try {
+    // Find the product by product name
+    const product = await Product.findOne({
+      ...productDetailsForAdmin(ProductVendor, ProductCategory),
+      where: {
+        id: {
+          [db.Sequelize.Op.eq]: productId,
+        },
+      },
+    });
+
+    if (!product) {
+      throw new NotFoundError(`Product not found`);
+    }
+
+    return product;
   } catch (error) {
     throw error;
   }

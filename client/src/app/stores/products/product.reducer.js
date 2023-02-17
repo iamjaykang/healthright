@@ -5,6 +5,7 @@ const initialState = {
   productsArray: [],
   filteredProductsArray: [],
   adminProductsArray: [],
+  adminProduct: null,
   success: false,
   message: "",
   error: null,
@@ -32,6 +33,30 @@ const productsReducer = (state = initialState, action = {}) => {
         success: payload.success,
       };
     case PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
+        message: payload.message,
+        success: payload.success,
+      };
+    case PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_ADMIN_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+        message: "",
+        success: false,
+      };
+    case PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_ADMIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        adminProduct: payload.data,
+        message: payload.message,
+        success: payload.success,
+      };
+    case PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_ADMIN_FAILED:
       return {
         ...state,
         isLoading: false,
