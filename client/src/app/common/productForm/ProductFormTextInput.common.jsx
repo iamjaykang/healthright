@@ -5,9 +5,9 @@ const ProductFormTextInput = ({ label, ...otherProps }) => {
     <div className="dashboard__add-product-input-group">
       {label && (
         <label
-          className={`${
-            otherProps.value.length ? "shrink" : null
-          } dashboard__add-product-label`}
+          className={`dashboard__add-product-label${
+            otherProps.value.length ? " shrink" : ""
+          }`}
         >
           {label}
         </label>

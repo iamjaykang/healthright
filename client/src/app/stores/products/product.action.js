@@ -34,8 +34,8 @@ export const fetchProductsByVendorFailed = (error) =>
 export const addProductLoading = (productData) =>
   createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_LOADING, productData);
 
-export const addProductSuccess = (product) =>
-  createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_SUCCESS, product);
+export const addProductSuccess = (productData) =>
+  createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_SUCCESS, productData);
 
 export const addProductFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_FAILED, error);

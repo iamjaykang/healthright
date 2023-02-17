@@ -25,6 +25,17 @@
         flex-direction: column;
         margin-bottom: 1rem;
         padding: 0.5rem;
+
+        &-pricing {
+            display: grid;
+            @include grid(1);
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+
+            @include screen(md) {
+                @include grid(2)
+            }
+        }
     }
 
     &__stats-card {

@@ -44,8 +44,8 @@ export function* fetchProductsByVendor({ payload: vendor }) {
 
 export function* addProduct({ payload }) {
   try {
-    const { product } = yield call(agent.Products.create, payload);
-    yield put(addProductSuccess(product));
+    const productData = yield call(agent.Products.create, payload);
+    yield put(addProductSuccess(productData));
   } catch (error) {
     yield put(addProductFailed(error));
   }

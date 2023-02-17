@@ -13,6 +13,8 @@ const initialFormData = {
   qtyInStock: "",
   categoryName: "",
   vendorName: "",
+  cost: "",
+  productLive: false,
 };
 
 const AdminAddProduct = () => {
@@ -26,11 +28,9 @@ const AdminAddProduct = () => {
     qtyInStock,
     categoryName,
     vendorName,
+    cost,
+    productLive,
   } = formData;
-
-  const resetFormData = () => {
-    setFormData(initialFormData);
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,11 +39,10 @@ const AdminAddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: submit form data to create product
 
     try {
       dispatch(addProductLoading(formData));
-      resetFormData();
+      setFormData(initialFormData);
     } catch (error) {
       throw error;
     }
@@ -81,7 +80,7 @@ const AdminAddProduct = () => {
               value={productImage}
             />
           </div>
-          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+          <div className="dashboard__card dashboard__add-product-card-pricing shadow-sm">
             <ProductFormTextInput
               label="Pricing"
               type="number"
@@ -89,6 +88,14 @@ const AdminAddProduct = () => {
               onChange={handleInputChange}
               name="price"
               value={price}
+            />
+            <ProductFormTextInput
+              label="Cost"
+              type="number"
+              required
+              onChange={handleInputChange}
+              name="cost"
+              value={cost}
             />
           </div>
           <div className="dashboard__card dashboard__add-product-card shadow-sm">
@@ -103,6 +110,24 @@ const AdminAddProduct = () => {
           </div>
         </div>
         <div className="dashboard__add-product-form--right">
+          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+            <div className="dashboard__add-product-input-group">
+              <span className="dashboard__add-product-label">
+                Product Status
+              </span>
+              <div className="dashboard__add-product-card--status-options">
+                <select
+                  name="productLive"
+                  value={productLive}
+                  onChange={handleInputChange}
+                >
+                  <option value="">-- Select status --</option>
+                  <option value="true">Available</option>
+                  <option value="false">Draft</option>
+                </select>
+              </div>
+            </div>
+          </div>
           <div className="dashboard__card dashboard__add-product-card shadow-sm">
             <ProductFormTextInput
               label="Category Name"
