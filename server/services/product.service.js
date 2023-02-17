@@ -89,6 +89,7 @@ exports.findAllProductsForAdmin = async () => {
 
 // Get all products by Vendor
 exports.getProductsByVendor = async (vendorName) => {
+  console.log(vendorName)
   try {
     // Find the vendor by name
     const vendor = await ProductVendor.findOne({
@@ -105,7 +106,7 @@ exports.getProductsByVendor = async (vendorName) => {
 
     // Get all the products for the found vendor
     const products = await Product.findAll({
-      ...productDetails,
+      ...productDetails(ProductVendor, ProductCategory),
       where: {
         vendorId: {
           [db.Sequelize.Op.eq]: vendor.id,
@@ -144,7 +145,7 @@ exports.getProductsByCategory = async (categoryName) => {
 
     // Get all the products for the found category
     const products = await Product.findAll({
-      ...productDetails,
+      ...productDetails(ProductVendor, ProductCategory),
       where: {
         categoryId: {
           [db.Sequelize.Op.eq]: category.id,
@@ -170,7 +171,7 @@ exports.searchProductsBySearchTerm = async (searchTerm) => {
   try {
     // Find all the products for the serach term
     const products = await Product.findAll({
-      ...productDetails,
+      ...productDetails(ProductVendor, ProductCategory),
       where: {
         [db.Sequelize.Op.or]: [
           { name: { [db.Sequelize.Op.iLike]: `%${searchTerm}%` } },
@@ -300,7 +301,7 @@ exports.getProductByName = async (productName) => {
   try {
     // Find the product by product name
     const product = await Product.findOne({
-      ...productDetails,
+      ...productDetails(ProductVendor, ProductCategory),
       where: {
         name: {
           [db.Sequelize.Op.iLike]: `%${productName.toLowerCase()}%`,

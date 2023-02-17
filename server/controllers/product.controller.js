@@ -49,7 +49,9 @@ exports.findAllForAdmin = async (req, res, next) => {
 exports.getFilteredProductsByVendor = async (req, res, next) => {
   try {
     const vendor = req.params.vendor;
+    console.log(vendor)
     const products = await productService.getProductsByVendor(vendor);
+    console.log(products)
 
     res.status(200).send({
       success: true,

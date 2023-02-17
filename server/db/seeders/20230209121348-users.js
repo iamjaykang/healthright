@@ -108,9 +108,9 @@ module.exports = {
   },
 
   async down(queryInterface) {
+    await queryInterface.bulkDelete("userAddresses", null, {});
     await queryInterface.bulkDelete("addresses", null, {});
     await queryInterface.bulkDelete("countries", null, {});
-    await queryInterface.bulkDelete("userAddresses", null, {});
     await queryInterface.bulkDelete("users", null, {});
   },
 };
