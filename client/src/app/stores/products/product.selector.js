@@ -49,3 +49,9 @@ export const selectProductsIsLoading = createSelector(
   [selectProductsReducer],
   (productsSlice) => productsSlice.isLoading
 );
+
+// Selector that returns the "isLoading" property from the "products" slice
+export const selectProductsSuccess = createSelector(
+  [selectProductsReducer],
+  (productsSlice) => productsSlice.success
+);

@@ -140,8 +140,8 @@ exports.findOneByIdForAdmin = async (req, res, next) => {
 // Delete a Product with the specified id in the request
 exports.delete = async (req, res, next) => {
   try {
-    const { product_id } = req.params;
-    const product = await productService.deleteProduct(product_id);
+    const { productId } = req.params;
+    const product = await productService.deleteProduct(productId);
     res.status(200).send({
       success: true,
       message: "Product deleted successfully!",

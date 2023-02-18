@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductFormQuillInput from "../../../../../app/common/productForm/ProductFormQuillInput.common";
 import ProductFormTextInput from "../../../../../app/common/productForm/ProductFormTextInput.common";
 import Spinner from "../../../../../app/common/spinner/Spinner.common";
 import {
+  deleteProductLoading,
   fetchProductAdminLoading,
   updateProductLoading,
 } from "../../../../../app/stores/products/product.action";
 import {
   selectAdminProduct,
   selectProductsIsLoading,
+  selectProductsSuccess,
 } from "../../../../../app/stores/products/product.selector";
 
 const initialFormData = {
@@ -28,15 +30,15 @@ const initialFormData = {
 const AdminEditProduct = () => {
   const [isFormChanged, setIsFormChanged] = useState(false);
 
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const { productId } = useParams();
 
   const adminProduct = useSelector(selectAdminProduct);
 
-  useEffect(() => {
-    dispatch(fetchProductAdminLoading(productId));
-  }, [dispatch, productId]);
+  const producActionSuccess = useSelector(selectProductsSuccess);
 
   const adminProductIsLoading = useSelector(selectProductsIsLoading);
 
@@ -95,13 +97,38 @@ const AdminEditProduct = () => {
     }
   };
 
+  const handleDelete = () => {
+    try {
+      dispatch(deleteProductLoading(productId));
+      if (producActionSuccess) {
+        navigate("/admin/dashboard/products");
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    dispatch(fetchProductAdminLoading(productId));
+  }, [dispatch, productId]);
+
   if (adminProductIsLoading) {
     return <Spinner />;
   }
 
   return (
     <div className="dashboard__add-product">
-      <h2 className="dashboard__content-title">Edit Product</h2>
+      <div className="dashboard__products-header">
+        <h2 className="dashboard__content-title">Edit Product</h2>
+        <div className="dashboard__products-btn-container">
+          <button
+            onClick={handleDelete}
+            className="dashboard__add-products-btn shadow-sm"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
       <form className="dashboard__add-product-form" onSubmit={handleSubmit}>
         <div className="dashboard__add-product-form--left">
           <div className="dashboard__card dashboard__add-product-card shadow-sm">

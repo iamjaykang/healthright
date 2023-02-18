@@ -162,6 +162,30 @@ const productsReducer = (state = initialState, action = {}) => {
         message: payload.message,
         success: payload.success,
       };
+    case PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_LOADING:
+      return {
+        ...state,
+        error: null,
+        isLoading: true,
+        message: "",
+        success: false,
+      };
+    case PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        message: payload.message,
+        success: payload.success,
+      };
+    case PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_FAILED:
+      return {
+        ...state,
+        error: payload,
+        isLoading: false,
+        message: payload.message,
+        success: payload.success,
+      };
     default:
       return state;
   }

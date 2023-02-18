@@ -13,6 +13,8 @@ import {
   fetchProductAdminSuccess,
   updateProductSuccess,
   updateProductFailed,
+  deleteProductSuccess,
+  deleteProductFailed,
 } from "./product.action";
 import { PRODUCTS_ACTION_TYPES } from "./product.types";
 
@@ -78,6 +80,18 @@ export function* updateProduct({ payload }) {
   }
 }
 
+export function* deleteProduct({ payload: productId }) {
+  try {
+    const ProductData = yield call(
+      agent.Products.delete,
+      productId
+    );
+    yield put(deleteProductSuccess(ProductData));
+  } catch (error) {
+    yield put(deleteProductFailed(error));
+  }
+}
+
 export function* onFetchProducts() {
   yield takeLatest(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_LOADING, fetchProducts);
 }
@@ -111,6 +125,10 @@ export function* onUpdateProduct() {
   yield takeLatest(PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_LOADING, updateProduct);
 }
 
+export function* onDeleteProduct() {
+  yield takeLatest(PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_LOADING, deleteProduct);
+}
+
 export function* productsSaga() {
   yield all([
     call(onFetchProducts),
@@ -118,6 +136,7 @@ export function* productsSaga() {
     call(onFetchProductAdmin),
     call(onFetchProductsByVendor),
     call(onUpdateProduct),
+    call(onDeleteProduct),
     call(onAddProduct),
   ]);
 }

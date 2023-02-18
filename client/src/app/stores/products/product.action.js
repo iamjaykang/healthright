@@ -53,14 +53,22 @@ export const addProductFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_FAILED, error);
 
 export const updateProductLoading = (productId, newProductData) =>
-  createAction(
-    PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_LOADING,
-    {productId,
-    newProductData}
-  );
+  createAction(PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_LOADING, {
+    productId,
+    newProductData,
+  });
 
 export const updateProductSuccess = (newProductData) =>
   createAction(PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_SUCCESS, newProductData);
 
 export const updateProductFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_FAILED, error);
+
+export const deleteProductLoading = (productId) =>
+  createAction(PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_LOADING, productId);
+
+export const deleteProductSuccess = (productData) =>
+  createAction(PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_SUCCESS, productData);
+
+export const deleteProductFailed = (error) =>
+  createAction(PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_FAILED, error);
