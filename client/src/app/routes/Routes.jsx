@@ -40,7 +40,7 @@ export const routes = [
             element: <AdminAddProduct />,
           },
           {
-            path: "/admin/dashboard/products/edit/:productId",
+            path: "/admin/dashboard/product/edit/:productId",
             element: <AdminEditProduct />,
           },
         ],

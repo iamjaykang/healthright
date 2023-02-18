@@ -44,6 +44,7 @@ const productsReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLoading: true,
+        adminProduct: null,
         message: "",
         success: false,
       };
@@ -129,6 +130,31 @@ const productsReducer = (state = initialState, action = {}) => {
         success: payload.success,
       };
     case PRODUCTS_ACTION_TYPES.ADD_PRODUCT_FAILED:
+      return {
+        ...state,
+        error: payload,
+        isLoading: false,
+        message: payload.message,
+        success: payload.success,
+      };
+    case PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_LOADING:
+      return {
+        ...state,
+        error: null,
+        isLoading: true,
+        message: "",
+        success: false,
+      };
+    case PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        adminProduct:payload.data,
+        message: payload.message,
+        success: payload.success,
+      };
+    case PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_FAILED:
       return {
         ...state,
         error: payload,

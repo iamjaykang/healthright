@@ -58,8 +58,8 @@ const Products = {
   details: (id) => requests.get(`/products/${id}`),
   detailsForAdmin: (productId) => requests.get(`/products/admin/${productId}`),
   create: (productData) => requests.post("/products", productData),
-  update: (id, newProductData) =>
-    requests.put(`/products/${id}`, newProductData),
+  update: (productId, newProductData) =>
+    requests.put(`/products/${productId}`, newProductData),
   delete: (id) => requests.del(`/products/${id}`),
 };
 
@@ -67,7 +67,7 @@ const Users = {
   list: () => requests.get("/users"),
   details: (id) => requests.get(`/users/${id}`),
   create: (userData) => requests.post("/users", userData),
-  update: (id, newUserData) => requests.put(`/users/${id}`, newUserData),
+  update: (id, newUserData) => {requests.put(`/users/${id}`, newUserData)},
   delete: (id) => requests.del(`/users/${id}`),
 };
 

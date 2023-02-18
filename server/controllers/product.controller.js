@@ -99,9 +99,9 @@ exports.searchProducts = async (req, res, next) => {
 // Update a Product by the id in the request
 exports.update = async (req, res, next) => {
   try {
-    const { product_id } = req.params;
-    const newData = req.body;
-    const product = await productService.updateProductById(product_id, newData);
+    const { productId } = req.params;
+    const newProductData = req.body;
+    const product = await productService.updateProductById(productId, newProductData);
     res.status(200).send({
       message: "Product updated successfully.",
       data: product,

@@ -37,6 +37,10 @@ const AdminAddProduct = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleQuillInputChange = (value) => {
+    setFormData({ ...formData, description: value });
+};
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -64,9 +68,7 @@ const AdminAddProduct = () => {
             />
             <ProductFormQuillInput
               label="Description"
-              onChange={(value) =>
-                setFormData({ ...formData, description: value })
-              }
+              onChange={handleQuillInputChange}
               value={description}
             />
           </div>

@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchProductsAdminLoading } from "../../../../app/stores/products/product.action";
 import {
-  selectAdminProductsArray,
-  selectProductsArray,
-} from "../../../../app/stores/products/product.selector";
+  fetchProductsAdminLoading,
+} from "../../../../app/stores/products/product.action";
+import { selectAdminProductsArray } from "../../../../app/stores/products/product.selector";
 
 const AdminProducts = () => {
   const adminProductsArray = useSelector(selectAdminProductsArray);
@@ -52,14 +51,18 @@ const AdminProducts = () => {
                         {product.id}
                       </td>
                       <td className="dashboard__table-cell product-cell">
-                        <img
-                          className="dashboard__product-image"
-                          src={product.productImage}
-                          alt="Product 1"
-                        />
-                        <span className="dashboard__product-name">
-                          {product.name}
-                        </span>
+                        <Link
+                          to={`/admin/dashboard/product/edit/${product.id}`}
+                        >
+                          <img
+                            className="dashboard__product-image"
+                            src={product.productImage}
+                            alt="Product 1"
+                          />
+                          <span className="dashboard__product-name">
+                            {product.name}
+                          </span>
+                        </Link>
                       </td>
                       <td className="dashboard__table-cell">
                         <span

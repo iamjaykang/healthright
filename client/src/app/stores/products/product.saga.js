@@ -11,6 +11,8 @@ import {
   fetchProductsAdminFailed,
   fetchProductAdminFailed,
   fetchProductAdminSuccess,
+  updateProductSuccess,
+  updateProductFailed,
 } from "./product.action";
 import { PRODUCTS_ACTION_TYPES } from "./product.types";
 
@@ -23,7 +25,7 @@ export function* fetchProducts() {
   }
 }
 
-export function* fetchProductForAdmin({payload : productId}) {
+export function* fetchProductForAdmin({ payload: productId }) {
   try {
     const productData = yield call(agent.Products.detailsForAdmin, productId);
     yield put(fetchProductAdminSuccess(productData));
@@ -62,6 +64,20 @@ export function* addProduct({ payload }) {
   }
 }
 
+export function* updateProduct({ payload }) {
+  const { productId, newProductData } = payload;
+  try {
+    const ProductData = yield call(
+      agent.Products.update,
+      productId,
+      newProductData
+    );
+    yield put(updateProductSuccess(ProductData));
+  } catch (error) {
+    yield put(updateProductFailed(error));
+  }
+}
+
 export function* onFetchProducts() {
   yield takeLatest(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_LOADING, fetchProducts);
 }
@@ -91,12 +107,17 @@ export function* onAddProduct() {
   yield takeLatest(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_LOADING, addProduct);
 }
 
+export function* onUpdateProduct() {
+  yield takeLatest(PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_LOADING, updateProduct);
+}
+
 export function* productsSaga() {
   yield all([
     call(onFetchProducts),
     call(onFetchProductsAdmin),
     call(onFetchProductAdmin),
     call(onFetchProductsByVendor),
+    call(onUpdateProduct),
     call(onAddProduct),
   ]);
 }

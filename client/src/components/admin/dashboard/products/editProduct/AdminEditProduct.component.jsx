@@ -1,33 +1,61 @@
 import React, { useEffect, useState } from "react";
-import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProductFormQuillInput from "../../../../../app/common/productForm/ProductFormQuillInput.common";
 import ProductFormTextInput from "../../../../../app/common/productForm/ProductFormTextInput.common";
-import { fetchProductAdminLoading } from "../../../../../app/stores/products/product.action";
-import { selectAdminProduct } from "../../../../../app/stores/products/product.selector";
+import Spinner from "../../../../../app/common/spinner/Spinner.common";
+import {
+  fetchProductAdminLoading,
+  updateProductLoading,
+} from "../../../../../app/stores/products/product.action";
+import {
+  selectAdminProduct,
+  selectProductsIsLoading,
+} from "../../../../../app/stores/products/product.selector";
+
+const initialFormData = {
+  name: "",
+  description: "",
+  productImage: "",
+  price: "",
+  qtyInStock: "",
+  categoryName: "",
+  vendorName: "",
+  cost: "",
+  productLive: false,
+};
 
 const AdminEditProduct = () => {
-
   const dispatch = useDispatch();
 
   const { productId } = useParams();
 
   const adminProduct = useSelector(selectAdminProduct);
 
-  const initialFormData = {
-    name: adminProduct?.name ?? "",
-    description: adminProduct?.description ?? "",
-    productImage: adminProduct?.productImage ?? "",
-    price: adminProduct?.price ?? "",
-    qtyInStock: adminProduct?.qtyInStock ?? "",
-    categoryName: adminProduct?.category.categoryName ?? "",
-    vendorName: adminProduct?.vendor.vendorName ?? "",
-    cost: adminProduct?.cost ?? "",
-    productLive: adminProduct?.productLive ?? false,
-  };
+  useEffect(() => {
+    dispatch(fetchProductAdminLoading(productId));
+  }, [dispatch, productId]);
+
+  const adminProductIsLoading = useSelector(selectProductsIsLoading);
 
   const [formData, setFormData] = useState(initialFormData);
+
+  useEffect(() => {
+    if (adminProduct) {
+      setFormData({
+        name: adminProduct.name,
+        description: adminProduct.description,
+        productImage: adminProduct.productImage,
+        price: adminProduct.price,
+        qtyInStock: adminProduct.qtyInStock,
+        categoryName: adminProduct.category.categoryName,
+        vendorName: adminProduct.vendor.vendorName,
+        cost: adminProduct.cost,
+        productLive: adminProduct.productLive,
+      });
+    }
+  }, [adminProduct]);
+
   const {
     name,
     description,
@@ -45,18 +73,23 @@ const AdminEditProduct = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleQuillInputChange = (value) => {
+    setFormData({ ...formData, description: value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
+      dispatch(updateProductLoading(productId, formData));
     } catch (error) {
       throw error;
     }
   };
 
-  useEffect(() => {
-    dispatch(fetchProductAdminLoading(productId));
-  }, [dispatch]);
+  if (adminProductIsLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="dashboard__add-product">
@@ -74,9 +107,7 @@ const AdminEditProduct = () => {
             />
             <ProductFormQuillInput
               label="Description"
-              onChange={(value) =>
-                setFormData({ ...formData, description: value })
-              }
+              onChange={handleQuillInputChange}
               value={description}
             />
           </div>
