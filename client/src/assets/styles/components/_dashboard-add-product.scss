@@ -1,5 +1,62 @@
 .dashboard {
 
+    &__products-btns-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        @include screen(md) {
+            gap: 1rem
+        }
+    }
+
+    &__discard-product-btn {
+        @extend .dashboard__btn;
+        background-color: transparent;
+        color: $black-color;
+        border: 1px solid $gray-color;
+
+        &:hover {
+            background-color: $primary-color;
+            color: $white-color;
+        }
+    }
+
+    &__save-product-btn {
+        @extend .dashboard__btn;
+        color: $white-color;
+        background-color: $primary-color;
+        border: none;
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    &__discard-product-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &__btn {
+        display: inline-block;
+        padding: 10px 20px;
+        width: 140px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #6F7C5A;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
     &__add-product {
 
         &-form {
@@ -29,7 +86,7 @@
         }
 
         &-card--status-options {
-            select{
+            select {
                 background-color: $input-field;
                 border-radius: 0.25rem;
                 width: 100%;

@@ -26,6 +26,8 @@ const initialFormData = {
 };
 
 const AdminEditProduct = () => {
+  const [isFormChanged, setIsFormChanged] = useState(false);
+
   const dispatch = useDispatch();
 
   const { productId } = useParams();
@@ -71,10 +73,16 @@ const AdminEditProduct = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setIsFormChanged(true);
   };
 
   const handleQuillInputChange = (value) => {
     setFormData({ ...formData, description: value });
+    setIsFormChanged(true);
+  };
+  const handleReset = () => {
+    dispatch(fetchProductAdminLoading(productId));
+    setIsFormChanged(false);
   };
 
   const handleSubmit = (e) => {
@@ -188,9 +196,23 @@ const AdminEditProduct = () => {
             />
           </div>
         </div>
-        <button className="dashboard__add-product-btn" type="submit">
-          Add Product
-        </button>
+        <div className="dashboard__products-btns-container">
+          <button
+            className="dashboard__discard-product-btn shadow-sm"
+            type="button"
+            disabled={!isFormChanged}
+            onClick={handleReset}
+          >
+            Discard
+          </button>
+          <button
+            className="dashboard__save-product-btn shadow-sm"
+            type="submit"
+            disabled={!isFormChanged}
+          >
+            Save
+          </button>
+        </div>
       </form>
     </div>
   );
