@@ -6,6 +6,9 @@ const INITIAL_STATE = {
   error: null,
   requiresAdminAuth: false,
   authIsSignUp: false,
+  usersArray: [],
+  success: false,
+  message: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action = {}) => {

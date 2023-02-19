@@ -1,5 +1,5 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
-
+import agent from "../../api/agent";
 import { USER_ACTION_TYPES } from "./user.types";
 
 import {
@@ -9,6 +9,8 @@ import {
   signOutFailed,
   signUpSuccess,
   signOutSuccess,
+  fetchAllUsersSuccess,
+  fetchAllUsersFailed,
 } from "./user.action";
 import {
   createAuthUserWithEmailAndPassword,
@@ -166,6 +168,7 @@ export function* onSignOutLoading() {
   yield takeLatest(USER_ACTION_TYPES.SIGN_OUT_LOADING, signOutCurrentUser);
 }
 
+
 export function* userSaga() {
   yield all([
     call(onCheckUserSession),
@@ -174,6 +177,6 @@ export function* userSaga() {
     call(onSignUpLoading),
     call(onSignUpSuccess),
     call(onSignOutLoading),
-    call(onAdminEmailSignInLoading)
+    call(onAdminEmailSignInLoading),
   ]);
 }

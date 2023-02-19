@@ -6,9 +6,18 @@
         width: 100%;
         border-collapse: collapse;
 
-        &-header,
+        &-header{
+            padding: 0.8rem;
+        }
         &-cell {
             padding: 0.8rem;
+            &--name {
+                font-size: 1rem;
+                font-weight: bold;
+            }
+            &--address {
+                color: $gray-color;
+            }
         }
 
         &-head {

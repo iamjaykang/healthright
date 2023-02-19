@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchAllCustomersLoading } from "../../../../app/stores/customers/customer.action";
+import { selectCustomersArray } from "../../../../app/stores/customers/customer.selector";
 
 const AdminCustomers = () => {
+  const dispatch = useDispatch();
+
+  const customersArray = useSelector(selectCustomersArray);
+
+  useEffect(() => {
+    dispatch(fetchAllCustomersLoading());
+  }, [dispatch]);
 
   return (
     <div className="dashboard__customers">
       <div className="dashboard__customers-header">
         <h2 className="dashboard__content-title products-title">Customers</h2>
         <div className="dashboard__customers-btn-container">
-          <Link
-            to="/admin/dashboard/customers/add"
-            className="dashboard__btn"
-          >
+          <Link to="/admin/dashboard/customers/add" className="dashboard__btn">
             Add Customer
           </Link>
         </div>
@@ -22,15 +29,29 @@ const AdminCustomers = () => {
             <table className="dashboard__table">
               <thead className="dashboard__table-head">
                 <tr>
-                  <th className="dashboard__table-header customer-cell">Name</th>
-                  <th className="dashboard__table-header stat-cell">Order(s)</th>
-                  <th className="dashboard__table-header stat-cell">Amount Spent</th>
+                  <th className="dashboard__table-header customer-cell">
+                    Customer
+                  </th>
+                  <th className="dashboard__table-header stat-cell">
+                    Order(s)
+                  </th>
+                  <th className="dashboard__table-header stat-cell">
+                    Amount Spent
+                  </th>
                 </tr>
               </thead>
               <tbody className="dashboard__table-body">
-                    <tr className="dashboard__table-row">
+                {customersArray &&
+                  customersArray.map((customer) => (
+                    <tr key={customer.id} className="dashboard__table-row">
                       <td className="dashboard__table-cell customer-cell">
-                        Jay Kang
+                        <span className="dashboard__table-cell--name">
+                          {customer.firstName ?? ""} {customer.lastName ?? ""}
+                        </span>
+                        <span className="dashboard__table-cell--address">
+                          {customer.userAddresses.length > 0 &&
+                            `${customer.userAddresses[0].address.city}, ${customer.userAddresses[0].address.country.countryName}`}
+                        </span>
                       </td>
                       <td className="dashboard__table-cell stat-cell">
                         1 Order(s)
@@ -39,6 +60,7 @@ const AdminCustomers = () => {
                         $25.00 Spent
                       </td>
                     </tr>
+                  ))}
               </tbody>
             </table>
           </div>

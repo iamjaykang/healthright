@@ -27,3 +27,8 @@
 .dashboard__product-name {
     font-size: 0.875rem;
 }
+
+.customer-cell {
+    display: flex;
+    flex-direction: column;
+}
