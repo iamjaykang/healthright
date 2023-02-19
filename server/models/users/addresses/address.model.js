@@ -1,8 +1,6 @@
+const countryModel = require("../countries/country.model");
+
 module.exports = (sequelize, DataTypes) => {
-  const countryModel = require("../countries/country.model")(
-    sequelize,
-    DataTypes
-  );
   const Address = sequelize.define(
     "address",
     {
@@ -42,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       countryId: {
         type: DataTypes.INTEGER,
         references: {
-          model: countryModel,
+          model: countryModel(sequelize, DataTypes),
           key: "id",
         },
       },

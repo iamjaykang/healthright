@@ -1,6 +1,7 @@
 const dbConfig = require("../config/db.config");
 const env = process.env.NODE_ENV || "development";
 const { Sequelize, DataTypes } = require("sequelize");
+const defineAssociations = require("./associations");
 
 const sequelize = new Sequelize(
   dbConfig[env].database,
@@ -37,5 +38,7 @@ db.users = require("./users/user.model")(sequelize, DataTypes);
 db.userAddresses = require("./users/userAddress.model")(sequelize,DataTypes)
 db.addresses = require('./users/addresses/address.model')(sequelize,DataTypes)
 db.countries = require('./users/countries/country.model')(sequelize,DataTypes)
+
+defineAssociations(db);
 
 module.exports = db;

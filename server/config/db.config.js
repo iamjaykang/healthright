@@ -9,7 +9,7 @@ module.exports = {
     dialect: process.env.DB_DIALECT,
     port: process.env.DB_PORT,
     pool: {
-      max: 5,
+      max: 10,
       min: 0,
       acquire: 30000,
       idle: 10000,
@@ -23,7 +23,7 @@ module.exports = {
     dialect: process.env.DB_DIALECT,
     port: process.env.DB_PORT,
     pool: {
-      max: 5,
+      max: 10,
       min: 0,
       acquire: 30000,
       idle: 10000,
@@ -37,7 +37,7 @@ module.exports = {
     dialect: process.env.DB_DIALECT,
     port: process.env.PROD_DB_PORT,
     pool: {
-      max: 5,
+      max: 10,
       min: 0,
       acquire: 30000,
       idle: 10000,

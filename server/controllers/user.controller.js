@@ -9,7 +9,11 @@ const {
 exports.getUsers = async (req, res, next) => {
   try {
     const users = await getAllUsers();
-    res.status(200).send(users);
+    res.status(200).send({
+      data: users,
+      success: true,
+      message: "Retreived users successfully",
+    });
   } catch (error) {
     next(error);
   }

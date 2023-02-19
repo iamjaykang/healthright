@@ -55,4 +55,22 @@ const productDetailsForAdmin = (ProductVendor, ProductCategory) => ({
   ],
 });
 
-module.exports ={ productDetails, productDetailsForAdmin};
+const userDetails = (UserAddress,Address,Country) => ({
+  // Only select the necessary attributes from the products table
+  attributes: [
+    "id",
+    "firstName",
+    "lastName",
+    "emailAddress",
+    "createdAt",
+    "updatedAt",
+  ],
+  include: [
+    {
+      model: UserAddress,
+      include: [{ model: Address, include: [{ model: Country }] }],
+    },
+  ],
+});
+
+module.exports = { productDetails, productDetailsForAdmin,userDetails };

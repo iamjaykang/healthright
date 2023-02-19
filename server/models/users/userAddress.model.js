@@ -1,23 +1,26 @@
+const addressModel = require("./addresses/address.model");
+const userModel = require("./user.model");
+
 module.exports = (sequelize, DataTypes) => {
-  const userModel = require("./user.model")(sequelize, DataTypes);
-  const addressModel = require("./addresses/address.model")(
-    sequelize,
-    DataTypes
-  );
   const UserAddress = sequelize.define(
     "userAddress",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       userId: {
         type: DataTypes.INTEGER,
         references: {
-          model: userModel,
+          model: userModel(sequelize, DataTypes),
           key: "id",
         },
       },
       addressId: {
         type: DataTypes.INTEGER,
         references: {
-          model: addressModel,
+          model: addressModel(sequelize, DataTypes),
           key: "id",
         },
       },

@@ -62,13 +62,5 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
-  Product.belongsTo(productVendorModel, {
-    foreignKey: "vendorId",
-    as: "vendor",
-  });
-  Product.belongsTo(productCategoryModel, {
-    foreignKey: "categoryId",
-    as: "category",
-  });
   return Product;
 };

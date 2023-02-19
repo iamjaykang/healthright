@@ -1,3 +1,4 @@
+const { userDetails } = require("../config/constants.config");
 const {
   InternalServerError,
   BadRequestError,
@@ -5,11 +6,16 @@ const {
 } = require("../helpers/error.helper");
 const db = require("../models");
 const User = db.users;
+const UserAddress = db.userAddresses;
+const Country = db.countries;
+const Address = db.addresses;
 
 exports.getAllUsers = async () => {
   try {
-    const users = await User.findAll();
-    if (!users) throw new NotFoundError("No users found");
+    const users = await User.findAll({
+      ...userDetails(UserAddress, Address, Country),
+    });
+    if (!users) throw new NotFoundError("Failed to retrieve users");
     return users;
   } catch (error) {
     throw new InternalServerError(error.message);
