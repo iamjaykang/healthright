@@ -13,6 +13,7 @@ import AdminOrders from "../../components/admin/dashboard/orders/AdminOrders.com
 import AdminProducts from "../../components/admin/dashboard/products/AdminProducts.component";
 import AdminAddProduct from "../../components/admin/dashboard/products/addProduct/AdminAddProduct.component";
 import AdminEditProduct from "../../components/admin/dashboard/products/editProduct/AdminEditProduct.component";
+import AdminCustomers from "../../components/admin/dashboard/customers/AdminCustomers.component";
 
 export const routes = [
   {
@@ -30,6 +31,10 @@ export const routes = [
           {
             path: "/admin/dashboard/orders",
             element: <AdminOrders />,
+          },
+          {
+            path: "/admin/dashboard/customers",
+            element: <AdminCustomers />,
           },
           {
             path: "/admin/dashboard/products",
