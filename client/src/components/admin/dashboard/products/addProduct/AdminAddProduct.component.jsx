@@ -149,8 +149,8 @@ const AdminAddProduct = () => {
             />
           </div>
         </div>
-        <button className="dashboard__add-product-btn" type="submit">
-          Add Product
+        <button className="dashboard__btn" type="submit">
+          Save Product
         </button>
       </form>
     </div>

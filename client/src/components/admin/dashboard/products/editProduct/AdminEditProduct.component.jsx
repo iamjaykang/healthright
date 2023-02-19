@@ -120,10 +120,10 @@ const AdminEditProduct = () => {
     <div className="dashboard__add-product">
       <div className="dashboard__products-header">
         <h2 className="dashboard__content-title">Edit Product</h2>
-        <div className="dashboard__products-btn-container">
+        <div className="dashboard__btn-container">
           <button
             onClick={handleDelete}
-            className="dashboard__add-products-btn shadow-sm"
+            className="dashboard__btn shadow-sm"
           >
             Delete
           </button>
@@ -223,7 +223,7 @@ const AdminEditProduct = () => {
             />
           </div>
         </div>
-        <div className="dashboard__products-btns-container">
+        <div className="dashboard__btns-container">
           <button
             className="dashboard__discard-product-btn shadow-sm"
             type="button"
@@ -233,7 +233,7 @@ const AdminEditProduct = () => {
             Discard
           </button>
           <button
-            className="dashboard__save-product-btn shadow-sm"
+            className="dashboard__btn shadow-sm"
             type="submit"
             disabled={!isFormChanged}
           >

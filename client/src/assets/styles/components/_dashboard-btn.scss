@@ -1,0 +1,37 @@
+.dashboard {
+
+    &__btn {
+        display: inline-block;
+        background-color: $primary-color;
+        color: $white-color;
+        padding: 10px 20px;
+        width: fit-content;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1rem;
+        cursor: pointer;
+        border: none;
+
+        &:hover {
+            background-color: #6F7C5A;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    &__discard-product-btn {
+        @extend .dashboard__btn;
+        background-color: transparent;
+        color: $black-color;
+        border: 1px solid $gray-color;
+
+        &:hover {
+            background-color: transparent;
+            color: #6F7C5A;
+            border-color: #6F7C5A;
+        }
+    }
+}

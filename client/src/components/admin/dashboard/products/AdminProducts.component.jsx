@@ -21,7 +21,7 @@ const AdminProducts = () => {
         <div className="dashboard__products-btn-container">
           <Link
             to="/admin/dashboard/products/add"
-            className="dashboard__add-products-btn"
+            className="dashboard__btn"
           >
             Add Product
           </Link>
