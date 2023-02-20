@@ -18,7 +18,7 @@ const AdminCustomers = () => {
       <div className="dashboard__customers-header">
         <h2 className="dashboard__content-title products-title">Customers</h2>
         <div className="dashboard__customers-btn-container">
-          <Link to="/admin/dashboard/customers/add" className="dashboard__btn">
+          <Link to="/admin/dashboard/customer/add" className="dashboard__btn">
             Add Customer
           </Link>
         </div>
@@ -45,6 +45,7 @@ const AdminCustomers = () => {
                   customersArray.map((customer) => (
                     <tr key={customer.id} className="dashboard__table-row">
                       <td className="dashboard__table-cell customer-cell">
+                        <Link to={`/admin/dashboard/customer/edit/${customer.id}`}>
                         <span className="dashboard__table-cell--name">
                           {customer.firstName ?? ""} {customer.lastName ?? ""}
                         </span>
@@ -52,6 +53,7 @@ const AdminCustomers = () => {
                           {customer.userAddresses.length > 0 &&
                             `${customer.userAddresses[0].address.city}, ${customer.userAddresses[0].address.country.countryName}`}
                         </span>
+                        </Link>
                       </td>
                       <td className="dashboard__table-cell stat-cell">
                         1 Order(s)

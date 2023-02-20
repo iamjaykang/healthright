@@ -19,6 +19,8 @@ const customersReducer = (state = INITIAL_STATE, action = {}) => {
         ...state,
         isLoading: true,
         customersArray: [],
+        message: null,
+        success: false
       };
     case CUSTOMERS_ACTION_TYPES.FETCH_ALL_CUSTOMERS_SUCCESS:
       return {
@@ -37,11 +39,37 @@ const customersReducer = (state = INITIAL_STATE, action = {}) => {
         message: payload.message,
         error: payload.error,
       };
+    case CUSTOMERS_ACTION_TYPES.FETCH_CUSTOMER_BY_ID_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+        customer: null,
+        message: null,
+        success: false
+      };
+    case CUSTOMERS_ACTION_TYPES.FETCH_CUSTOMER_BY_ID_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        customer: payload.data,
+        success: payload.success,
+        message: payload.message,
+        error: null,
+      };
+    case CUSTOMERS_ACTION_TYPES.FETCH_CUSTOMER_BY_ID_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        success: false,
+        message: payload.message,
+        error: payload.error,
+      };
     case CUSTOMERS_ACTION_TYPES.ADD_CUSTOMER_LOADING:
       return {
         ...state,
         isLoading: true,
         customer: null,
+        message: null
       };
     case CUSTOMERS_ACTION_TYPES.ADD_CUSTOMER_SUCCESS:
       return {
@@ -52,6 +80,30 @@ const customersReducer = (state = INITIAL_STATE, action = {}) => {
         error: null,
       };
     case CUSTOMERS_ACTION_TYPES.ADD_CUSTOMER_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        success: false,
+        message: payload.message,
+        error: payload.error,
+      };
+    case CUSTOMERS_ACTION_TYPES.UPDATE_CUSTOMER_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+        customer: null,
+        message: null
+      };
+    case CUSTOMERS_ACTION_TYPES.UPDATE_CUSTOMER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        data: payload.data,
+        success: payload.success,
+        message: payload.message,
+        error: null,
+      };
+    case CUSTOMERS_ACTION_TYPES.UPDATE_CUSTOMER_FAILED:
       return {
         ...state,
         isLoading: false,

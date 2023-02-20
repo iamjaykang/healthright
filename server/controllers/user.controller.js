@@ -4,6 +4,7 @@ const {
   createUser,
   updateUser,
   deleteUser,
+  updateUserById,
 } = require("../services/user.service");
 
 exports.getUsers = async (req, res, next) => {
@@ -21,9 +22,16 @@ exports.getUsers = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
   try {
+    console.log(req.params);
     const { id } = req.params;
     const user = await getUserById(id);
-    res.status(200).send(user);
+    res
+      .status(200)
+      .send({
+        data: user,
+        success: true,
+        message: "Retreived user successfully",
+      });
   } catch (error) {
     next(error);
   }
@@ -46,8 +54,8 @@ exports.createNewUser = async (req, res, next) => {
 exports.updateExistingUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const updates = req.body;
-    const updatedUser = await updateUser(id, updates);
+    const newUserData = req.body;
+    const updatedUser = await updateUserById(id, newUserData);
     res.status(200).send(updatedUser);
   } catch (error) {
     next(error);

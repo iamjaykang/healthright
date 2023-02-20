@@ -65,7 +65,7 @@ const Products = {
 
 const Users = {
   list: () => requests.get("/users"),
-  details: (id) => requests.get(`/users/${id}`),
+  details: (customerId) => requests.get(`/users/${customerId}`),
   create: (userData) => requests.post("/users", userData),
   update: (id, newUserData) => {requests.put(`/users/${id}`, newUserData)},
   delete: (id) => requests.del(`/users/${id}`),

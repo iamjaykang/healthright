@@ -5,6 +5,10 @@ import {
   addCustomerSuccess,
   fetchAllCustomersFailed,
   fetchAllCustomersSuccess,
+  fetchCustomerByIdFailed,
+  fetchCustomerByIdSuccess,
+  updateCustomerFailed,
+  updateCustomerSuccess,
 } from "./customer.action";
 import { CUSTOMERS_ACTION_TYPES } from "./customer.types";
 
@@ -17,12 +21,35 @@ export function* fetchAllCustomers() {
   }
 }
 
+export function* fetchCustomerById({payload}) {
+  try {
+    const customer = yield call(agent.Users.details, payload);
+    yield put(fetchCustomerByIdSuccess(customer));
+  } catch (error) {
+    yield put(fetchCustomerByIdFailed(error));
+  }
+}
+
 export function* addCustomer({ payload }) {
   try {
     const customerData = yield call(agent.Users.create, payload);
     yield put(addCustomerSuccess(customerData));
   } catch (error) {
     yield put(addCustomerFailed(error));
+  }
+}
+
+export function* updateCustomer({ payload }) {
+  const { customerId, newCustomerData } = payload;
+  try {
+    const customerData = yield call(
+      agent.Users.update,
+      customerId,
+      newCustomerData
+    );
+    yield put(updateCustomerSuccess(customerData));
+  } catch (error) {
+    yield put(updateCustomerFailed(error));
   }
 }
 
@@ -34,10 +61,30 @@ export function* onFetchAllCustomersLoading() {
   );
 }
 
+// Saga to listen to fetch all users loading
+export function* onFetchCustomerByIdLoading() {
+  yield takeLatest(
+    CUSTOMERS_ACTION_TYPES.FETCH_CUSTOMER_BY_ID_LOADING,
+    fetchCustomerById
+  );
+}
+
 export function* onAddCustomerLoading() {
   yield takeLatest(CUSTOMERS_ACTION_TYPES.ADD_CUSTOMER_LOADING, addCustomer);
 }
 
+export function* onUpdateCustomerLoading() {
+  yield takeLatest(
+    CUSTOMERS_ACTION_TYPES.UPDATE_CUSTOMER_LOADING,
+    updateCustomer
+  );
+}
+
 export function* customersSaga() {
-  yield all([call(onFetchAllCustomersLoading), call(onAddCustomerLoading)]);
+  yield all([
+    call(onFetchAllCustomersLoading),
+    call(onAddCustomerLoading),
+    call(onUpdateCustomerLoading),
+    call(onFetchCustomerByIdLoading),
+  ]);
 }

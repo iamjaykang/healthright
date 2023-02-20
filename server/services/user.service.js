@@ -22,10 +22,13 @@ exports.getAllUsers = async () => {
   }
 };
 
-exports.getUserById = async (id) => {
+exports.getUserById = async (customerId) => {
+  console.log(customerId)
   try {
-    const user = await User.findByPk(id);
-    if (!user) throw new NotFoundError(`User with id ${id} not found`);
+    const user = await User.findByPk(customerId, {
+      ...userDetails(UserAddress, Address, Country)
+    });
+    if (!user) throw new NotFoundError(`User with id ${customerId} not found`);
     return user;
   } catch (error) {
     throw new InternalServerError(error.message);
@@ -120,19 +123,100 @@ exports.createUser = async (userData) => {
   }
 };
 
-exports.updateUser = async (id, updateData) => {
+exports.updateUserById = async (id, newUserData) => {
   try {
-    const [updatedRowsCount, updatedRows] = await User.update(updateData, {
-      where: { id },
-      returning: true,
+    const user = await User.findByPk(id, {
+      include: [
+        {
+          model: UserAddress,
+          include: [{ model: Address, include: [{ model: Country }] }],
+        },
+      ],
     });
-    if (!updatedRowsCount)
-      throw new NotFoundError(`User with id ${id} not found`);
-    return updatedRows[0];
+
+    if (!user) {
+      throw new NotFoundError(`User with the id not found`);
+    }
+
+    const {
+      firstName,
+      lastName,
+      emailAddress,
+      isDefault,
+      unitNumber,
+      streetNumber,
+      addressLine1,
+      addressLine2,
+      city,
+      region,
+      postalCode,
+      countryName,
+    } = newUserData;
+
+    // Update the user's properties with the new data or keep the old data
+    user.firstName = firstName || user.firstName;
+    user.lastName = lastName || user.lastName;
+    user.emailAddress = emailAddress || user.emailAddress;
+
+    let address = null;
+    if (user.userAddresses.length > 0) {
+      address = user.userAddresses[0].address;
+    } else {
+      // if the user does not have an associated address, create a new one
+      address = await Address.create({
+        unitNumber,
+        streetNumber,
+        addressLine1,
+        addressLine2,
+        city,
+        region,
+        postalCode,
+      });
+      user.addAddress(address);
+    }
+
+    // Update the address's properties with the new data or keep the old data
+    address.unitNumber = unitNumber || address.unitNumber;
+    address.streetNumber = streetNumber || address.streetNumber;
+    address.addressLine1 = addressLine1 || address.addressLine1;
+    address.addressLine2 = addressLine2 || address.addressLine2;
+    address.city = city || address.city;
+    address.region = region || address.region;
+    address.postalCode = postalCode || address.postalCode;
+
+    let country = null;
+    if (countryName) {
+      country = await Country.findOne({
+        where: { countryName },
+      });
+      if (!country) {
+        country = await Country.create({ countryName });
+      }
+      address.setCountry(country);
+    }
+
+    // update the junction table
+    if (isDefault === true) {
+      await UserAddress.update(
+        { isDefault: false },
+        { where: { userId: user.id } }
+      );
+      await UserAddress.update(
+        { isDefault: true },
+        { where: { userId: user.id, addressId: address.id } }
+      );
+    }
+
+    // Save the updated user and address
+    await user.save();
+    await address.save();
+
+    return user;
   } catch (error) {
-    throw new InternalServerError(error.message);
+    throw error;
   }
 };
+
 
 exports.deleteUser = async (id) => {
   try {

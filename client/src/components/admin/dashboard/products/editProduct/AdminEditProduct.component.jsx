@@ -225,7 +225,7 @@ const AdminEditProduct = () => {
         </div>
         <div className="dashboard__btns-container">
           <button
-            className="dashboard__discard-product-btn shadow-sm"
+            className="dashboard__btn--discard shadow-sm"
             type="button"
             disabled={!isFormChanged}
             onClick={handleReset}

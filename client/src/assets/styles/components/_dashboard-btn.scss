@@ -23,7 +23,7 @@
         }
     }
 
-    &__discard-product-btn {
+    &__btn--discard {
         @extend .dashboard__btn;
         background-color: transparent;
         color: $black-color;

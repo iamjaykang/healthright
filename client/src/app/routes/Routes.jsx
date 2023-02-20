@@ -15,6 +15,7 @@ import AdminAddProduct from "../../components/admin/dashboard/products/addProduc
 import AdminEditProduct from "../../components/admin/dashboard/products/editProduct/AdminEditProduct.component";
 import AdminCustomers from "../../components/admin/dashboard/customers/AdminCustomers.component";
 import AdminAddCustomer from "../../components/admin/dashboard/customers/addCustomer/AdminAddCustomer.component";
+import AdminEditCustomer from "../../components/admin/dashboard/customers/editCustomer/AdminEditCustomer.component";
 
 export const routes = [
   {
@@ -38,8 +39,12 @@ export const routes = [
             element: <AdminCustomers />,
           },
           {
-            path: "/admin/dashboard/customers/add",
+            path: "/admin/dashboard/customer/add",
             element: <AdminAddCustomer />,
+          },
+          {
+            path: "/admin/dashboard/customer/edit/:customerId",
+            element: <AdminEditCustomer />,
           },
           {
             path: "/admin/dashboard/products",
