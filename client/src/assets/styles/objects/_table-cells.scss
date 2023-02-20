@@ -9,6 +9,7 @@
 
 .status-cell {
     text-align: left;
+
     &--available {
         color: $success-color;
     }
@@ -29,6 +30,8 @@
 }
 
 .customer-cell {
-    display: flex;
-    flex-direction: column;
+    a {
+        display: grid;
+        @include grid(1)
+    }
 }

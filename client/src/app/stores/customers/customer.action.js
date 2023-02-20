@@ -58,3 +58,18 @@ export const updateCustomerSuccess = (customerData) =>
 // Action to add CUSTOMERS failed
 export const updateCustomerFailed = (error) =>
   createAction(CUSTOMERS_ACTION_TYPES.UPDATE_CUSTOMER_FAILED, error);
+
+// Action to add CUSTOMERS loading
+export const deleteCustomerLoading = (customerId) =>
+  createAction(
+    CUSTOMERS_ACTION_TYPES.DELETE_CUSTOMER_LOADING,
+    customerId,
+  );
+
+// Action to add CUSTOMERS success
+export const deleteCustomerSuccess = (customerData) =>
+  createAction(CUSTOMERS_ACTION_TYPES.DELETE_CUSTOMER_SUCCESS, customerData);
+
+// Action to add CUSTOMERS failed
+export const deleteCustomerFailed = (error) =>
+  createAction(CUSTOMERS_ACTION_TYPES.DELETE_CUSTOMER_FAILED, error);

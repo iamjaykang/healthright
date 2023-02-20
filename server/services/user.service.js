@@ -220,11 +220,31 @@ exports.updateUserById = async (id, newUserData) => {
 
 exports.deleteUser = async (id) => {
   try {
-    const deletedRowsCount = await User.destroy({ where: { id } });
-    if (!deletedRowsCount)
-      throw new NotFoundError(`User with id ${id} not found`);
-    return deletedRowsCount;
+    const user = await User.findByPk(id, {
+      include: [
+        {
+          model: UserAddress,
+          include: [{ model: Address }],
+        },
+      ],
+    });
+
+    if (!user) {
+      throw new NotFoundError(`User with the id not found`);
+    }
+
+    // Delete the associated addresses and user addresses
+    await Promise.all(
+      user.userAddresses.map(async (userAddress) => {
+        await userAddress.destroy();
+        await userAddress.address.destroy();
+      })
+    );
+
+    // Delete the user
+    await user.destroy();
+
   } catch (error) {
-    throw new InternalServerError(error.message);
+    throw error;
   }
 };

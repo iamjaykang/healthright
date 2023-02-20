@@ -25,13 +25,11 @@ exports.getUser = async (req, res, next) => {
     console.log(req.params);
     const { id } = req.params;
     const user = await getUserById(id);
-    res
-      .status(200)
-      .send({
-        data: user,
-        success: true,
-        message: "Retreived user successfully",
-      });
+    res.status(200).send({
+      data: user,
+      success: true,
+      message: "Retreived user successfully",
+    });
   } catch (error) {
     next(error);
   }
@@ -66,7 +64,9 @@ exports.deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
     await deleteUser(id);
-    res.status(204).send();
+    res
+      .status(204)
+      .send({ success: true, message: "User deleted successfully" });
   } catch (error) {
     next(error);
   }

@@ -38,7 +38,7 @@ const AdminEditProduct = () => {
 
   const adminProduct = useSelector(selectAdminProduct);
 
-  const producActionSuccess = useSelector(selectProductsSuccess);
+  const productActionSuccess = useSelector(selectProductsSuccess);
 
   const adminProductIsLoading = useSelector(selectProductsIsLoading);
 
@@ -100,7 +100,7 @@ const AdminEditProduct = () => {
   const handleDelete = () => {
     try {
       dispatch(deleteProductLoading(productId));
-      if (producActionSuccess) {
+      if (productActionSuccess) {
         navigate("/admin/dashboard/products");
       }
     } catch (error) {

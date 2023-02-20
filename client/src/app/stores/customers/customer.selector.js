@@ -16,3 +16,8 @@ export const selectCustomersIsLoading = createSelector(
   [selectCustomersReducer],
   (customersSlice) => customersSlice.isLoading
 );
+
+export const selectCustomersSuccess = createSelector(
+  [selectCustomersReducer],
+  (customersSlice) => customersSlice.success
+);

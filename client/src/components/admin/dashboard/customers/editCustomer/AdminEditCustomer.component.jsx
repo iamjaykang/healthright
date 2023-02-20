@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DashboardFormTextInput from "../../../../../app/common/dashboardForm/DashboardFormTextInput.common";
 import Spinner from "../../../../../app/common/spinner/Spinner.common";
-import { fetchCustomerByIdLoading } from "../../../../../app/stores/customers/customer.action";
+import {
+  deleteCustomerLoading,
+  fetchCustomerByIdLoading,
+} from "../../../../../app/stores/customers/customer.action";
 import {
   selectCustomer,
   selectCustomersIsLoading,
+  selectCustomersSuccess,
 } from "../../../../../app/stores/customers/customer.selector";
 
 const initialFormData = {
@@ -26,30 +30,33 @@ const initialFormData = {
 };
 
 const AdminEditCustomer = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { customerId } = useParams();
   const [isFormChanged, setIsFormChanged] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
 
+  const customerActionSuccess = useSelector(selectCustomersSuccess);
+
   const customerData = useSelector(selectCustomer);
   const customerIsLoading = useSelector(selectCustomersIsLoading);
-  console.log(customerId);
 
   useEffect(() => {
     if (customerData) {
       setFormData({
-        emailAddress: customerData.emailAddress,
-        firstName: customerData.firstName,
-        lastName: customerData.lastName,
-        isDefault: customerData.userAddresses[0].isDefault,
-        unitNumber: customerData.userAddresses[0].address.unitNumber,
-        streetNumber: customerData.userAddresses[0].address.streetNumber,
-        addressLine1: customerData.userAddresses[0].address.addressLine1,
-        addressLine2: customerData.userAddresses[0].address.addressLine2,
-        city: customerData.userAddresses[0].address.city,
-        region: customerData.userAddresses[0].address.region,
-        postalCode: customerData.userAddresses[0].address.postalCode,
-        countryName: customerData.userAddresses[0].address.country.countryName,
+        emailAddress: customerData.emailAddress ?? "",
+        firstName: customerData.firstName ?? "",
+        lastName: customerData.lastName ?? "",
+        isDefault: customerData.userAddresses[0]?.isDefault ?? "",
+        unitNumber: customerData.userAddresses[0]?.address.unitNumber ?? "",
+        streetNumber: customerData.userAddresses[0]?.address.streetNumber ?? "",
+        addressLine1: customerData.userAddresses[0]?.address.addressLine1 ?? "",
+        addressLine2: customerData.userAddresses[0]?.address.addressLine2 ?? "",
+        city: customerData.userAddresses[0]?.address.city ?? "",
+        region: customerData.userAddresses[0]?.address.region ?? "",
+        postalCode: customerData.userAddresses[0]?.address.postalCode ?? "",
+        countryName:
+          customerData.userAddresses[0]?.address.country.countryName ?? "",
       });
     }
   }, [customerData]);
@@ -96,6 +103,17 @@ const AdminEditCustomer = () => {
     }
   };
 
+  const handleDelete = () => {
+    try {
+      dispatch(deleteCustomerLoading(customerId));
+      if (customerActionSuccess) {
+        navigate("/admin/dashboard/customers");
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchCustomerByIdLoading(customerId));
   }, [dispatch, customerId]);
@@ -109,7 +127,7 @@ const AdminEditCustomer = () => {
       <div className="dashboard__products-header">
         <h2 className="dashboard__content-title">Edit Customer</h2>
         <div className="dashboard__btn-container">
-          <button onClick={() => {}} className="dashboard__btn shadow-sm">
+          <button onClick={handleDelete} className="dashboard__btn shadow-sm">
             Delete
           </button>
         </div>

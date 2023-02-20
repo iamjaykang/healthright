@@ -111,6 +111,28 @@ const customersReducer = (state = INITIAL_STATE, action = {}) => {
         message: payload.message,
         error: payload.error,
       };
+    case CUSTOMERS_ACTION_TYPES.DELETE_CUSTOMER_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+        message: null
+      };
+    case CUSTOMERS_ACTION_TYPES.DELETE_CUSTOMER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        success: payload.success,
+        message: payload.message,
+        error: null,
+      };
+    case CUSTOMERS_ACTION_TYPES.DELETE_CUSTOMER_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        success: false,
+        message: payload.message,
+        error: payload.error,
+      };
     default:
       return state;
   }

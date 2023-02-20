@@ -3,6 +3,8 @@ import agent from "../../api/agent";
 import {
   addCustomerFailed,
   addCustomerSuccess,
+  deleteCustomerFailed,
+  deleteCustomerSuccess,
   fetchAllCustomersFailed,
   fetchAllCustomersSuccess,
   fetchCustomerByIdFailed,
@@ -21,7 +23,7 @@ export function* fetchAllCustomers() {
   }
 }
 
-export function* fetchCustomerById({payload}) {
+export function* fetchCustomerById({ payload }) {
   try {
     const customer = yield call(agent.Users.details, payload);
     yield put(fetchCustomerByIdSuccess(customer));
@@ -53,6 +55,15 @@ export function* updateCustomer({ payload }) {
   }
 }
 
+export function* deleteCustomer({ payload: customerId }) {
+  try {
+    const customerData = yield call(agent.Users.delete, customerId);
+    yield put(deleteCustomerSuccess(customerData));
+  } catch (error) {
+    yield put(deleteCustomerFailed(error));
+  }
+}
+
 // Saga to listen to fetch all users loading
 export function* onFetchAllCustomersLoading() {
   yield takeLatest(
@@ -80,11 +91,19 @@ export function* onUpdateCustomerLoading() {
   );
 }
 
+export function* onDeleteCustomerLoading() {
+  yield takeLatest(
+    CUSTOMERS_ACTION_TYPES.DELETE_CUSTOMER_LOADING,
+    deleteCustomer
+  );
+}
+
 export function* customersSaga() {
   yield all([
     call(onFetchAllCustomersLoading),
     call(onAddCustomerLoading),
     call(onUpdateCustomerLoading),
     call(onFetchCustomerByIdLoading),
+    call(onDeleteCustomerLoading),
   ]);
 }
