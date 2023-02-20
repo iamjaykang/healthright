@@ -4,7 +4,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Spinner from "../common/spinner/Spinner.common";
 import { signOutLoading } from "../stores/user/user.action";
 import {
-    selectAuthError,
+  selectAuthError,
   selectCurrentUser,
   selectUserIsLoading,
 } from "../stores/user/user.selector";
@@ -35,15 +35,28 @@ const RequireAuth = () => {
   }
 
   if (!currentUserIsLoading) {
-    if (currentUser === null && authError && location.pathname === '/admin') {
+    if (currentUser === null && authError && location.pathname === "/admin") {
       return <Navigate to="/admin/sign-in" state={{ from: location }} />;
     }
   }
 
   if (!currentUserIsLoading) {
-    if (currentUser && currentUser.user.isAdmin && authError === null && location.pathname === '/admin') {
+    if (
+      currentUser &&
+      currentUser.user.isAdmin &&
+      authError === null &&
+      location.pathname === "/admin"
+    ) {
       return <Navigate to="/admin/sign-in" state={{ from: location }} />;
     }
+  }
+
+  if (
+    !currentUserIsLoading &&
+    authError === "User auth doesn't exist" &&
+    location.pathname.startsWith("/admin")
+  ) {
+    return <Navigate to="/admin/sign-in" state={{ from: location }} />;
   }
 
   return <Outlet />;

@@ -20,7 +20,8 @@
         }
     }
 
-    &__add-product-card {
+    &__add-product-card,
+    &__add-customer-card {
         display: flex;
         flex-direction: column;
         margin-bottom: 1rem;

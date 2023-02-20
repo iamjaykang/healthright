@@ -7,3 +7,51 @@
     border-radius: 7px;
     padding: 40px;
 }
+
+.dashboard {
+    &__add-product{
+        &-form {
+            display: grid;
+            @include grid(1);
+            grid-gap: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            padding: 1rem;
+
+            @include screen(md) {
+                @include grid(6);
+            }
+
+            &--left {
+                @include screen(md) {
+                    grid-column: 1 / span 5
+                }
+            }
+
+            &--right {
+                @include screen(md) {
+                    grid-column: 6 / span 1;
+                }
+            }
+        }
+    }
+
+    &__add-customer {
+        &-form {
+            @extend .dashboard__add-product-form;
+
+            &--left {
+                @include screen(md) {
+                    grid-column: 1 / span 4
+                }
+            }
+
+            &--right {
+                @include screen(md) {
+                    grid-column: 5 / span 2;
+                }
+            }
+        }
+    }
+}

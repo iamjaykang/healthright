@@ -1,0 +1,83 @@
+.dashboard {
+    &__input-group {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        height: auto;
+    }
+
+    &__input-label {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+        font-weight: 100;
+    }
+
+    &__input {
+        background-color: $input-field;
+        color: $black-color;
+        border: 0.25px solid $gray-color;
+        border-radius: 0.25rem;
+        font-size: 1.2rem;
+
+        &:focus-visible {
+            outline-color: $input-field-outline;
+        }
+
+        &--default {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            position: relative;
+            top: 3px;
+        }
+
+        &-group--house-number {
+            display: grid;
+            @include grid(1);
+
+            @include screen(md) {
+                @include grid(2)
+            }
+        }
+
+        &-group--name {
+
+            display: grid;
+            @include grid(1);
+
+            @include screen(md) {
+                @include grid(2)
+            }
+
+        }
+    }
+
+    &-html {
+        min-height: 300px;
+    }
+
+    &__add-product,
+    &__add-customer {
+
+        &-card--status-options,
+        &-select-option {
+            select {
+                background-color: $input-field;
+                border-radius: 0.25rem;
+                width: 100%;
+                font-size: 1.2rem;
+            }
+        }
+
+
+    }
+}
+
+.default-group {
+    display: grid;
+    grid-column-gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    @include grid(2);
+}

@@ -14,6 +14,7 @@ import AdminProducts from "../../components/admin/dashboard/products/AdminProduc
 import AdminAddProduct from "../../components/admin/dashboard/products/addProduct/AdminAddProduct.component";
 import AdminEditProduct from "../../components/admin/dashboard/products/editProduct/AdminEditProduct.component";
 import AdminCustomers from "../../components/admin/dashboard/customers/AdminCustomers.component";
+import AdminAddCustomer from "../../components/admin/dashboard/customers/addCustomer/AdminAddCustomer.component";
 
 export const routes = [
   {
@@ -35,6 +36,10 @@ export const routes = [
           {
             path: "/admin/dashboard/customers",
             element: <AdminCustomers />,
+          },
+          {
+            path: "/admin/dashboard/customers/add",
+            element: <AdminAddCustomer />,
           },
           {
             path: "/admin/dashboard/products",

@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   isLoading: false,
   error: null,
   customersArray: [],
+  customer: null,
   success: false,
   message: null,
 };
@@ -32,9 +33,31 @@ const customersReducer = (state = INITIAL_STATE, action = {}) => {
       return {
         ...state,
         isLoading: false,
+        success: false,
+        message: payload.message,
+        error: payload.error,
+      };
+    case CUSTOMERS_ACTION_TYPES.ADD_CUSTOMER_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+        customer: null,
+      };
+    case CUSTOMERS_ACTION_TYPES.ADD_CUSTOMER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
         success: payload.success,
         message: payload.message,
-        error: payload,
+        error: null,
+      };
+    case CUSTOMERS_ACTION_TYPES.ADD_CUSTOMER_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        success: false,
+        message: payload.message,
+        error: payload.error,
       };
     default:
       return state;

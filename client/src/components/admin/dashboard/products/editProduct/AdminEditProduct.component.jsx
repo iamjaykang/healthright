@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import ProductFormQuillInput from "../../../../../app/common/productForm/ProductFormQuillInput.common";
-import ProductFormTextInput from "../../../../../app/common/productForm/ProductFormTextInput.common";
+import DashboardFormQuillInput from "../../../../../app/common/dashboardForm/DashboardFormQuillInput.common";
+import DashboardFormTextInput from "../../../../../app/common/dashboardForm/DashboardFormTextInput.common";
 import Spinner from "../../../../../app/common/spinner/Spinner.common";
 import {
   deleteProductLoading,
@@ -132,7 +132,7 @@ const AdminEditProduct = () => {
       <form className="dashboard__add-product-form" onSubmit={handleSubmit}>
         <div className="dashboard__add-product-form--left">
           <div className="dashboard__card dashboard__add-product-card shadow-sm">
-            <ProductFormTextInput
+            <DashboardFormTextInput
               label="Name"
               type="text"
               required
@@ -140,14 +140,14 @@ const AdminEditProduct = () => {
               name="name"
               value={name}
             />
-            <ProductFormQuillInput
+            <DashboardFormQuillInput
               label="Description"
               onChange={handleQuillInputChange}
               value={description}
             />
           </div>
           <div className="dashboard__card dashboard__add-product-card shadow-sm">
-            <ProductFormTextInput
+            <DashboardFormTextInput
               label="Media"
               type="text"
               required
@@ -157,7 +157,7 @@ const AdminEditProduct = () => {
             />
           </div>
           <div className="dashboard__card dashboard__add-product-card-pricing shadow-sm">
-            <ProductFormTextInput
+            <DashboardFormTextInput
               label="Pricing"
               type="number"
               required
@@ -165,7 +165,7 @@ const AdminEditProduct = () => {
               name="price"
               value={price}
             />
-            <ProductFormTextInput
+            <DashboardFormTextInput
               label="Cost"
               type="number"
               required
@@ -175,7 +175,7 @@ const AdminEditProduct = () => {
             />
           </div>
           <div className="dashboard__card dashboard__add-product-card shadow-sm">
-            <ProductFormTextInput
+            <DashboardFormTextInput
               label="Quantity in Stock"
               type="number"
               required
@@ -205,7 +205,7 @@ const AdminEditProduct = () => {
             </div>
           </div>
           <div className="dashboard__card dashboard__add-product-card shadow-sm">
-            <ProductFormTextInput
+            <DashboardFormTextInput
               label="Category Name"
               type="text"
               required
@@ -213,7 +213,7 @@ const AdminEditProduct = () => {
               name="categoryName"
               value={categoryName}
             />
-            <ProductFormTextInput
+            <DashboardFormTextInput
               label="Vendor"
               type="text"
               required
