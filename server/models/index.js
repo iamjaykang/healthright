@@ -25,6 +25,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+// products
 db.products = require("./products/product.model")(sequelize, DataTypes);
 db.productCategories = require("./products/productCategory.model")(
   sequelize,
@@ -34,10 +35,20 @@ db.productVendors = require("./products/productVendor.model")(
   sequelize,
   DataTypes
 );
+
+// users
 db.users = require("./users/user.model")(sequelize, DataTypes);
 db.userAddresses = require("./users/userAddress.model")(sequelize,DataTypes)
 db.addresses = require('./users/addresses/address.model')(sequelize,DataTypes)
 db.countries = require('./users/countries/country.model')(sequelize,DataTypes)
+
+// orders
+
+db.shopOrders = require('./shopOrders/shopOrder.model')(sequelize,DataTypes);
+db.orderStatuses = require('./shopOrders/orderStatus.model')(sequelize,DataTypes);
+db.orderLines = require('./shopOrders/orderLine.model')(sequelize,DataTypes);
+db.shippingMethods = require('./shopOrders/shippingMethod.model')(sequelize,DataTypes);
+
 
 defineAssociations(db);
 
