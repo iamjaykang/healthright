@@ -5,7 +5,6 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import "./PaymentForm.css";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../app/stores/user/user.selector";
 
@@ -21,7 +20,7 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     if (currentUser) {
-      setEmail(currentUser.email);
+      setEmail(currentUser.user.email);
     }
     if (!stripe) {
       return;
@@ -96,7 +95,7 @@ export default function CheckoutForm() {
         className="link-authentication-element"
         options={{
           defaultValues: {
-            email: email,
+            email: email ? email : "jane.doe@example.com",
           },
         }}
         onChange={(e) => {
@@ -109,7 +108,10 @@ export default function CheckoutForm() {
         className="payment-element"
         options={paymentElementOptions}
       />
-      <button disabled={isLoading || !stripe || !elements} className="payment-submit-btn">
+      <button
+        disabled={isLoading || !stripe || !elements}
+        className="payment-submit-btn"
+      >
         <span className="button-text">
           {isLoading ? <div className="spinner"></div> : "Pay now"}
         </span>

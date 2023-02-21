@@ -1,23 +1,33 @@
 import { Elements } from "@stripe/react-stripe-js";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import agent from "../../app/api/agent";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import PaymentForm from "./paymentForm/PaymentForm.component";
 import { selectCartItems } from "../../app/stores/cart/cart.selector";
 import { stripePromise } from "../../app/utils/stripe/stripe.utils";
+import { setClientSecretLoading } from "../../app/stores/payments/payment.action";
+import {
+  selectClientSecret,
+  selectPaymentsIsLoading,
+  selectPaymentsIsSuccess,
+} from "../../app/stores/payments/payment.selector";
+import Spinner from "../../app/common/spinner/Spinner.common";
 
 const PaymentPage = () => {
-  const [clientSecret, setClientSecret] = useState("");
+  const clientSecret = useSelector(selectClientSecret);
 
-  const Items = useSelector(selectCartItems);
+  const paymentIntentIsLoading = useSelector(selectPaymentsIsLoading);
+
+  const paymentIntentIsSuccess = useSelector(selectPaymentsIsSuccess);
+
+  const dispatch = useDispatch();
+
+  const items = useSelector(selectCartItems);
 
   useEffect(() => {
-    if (Items) {
-      agent.Payments.create(Items).then((data) =>
-        setClientSecret(data.clientSecret)
-      );
+    if (items) {
+      dispatch(setClientSecretLoading(items));
     }
-  }, [Items]);
+  }, [items, dispatch]);
 
   const appearance = {
     theme: "stripe",
@@ -26,6 +36,10 @@ const PaymentPage = () => {
     clientSecret,
     appearance,
   };
+
+  if (paymentIntentIsLoading && !paymentIntentIsSuccess) {
+    return <Spinner />;
+  }
 
   return (
     <div className="app__payment-form-container">

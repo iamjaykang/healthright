@@ -72,7 +72,7 @@ export function* onFetchAllCustomersLoading() {
   );
 }
 
-// Saga to listen to fetch all users loading
+// Saga to listen to fetch customer by id loading
 export function* onFetchCustomerByIdLoading() {
   yield takeLatest(
     CUSTOMERS_ACTION_TYPES.FETCH_CUSTOMER_BY_ID_LOADING,
