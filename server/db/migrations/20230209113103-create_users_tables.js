@@ -108,6 +108,11 @@ module.exports = {
     });
 
     await queryInterface.createTable("userAddresses", {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       userId: {
         type: DataTypes.INTEGER,
         references: {
