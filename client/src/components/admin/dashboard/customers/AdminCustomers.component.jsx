@@ -14,7 +14,7 @@ const AdminCustomers = () => {
   }, [dispatch]);
 
   return (
-    <div className="dashboard__customers">
+    <div className="dashboard__page">
       <div className="dashboard__customers-header">
         <h2 className="dashboard__content-title products-title">Customers</h2>
         <div className="dashboard__customers-btn-container">

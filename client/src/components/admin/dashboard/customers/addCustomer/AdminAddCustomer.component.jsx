@@ -59,12 +59,12 @@ const AdminAddCustomer = () => {
   };
 
   return (
-    <div className="dashboard__add-customer">
+    <div className="dashboard__page">
       <h2 className="dashboard__content-title">Add Customer</h2>
-      <form className="dashboard__add-customer-form" onSubmit={handleSubmit}>
-        <div className="dashboard__add-customer-form--left">
-          <div className="dashboard__card dashboard__add-customer-card shadow-sm">
-            <div className="dashboard__add-customer-card--email">
+      <form className="dashboard__customer-form" onSubmit={handleSubmit}>
+        <div className="dashboard__customer-form--left">
+          <div className="dashboard__customer-card shadow-sm">
+            <div className="dashboard__customer-card--email">
               <DashboardFormTextInput
                 label="Email Address"
                 type="email"
@@ -93,7 +93,7 @@ const AdminAddCustomer = () => {
               />
             </div>
           </div>
-          <div className="dashboard__card dashboard__add-customer-card shadow-sm">
+          <div className="dashboard__customer-card shadow-sm">
             <div className="dashboard__input-group--house-number">
               <DashboardFormTextInput
                 label="Unit Number"
@@ -143,23 +143,21 @@ const AdminAddCustomer = () => {
             </div>
           </div>
         </div>
-        <div className="dashboard__add-customer-form--right">
-          <div className="dashboard__card dashboard__add-customer-card shadow-sm">
+        <div className="dashboard__customer-form--right">
+          <div className="dashboard__customer-card shadow-sm">
             <div className="dashboard__input-group">
-              <div className="dashboard__add-customer-select-option">
-                <span className="dashboard__add-customer-label">Country</span>
-                <div className="dashboard__add-customer-card--select-form">
-                  <select
-                    name="countryName"
-                    value={countryName}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">-- Select a Country --</option>
-                    <option value="United States">United States</option>
-                    <option value="Canada">Canada</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                  </select>
-                </div>
+              <span className="dashboard__customer-label">Country</span>
+              <div className="dashboard__customer-card--country-options">
+                <select
+                  name="countryName"
+                  value={countryName}
+                  onChange={handleInputChange}
+                >
+                  <option value="">-- Select a Country --</option>
+                  <option value="United States">United States</option>
+                  <option value="Canada">Canada</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                </select>
               </div>
             </div>
             <DashboardFormTextInput

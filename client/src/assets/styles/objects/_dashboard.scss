@@ -6,12 +6,7 @@
     min-height: 100vh;
     height: 100%;
 
-    &__overview,
-    &__customers,
-    &__products,
-    &__orders,
-    &__add-product,
-    &__add-customer {
+    &__page {
         padding: 1.5rem;
         padding-bottom: 0;
         height: 100%;

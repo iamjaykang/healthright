@@ -5,10 +5,10 @@ import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
 const AdminOverview = () => {
   return (
-    <div className="dashboard__overview">
+    <div className="dashboard__page">
       <h2 className="dashboard__content-title">Overview</h2>
       <div className="dashboard__stats-grid">
-        <div className="dashboard__card dashboard__stats-card shadow-sm">
+        <div className="dashboard__stats-card shadow-sm">
           <div className="dashboard__stats-card-body">
             <h4 className="dashboard__stats-card-text">Total Sales</h4>
             <div className="dashboard__stats-card-figure">$12,628</div>
@@ -20,7 +20,7 @@ const AdminOverview = () => {
             </div>
           </div>
         </div>
-        <div className="dashboard__card dashboard__stats-card shadow-sm">
+        <div className="dashboard__stats-card shadow-sm">
           <div className="dashboard__stats-card-body">
             <h4 className="dashboard__stats-card-text">Expenses</h4>
             <div className="dashboard__stats-card-figure">$2,250</div>
@@ -32,14 +32,14 @@ const AdminOverview = () => {
             </div>
           </div>
         </div>
-        <div className="dashboard__card dashboard__stats-card shadow-sm">
+        <div className="dashboard__stats-card shadow-sm">
           <div className="dashboard__stats-card-body">
             <h4 className="dashboard__stats-card-text">Pending Orders</h4>
             <div className="dashboard__stats-card-figure">23</div>
             <div className="dashboard__stats-card-meta">Open</div>
           </div>
         </div>
-        <div className="dashboard__card dashboard__stats-card shadow-sm">
+        <div className="dashboard__stats-card shadow-sm">
           <div className="dashboard__stats-card-body">
             <h4 className="dashboard__stats-card-text">Fulfilled Orders</h4>
             <div className="dashboard__stats-card-figure">6</div>
@@ -64,7 +64,7 @@ const AdminOverview = () => {
         </div>
       </div>
       <div className="dashboard__grid">
-        <div className="dashboard__card dashboard__sales-card shadow-sm">
+        <div className="dashboard__card shadow-sm">
           <div className="dashboard__card-title dashboard__sales-card">
             Sales Channel
           </div>

@@ -20,26 +20,29 @@
         }
     }
 
-    &__add-product-card,
-    &__add-customer-card {
+    &__product-card,
+    &__customer-card {
+        @extend .dashboard__card;
         display: flex;
         flex-direction: column;
         margin-bottom: 1rem;
         padding: 0.5rem;
 
-        &-pricing {
+        &--pricing {
+            @extend .dashboard__product-card;
             display: grid;
             @include grid(1);
             margin-bottom: 1rem;
             padding: 0.5rem;
 
-            @include screen(md) {
-                @include grid(2)
+            @include screen(lg) {
+                @include grid(2);
             }
         }
     }
 
     &__stats-card {
+        @extend .dashboard__card;
         text-align: center;
 
         &-body {

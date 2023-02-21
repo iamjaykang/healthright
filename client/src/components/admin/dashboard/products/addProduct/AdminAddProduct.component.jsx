@@ -53,11 +53,11 @@ const AdminAddProduct = () => {
   };
 
   return (
-    <div className="dashboard__add-product">
+    <div className="dashboard__page">
       <h2 className="dashboard__content-title">Add Product</h2>
-      <form className="dashboard__add-product-form" onSubmit={handleSubmit}>
-        <div className="dashboard__add-product-form--left">
-          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+      <form className="dashboard__product-form" onSubmit={handleSubmit}>
+        <div className="dashboard__product-form--left">
+          <div className="dashboard__product-card shadow-sm">
             <DashboardFormTextInput
               label="Name"
               type="text"
@@ -72,7 +72,7 @@ const AdminAddProduct = () => {
               value={description}
             />
           </div>
-          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+          <div className="dashboard__product-card shadow-sm">
             <DashboardFormTextInput
               label="Media"
               type="text"
@@ -82,7 +82,7 @@ const AdminAddProduct = () => {
               value={productImage}
             />
           </div>
-          <div className="dashboard__card dashboard__add-product-card-pricing shadow-sm">
+          <div className="dashboard__product-card--pricing shadow-sm">
             <DashboardFormTextInput
               label="Pricing"
               type="number"
@@ -100,7 +100,7 @@ const AdminAddProduct = () => {
               value={cost}
             />
           </div>
-          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+          <div className="dashboard__product-card shadow-sm">
             <DashboardFormTextInput
               label="Quantity in Stock"
               type="number"
@@ -111,13 +111,13 @@ const AdminAddProduct = () => {
             />
           </div>
         </div>
-        <div className="dashboard__add-product-form--right">
-          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+        <div className="dashboard__product-form--right">
+          <div className="dashboard__product-card shadow-sm">
             <div className="dashboard__input-group">
               <span className="dashboard__label">
                 Product Status
               </span>
-              <div className="dashboard__add-product-card--status-options">
+              <div className="dashboard__product-card--status-options">
                 <select
                   name="productLive"
                   value={productLive}
@@ -130,7 +130,7 @@ const AdminAddProduct = () => {
               </div>
             </div>
           </div>
-          <div className="dashboard__card dashboard__add-product-card shadow-sm">
+          <div className="dashboard__product-card shadow-sm">
             <DashboardFormTextInput
               label="Category Name"
               type="text"

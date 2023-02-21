@@ -36,7 +36,7 @@
             display: grid;
             @include grid(1);
 
-            @include screen(md) {
+            @include screen(lg) {
                 @include grid(2)
             }
         }
@@ -46,7 +46,7 @@
             display: grid;
             @include grid(1);
 
-            @include screen(md) {
+            @include screen(lg) {
                 @include grid(2)
             }
 
@@ -57,11 +57,11 @@
         min-height: 300px;
     }
 
-    &__add-product,
-    &__add-customer {
+    &__product,
+    &__customer {
 
         &-card--status-options,
-        &-select-option {
+        &-card--country-options {
             select {
                 background-color: $input-field;
                 border-radius: 0.25rem;

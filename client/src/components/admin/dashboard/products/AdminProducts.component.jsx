@@ -15,7 +15,7 @@ const AdminProducts = () => {
   }, [dispatch]);
 
   return (
-    <div className="dashboard__products">
+    <div className="dashboard__page">
       <div className="dashboard__products-header">
         <h2 className="dashboard__content-title products-title">Products</h2>
         <div className="dashboard__products-btn-container">
