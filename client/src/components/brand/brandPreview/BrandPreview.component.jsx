@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../../../app/common/productCard/ProductCard.component";
 import { useSelector, useDispatch } from "react-redux";
-import "./BrandPreview.css";
 import Spinner from "../../../app/common/spinner/Spinner.common";
 import { fetchProductsByVendorLoading } from "../../../app/stores/products/product.action";
 import { selectProductsFilteredByVendorArray, selectProductsIsLoading } from "../../../app/stores/products/product.selector";
