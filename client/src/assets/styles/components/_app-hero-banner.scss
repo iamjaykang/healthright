@@ -1,0 +1,18 @@
+.app {
+    &__hero-banner {
+        &-title {
+            color: #fff;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        &-subtitle {
+            color: #bf9d37;
+            font-size: 1.1em;
+        }
+
+        &-description {
+            color: #c8c8c8;
+        }
+    }
+}

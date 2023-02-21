@@ -6,26 +6,25 @@ import {
   selectCartTotal,
 } from "../../../app/stores/cart/cart.selector";
 import CheckOutItem from "../checkOutItem/CheckOutItem.component";
-import "./CheckOutList.css";
 
 const CheckOutList = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
 
   return (
-    <div className="checkout-list">
+    <div className="app__checkout-list">
       <h2>CART</h2>
       {cartItems.length === 0 ? (
-        <div className="checkout-list-empty">Your Cart is Empty!</div>
+        <div className="app__checkout-list-empty">Your Cart is Empty!</div>
       ) : (
         <>
           <div>
             {cartItems && cartItems.map((item) => <CheckOutItem key={item.id} item={item} />)}
           </div>
-          <div className="total-container">
-            <div className="total">
-              <span className="text">Total:</span>
-              <span className="value"> ${cartTotal}</span>
+          <div className="app__checkout-total-container">
+            <div className="app__checkout-total">
+              <span className="app__checkout-total--text">Total:</span>
+              <span className="app__checkout-total--value"> ${cartTotal}</span>
             </div>
           </div>
           <Link to="/checkout/payment">

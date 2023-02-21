@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../../../app/common/button/Button.common";
 import MyTextInput from "../../../../app/common/form/MyTextInput.common";
 import { adminEmailSignInLoading } from "../../../../app/stores/user/user.action";
-import {
-  selectCurrentUser,
-} from "../../../../app/stores/user/user.selector";
+import { selectCurrentUser } from "../../../../app/stores/user/user.selector";
 
 const initialFormValues = {
   email: "",
@@ -49,7 +47,7 @@ const AdminSignInForm = () => {
   }, [currentUser, navigate]);
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
+    <form className="app__auth-form" onSubmit={handleSubmit}>
       <MyTextInput
         label="Email"
         type="email"
@@ -66,8 +64,8 @@ const AdminSignInForm = () => {
         name="password"
         value={password}
       />
-      <div className="btns-container">
-        <Button type="submit">Sign In</Button>
+      <div className="app__auth-form-btns-container">
+        <Button type="submit">SIGN IN</Button>
       </div>
     </form>
   );

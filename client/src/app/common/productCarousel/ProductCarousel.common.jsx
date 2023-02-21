@@ -6,7 +6,6 @@ import { Swiper } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./ProductCarousel.css";
 
 const ProductCarousel = ({ children, slidesPerView }) => {
   return (

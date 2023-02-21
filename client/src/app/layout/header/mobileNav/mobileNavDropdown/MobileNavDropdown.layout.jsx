@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./MobileNavDropdown.css";
 
 const MobileNavDropdown = ({
   dropdown,
@@ -9,10 +8,10 @@ const MobileNavDropdown = ({
 }) => {
   return (
     <ul
-      className={`mobile-dropdown ${dropdownOpen ? "open" : ""}`}
+      className={`app__dropdown-list--mobile ${dropdownOpen ? "open" : ""}`}
     >
       {dropdown.map((item) => (
-        <li className="dropdown-item" key={item.title}>
+        <li className="app__dropdown-item--mobile" key={item.title}>
           <NavLink to={item.to} onClick={closeMenu}>{item.title}</NavLink>
         </li>
       ))}

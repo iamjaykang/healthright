@@ -1,0 +1,217 @@
+.app__header {
+    width: 100%;
+    max-width: 1560px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    align-items: center;
+    background-color: #515B43;
+    z-index: 10;
+
+    &-nav-container {
+        display: none;
+
+        @include screen(md) {
+            display: block;
+        }
+
+        &--mobile {
+            display: block;
+            height: 100%;
+
+            @include screen(md) {
+                display: none;
+            }
+        }
+    }
+
+
+    .app__header-brand {
+
+        width: 180px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        text-align: center;
+
+        @include screen(md) {
+            margin: auto 0 auto 40px;
+        }
+
+        .app__header-logo {
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 auto;
+            font-weight: 400;
+
+            @include screen(md) {
+                margin: 0;
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+.app__navbar {
+    height: 100%;
+
+    .app__navbar-group {
+        display: flex;
+        height: 100%;
+        margin: auto 0 auto 30px;
+        align-items: center;
+        justify-content: flex-end;
+
+
+        .app__nav-item {
+            list-style: none;
+            margin: 0 40px;
+            position: relative;
+
+            .app__nav-link {
+                color: white;
+                position: relative;
+                cursor: pointer;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+
+                svg {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+}
+
+.app__dropdown-list {
+    padding: 0;
+    position: absolute;
+    z-index: 5;
+    margin-top: 25px;
+    background-color: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 0px;
+    list-style: none;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    .app__dropdown-item {
+        display: block;
+
+        a {
+            display: block;
+            padding: 10px 15px;
+            color: #333333;
+            text-decoration: none;
+
+            &:hover {
+                background-color: #f6f6f6;
+            }
+        }
+    }
+    
+    &.open {
+        height: 170px;
+        overflow: auto;
+    }
+}
+
+.app__dropdown-list--mobile {
+    padding: 0;
+    position: relative;
+    z-index: 5;
+    background: #909987;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 0px;
+    margin: auto;
+    list-style: none;
+    transition: height 0.3s ease;
+    overflow: hidden;
+
+    .app__dropdown-item--mobile {
+        display: block;
+        cursor: pointer;
+
+        a {
+            display: block;
+            padding: 5px 15px;
+            color: #fff;
+            text-decoration: none;
+
+            &:hover {
+                background-color: #4b5345;
+            }
+        }
+    }
+
+    &.open {
+        height: 180px;
+        overflow: auto;
+    }
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    right: 20px;
+    top: 20px;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+    height: 24px;
+    width: 24px;
+
+    /* Color/shape of close button cross */
+    .bm-cross {
+        background: #bdc3c7;
+    }
+}
+
+
+/*
+  Sidebar wrapper styles
+  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+  */
+.bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+
+    /* General sidebar styles */
+    .bm-menu {
+        background: #7f8b6f;
+        padding: 2.5em 1.5em 0;
+        font-size: 1.15em;
+
+        /* Wrapper for item list */
+        .bm-item-list {
+            color: #b8b7ad;
+            padding: 0.8em;
+
+            .bm-item {
+                justify-content: center;
+                list-style: none;
+
+                .app__hamburger-menu-link {
+                    color: white;
+                }
+            }
+        }
+    }
+}

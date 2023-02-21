@@ -5,7 +5,6 @@ import agent from "../../app/api/agent";
 import PaymentForm from "./paymentForm/PaymentForm.component";
 import { selectCartItems } from "../../app/stores/cart/cart.selector";
 import { stripePromise } from "../../app/utils/stripe/stripe.utils";
-import "./PaymentPage.css";
 
 const PaymentPage = () => {
   const [clientSecret, setClientSecret] = useState("");
@@ -29,7 +28,7 @@ const PaymentPage = () => {
   };
 
   return (
-    <div className="payment-form-container">
+    <div className="app__payment-form-container">
       <h2>Payment</h2>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>

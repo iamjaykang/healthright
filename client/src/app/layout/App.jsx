@@ -53,15 +53,15 @@ const App = () => {
       }
       return (
         <div className="dashboard">
-            <AdminHeader />
-            <div className="dashboard__body">
-              <AdminSidepanel />
-              <main className="dashboard__main-content">
-                <ScrollRestoration />
-                <Outlet />
-              </main>
-            </div>
-                <AdminFooter />
+          <AdminHeader />
+          <div className="dashboard__body">
+            <AdminSidepanel />
+            <main className="dashboard__main-content">
+              <ScrollRestoration />
+              <Outlet />
+            </main>
+          </div>
+          <AdminFooter />
         </div>
       );
 
@@ -70,7 +70,11 @@ const App = () => {
         <div className="app">
           <ScrollRestoration />
           <Header />
-          <main>{location.pathname === "/" ? <HomePage /> : <Outlet />}</main>
+          <div className="app__body">
+            <main className="app__main-content">
+              {location.pathname === "/" ? <HomePage /> : <Outlet />}
+            </main>
+          </div>
           <Footer />
         </div>
       );

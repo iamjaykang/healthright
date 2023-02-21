@@ -1,6 +1,5 @@
 import React from "react";
 import BrandsPreviewItem from "./brandsPreviewItem/BrandsPreviewItem.component";
-import "./BrandsPreviewList.css";
 import { useSelector } from "react-redux";
 import { selectVendorsMap } from "../../stores/products/product.selector";
 
@@ -9,7 +8,7 @@ const BrandsPreview = () => {
   const vendorsMap = useSelector(selectVendorsMap);
 
   return (
-    <div className="brands-preview-container">
+    <div className="app__brands-preview-section">
       {vendorsMap &&
         Object.keys(vendorsMap).map((vendor) => {
           const products = vendorsMap[vendor];

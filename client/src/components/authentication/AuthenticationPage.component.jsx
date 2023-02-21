@@ -7,7 +7,6 @@ import {
   selectUserIsLoading,
 } from "../../app/stores/user/user.selector";
 import { useDispatch, useSelector } from "react-redux";
-import "./Authentication.css";
 import Spinner from "../../app/common/spinner/Spinner.common";
 import { useNavigate } from "react-router-dom";
 import { setAuthIsSignUp } from "../../app/stores/user/user.action";
@@ -33,29 +32,39 @@ const AuthenticationPage = () => {
   switch (authIsSignUp) {
     case true:
       return (
-        <div className="auth-container">
+        <div className="app__auth-container">
           <h2>SIGN UP</h2>
-          <p className="form-action-container">
+          <p className="app__auth-form-action-container">
             <span>Sign up with your email and password or</span>
-            <button className="link-btn" onClick={handleOnclick}>
+            <button
+              className="app__auth-form-action-btn"
+              onClick={handleOnclick}
+            >
               Sign in instead
             </button>
           </p>
-          <SignUpForm />
+          <div className="app__auth-form-container">
+            <SignUpForm />
+          </div>
         </div>
       );
 
     default:
       return (
-        <div className="auth-container">
+        <div className="app__auth-container">
           <h2>SIGN IN</h2>
-          <p className="form-action-container">
+          <p className="app__auth-form-action-container">
             <span>Sign in with your email and password or</span>
-            <button className="link-btn" onClick={handleOnclick}>
+            <button
+              className="app__auth-form-action-btn"
+              onClick={handleOnclick}
+            >
               Sign up instead
             </button>
           </p>
-          <SignInForm />
+          <div className="app__auth-form-container">
+            <SignInForm />
+          </div>
         </div>
       );
   }

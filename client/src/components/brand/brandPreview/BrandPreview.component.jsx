@@ -23,8 +23,8 @@ const BrandPreview = () => {
 
   return (
     <>
-      <h2 className="preview-title">{vendor.toUpperCase()}</h2>
-      <div className="preview-item-container">
+      <h2 className="app__content-title">{vendor.toUpperCase()}</h2>
+      <div className="app__brand-preview-item-container">
         {filteredProductsByVendorArray &&
           filteredProductsByVendorArray.map((product) => (
             <ProductCard key={product.id} product={product} />

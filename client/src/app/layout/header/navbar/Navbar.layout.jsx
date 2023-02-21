@@ -4,7 +4,6 @@ import navLinks from "../../../../assets/data/navLinks.json";
 import CartIcon from "../../../common/cartIcon/CartIcon.common";
 import NavDropdown from "./navDropdown/NavDropdown.component";
 import { useDispatch } from "react-redux";
-import "./Navbar.css";
 import { signOutLoading } from "../../../stores/user/user.action";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -43,19 +42,19 @@ const Navbar = ({ currentUser }) => {
   const signOutUser = () => dispatch(signOutLoading());
 
   return (
-    <nav className="navbar">
-      <ul className="navbar-group">
+    <nav className="app__navbar">
+      <ul className="app__navbar-group">
         {navLinks.map((navLink) =>
           // if the navLink title is "Sign In" and there is a current user, set navLink to "Sign Out"
           navLink.title === "Sign In" && currentUser ? (
-            <li className="nav-item" key={navLink.id}>
-              <NavLink className="nav-link" to="#" onClick={signOutUser}>
+            <li className="app__nav-item" key={navLink.id}>
+              <NavLink className="app__nav-link" to="#" onClick={signOutUser}>
                 <span>Sign Out</span>
               </NavLink>
             </li>
           ) : (
             <li
-              className="nav-item"
+              className="app__nav-item"
               key={navLink.id}
               onMouseEnter={() =>
                 navLink.dropdown && handleMouseEnter(navLink.id)
@@ -64,7 +63,7 @@ const Navbar = ({ currentUser }) => {
                 navLink.dropdown && handleMouseLeave(navLink.id)
               }
             >
-              <NavLink className="nav-link" to={navLink.to}>
+              <NavLink className="app__nav-link" to={navLink.to}>
                 <span>{navLink.title}</span>
                 {/* if the navLink dropdown exists and is hovered over render expandMoreIcon else expandLessIcon */}
                 {navLink.dropdown &&
@@ -80,7 +79,7 @@ const Navbar = ({ currentUser }) => {
               </NavLink>
               {navLink.dropdown && (
                 <NavDropdown
-                  key={`dropdown-${navLink.id}`}
+                  key={`app__dropdown-${navLink.id}`}
                   dropdown={navLink.dropdown}
                   dropdownOpen={dropdownOpen[navLink.id]}
                 />
@@ -88,7 +87,7 @@ const Navbar = ({ currentUser }) => {
             </li>
           )
         )}
-        <li className="nav-item">
+        <li className="app__nav-item">
           <CartIcon isMobileMenu={false} />
         </li>
       </ul>

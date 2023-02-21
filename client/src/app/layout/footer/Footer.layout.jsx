@@ -1,14 +1,13 @@
 import React from "react";
-import "./Footer.css";
 
 const Footer = () => {
   return (
     <footer className="app__footer">
-      <div className="container">
-        <div className="footer-info">
-          <div className="footer-info-col">
-            <h3 className="footer-info-heading">Help & Support</h3>
-            <ul className="footer-info-list">
+      <div className="app__footer-container">
+        <div className="app__footer-info">
+          <div className="app__footer-info-col">
+            <h3 className="app__footer-info-heading">Help & Support</h3>
+            <ul className="app__footer-info-list">
               <li>
                 <button>Delivery</button>
               </li>
@@ -23,9 +22,9 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="footer-info-col">
-            <h3 className="footer-info-heading">About us</h3>
-            <ul className="footer-info-list">
+          <div className="app__footer-info-col">
+            <h3 className="app__footer-info-heading">About us</h3>
+            <ul className="app__footer-info-list">
               <li>
                 <button>Our Story</button>
               </li>
@@ -40,9 +39,9 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="footer-info-col">
-            <h3 className="footer-info-heading">Resources</h3>
-            <ul className="footer-info-list">
+          <div className="app__footer-info-col">
+            <h3 className="app__footer-info-heading">Resources</h3>
+            <ul className="app__footer-info-list">
               <li>
                 <button>Blog</button>
               </li>
@@ -54,9 +53,9 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="footer-info-col">
-            <h3 className="footer-info-heading">Get in touch</h3>
-            <ul className="footer-info-list">
+          <div className="app__footer-info-col">
+            <h3 className="app__footer-info-heading">Get in touch</h3>
+            <ul className="app__footer-info-list">
               <li>
                 <button>Contact us</button>
               </li>
@@ -72,7 +71,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="copyright">
+        <div className="app__footer-copyright">
           Copyright © {new Date().getFullYear()} Healthright Limited
         </div>
       </div>

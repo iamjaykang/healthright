@@ -1,6 +1,5 @@
 import React from "react";
 import ButtonSpinner from "../buttonSpinner/ButtonSpinner.common";
-import "./Button.css";
 
 const BUTTON_TYPES_CLASSES = {
   google: "google-sign-in",

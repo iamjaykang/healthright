@@ -3,7 +3,6 @@ import ProductCard from "../../productCard/ProductCard.component";
 import { Link } from "react-router-dom";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import "./BrandsPreviewItem.css";
 import ProductCarousel from "../../productCarousel/ProductCarousel.common";
 import { useScreenWidth } from "../../../utils/screenWidth/screenWidth.util";
 
@@ -20,13 +19,13 @@ const BrandsPreviewItem = ({ vendor, products }) => {
   }, [screenWidth]);
 
   return (
-    <div className="brand-preview-item">
-      <h2>
+    <div className="app__brands-preview-item">
+      <div className="app__brands-preview-item-title">
         <Link to={`/brands/${vendor}`}>
-          <span className="title">{vendor.toUpperCase()}</span>
+          <h2>{vendor.toUpperCase()}</h2>
         </Link>
-      </h2>
-      <div className="preview">
+        </div>
+      <div className="app__brands-preview-item-content">
         <ProductCarousel slidesPerView={slidesPerView}>
           {products.map((product) => (
             <SwiperSlide key={product.id}>

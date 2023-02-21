@@ -6,17 +6,16 @@ import {
   selectCartItems,
 } from "../../../stores/cart/cart.selector";
 import CartItem from "./cartItem/CartItem.layout";
-import "./CartDropdown.css";
 
 const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
 
   return (
-    <div className="cart-dropdown-container">
+    <div className="app__cart-dropdown-container">
       {cartItems.length === 0 && (
         <div className="empty-message">Your Cart is Empty!</div>
       )}
-      <div className="cart-items">
+      <div className="app__cart-items">
         {cartItems.map((item) => (
           <CartItem key={item.id} cartItem={item} />
         ))}

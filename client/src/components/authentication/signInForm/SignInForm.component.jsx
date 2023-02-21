@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../../app/common/button/Button.common";
 import MyTextInput from "../../../app/common/form/MyTextInput.common";
-import "./SignInForm.css";
 import { useDispatch } from "react-redux";
 import {
   emailSignInLoading,
@@ -44,8 +43,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in-container">
-      <form className="auth-form" onSubmit={handleSubmit}>
+      <form className="app__auth-form" onSubmit={handleSubmit}>
         <MyTextInput
           label="Email"
           type="email"
@@ -62,14 +60,13 @@ const SignInForm = () => {
           name="password"
           value={password}
         />
-        <div className="btns-container">
+        <div className="app__auth-form-btns-container">
           <Button type="submit">Sign In</Button>
           <Button btnType="google" onClick={signInWithGoogle}>
             Sign in with Google
           </Button>
         </div>
       </form>
-    </div>
   );
 };
 

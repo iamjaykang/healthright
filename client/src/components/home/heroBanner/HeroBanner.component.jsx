@@ -1,23 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./HeroBanner.css";
 
 const HeroBanner = (props) => {
   return (
     <div
-      className="hero-banner"
+      className="app__hero-banner-section"
       style={{ backgroundImage: `url(${props.bgImg})` }}
     >
-      <div className="hero-banner-content-container">
-        <div className="hero-banner-text-container">
-          <h1 className="hero-banner-title">{props.title}</h1>
-          <p className="hero-banner-subtitle">{props.subtitle}</p>
-          <p className="hero-banner-description">{props.description}</p>
+      <div className="app__hero-banner-content-container">
+        <div className="app__hero-banner-text-container">
+          <h1 className="app__hero-banner-title">{props.title}</h1>
+          <p className="app__hero-banner-subtitle">{props.subtitle}</p>
+          <p className="app__hero-banner-description">{props.description}</p>
         </div>
-        <div className="hero-banner-btn-container">
-          <Link to='/brands'>
-          <button>Shop now</button>
-          </Link>
+        <div className="app__hero-banner-link-container">
+          <Link to="/brands" className="app__hero-banner-link">Shop now</Link>
         </div>
       </div>
     </div>

@@ -1,0 +1,77 @@
+.app__checkout-item {
+    width: 100%;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 60% 20% 20%;
+    grid-template-rows: auto;
+
+    @include screen(md) {
+        width: 100%;
+    }
+
+    .app__product-container,
+    .app__product-price,
+    .app__product--remove {
+        text-align: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .app__product-container {
+        display: grid;
+        @include grid(12);
+        width: 100%;
+
+        .app__product-img-container {
+            display: inline-block;
+            width: 100px;
+            height: auto;
+            grid-column: 1 / span 1;
+
+            @include screen(md) {
+                width: 200px;
+            }
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .app__product-name {
+            grid-column: 2 / span 11;
+            text-align: left;
+        }
+    }
+
+    .app__product-quantity-container {
+        display: flex;
+        flex-direction: column;
+        column-gap: 1em;
+        margin: 0 auto;
+
+        .app__product--quantity {
+            display: flex;
+            column-gap: 1em;
+            margin: 0 auto;
+            border-bottom: 2px solid black;
+            padding: 5px;
+
+            button {
+                padding: 0;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .app__product--remove {
+        button {
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            margin: 5px auto;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import MyTextInput from "../../../app/common/form/MyTextInput.common";
-import "./SignUpForm.css";
 import Button from "../../../app/common/button/Button.common";
 import { useDispatch } from "react-redux";
 import { signUpLoading } from "../../../app/stores/user/user.action";
@@ -44,8 +43,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
-      <form className="auth-form" onSubmit={handleSubmit}>
+      <form className="app__auth-form" onSubmit={handleSubmit}>
         <MyTextInput
           label="First Name"
           type="text"
@@ -87,13 +85,12 @@ const SignUpForm = () => {
           name="confirmPassword"
           value={confirmPassword}
         />
-        <div className="btns-container">
+        <div className="app__auth-form-btns-container">
           <Button btnType="inverted" type="submit">
             Sign Up
           </Button>
         </div>
       </form>
-    </div>
   );
 };
 

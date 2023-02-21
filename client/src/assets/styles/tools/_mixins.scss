@@ -11,3 +11,9 @@
 @mixin grid($cols) {
     grid-template-columns: repeat($cols, 1fr);
 }
+
+@mixin shrinkLabel {
+  top: -14px;
+  font-size: 12px;
+  color: $black-color;
+}

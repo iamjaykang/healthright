@@ -1,9 +1,35 @@
 .app {
     min-height: 100vh;
-    min-width: 100vw;
+    max-width: 1600px;
     height: 100%;
     width: 100%;
     background: $white-color;
-    padding-top: 56px;
+    margin: 0 auto;
+    padding: 56px 0 0 0;
+    display: flex;
+    flex-direction: column;
     overflow-x: hidden;
+
+    @include screen(xxl) {
+        padding: 56px 20px 0 20px;
+    }
+
+    .app__body {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .app__main-content {
+        min-height: 100%;
+    }
+}
+
+.swiper-wrapper {
+    padding: 20px 0 60px 0;
+
+    @include screen(md) {
+
+        padding: 60px 0;
+    }
 }

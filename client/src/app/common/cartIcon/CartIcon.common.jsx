@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as ShoppingIcon } from "../../../assets/images/shopping-bag.svg";
-import "./CartIcon.css";
 import {
   selectCartCount,
   selectIsCartOpen,
@@ -23,7 +22,7 @@ const CartIcon = ({ isMobileMenu }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isCartOpen && !event.target.closest(".cart-icon-container")) {
+      if (isCartOpen && !event.target.closest(".app__cart-icon-container")) {
         dispatch(setIsCartOpen(false));
       }
     };
@@ -36,11 +35,11 @@ const CartIcon = ({ isMobileMenu }) => {
   }, [dispatch, isCartOpen]);
   return (
     <div
-      className="cart-icon-container"
+      className="app__cart-icon-container"
       onClick={toggleIsCartOpen}
     >
-      <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">{cartCount}</span>
+      <ShoppingIcon className="app__shopping-icon" />
+      <span className="app__cart-item-count">{cartCount}</span>
     </div>
   );
 };

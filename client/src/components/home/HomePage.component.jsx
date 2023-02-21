@@ -1,8 +1,7 @@
 import React from "react";
 import BrandsPreview from "../../app/common/brandsPreview/BrandsPreviewList.component";
-import CategoryList from "../../app/common/categoryList/CategoryList.component";
+import CategoryList from "./categoryList/CategoryList.component";
 import HeroBanner from "./heroBanner/HeroBanner.component";
-import "./HomePage.css";
 import desktopBgImg from "../../assets/images/banner-desktop.png";
 import mobileBgImg from "../../assets/images/banner.png";
 import About from "./about/About.component";

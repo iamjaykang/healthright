@@ -1,0 +1,17 @@
+.app {
+    &__benefits {
+        &-item {
+            margin-left: 30px;
+            padding-left: 20px;
+            line-height: 2;
+            font-weight: lighter;
+        }
+    }
+
+    &__store-info {
+        &-description {
+            color: $black-color;
+            line-height: 2;
+        }
+    }
+}

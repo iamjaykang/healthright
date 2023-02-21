@@ -5,7 +5,7 @@ import "./Brand.css";
 
 const BrandPage = () => {
   return (
-    <div className="brand-preview-container">
+    <div className="app__brand-preview-container">
       <BrandPreview />
     </div>
   );

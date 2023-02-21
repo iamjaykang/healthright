@@ -1,0 +1,52 @@
+.app {
+    &__about-section {
+        background-color: $secondary-color;
+        display: none;
+        height: 450px;
+        padding: 0 80px 60px 80px;
+
+        @include screen(md) {
+            display: grid;
+            @include grid(2)
+        }
+    }
+
+    &__hero-banner-section {
+        position: relative;
+        min-height: 600px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        @include screen(md) {
+            display: flex;
+        }
+
+        @include screen(lg) {
+            min-height: 900px;
+        }
+
+        &--mobile {
+            position: relative;
+            min-height: 300px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include screen(md) {
+                display: none;
+            }
+        }
+    }
+
+
+    &__brands-preview-section {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 30px;
+    }
+}
