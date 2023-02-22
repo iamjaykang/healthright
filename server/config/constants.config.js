@@ -6,6 +6,7 @@ const productDetails = (ProductVendor, ProductCategory) => ({
     "description",
     "price",
     "productImage",
+    "productLive",
     "createdAt",
     "updatedAt",
   ],

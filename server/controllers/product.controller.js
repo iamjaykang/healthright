@@ -105,6 +105,7 @@ exports.update = async (req, res, next) => {
     res.status(200).send({
       message: "Product updated successfully.",
       data: product,
+      success:true
     });
   } catch (error) {
     next(error);

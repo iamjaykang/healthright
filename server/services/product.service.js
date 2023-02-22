@@ -4,8 +4,10 @@ const cleanUpProductDataHelper = require("../helpers/cleanUpProductData.helper")
 const Product = db.products;
 const ProductCategory = db.productCategories;
 const ProductVendor = db.productVendors;
-const { productDetails, productDetailsForAdmin } =
-  require("../config/constants.config");
+const {
+  productDetails,
+  productDetailsForAdmin,
+} = require("../config/constants.config");
 
 exports.createProduct = async (productData) => {
   const { vendorName, categoryName } = productData;
@@ -50,6 +52,9 @@ exports.findAllProducts = async () => {
     // Find all products and include the related vendor and category information
     const products = await Product.findAll({
       ...productDetails(ProductVendor, ProductCategory),
+      where: {
+        productLive: true,
+      },
       order: [["id", "ASC"]],
     });
 
@@ -89,7 +94,7 @@ exports.findAllProductsForAdmin = async () => {
 
 // Get all products by Vendor
 exports.getProductsByVendor = async (vendorName) => {
-  console.log(vendorName)
+  console.log(vendorName);
   try {
     // Find the vendor by name
     const vendor = await ProductVendor.findOne({
@@ -218,7 +223,7 @@ exports.updateProductById = async (id, newProductData) => {
       vendorName,
       categoryName,
       cost,
-      productLive
+      productLive,
     } = newProductData;
 
     // If vendorName is provided, find or create a vendor with the name
