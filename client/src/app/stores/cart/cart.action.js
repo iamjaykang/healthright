@@ -15,8 +15,8 @@ export const setIsCartOpen = (isCartOpen) =>
 // it receives the current cart items and the product to add
 // it uses the addCartItem utility function to add the item to the cart
 // and sets the new cart items as the payload of the action object
-export const addItemToCart = (cartItems, productToAdd) => {
-  const newCartItems = addCartItem(cartItems, productToAdd);
+export const addItemToCart = (cartItems, productToAdd, quantity) => {
+  const newCartItems = addCartItem(cartItems, productToAdd, quantity);
   return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 

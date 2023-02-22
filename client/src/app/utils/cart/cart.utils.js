@@ -1,4 +1,4 @@
-export const addCartItem = (cartItems, productToAdd) => {
+export const addCartItem = (cartItems, productToAdd, quantity = 1) => {
     // find if cartItems contains productToAadd
     const existingCartItem = cartItems.find(
       (cartItem) => cartItem.id === productToAdd.id
@@ -8,12 +8,12 @@ export const addCartItem = (cartItems, productToAdd) => {
     if (existingCartItem) {
       return cartItems.map((cartItem) =>
         cartItem.id === productToAdd.id
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          ? { ...cartItem, quantity: cartItem.quantity + quantity }
           : cartItem
       );
     }
     // return new array with modified cartItems/ new cart item
-    return [...cartItems, { ...productToAdd, quantity: 1 }];
+    return [...cartItems, { ...productToAdd, quantity }];
   };
   
   export const updateCartItemQuantity = (cartItems, itemId, intent) => {
