@@ -1,33 +1,39 @@
 import { createSelector } from "reselect";
 
-// Selector that accesses the "products" slice of the store
+// accesses the "products" slice of the store
 const selectProductsReducer = (state) => state.products;
 
-// Selector that returns the "productsArray" property from the "products" slice
+// returns the "productsArray" property from the "products" slice
 export const selectProductsArray = createSelector(
   [selectProductsReducer],
   (productsSlice) => productsSlice.productsArray
 );
 
-// Selector that returns the "adminProductsArray" property from the "products" slice
+// returns the "adminProductsArray" property from the "products" slice
 export const selectAdminProductsArray = createSelector(
   [selectProductsReducer],
   (productsSlice) => productsSlice.adminProductsArray
 );
 
-// Selector that returns the "adminProductsArray" property from the "products" slice
+// returns the "adminProduct" property from the "products" slice
 export const selectAdminProduct = createSelector(
   [selectProductsReducer],
   (productsSlice) => productsSlice.adminProduct
 );
 
-// Selector that returns the "filteredProductsArray" property from the "products" slice
+// returns the "product" property from the "products" slice
+export const selectProduct = createSelector(
+  [selectProductsReducer],
+  (productsSlice) => productsSlice.product
+);
+
+// returns the "filteredProductsArray" property from the "products" slice
 export const selectProductsFilteredByVendorArray = createSelector(
   [selectProductsReducer],
   (productsSlice) => productsSlice.filteredProductsArray
 );
 
-// Selector that returns a map of vendors and their respective products
+// returns a map of vendors and their respective products
 export const selectVendorsMap = createSelector(
   [selectProductsArray],
   (productsArray) => {
@@ -44,13 +50,13 @@ export const selectVendorsMap = createSelector(
   }
 );
 
-// Selector that returns the "isLoading" property from the "products" slice
+// returns the "isLoading" property from the "products" slice
 export const selectProductsIsLoading = createSelector(
   [selectProductsReducer],
   (productsSlice) => productsSlice.isLoading
 );
 
-// Selector that returns the "isLoading" property from the "products" slice
+// returns the "isLoading" property from the "products" slice
 export const selectProductsSuccess = createSelector(
   [selectProductsReducer],
   (productsSlice) => productsSlice.success

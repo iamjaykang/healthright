@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "../button/Button.common";
 import { addItemToCart } from "../../stores/cart/cart.action";
 import { selectCartItems } from "../../stores/cart/cart.selector";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -15,13 +16,18 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="app__product-card-container">
-      <div className="app__card-img-container">
-      <img src={productImage} alt={`${name}`} />
-      </div>
+      <Link to={`/product/${name}`} className="app__product-card-mask--img">
+        <div className="app__card-img-container">
+          <img src={productImage} alt={`${name}`} />
+        </div>
+      </Link>
       <div className="app__card-info">
-        <span className="app__card-name">{name}</span>
+        <Link to={`/product/${name}`} className="app__product-card-mask--name">
+          <span className="app__card-name">{name}</span>
+        </Link>
         <span className="app__card-price">${price}</span>
       </div>
+
       <Button btnType="inverted" onClick={addProductToCart}>
         Add to Cart
       </Button>

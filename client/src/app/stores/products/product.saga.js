@@ -15,9 +15,13 @@ import {
   updateProductFailed,
   deleteProductSuccess,
   deleteProductFailed,
+  fetchProductByNameSuccess,
+  fetchProductByNameFailed,
 } from "./product.action";
 import { PRODUCTS_ACTION_TYPES } from "./product.types";
 
+
+// Fetch products
 export function* fetchProducts() {
   try {
     const productsArray = yield call(agent.Products.list);
@@ -27,6 +31,7 @@ export function* fetchProducts() {
   }
 }
 
+// Fetch product for admin
 export function* fetchProductForAdmin({ payload: productId }) {
   try {
     const productData = yield call(agent.Products.detailsForAdmin, productId);
@@ -36,6 +41,17 @@ export function* fetchProductForAdmin({ payload: productId }) {
   }
 }
 
+// Fetch ProductByName
+export function* fetchProductByName({ payload: productName }) {
+  try {
+    const productData = yield call(agent.Products.detailsByName, productName);
+    yield put(fetchProductByNameSuccess(productData));
+  } catch (error) {
+    yield put(fetchProductByNameFailed(error));
+  }
+}
+
+// Fetch products for admin
 export function* fetchProductsForAdmin() {
   try {
     const adminProductsArray = yield call(agent.Products.listForAdmin);
@@ -45,6 +61,7 @@ export function* fetchProductsForAdmin() {
   }
 }
 
+// Fetch Products by vendor
 export function* fetchProductsByVendor({ payload: vendor }) {
   try {
     const productsArray = yield call(
@@ -57,6 +74,7 @@ export function* fetchProductsByVendor({ payload: vendor }) {
   }
 }
 
+// Add product
 export function* addProduct({ payload }) {
   try {
     const productData = yield call(agent.Products.create, payload);
@@ -66,6 +84,7 @@ export function* addProduct({ payload }) {
   }
 }
 
+// Update Product
 export function* updateProduct({ payload }) {
   const { productId, newProductData } = payload;
   try {
@@ -80,6 +99,7 @@ export function* updateProduct({ payload }) {
   }
 }
 
+// Delete product
 export function* deleteProduct({ payload: productId }) {
   try {
     const ProductData = yield call(
@@ -107,6 +127,13 @@ export function* onFetchProductAdmin() {
   yield takeLatest(
     PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_ADMIN_LOADING,
     fetchProductForAdmin
+  );
+}
+
+export function* onFetchProductByName() {
+  yield takeLatest(
+    PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_BY_NAME_LOADING,
+    fetchProductByName
   );
 }
 
@@ -138,5 +165,6 @@ export function* productsSaga() {
     call(onUpdateProduct),
     call(onDeleteProduct),
     call(onAddProduct),
+    call(onFetchProductByName),
   ]);
 }

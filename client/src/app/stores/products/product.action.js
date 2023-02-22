@@ -1,6 +1,7 @@
 import { createAction } from "../../utils/reducer/reducer.utils";
 import { PRODUCTS_ACTION_TYPES } from "./product.types";
 
+// Fetch Products
 export const fetchProductsLoading = () =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_LOADING);
 
@@ -10,6 +11,7 @@ export const fetchProductsSuccess = (productsArray) =>
 export const fetchProductsFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_FAILED, error);
 
+// Fetch Product By ID for admin
 export const fetchProductAdminLoading = (productId) =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_ADMIN_LOADING, productId);
 
@@ -19,6 +21,17 @@ export const fetchProductAdminSuccess = (productData) =>
 export const fetchProductAdminFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_ADMIN_FAILED, error);
 
+// Fetch Product By Name
+export const fetchProductByNameLoading = (productName) =>
+  createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_BY_NAME_LOADING, productName);
+
+export const fetchProductByNameSuccess = (productData) =>
+  createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_BY_NAME_SUCCESS, productData);
+
+export const fetchProductByNameFailed = (error) =>
+  createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_BY_NAME_FAILED, error);
+
+// Fetch Products for admin
 export const fetchProductsAdminLoading = () =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_ADMIN_LOADING);
 
@@ -31,6 +44,7 @@ export const fetchProductsAdminSuccess = (adminProductsArray) =>
 export const fetchProductsAdminFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_ADMIN_FAILED, error);
 
+// Fetch Products By Vendor
 export const fetchProductsByVendorLoading = (vendor) =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_BY_VENDOR_LOADING, vendor);
 
@@ -43,6 +57,7 @@ export const fetchProductsByVendorSuccess = (productsArray) =>
 export const fetchProductsByVendorFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_BY_VENDOR_FAILED, error);
 
+// Add Products
 export const addProductLoading = (productData) =>
   createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_LOADING, productData);
 
@@ -52,6 +67,7 @@ export const addProductSuccess = (productData) =>
 export const addProductFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCT_FAILED, error);
 
+// Update Product
 export const updateProductLoading = (productId, newProductData) =>
   createAction(PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_LOADING, {
     productId,
@@ -64,6 +80,7 @@ export const updateProductSuccess = (newProductData) =>
 export const updateProductFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_FAILED, error);
 
+// Delete Product
 export const deleteProductLoading = (productId) =>
   createAction(PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_LOADING, productId);
 

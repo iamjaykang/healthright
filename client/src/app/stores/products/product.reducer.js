@@ -6,6 +6,7 @@ const initialState = {
   filteredProductsArray: [],
   adminProductsArray: [],
   adminProduct: null,
+  product: null,
   success: false,
   message: "",
   error: null,
@@ -16,6 +17,7 @@ const productsReducer = (state = initialState, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {
+    // Fetch Products reducer
     case PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_LOADING:
       return {
         ...state,
@@ -40,6 +42,33 @@ const productsReducer = (state = initialState, action = {}) => {
         message: payload.message,
         success: payload.success,
       };
+      // Fetch Product by name reducer
+    case PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_BY_NAME_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+        product: null,
+        message: "",
+        success: false,
+      };
+    case PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_BY_NAME_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        product: payload.data,
+        message: payload.message,
+        success: payload.success,
+      };
+    case PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_BY_NAME_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
+        message: payload.message,
+        success: payload.success,
+      };
+      // Fetch Product for admin
     case PRODUCTS_ACTION_TYPES.FETCH_PRODUCT_ADMIN_LOADING:
       return {
         ...state,
@@ -65,6 +94,7 @@ const productsReducer = (state = initialState, action = {}) => {
         message: payload.message,
         success: payload.success,
       };
+      // Fetch products for admin
     case PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_ADMIN_LOADING:
       return {
         ...state,
@@ -89,6 +119,7 @@ const productsReducer = (state = initialState, action = {}) => {
         message: payload.message,
         success: payload.success,
       };
+      // Fetch products by vendor
     case PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_BY_VENDOR_LOADING:
       return {
         ...state,
@@ -113,6 +144,7 @@ const productsReducer = (state = initialState, action = {}) => {
         message: payload.message,
         success: payload.success,
       };
+      // Add product
     case PRODUCTS_ACTION_TYPES.ADD_PRODUCT_LOADING:
       return {
         ...state,
@@ -137,6 +169,7 @@ const productsReducer = (state = initialState, action = {}) => {
         message: payload.message,
         success: payload.success,
       };
+      // Update products
     case PRODUCTS_ACTION_TYPES.UPDATE_PRODUCT_LOADING:
       return {
         ...state,
@@ -162,6 +195,7 @@ const productsReducer = (state = initialState, action = {}) => {
         message: payload.message,
         success: payload.success,
       };
+      // Delete products
     case PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_LOADING:
       return {
         ...state,

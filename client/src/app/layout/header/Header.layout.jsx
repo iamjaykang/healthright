@@ -14,16 +14,18 @@ const Header = () => {
   return (
     <>
       <header className="app__header shadow-sm">
-        <Link className="app__header-brand" to="/">
-          <span className="app__header-logo">Healthright</span>
-        </Link>
-        <div className="app__header-nav-container">
-          <Navbar currentUser={currentUser} />
+        <div className="app__header-content-container">
+          <Link className="app__header-brand" to="/">
+            <span className="app__header-logo">Healthright</span>
+          </Link>
+          <div className="app__header-nav-container">
+            <Navbar currentUser={currentUser} />
+          </div>
+          <div className="app__header-nav-container--mobile">
+            <MobileNav currentUser={currentUser} />
+          </div>
+          {isCartOpen && <CartDropdown />}
         </div>
-        <div className="app__header-nav-container--mobile">
-          <MobileNav currentUser={currentUser} />
-        </div>
-        {isCartOpen && <CartDropdown />}
       </header>
     </>
   );
