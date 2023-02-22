@@ -101,11 +101,14 @@ exports.update = async (req, res, next) => {
   try {
     const { productId } = req.params;
     const newProductData = req.body;
-    const product = await productService.updateProductById(productId, newProductData);
+    const product = await productService.updateProductById(
+      productId,
+      newProductData
+    );
     res.status(200).send({
       message: "Product updated successfully.",
       data: product,
-      success:true
+      success: true,
     });
   } catch (error) {
     next(error);
@@ -117,7 +120,13 @@ exports.findOne = async (req, res, next) => {
   try {
     const { productName } = req.params;
     const product = await productService.getProductByName(productName);
-    return res.status(200).send(product);
+    return res
+      .status(200)
+      .send({
+        data: product,
+        success: true,
+        message: "Product retrieved successfully",
+      });
   } catch (error) {
     next(error);
   }

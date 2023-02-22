@@ -8,7 +8,6 @@ module.exports = function cleanUpProductData(products) {
     productImage: product.productImage,
     vendor: product.vendor.vendorName,
     category: product.category.categoryName,
-    productLive: product.productLive,
     createdAt: product.createdAt,
     updatedAt: product.updatedAt,
   }));
