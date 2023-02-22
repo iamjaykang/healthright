@@ -844,6 +844,7 @@ th {
   height: 56px;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 0 auto;
   text-align: center;
 }
@@ -852,17 +853,21 @@ th {
     margin: auto 0 auto 40px;
   }
 }
-.app__header .app__header-brand .app__header-logo {
+.app__header .app__header-brand .app__header--brand-title {
   color: white;
   font-size: 1.2rem;
-  margin: 0 auto;
+  margin: 0;
   font-weight: 400;
 }
 @media screen and (min-width: 768px) {
-  .app__header .app__header-brand .app__header-logo {
+  .app__header .app__header-brand .app__header--brand-title {
     margin: 0;
     font-size: 1.5rem;
   }
+}
+.app__header .app__header-brand .leaf-icon {
+  color: #ffffff;
+  font-size: 1.5rem;
 }
 
 .app__navbar {
