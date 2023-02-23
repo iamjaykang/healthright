@@ -263,3 +263,55 @@
 .app__nav-container--mobile.open {
     right: 0;
 }
+
+.app__header-search-form {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0 auto;
+
+    @include screen(md) {
+        display: flex;
+        margin: 0 auto;
+    }
+
+    .app__header-search-input {
+        height: 40px;
+        min-width: 400px;
+        padding: 8px 12px;
+        border: 1px solid #eee;
+        border-radius: 20px;
+        font-size: 1rem;
+        color: #555;
+
+        @include screen(md) {
+            width: 300px;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #ddd;
+        }
+    }
+
+    .app__header-search-btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 40px;
+        margin-right: 10px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        svg {
+            color: gray;
+            font-size: 1.5rem;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

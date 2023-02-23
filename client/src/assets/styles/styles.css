@@ -1061,6 +1061,55 @@ th {
   right: 0;
 }
 
+.app__header-search-form {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .app__header-search-form {
+    display: flex;
+    margin: 0 auto;
+  }
+}
+.app__header-search-form .app__header-search-input {
+  height: 40px;
+  min-width: 400px;
+  padding: 8px 12px;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  font-size: 1rem;
+  color: #555;
+}
+@media screen and (min-width: 768px) {
+  .app__header-search-form .app__header-search-input {
+    width: 300px;
+  }
+}
+.app__header-search-form .app__header-search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ddd;
+}
+.app__header-search-form .app__header-search-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 40px;
+  margin-right: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.app__header-search-form .app__header-search-btn svg {
+  color: gray;
+  font-size: 1.5rem;
+}
+.app__header-search-form .app__header-search-btn:focus {
+  outline: none;
+}
+
 .app__footer {
   background-color: #192216;
   color: #fff;

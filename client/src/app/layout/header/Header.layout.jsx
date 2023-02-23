@@ -9,6 +9,7 @@ import { ImLeaf } from "react-icons/im";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { setHamburgerMenuIsOpen } from "../../stores/hamburgerMenu/hamburgerMenu.action";
 import { selectIsHamburgerMenuOpen } from "../../stores/hamburgerMenu/hamburgerMenu.selector";
+import {IoIosSearch} from 'react-icons/io'
 
 const Header = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -17,11 +18,17 @@ const Header = () => {
 
   const [hmDropdownOpen, setHmDropdownOpen] = useState({});
 
+  const [searchTerm, setSearchTerm] = useState('');
+
   const dispatch = useDispatch();
 
   const toggleHamburgerMenu = () => {
     dispatch(setHamburgerMenuIsOpen(!isHamburgerMenuOpen));
     setHmDropdownOpen({})
+  };
+
+  const handleSearchInputChange = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   return (
@@ -34,6 +41,24 @@ const Header = () => {
               <ImLeaf className="leaf-icon" />
             </span>
           </Link>
+          <form className="app__header-search-form">
+            <input 
+              className="app__header-search-input" 
+              type="text" 
+              placeholder="Search..." 
+              value={searchTerm} 
+              onChange={handleSearchInputChange}
+            />
+            <button 
+              className="app__header-search-btn" 
+              type="submit"
+              onClick={() => {
+                // TODO: handle search button click
+              }}
+            >
+              <IoIosSearch />
+            </button>
+          </form>
           <div className="app__header-nav-container">
             <Navbar currentUser={currentUser} />
           </div>

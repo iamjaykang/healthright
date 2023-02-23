@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import mobileNavLinks from "../../../../assets/data/mobileNavLinks.json";
 import CartIcon from "../../../common/cartIcon/CartIcon.common";
