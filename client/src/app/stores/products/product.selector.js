@@ -56,8 +56,14 @@ export const selectProductsIsLoading = createSelector(
   (productsSlice) => productsSlice.isLoading
 );
 
-// returns the "isLoading" property from the "products" slice
+// returns the "success" property from the "products" slice
 export const selectProductsSuccess = createSelector(
   [selectProductsReducer],
   (productsSlice) => productsSlice.success
+);
+
+// returns the "searchedProducts" property from the "products" slice
+export const selectSearchedProducts = createSelector(
+  [selectProductsReducer],
+  (productsSlice) => productsSlice.searchedProducts
 );

@@ -9,7 +9,8 @@ import { ImLeaf } from "react-icons/im";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { setHamburgerMenuIsOpen } from "../../stores/hamburgerMenu/hamburgerMenu.action";
 import { selectIsHamburgerMenuOpen } from "../../stores/hamburgerMenu/hamburgerMenu.selector";
-import {IoIosSearch} from 'react-icons/io'
+import { IoIosSearch } from "react-icons/io";
+import { searchProductsLoading } from "../../stores/products/product.action";
 
 const Header = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -18,17 +19,32 @@ const Header = () => {
 
   const [hmDropdownOpen, setHmDropdownOpen] = useState({});
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const dispatch = useDispatch();
 
   const toggleHamburgerMenu = () => {
     dispatch(setHamburgerMenuIsOpen(!isHamburgerMenuOpen));
-    setHmDropdownOpen({})
+    setHmDropdownOpen({});
   };
 
   const handleSearchInputChange = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const resetSearchForm = () => {
+    setSearchTerm("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    try {
+      dispatch(searchProductsLoading(searchTerm));
+      resetSearchForm();
+    } catch (error) {
+      throw error;
+    }
   };
 
   return (
@@ -41,16 +57,16 @@ const Header = () => {
               <ImLeaf className="leaf-icon" />
             </span>
           </Link>
-          <form className="app__header-search-form">
-            <input 
-              className="app__header-search-input" 
-              type="text" 
-              placeholder="Search..." 
-              value={searchTerm} 
+          <form className="app__header-search-form" onSubmit={handleSubmit}>
+            <input
+              className="app__header-search-input"
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
               onChange={handleSearchInputChange}
             />
-            <button 
-              className="app__header-search-btn" 
+            <button
+              className="app__header-search-btn"
               type="submit"
               onClick={() => {
                 // TODO: handle search button click
@@ -69,7 +85,13 @@ const Header = () => {
             >
               <RxHamburgerMenu className="app__hamburger-menu-icon" />
             </button>
-            <MobileNav currentUser={currentUser} toggleHamburgerMenu={toggleHamburgerMenu} isHamburgerMenuOpen={isHamburgerMenuOpen} hmDropdownOpen={hmDropdownOpen} setHmDropdownOpen={setHmDropdownOpen}/>
+            <MobileNav
+              currentUser={currentUser}
+              toggleHamburgerMenu={toggleHamburgerMenu}
+              isHamburgerMenuOpen={isHamburgerMenuOpen}
+              hmDropdownOpen={hmDropdownOpen}
+              setHmDropdownOpen={setHmDropdownOpen}
+            />
           </div>
           <CartSidepanel />
         </div>

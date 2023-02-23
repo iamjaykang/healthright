@@ -53,6 +53,7 @@ const requests = {
 
 const Products = {
   list: () => requests.get("/products"),
+  searchByTerm: (searchTerm) => requests.get(`/products/search?q=${searchTerm}`),
   listForAdmin: () => requests.get("/products/admin"),
   listFilteredByVendor: (vendor) => requests.get(`/products/vendor/${vendor}`),
   detailsByName: (productName) => requests.get(`/products/${productName}`),

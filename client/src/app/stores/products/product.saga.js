@@ -17,9 +17,10 @@ import {
   deleteProductFailed,
   fetchProductByNameSuccess,
   fetchProductByNameFailed,
+  searchProductsSuccess,
+  searchProductsFailed,
 } from "./product.action";
 import { PRODUCTS_ACTION_TYPES } from "./product.types";
-
 
 // Fetch products
 export function* fetchProducts() {
@@ -88,12 +89,12 @@ export function* addProduct({ payload }) {
 export function* updateProduct({ payload }) {
   const { productId, newProductData } = payload;
   try {
-    const ProductData = yield call(
+    const productData = yield call(
       agent.Products.update,
       productId,
       newProductData
     );
-    yield put(updateProductSuccess(ProductData));
+    yield put(updateProductSuccess(productData));
   } catch (error) {
     yield put(updateProductFailed(error));
   }
@@ -102,13 +103,23 @@ export function* updateProduct({ payload }) {
 // Delete product
 export function* deleteProduct({ payload: productId }) {
   try {
-    const ProductData = yield call(
-      agent.Products.delete,
-      productId
-    );
-    yield put(deleteProductSuccess(ProductData));
+    const productData = yield call(agent.Products.delete, productId);
+    yield put(deleteProductSuccess(productData));
   } catch (error) {
     yield put(deleteProductFailed(error));
+  }
+}
+
+// Search products
+export function* searchProductsBySearchTerm({ payload: searchTerm }) {
+  try {
+    const searchedProducts = yield call(
+      agent.Products.searchByTerm,
+      searchTerm
+    );
+    yield put(searchProductsSuccess(searchedProducts));
+  } catch (error) {
+    yield put(searchProductsFailed(error));
   }
 }
 
@@ -156,6 +167,13 @@ export function* onDeleteProduct() {
   yield takeLatest(PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_LOADING, deleteProduct);
 }
 
+export function* onSearchProductsBySearchTerm() {
+  yield takeLatest(
+    PRODUCTS_ACTION_TYPES.SEARCH_PRODUCTS_BY_TERM_LOADING,
+    searchProductsBySearchTerm
+  );
+}
+
 export function* productsSaga() {
   yield all([
     call(onFetchProducts),
@@ -166,5 +184,6 @@ export function* productsSaga() {
     call(onDeleteProduct),
     call(onAddProduct),
     call(onFetchProductByName),
+    call(onSearchProductsBySearchTerm),
   ]);
 }

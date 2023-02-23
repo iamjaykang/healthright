@@ -5,6 +5,7 @@ const initialState = {
   productsArray: [],
   filteredProductsArray: [],
   adminProductsArray: [],
+  searchedProducts: [],
   adminProduct: null,
   product: null,
   success: false,
@@ -22,6 +23,7 @@ const productsReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLoading: true,
+        productsArray: [],
         message: "",
         success: false,
       };
@@ -99,6 +101,7 @@ const productsReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLoading: true,
+        adminProductsArray: [],
         message: "",
         success: false,
       };
@@ -123,6 +126,7 @@ const productsReducer = (state = initialState, action = {}) => {
     case PRODUCTS_ACTION_TYPES.FETCH_PRODUCTS_BY_VENDOR_LOADING:
       return {
         ...state,
+        filteredProductsArray: [],
         isLoading: true,
         message: "",
         success: false,
@@ -175,6 +179,7 @@ const productsReducer = (state = initialState, action = {}) => {
         ...state,
         error: null,
         isLoading: true,
+        adminProduct: null,
         message: "",
         success: false,
       };
@@ -213,6 +218,33 @@ const productsReducer = (state = initialState, action = {}) => {
         success: payload.success,
       };
     case PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_FAILED:
+      return {
+        ...state,
+        error: payload,
+        isLoading: false,
+        message: payload.message,
+        success: payload.success,
+      };
+      // Search products by term
+    case PRODUCTS_ACTION_TYPES.SEARCH_PRODUCTS_BY_TERM_LOADING:
+      return {
+        ...state,
+        error: null,
+        isLoading: true,
+        searchedProducts: [],
+        message: "",
+        success: false,
+      };
+    case PRODUCTS_ACTION_TYPES.SEARCH_PRODUCTS_BY_TERM_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        searchedProducts: payload.data,
+        message: payload.message,
+        success: payload.success,
+      };
+    case PRODUCTS_ACTION_TYPES.SEARCH_PRODUCTS_BY_TERM_FAILED:
       return {
         ...state,
         error: payload,

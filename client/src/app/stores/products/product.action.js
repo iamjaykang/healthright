@@ -89,3 +89,13 @@ export const deleteProductSuccess = (productData) =>
 
 export const deleteProductFailed = (error) =>
   createAction(PRODUCTS_ACTION_TYPES.DELETE_PRODUCT_FAILED, error);
+
+// Search Products
+export const searchProductsLoading = (searchTerm) =>
+  createAction(PRODUCTS_ACTION_TYPES.SEARCH_PRODUCTS_BY_TERM_LOADING, searchTerm);
+
+export const searchProductsSuccess = (productsArray) =>
+  createAction(PRODUCTS_ACTION_TYPES.SEARCH_PRODUCTS_BY_TERM_SUCCESS, productsArray);
+
+export const searchProductsFailed = (error) =>
+  createAction(PRODUCTS_ACTION_TYPES.SEARCH_PRODUCTS_BY_TERM_FAILED, error);
