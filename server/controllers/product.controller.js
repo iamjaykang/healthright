@@ -47,9 +47,7 @@ exports.findAllForAdmin = async (req, res, next) => {
 exports.getFilteredProductsByVendor = async (req, res, next) => {
   try {
     const vendor = req.params.vendor;
-    console.log(vendor);
     const products = await productService.getProductsByVendor(vendor);
-    console.log(products);
 
     res.status(200).send({
       success: true,
@@ -90,6 +88,7 @@ exports.searchProducts = async (req, res, next) => {
     res.status(200).json({
       success: true,
       data: products,
+      message: "Products retrieved successfully",
     });
   } catch (error) {
     next(error);

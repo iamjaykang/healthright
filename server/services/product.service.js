@@ -174,14 +174,20 @@ exports.getProductsByCategory = async (categoryName) => {
 // Search Products by search term
 exports.searchProductsBySearchTerm = async (searchTerm) => {
   try {
-    // Find all the products for the serach term
+    // Split the search term into individual words
+    const searchWords = searchTerm.split(" ");
+
+    // Find all the products that contain all the search terms
     const products = await Product.findAll({
       ...productDetails(ProductVendor, ProductCategory),
       where: {
-        [db.Sequelize.Op.or]: [
-          { name: { [db.Sequelize.Op.iLike]: `%${searchTerm}%` } },
-          { description: { [db.Sequelize.Op.iLike]: `%${searchTerm}%` } },
-        ],
+        productLive: true,
+        [db.Sequelize.Op.and]: searchWords.map((word) => ({
+          [db.Sequelize.Op.or]: [
+            { name: { [db.Sequelize.Op.iLike]: `%${word}%` } },
+            { description: { [db.Sequelize.Op.iLike]: `%${word}%` } },
+          ],
+        })),
       },
     });
 
