@@ -54,6 +54,8 @@ module.exports = {
         references: {
           model: "productVendors",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       categoryId: {
@@ -61,6 +63,8 @@ module.exports = {
         references: {
           model: "productCategories",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       description: {

@@ -10,25 +10,29 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       productItemId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         references: {
           model: "products",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       orderId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         references: {
           model: "shopOrders",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       qty: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       price: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
       createdAt: {

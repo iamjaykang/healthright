@@ -95,6 +95,8 @@ module.exports = {
         references: {
           model: "countries",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       createdAt: {
@@ -118,6 +120,8 @@ module.exports = {
         references: {
           model: "users",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       addressId: {
@@ -125,6 +129,8 @@ module.exports = {
         references: {
           model: "addresses",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       isDefault: {

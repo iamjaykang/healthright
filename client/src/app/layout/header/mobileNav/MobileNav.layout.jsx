@@ -1,82 +1,98 @@
 import React, { useState } from "react";
-import { action as toggleMenu } from "redux-burger-menu";
-import { useDispatch, useSelector } from "react-redux";
-import mobileNavLinks from "../../../../assets/data/mobileNavLinks.json";
 import { Link, NavLink } from "react-router-dom";
+import mobileNavLinks from "../../../../assets/data/mobileNavLinks.json";
 import CartIcon from "../../../common/cartIcon/CartIcon.common";
-import Menu from "../../../utils/menu/menu";
-import burgerIcon from "../../../../assets/images/bars-solid.svg";
 import { signOutLoading } from "../../../stores/user/user.action";
 import MobileNavDropdown from "./mobileNavDropdown/MobileNavDropdown.layout";
+import { useDispatch } from "react-redux";
+import { setHamburgerMenuIsOpen } from "../../../stores/hamburgerMenu/hamburgerMenu.action";
 
-const MobileNav = ({ currentUser }) => {
-  const isOpen = useSelector((state) => state.burgerMenu.isOpen);
-  const [hmDropdownOpen, setHmDropdownOpen] = useState({});
-  const dispatch = useDispatch();
+const MobileNavbar = ({
+  currentUser,
+  toggleHamburgerMenu,
+  isHamburgerMenuOpen,
+  hmDropdownOpen,
+  setHmDropdownOpen
+}) => {
+  const dispatch = useDispatch({});
+
+  const signOutUser = () => {
+    dispatch(signOutLoading());
+    dispatch(setHamburgerMenuIsOpen(false));
+  };
 
   const closeMenu = () => {
+    dispatch(setHamburgerMenuIsOpen(false));
     setHmDropdownOpen({});
-    dispatch(toggleMenu(false));
   };
 
   const toggleHmDropdown = (id) => {
-    setHmDropdownOpen((prevState) => {
-      return {
-        ...prevState,
-        [id]: !prevState[id],
-      };
-    });
+    setHmDropdownOpen((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
   };
 
-  const signOutUser = () => dispatch(signOutLoading());
-
   return (
-    <Menu
-      right
-      isOpen={isOpen}
-      customBurgerIcon={<img src={burgerIcon} alt="burger-icon" />}
-      width={300}
-    >
-      {mobileNavLinks.map((navLink) =>
-        navLink.title === "Sign In" && currentUser ? (
-          <div key={navLink.id}>
-            <NavLink className="app__hamburger-menu-link" to="#" onClick={signOutUser}>
-              <span>Sign Out</span>
-            </NavLink>
-          </div>
-        ) : (
-          <div key={navLink.id}>
-            <NavLink
-              onClick={
-                navLink.dropdown
-                  ? () => {
-                      toggleHmDropdown(navLink.id);
-                    }
-                  : closeMenu
-              }
-              className="app__hamburger-menu-link"
-              to={navLink.to}
-            >
-              <span>{navLink.title}</span>
-            </NavLink>
-            {navLink.dropdown && (
-              <MobileNavDropdown
-                key={`dropdown-${navLink.id}`}
-                dropdown={navLink.dropdown}
-                dropdownOpen={hmDropdownOpen[navLink.id]}
-                closeMenu={closeMenu}
-              />
-            )}
-          </div>
-        )
-      )}
-      <div>
-        <Link onClick={closeMenu} to="/checkout">
-          <CartIcon isMobileMenu={true} />
-        </Link>
-      </div>
-    </Menu>
+    <>
+      <div
+        className={`app__overlay${isHamburgerMenuOpen ? " show" : ""}`}
+        onClick={toggleHamburgerMenu}
+      />
+      <nav
+        className={`app__nav-container--mobile${
+          isHamburgerMenuOpen ? " open" : ""
+        }`}
+      >
+        <ul className="app__nav-group">
+          {mobileNavLinks.map((navLink) =>
+            navLink.title === "Sign In" && currentUser ? (
+              <li className="app__nav-item" key={navLink.id}>
+                <NavLink className="app__nav-link" to="#" onClick={signOutUser}>
+                  <span>Sign Out</span>
+                </NavLink>
+              </li>
+            ) : (
+              <li className="app__nav-item" key={navLink.id}>
+                <NavLink
+                  className="app__nav-link"
+                  to={navLink.to}
+                  onClick={
+                    navLink.dropdown
+                      ? () => {
+                          toggleHmDropdown(navLink.id);
+                        }
+                      : closeMenu
+                  }
+                >
+                  <span>{navLink.title}</span>
+                </NavLink>
+                {navLink.dropdown && (
+                  <div
+                    className={`app__dropdown--mobile ${
+                      hmDropdownOpen[navLink.id] ? "open" : ""
+                    }`}
+                  >
+                    <MobileNavDropdown
+                      key={`app__dropdown-${navLink.id}`}
+                      dropdownOpen={hmDropdownOpen[navLink.id]}
+                      dropdown={navLink.dropdown}
+                      closeMenu={closeMenu}
+                    />
+                  </div>
+                )}
+              </li>
+            )
+          )}
+          <li className="app__nav-item">
+            <Link onClick={closeMenu} to="/checkout">
+              <CartIcon isMobileMenu={true} />
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </>
   );
 };
 
-export default MobileNav;
+export default MobileNavbar;

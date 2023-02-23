@@ -1,0 +1,4 @@
+export const HAMBURGER_MENU_ACTION_TYPES = {
+    SET_IS_HAMBURGER_MENU_OPEN: 'hamburgerMenu/SET_IS_HAMBURGER_MENU_OPEN',
+  };
+  

@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ReactComponent as ShoppingIcon } from "../../../assets/images/shopping-bag.svg";
 import {
   selectCartCount,
   selectIsCartOpen,
 } from "../../stores/cart/cart.selector";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 import { setIsCartOpen } from "../../stores/cart/cart.action";
 
 const CartIcon = ({ isMobileMenu }) => {
@@ -20,25 +20,9 @@ const CartIcon = ({ isMobileMenu }) => {
     }
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (isCartOpen && !event.target.closest(".app__cart-icon-container")) {
-        dispatch(setIsCartOpen(false));
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [dispatch, isCartOpen]);
   return (
-    <div
-      className="app__cart-icon-container"
-      onClick={toggleIsCartOpen}
-    >
-      <ShoppingIcon className="app__shopping-icon" />
+    <div className="app__cart-icon-container" onClick={toggleIsCartOpen}>
+      <HiOutlineShoppingBag className="app__shopping-icon" />
       <span className="app__cart-item-count">{cartCount}</span>
     </div>
   );

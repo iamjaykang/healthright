@@ -5,12 +5,12 @@
             justify-content: center;
             align-items: center;
             background-color: $white-color;
-            padding: 0.5rem;
-            font-weight: bold;
+            padding: 1rem;
+            font-weight: 600;
             height: 40px;
             width: 120px;
-            border-radius: 2rem;
-            box-shadow: 0px 0px 0px 10px $tertiary-color;
+            border-radius: 20px;
+            box-shadow: 0px 0px 0px 5px $tertiary-color;
 
             &--mobile {
                 @extend .app__hero-banner-link;
@@ -19,4 +19,8 @@
             }
         }
     }
+}
+
+.app__product-card-mask--name {
+    text-align: center;
 }

@@ -17,7 +17,6 @@ const ProductDetailsPage = () => {
   const { productName } = useParams();
 
   let [quantity, setQuantity] = useState(1);
-  let [showIngredients, setShowIngredients] = useState(false);
   const [activeAccordionId, setActiveAccordionId] = useState(null);
 
   const dispatch = useDispatch();
@@ -25,10 +24,6 @@ const ProductDetailsPage = () => {
   const product = useSelector(selectProduct);
 
   const isProductLoading = useSelector(selectProductsIsLoading);
-
-  const toggleIngredients = () => {
-    setShowIngredients(!showIngredients);
-  };
 
   const cartItems = useSelector(selectCartItems);
 

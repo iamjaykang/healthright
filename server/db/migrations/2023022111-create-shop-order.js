@@ -10,35 +10,43 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       userId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         references: {
           model: "users",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       shippingAddressId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         references: {
           model: "addresses",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       shippingMethodId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         references: {
           model: "shippingMethods",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       orderTotal: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
       orderStatusId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         references: {
           model: "orderStatuses",
           key: "id",
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE',
         },
       },
       createdAt: {

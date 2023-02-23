@@ -76,7 +76,7 @@ module.exports = {
         productImage:
           "https://i.ibb.co/4fd2frP/Kuku-GLM-Oil-Range-Blister-12500-Maintenance-45-Caps-5.jpg",
           cost: 10,
-          productLive: 0
+          productLive: 1
       },
       {
         price: 25,

@@ -183,7 +183,7 @@ module.exports = {
         description: "<p>kuku GLM27000 45c</p>",
         productImage: "https://i.ibb.co/x5y4nV5/kuku-glm27000-45.jpg",
         cost: 10,
-        productLive: false,
+        productLive: true,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
