@@ -3,9 +3,9 @@ import BrandsPreview from '../../app/common/brandsPreview/BrandsPreviewList.comp
 
 const BrandsPage = () => {
   return (
-    <>
+    <div className="app__preview-container--brands">
         <BrandsPreview />
-    </>
+    </div>
   )
 }
 

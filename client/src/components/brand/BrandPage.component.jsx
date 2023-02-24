@@ -3,7 +3,7 @@ import BrandPreview from "./brandPreview/BrandPreview.component";
 
 const BrandPage = () => {
   return (
-    <div className="app__brand-preview-container">
+    <div className="app__preview-container--brand">
       <BrandPreview />
     </div>
   );
