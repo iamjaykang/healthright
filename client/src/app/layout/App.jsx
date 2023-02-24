@@ -16,6 +16,7 @@ import {
 import AdminHeader from "./admin/header/AdminHeader.layout";
 import AdminFooter from "./admin/footer/AdminFooter.layout";
 import AdminSidepanel from "./admin/sidepanel/AdminSidepanel.layout";
+import { shouldShowMessenger } from "../utils/df-messanger/df-messanger.utils";
 
 const App = () => {
   const location = useLocation();
@@ -41,6 +42,16 @@ const App = () => {
       dispatch(setRequiresAdminAuth(false));
     }
   }, [dispatch, location.pathname]);
+
+  useEffect(() => {
+    const shouldDisplayMessenger = shouldShowMessenger();
+    const messengerElement = document.getElementById("my-chatbot");
+    if (messengerElement) {
+      messengerElement.style.display = shouldDisplayMessenger
+        ? "block"
+        : "none";
+    }
+  }, [location.pathname]);
 
   switch (requiresAdminAuth) {
     case true:
