@@ -6,13 +6,15 @@ Live: https://dynamic-wisp-ef7e88.netlify.app
 
 ## Introduction
 
-This project is an e-commerce website built using React JS, Firebase, Sequelize ORM, styled with SCSS, and state management by Redux. The website allows users to browse and purchase products, as well as manage their shopping carts. The project also integrates with Google Dialogflow for conversational user experience.
+This project is an e-commerce website built using React JS, Node.Js, Express.Js, Firebase Auth, Postgres SQL Sequelize ORM, styled with SCSS, and state management by Redux. The website allows users to browse and purchase products, as well as manage their shopping carts. The project also integrates with Google Dialogflow for conversational user experience. The website also has an admin route that allows authenticated users with admin privileges to perform CRUD (Create, Read, Update, Delete) operations for products and customers. This functionality is intended for website administrators to manage the products and customers available on the site. The admin route can only be accessed by users with valid admin credentials.
 
-### Technologies Used
+### Technologies & Tools Used
 
 - React JS
-- Firebase Auth
+- Firebase Client SDK
+- Firebase Admin SDK
 - Postgres SQL
+- Chart.js
 - Node JS
 - Express JS
 - SCSS
@@ -57,6 +59,9 @@ This project is an e-commerce website built using React JS, Firebase, Sequelize 
 - Product display
 - User authentication
 - Shopping cart management
+- Search and sort by vendors and categories
+- Admin route to make CRUD operations for products and customers
+- Display data in a chart using Chart.js
 
 ## Usage
 
@@ -67,6 +72,10 @@ This project is an e-commerce website built using React JS, Firebase, Sequelize 
 3. Log in or sign up.
 
 4. Review and modify your cart, then proceed to payment.
+
+5. Use the search and sort functions to find products by vendor or category.
+
+6. Access the admin route to manage products and customers.
 
 ## Environment Variables
 
@@ -101,3 +110,14 @@ The project requires the following environment variables to be set:
 - PROD_DB_HOST
 - CORS_ORIGIN
 - STRIPE_SECRET_KEY
+- FIREBASE_TYPE
+- FIREBASE_PROJECT_ID
+- FIREBASE_PRIVATE_KEY_ID
+- FIREBASE_PRIVATE_KEY
+- FIREBASE_CLIENT_EMAIL
+- FIREBASE_CLIENT_ID
+- FIREBASE_AUTH_URI
+- FIREBASE_TOKEN_URI
+- FIREBASE_AUTH_PROVIDER_X509_CERT_URL
+- FIREBASE_CLIENT_X509_CERT_URL
+- FIREBASE_DB_URL
