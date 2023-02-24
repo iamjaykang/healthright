@@ -21,15 +21,15 @@ const BrandPreview = () => {
   if (fetchProductsByVendor) return <Spinner />;
 
   return (
-    <>
+    <div className="app__preview-content-container--brand">
       <h2 className="app__content-title">{vendor.toUpperCase()}</h2>
-      <div className="app__preview-item-container--brand">
+      <div className="app__preview-item-list--brand">
         {filteredProductsByVendorArray &&
           filteredProductsByVendorArray.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
       </div>
-    </>
+    </div>
   );
 };
 

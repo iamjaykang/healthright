@@ -26,7 +26,7 @@ const ProductSearchPage = () => {
   return (
     <div className="app__preview-container--product">
       <h2 className="app__content-title">Search results for "{searchTerm}"</h2>
-      <div className="app__preview-item-container--product">
+      <div className="app__preview-item-list--product">
         {searchedProducts &&
           searchedProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
