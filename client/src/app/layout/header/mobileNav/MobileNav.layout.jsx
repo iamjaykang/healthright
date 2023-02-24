@@ -6,13 +6,14 @@ import { signOutLoading } from "../../../stores/user/user.action";
 import MobileNavDropdown from "./mobileNavDropdown/MobileNavDropdown.layout";
 import { useDispatch } from "react-redux";
 import { setHamburgerMenuIsOpen } from "../../../stores/hamburgerMenu/hamburgerMenu.action";
+import Searchbar from "../../../common/searchbar/Searchbar.common";
 
 const MobileNavbar = ({
   currentUser,
   toggleHamburgerMenu,
   isHamburgerMenuOpen,
   hmDropdownOpen,
-  setHmDropdownOpen
+  setHmDropdownOpen,
 }) => {
   const dispatch = useDispatch({});
 
@@ -45,6 +46,11 @@ const MobileNavbar = ({
         }`}
       >
         <ul className="app__nav-group">
+          <li className="app__nav-item">
+            <div className="app__searchbar-container--mobile">
+              <Searchbar />
+            </div>
+          </li>
           {mobileNavLinks.map((navLink) =>
             navLink.title === "Sign In" && currentUser ? (
               <li className="app__nav-item" key={navLink.id}>

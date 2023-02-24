@@ -8,7 +8,8 @@ const BrandsPreview = () => {
   const vendorsMap = useSelector(selectVendorsMap);
 
   return (
-    <div className="app__brands-preview-section">
+      <>
+      <div className="app__preview-list--brands"></div>
       {vendorsMap &&
         Object.keys(vendorsMap).map((vendor) => {
           const products = vendorsMap[vendor];
@@ -16,7 +17,7 @@ const BrandsPreview = () => {
             <BrandsPreviewItem key={vendor} vendor={vendor} products={products} />
           );
         })}
-    </div>
+        </>
   );
 };
 

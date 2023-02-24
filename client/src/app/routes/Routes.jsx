@@ -1,8 +1,8 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import AuthenticationPage from "../../components/authentication/AuthenticationPage.component";
-import Brands from "../../components/brands/BrandsPage.component";
+import BrandsPage from "../../components/brands/BrandsPage.component";
 import App from "../layout/App";
-import Brand from "../../components/brand/BrandPage.component";
+import BrandPage from "../../components/brand/BrandPage.component";
 import PaymentPage from "../../components/payment/PaymentPage.component";
 import NotFoundPage from "../../components/notFound/NotFoundPage.component";
 import CheckOutPage from "../../components/checkOut/CheckOutPage.component";
@@ -17,6 +17,7 @@ import AdminCustomers from "../../components/admin/dashboard/customers/AdminCust
 import AdminAddCustomer from "../../components/admin/dashboard/customers/addCustomer/AdminAddCustomer.component";
 import AdminEditCustomer from "../../components/admin/dashboard/customers/editCustomer/AdminEditCustomer.component";
 import ProductDetailsPage from "../../components/productDetails/ProductDetailsPage.component";
+import ProductSearchPage from "../../components/productSearch/ProductSearchPage.component";
 
 export const routes = [
   {
@@ -61,10 +62,11 @@ export const routes = [
           },
         ],
       },
-      { path: "brands", element: <Brands /> },
-      { path: "brands/:vendor", element: <Brand /> },
+      { path: "brands", element: <BrandsPage /> },
+      { path: "brands/:vendor", element: <BrandPage /> },
       { path: "auth", element: <AuthenticationPage /> },
       { path: "product/:productName", element: <ProductDetailsPage /> },
+      { path: "search", element: <ProductSearchPage /> },
       {
         path: "/admin/sign-in",
         element: <AdminAuthenticationPage />,

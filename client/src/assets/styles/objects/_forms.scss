@@ -12,6 +12,61 @@
     }
 }
 
+.app__search-form {
+
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    
+    @include screen(sm) {
+        min-width: 300px;
+    }
+
+    @include screen(md) {
+        min-width: 400px;
+    }
+
+    .app__search-input {
+        height: 40px;
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #eee;
+        border-radius: 20px;
+        font-size: 1rem;
+        color: #555;
+
+        &::placeholder {
+            color: $primary-color;
+            opacity: 0.5;
+          }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #ddd;
+        }
+    }
+
+    .app__search-btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 40px;
+        margin-right: 10px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        svg {
+            color: gray;
+            font-size: 1.5rem;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
 .dashboard {
     &__form {
         grid-gap: 1rem;
