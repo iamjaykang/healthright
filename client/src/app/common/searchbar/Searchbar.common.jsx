@@ -59,7 +59,7 @@ const Searchbar = ({setHmDropdownOpen}) => {
       value={searchParams.q}
       onChange={searchHandler}
     />
-    <button className="app__search-btn" type="submit">
+    <button className="app__search-btn" type="submit" disabled={!searchTerm}>
       <IoIosSearch />
     </button>
   </form>
