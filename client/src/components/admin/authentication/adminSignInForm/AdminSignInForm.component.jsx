@@ -42,7 +42,7 @@ const AdminSignInForm = () => {
 
   useEffect(() => {
     if (currentUser && currentUser.user.isAdmin) {
-      navigate("/admin/dashboard");
+      navigate("/admin/dashboard/overview");
     }
   }, [currentUser, navigate]);
 

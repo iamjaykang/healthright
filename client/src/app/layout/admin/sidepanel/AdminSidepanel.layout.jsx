@@ -43,7 +43,7 @@ const AdminSidepanel = () => {
         <ul className="dashboard__sidepanel-list">
           <li className="dashboard__sidepanel-list-item">
             <NavLink
-              to="/admin/dashboard"
+              to="/admin/dashboard/overview"
               className="dashboard__sidepanel-item"
             >
               <span className="dashboard__nav-link-icon">

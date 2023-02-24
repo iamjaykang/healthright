@@ -5,6 +5,7 @@ import Spinner from "../common/spinner/Spinner.common";
 import { signOutLoading } from "../stores/user/user.action";
 import {
   selectAuthError,
+  selectAuthMessage,
   selectCurrentUser,
   selectUserIsLoading,
 } from "../stores/user/user.selector";
@@ -13,6 +14,7 @@ const RequireAuth = () => {
   const currentUser = useSelector(selectCurrentUser);
   const currentUserIsLoading = useSelector(selectUserIsLoading);
   const authError = useSelector(selectAuthError);
+  const authMessage = useSelector(selectAuthMessage);
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -54,6 +56,14 @@ const RequireAuth = () => {
   if (
     !currentUserIsLoading &&
     authError === "User auth doesn't exist" &&
+    location.pathname.startsWith("/admin")
+  ) {
+    return <Navigate to="/admin/sign-in" state={{ from: location }} />;
+  }
+
+  if (
+    !currentUserIsLoading &&
+    authMessage === "Sign out success" &&
     location.pathname.startsWith("/admin")
   ) {
     return <Navigate to="/admin/sign-in" state={{ from: location }} />;

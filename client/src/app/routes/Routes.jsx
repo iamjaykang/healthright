@@ -29,7 +29,7 @@ export const routes = [
         element: <RequireAuth />,
         children: [
           {
-            path: "/admin/dashboard",
+            path: "/admin/dashboard/overview",
             element: <AdminOverview />,
           },
           {

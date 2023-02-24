@@ -24,6 +24,8 @@ const userReducer = (state = INITIAL_STATE, action = {}) => {
       return {
         ...state,
         isLoading: true,
+        message: null,
+        error: null
       };
     case USER_ACTION_TYPES.CHECK_USER_SESSION:
       return {
@@ -53,6 +55,7 @@ const userReducer = (state = INITIAL_STATE, action = {}) => {
         ...state,
         isLoading: false,
         currentUser: payload,
+        message: "Sign in success",
         error: null,
       };
     case USER_ACTION_TYPES.SIGN_IN_FAILED:
@@ -70,6 +73,7 @@ const userReducer = (state = INITIAL_STATE, action = {}) => {
       return {
         ...state,
         currentUser: null,
+        message: "Sign out success",
         isLoading: false,
         error: null,
       };

@@ -14,7 +14,9 @@ const AdminHeader = () => {
     dispatch(setIsSidepanelOpen(!isSidepanelOpen));
   };
 
-  const signOutUser = () => dispatch(signOutLoading());
+  const signOutUser = () => {
+    dispatch(signOutLoading());
+  };
   return (
     <>
       <div
