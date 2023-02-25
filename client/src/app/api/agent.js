@@ -53,7 +53,8 @@ const requests = {
 
 const Products = {
   list: () => requests.get("/products"),
-  searchByTerm: (searchTerm) => requests.get(`/products/search?q=${searchTerm}`),
+  searchByTerm: (searchTerm) =>
+    requests.get(`/products/search?q=${searchTerm}`),
   listForAdmin: () => requests.get("/products/admin"),
   listFilteredByVendor: (vendor) => requests.get(`/products/vendor/${vendor}`),
   detailsByName: (productName) => requests.get(`/products/${productName}`),
@@ -68,7 +69,9 @@ const Users = {
   list: () => requests.get("/users"),
   details: (customerId) => requests.get(`/users/${customerId}`),
   create: (userData) => requests.post("/users", userData),
-  update: (id, newUserData) => {requests.put(`/users/${id}`, newUserData)},
+  update: (id, newUserData) => {
+    requests.put(`/users/${id}`, newUserData);
+  },
   delete: (id) => requests.del(`/users/${id}`),
 };
 

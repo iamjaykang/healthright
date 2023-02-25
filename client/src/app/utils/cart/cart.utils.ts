@@ -1,4 +1,6 @@
-export const addCartItem = (cartItems, productToAdd, quantity = 1) => {
+import { CartItem, Product } from "../../models/product.model";
+
+export const addCartItem = (cartItems: CartItem[], productToAdd: Product, quantity: number = 1): CartItem[] => {
     // find if cartItems contains productToAadd
     const existingCartItem = cartItems.find(
       (cartItem) => cartItem.id === productToAdd.id
@@ -16,7 +18,7 @@ export const addCartItem = (cartItems, productToAdd, quantity = 1) => {
     return [...cartItems, { ...productToAdd, quantity }];
   };
   
-  export const updateCartItemQuantity = (cartItems, itemId, intent) => {
+  export const updateCartItemQuantity = (cartItems: CartItem[], itemId: number, intent: string): CartItem[] => {
     // find the cart item with the matching itemId
     const existingCartItem = cartItems.find((cartItem) => cartItem.id === itemId);
   
@@ -55,7 +57,7 @@ export const addCartItem = (cartItems, productToAdd, quantity = 1) => {
     return cartItems;
   };
   
-  export const removeCartItem = (cartItems, itemId) => {
+  export const removeCartItem = (cartItems: CartItem[], itemId: number): CartItem[] => {
     // find the cart item with the matching itemId
     const existingCartItem = cartItems.find((cartItem) => cartItem.id === itemId);
   
