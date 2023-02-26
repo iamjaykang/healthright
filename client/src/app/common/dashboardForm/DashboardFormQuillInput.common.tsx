@@ -1,8 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const DashboardFormQuillInput = ({ label, ...otherProps }) => {
+type QuillInputProps = {
+  label?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+}
+
+const DashboardFormQuillInput: FC<QuillInputProps> = ({
+  label,
+  ...otherProps
+}) => {
   return (
     <div className="dashboard__input-group">
       {label && <label className="dashboard__label">{label}</label>}

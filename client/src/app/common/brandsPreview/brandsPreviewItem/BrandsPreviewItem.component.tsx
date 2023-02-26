@@ -1,12 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ProductCard from "../../productCard/ProductCard.component";
 import { Link } from "react-router-dom";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import ProductCarousel from "../../productCarousel/ProductCarousel.common";
 import { useScreenWidth } from "../../../utils/screenWidth/screenWidth.util";
+import { Product } from "../../../models/product.model";
 
-const BrandsPreviewItem = ({ vendor, products }) => {
+export interface BrandsPreviewItemProps {
+  vendor: string;
+  products: Product[];
+}
+
+const BrandsPreviewItem: FC<BrandsPreviewItemProps> = ({
+  vendor,
+  products,
+}) => {
   const [slidesPerView, setSlidesPerView] = useState(4);
   const screenWidth = useScreenWidth();
 
@@ -24,7 +33,7 @@ const BrandsPreviewItem = ({ vendor, products }) => {
         <Link to={`/brands/${vendor}`}>
           <h2>{vendor.toUpperCase()}</h2>
         </Link>
-        </div>
+      </div>
       <div className="app__brands-preview-item-content">
         <ProductCarousel slidesPerView={slidesPerView}>
           {products.map((product) => (

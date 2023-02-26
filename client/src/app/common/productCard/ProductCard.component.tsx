@@ -1,11 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../button/Button.common";
 import { addItemToCart } from "../../stores/cart/cart.action";
 import { selectCartItems } from "../../stores/cart/cart.selector";
 import { Link } from "react-router-dom";
+import { Product } from "../../models/product.model";
 
-const ProductCard = ({ product }) => {
+export interface ProductCardProps {
+  product: Product;
+}
+
+const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const dispatch = useDispatch();
 
   const { name, price, productImage } = product;

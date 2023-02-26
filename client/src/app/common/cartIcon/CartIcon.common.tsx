@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCartCount,
@@ -7,7 +7,11 @@ import {
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { setIsCartOpen } from "../../stores/cart/cart.action";
 
-const CartIcon = ({ isMobileMenu }) => {
+export interface CartIconProps {
+  isMobileMenu: boolean
+}
+
+const CartIcon: FC<CartIconProps> = ({ isMobileMenu }) => {
   const dispatch = useDispatch();
 
   const cartCount = useSelector(selectCartCount);
