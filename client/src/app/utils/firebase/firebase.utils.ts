@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { FirebaseError, initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithPopup,
@@ -8,9 +8,18 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  User,
+  NextOrObserver,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  QueryDocumentSnapshot,
+} from "firebase/firestore";
+import { AdditionalInformation, UserData } from "../../models/user.model";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -43,7 +52,10 @@ export const signInWithGooglePopup = () =>
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+  userAuth: User,
+  additionalInformation: AdditionalInformation = {} as AdditionalInformation
+): Promise<void | QueryDocumentSnapshot<UserData>> => {
   if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
 
@@ -59,54 +71,71 @@ export const createUserDocumentFromAuth = async (userAuth) => {
       await setDoc(userDocRef, {
         email,
         createdAt,
+        isAdmin: false,
+        ...additionalInformation,
       });
     } catch (error) {
-      console.log("Error creating the user", error.message);
+      console.log("Error creating the user", error);
     }
   }
 
   // if user data exists
 
-  return userSnapshot;
+  return userSnapshot as QueryDocumentSnapshot<UserData>;
 };
 
-export const createAuthUserWithEmailAndPassword = async (email, password) => {
+export const createAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string,
+  additionalInformation: AdditionalInformation = {} as AdditionalInformation
+) => {
   if (!email || !password) return;
 
   try {
     const result = await createUserWithEmailAndPassword(auth, email, password);
+    await createUserDocumentFromAuth(result.user, { ...additionalInformation });
     return result;
-  } catch (error) {
-    if (error.code === "auth/email-already-in-use") {
-      console.log("Cannot create user, email already in use");
-    } else {
-      console.log("Error creating user:", error);
+  } catch (error: unknown) {
+    if (error instanceof FirebaseError) {
+      if (error.code === "auth/email-already-in-use") {
+        console.log("Cannot create user, email already in use");
+      } else {
+        console.log("Error creating user:", error);
+      }
     }
   }
 };
 
-export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+export const signInAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
   if (!email || !password) return;
 
   try {
     const result = await signInWithEmailAndPassword(auth, email, password);
     return result.user;
-  } catch (error) {
-    switch (error.code) {
-      case "auth/wrong-password":
-        console.log("Incorrect password or email");
-        break;
-      case "auth/user-not-found":
-        console.log("No user associated with this email");
-        break;
-      default:
-        console.log(error);
-        break;
+  } catch (error: unknown) {
+    if (error instanceof FirebaseError) {
+      switch (error.code) {
+        case "auth/wrong-password":
+          console.log("Incorrect password or email");
+          break;
+        case "auth/user-not-found":
+          console.log("No user associated with this email");
+          break;
+        default:
+          console.log(error);
+          break;
+      }
     }
   }
 };
 
-export const signInAuthUserForAdmin = async (email, password) => {
+export const signInAuthUserForAdmin = async (
+  email: string,
+  password: string
+) => {
   if (!email || !password) return;
 
   try {
@@ -121,28 +150,30 @@ export const signInAuthUserForAdmin = async (email, password) => {
       signOutUser();
       return null;
     }
-  } catch (error) {
-    switch (error.code) {
-      case "auth/wrong-password":
-        console.log("Incorrect password or email");
-        break;
-      case "auth/user-not-found":
-        console.log("No user associated with this email");
-        break;
-      default:
-        console.log(error);
-        break;
+  } catch (error: unknown) {
+    if (error instanceof FirebaseError) {
+      switch (error.code) {
+        case "auth/wrong-password":
+          console.log("Incorrect password or email");
+          break;
+        case "auth/user-not-found":
+          console.log("No user associated with this email");
+          break;
+        default:
+          console.log(error);
+          break;
+      }
     }
   }
 };
 
 export const signOutUser = async () => await signOut(auth);
 
-export const onAuthStateChangedListener = (callback) => {
+export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => {
   onAuthStateChanged(auth, callback);
 };
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (): Promise<User | null> => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
       auth,
@@ -155,7 +186,7 @@ export const getCurrentUser = () => {
   });
 };
 
-export const setIdTokenInCookie = (idToken, expirationDate) => {
+export const setIdTokenInCookie = (idToken: string, expirationDate: Date) => {
   document.cookie = `idToken=${idToken}; expires=${expirationDate}; path=/; secure;`;
 };
 
