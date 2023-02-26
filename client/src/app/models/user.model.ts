@@ -8,7 +8,7 @@ export interface UserData {
 }
 
 export interface CurrentUser {
-    user?: UserData
+  user?: UserData;
 }
 
 export interface AdditionalInformation {
@@ -22,30 +22,41 @@ export interface Customer {
   firstName: string;
   lastName: string;
   emailAddress: string;
-  createdAt: string;
-  updatedAt: string;
-  userAddresses: Address[];
+  createdAt: Date;
+  updatedAt: Date;
+  userAddresses: UserAddress[];
+}
+
+export interface UserAddress {
+  id: number;
+  userId: number;
+  addressId: number;
+  isDefault: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  address: Address;
 }
 
 export interface Address {
   id: number;
   unitNumber: string | null;
-  streetNumber: number;
+  streetNumber: string;
   addressLine1: string;
   addressLine2: string | null;
   city: string;
   region: string;
   postalCode: string;
+  countryId: number;
+  createdAt: Date;
+  updatedAt: Date;
   country: Country;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface Country {
   id: number;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
+  countryName: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class UserFormValues {
@@ -71,8 +82,8 @@ export class CustomerFormValues {
   firstName: string = "";
   lastName: string = "";
   emailAddress: string = "";
-  createdAt: Date | string = "";
-  updatedAt: Date | string = "";
+  createdAt?: Date | string = "";
+  updatedAt?: Date | string = "";
   userId?: number = 0;
   addressId?: number = 0;
   isDefault: boolean = false;
