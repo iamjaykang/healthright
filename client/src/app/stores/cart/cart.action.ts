@@ -1,5 +1,5 @@
 import { ActionWithPayload } from "../../models/actionTypes.model";
-import { CartItem, Product } from "../../models/product.model";
+import { CartItemData, Product } from "../../models/product.model";
 import {
   addCartItem,
   removeCartItem,
@@ -18,7 +18,7 @@ export type SetIsCartOpen = ActionWithPayload<
 
 export type SetCartItems = ActionWithPayload<
   CART_ACTION_TYPES.SET_CART_ITEMS,
-  CartItem[]
+  CartItemData[]
 >;
 
 // This function creates an action object to set isCartOpen state to true or false
@@ -27,7 +27,7 @@ export const setIsCartOpen = withMatcher(
     createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, isCartOpen)
 );
 
-export const setCartItems = withMatcher((cartItems: CartItem[]) =>
+export const setCartItems = withMatcher((cartItems: CartItemData[]) =>
   createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems)
 );
 
@@ -36,7 +36,7 @@ export const setCartItems = withMatcher((cartItems: CartItem[]) =>
 // it uses the addCartItem utility function to add the item to the cart
 // and sets the new cart items as the payload of the action object
 export const addItemToCart = withMatcher(
-  (cartItems: CartItem[], productToAdd: Product, quantity: number) => {
+  (cartItems: CartItemData[], productToAdd: Product, quantity?: number) => {
     const newCartItems = addCartItem(cartItems, productToAdd, quantity);
     return setCartItems(newCartItems);
   }
@@ -47,7 +47,7 @@ export const addItemToCart = withMatcher(
 // it uses the updateCartItemQuantity utility function to update the quantity of the item
 // and sets the new cart items as the payload of the action object
 export const updateItemQuantity = withMatcher(
-  (cartItems: CartItem[], itemId: number, intent: string) => {
+  (cartItems: CartItemData[], itemId: number, intent: string) => {
     const newCartItems = updateCartItemQuantity(cartItems, itemId, intent);
 
     return setCartItems(newCartItems);
@@ -59,7 +59,7 @@ export const updateItemQuantity = withMatcher(
 // it uses the removeCartItem utility function to remove the item in the cart
 // and sets the new cart items as the payload of the action object
 export const removeItem = withMatcher(
-  (cartItems: CartItem[], itemId: number) => {
+  (cartItems: CartItemData[], itemId: number) => {
     const newCartItems = removeCartItem(cartItems, itemId);
     return setCartItems(newCartItems);
   }

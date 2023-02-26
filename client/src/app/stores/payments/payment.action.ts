@@ -1,12 +1,12 @@
 import { ActionWithPayload } from "../../models/actionTypes.model";
 import { PaymentResponse } from "../../models/apiResponses.model";
-import { CartItem } from "../../models/product.model";
+import { CartItemData } from "../../models/product.model";
 import { createAction, withMatcher } from "../../utils/reducer/reducer.utils";
 import { PAYMENTS_ACTION_TYPES } from "./payment.types";
 
 export type SetClientSecretLoading = ActionWithPayload<
   PAYMENTS_ACTION_TYPES.SET_CLIENT_SECRET_LOADING,
-  CartItem[]
+  CartItemData[]
 >;
 
 export type SetClientSecretSuccess = ActionWithPayload<
@@ -20,7 +20,7 @@ export type SetClientSecretFailed = ActionWithPayload<
 >;
 
 export const setClientSecretLoading = withMatcher(
-  (cartItems: CartItem[]): SetClientSecretLoading =>
+  (cartItems: CartItemData[]): SetClientSecretLoading =>
     createAction(PAYMENTS_ACTION_TYPES.SET_CLIENT_SECRET_LOADING, cartItems)
 );
 

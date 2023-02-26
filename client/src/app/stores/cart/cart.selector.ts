@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { CartItem } from "../../models/product.model";
+import { CartItemData } from "../../models/product.model";
 import { RootState } from "../store";
 
 import { CartState } from "./cart.reducer";
@@ -10,7 +10,7 @@ const selectCartReducer = (state: RootState): CartState => state.cart;
 //select the cartItems from the cart slice
 export const selectCartItems = createSelector(
   [selectCartReducer],
-  (cartSlice): CartItem[] => cartSlice.cartItems
+  (cartSlice): CartItemData[] => cartSlice.cartItems
 );
 
 //select the isCartOpen from the cart slice
