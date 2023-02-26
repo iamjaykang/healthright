@@ -1,9 +1,10 @@
 import { createSelector } from "reselect";
+import { RootState } from "../store";
+import { PaymentState } from "./payment.reducer";
 
-const selectPaymentsReducer = (state) => {
-    return state.payments;
-  };
-  
+const selectPaymentsReducer = (state: RootState): PaymentState => {
+  return state.payments;
+};
 
 export const selectClientSecret = createSelector(
   [selectPaymentsReducer],
