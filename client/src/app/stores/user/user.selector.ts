@@ -1,7 +1,9 @@
 import { createSelector } from "reselect";
+import { RootState } from "../store";
+import { UserState } from "./user.reducer";
 
 //select the cart slice of the state
-const selectUserReducer = (state) => state.user;
+const selectUserReducer = (state: RootState): UserState => state.user;
 
 export const selectCurrentUser = createSelector(
   [selectUserReducer],
@@ -26,7 +28,6 @@ export const selectAuthIsSignUp = createSelector(
 export const selectAuthError = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.error
-
 );
 export const selectAuthMessage = createSelector(
   [selectUserReducer],
