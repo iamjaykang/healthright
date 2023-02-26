@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { CustomerResponse, CustomersResponse, PaymentResponse, ProductResponse, ProductsResponse } from "../models/apiResponses.model";
-import { AdminProductFormValues, CartItem } from "../models/product.model";
+import { AdminProductFormValues, CartItemData } from "../models/product.model";
 import { CustomerFormValues } from "../models/user.model";
 import { router } from "../routes/Routes";
 
@@ -78,7 +78,7 @@ const Users = {
 };
 
 const Payments = {
-  create: (cartItems: CartItem[]) =>
+  create: (cartItems: CartItemData[]) =>
     requests.post<PaymentResponse>("/payment/create-payment-intent", cartItems),
 };
 
