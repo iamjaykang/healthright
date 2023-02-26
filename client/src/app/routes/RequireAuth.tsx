@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Spinner from "../common/spinner/Spinner.common";
+import { CurrentUser } from "../models/user.model";
 import { signOutLoading } from "../stores/user/user.action";
 import {
   selectAuthError,
@@ -11,7 +12,7 @@ import {
 } from "../stores/user/user.selector";
 
 const RequireAuth = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser) as CurrentUser | null;
   const currentUserIsLoading = useSelector(selectUserIsLoading);
   const authError = useSelector(selectAuthError);
   const authMessage = useSelector(selectAuthMessage);
@@ -19,7 +20,7 @@ const RequireAuth = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentUser && !currentUser.user.isAdmin) {
+    if (currentUser && currentUser.user && !currentUser.user.isAdmin) {
       dispatch(signOutLoading());
     }
   }, [dispatch, currentUser]);
@@ -31,6 +32,7 @@ const RequireAuth = () => {
   if (
     !currentUserIsLoading &&
     currentUser &&
+    currentUser.user &&
     currentUser.user.isAdmin !== true
   ) {
     return <Navigate to="/admin/sign-in" state={{ from: location }} />;
@@ -45,6 +47,7 @@ const RequireAuth = () => {
   if (!currentUserIsLoading) {
     if (
       currentUser &&
+      currentUser.user &&
       currentUser.user.isAdmin &&
       authError === null &&
       location.pathname === "/admin"
@@ -55,6 +58,7 @@ const RequireAuth = () => {
 
   if (
     !currentUserIsLoading &&
+    typeof authError === "string" &&
     authError === "User auth doesn't exist" &&
     location.pathname.startsWith("/admin")
   ) {
