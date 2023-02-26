@@ -54,7 +54,13 @@ exports.updateExistingUser = async (req, res, next) => {
     const { id } = req.params;
     const newUserData = req.body;
     const updatedUser = await updateUserById(id, newUserData);
-    res.status(200).send(updatedUser);
+    res
+      .status(200)
+      .send({
+        data: updatedUser,
+        success: true,
+        message: "User updated successfully",
+      });
   } catch (error) {
     next(error);
   }

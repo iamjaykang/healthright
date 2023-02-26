@@ -10,31 +10,31 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       unitNumber: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(10),
         allowNull: true,
       },
       streetNumber: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(10),
         allowNull: false,
       },
       addressLine1: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(90),
         allowNull: false,
       },
       addressLine2: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: DataTypes.STRING(90),
+        allowNull: true,
       },
       city: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(35),
         allowNull: false,
       },
       region: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(35),
         allowNull: false,
       },
       postalCode: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(32),
         allowNull: false,
       },
       countryId: {

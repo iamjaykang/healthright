@@ -15,8 +15,8 @@ module.exports = {
     // Adding addresses
     await queryInterface.bulkInsert("addresses", [
       {
-        unitNumber: 100,
-        streetNumber: 123,
+        unitNumber: "100",
+        streetNumber: "123",
         addressLine1: "1 Main St",
         addressLine2: "Apt 100",
         city: "San Francisco",
@@ -28,7 +28,7 @@ module.exports = {
       },
       {
         unitNumber: null,
-        streetNumber: 321,
+        streetNumber: "321",
         addressLine1: "2 Main St",
         addressLine2: "Apt 200",
         city: "Los Angeles",
@@ -39,8 +39,8 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        unitNumber: 200,
-        streetNumber: 456,
+        unitNumber: "200",
+        streetNumber: "456",
         addressLine1: "3 Main St",
         addressLine2: "Apt 300",
         city: "Toronto",
