@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../../app/common/button/Button.common";
-import MyTextInput from "../../../../app/common/form/MyTextInput.common";
+import MyTextInput from "../../../../app/common/form/MyFormInput.common";
+import { CurrentUser } from "../../../../app/models/user.model";
 import { adminEmailSignInLoading } from "../../../../app/stores/user/user.action";
 import { selectCurrentUser } from "../../../../app/stores/user/user.selector";
 
@@ -17,19 +18,19 @@ const AdminSignInForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser) as CurrentUser
 
   const resetFormValues = () => {
     setFormValues(initialFormValues);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -41,7 +42,7 @@ const AdminSignInForm = () => {
   };
 
   useEffect(() => {
-    if (currentUser && currentUser.user.isAdmin) {
+    if (currentUser && currentUser.user && currentUser.user.isAdmin) {
       navigate("/admin/dashboard/overview");
     }
   }, [currentUser, navigate]);

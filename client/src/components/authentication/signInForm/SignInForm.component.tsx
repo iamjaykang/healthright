@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent, ChangeEvent } from "react";
 import Button from "../../../app/common/button/Button.common";
-import MyTextInput from "../../../app/common/form/MyTextInput.common";
+import MyTextInput from "../../../app/common/form/MyFormInput.common";
 import { useDispatch } from "react-redux";
 import {
   emailSignInLoading,
@@ -21,13 +21,13 @@ const SignInForm = () => {
     setFormValues(initialFormValues);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
