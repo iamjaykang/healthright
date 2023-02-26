@@ -1,10 +1,10 @@
-import { CartItem, Product } from "../../models/product.model";
+import { CartItemData, Product } from "../../models/product.model";
 
 export const addCartItem = (
-  cartItems: CartItem[],
+  cartItems: CartItemData[],
   productToAdd: Product,
   quantity: number = 1
-): CartItem[] => {
+): CartItemData[] => {
   if (!cartItems) {
     cartItems = [];
   }
@@ -26,12 +26,13 @@ export const addCartItem = (
 };
 
 export const updateCartItemQuantity = (
-  cartItems: CartItem[],
+  cartItems: CartItemData[] = [],
   itemId: number,
   intent: string
-): CartItem[] => {
+): CartItemData[] => {
   // find the cart item with the matching itemId
-  const existingCartItem = cartItems.find((cartItem) => cartItem.id === itemId);
+  const existingCartItem =
+    cartItems && cartItems.find((cartItem) => cartItem.id === itemId);
 
   // if the item exists and the intent is "increment", increment the quantity
   if (existingCartItem && intent === "increment") {
@@ -69,11 +70,12 @@ export const updateCartItemQuantity = (
 };
 
 export const removeCartItem = (
-  cartItems: CartItem[],
+  cartItems: CartItemData[] = [],
   itemId: number
-): CartItem[] => {
+): CartItemData[] => {
   // find the cart item with the matching itemId
-  const existingCartItem = cartItems.find((cartItem) => cartItem.id === itemId);
+  const existingCartItem =
+    cartItems && cartItems.find((cartItem) => cartItem.id === itemId);
 
   // if the item exists and the intent is "decrement" but the quantity is 1, remove the item from the cart
   if (existingCartItem) {

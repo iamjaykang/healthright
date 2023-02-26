@@ -1,9 +1,9 @@
-import { CartItem, Product } from "../../models/product.model";
+import { CartItemData, Product } from "../../models/product.model";
 
 const getRandomProducts = (
   productsArray: Product[],
   limit = 4,
-  cartItems: CartItem[] = []
+  cartItems: CartItemData[] = []
 ) => {
   const availableProducts = productsArray.filter((product) => {
     return !cartItems.find((item) => item.id === product.id);
