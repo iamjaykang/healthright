@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MobileHeroBanner = (props) => {
+const MobileHeroBanner = (props: { bgImg: string}) => {
   return (
     <div
       className="app__hero-banner-section--mobile"

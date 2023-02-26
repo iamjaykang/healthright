@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch } from "react-redux";
-import DashboardFormTextInput from "../../../../../app/common/dashboardForm/DashboardFormTextInput.common";
+import DashboardFormInput from "../../../../../app/common/dashboardForm/DashboardFormInput.common";
 import { addCustomerLoading } from "../../../../../app/stores/customers/customer.action";
 
 const initialFormData = {
@@ -37,17 +37,22 @@ const AdminAddCustomer = () => {
     countryName,
   } = formData;
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleCheckboxChange = (e) => {
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     setFormData({ ...formData, [name]: checked });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -65,7 +70,7 @@ const AdminAddCustomer = () => {
         <div className="dashboard__customer-form--left">
           <div className="dashboard__customer-card shadow-sm">
             <div className="dashboard__customer-card--email">
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Email Address"
                 type="email"
                 required
@@ -75,7 +80,7 @@ const AdminAddCustomer = () => {
               />
             </div>
             <div className="dashboard__input-group--name">
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="First Name"
                 type="text"
                 required
@@ -83,7 +88,7 @@ const AdminAddCustomer = () => {
                 name="firstName"
                 value={firstName}
               />
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Last Name"
                 type="text"
                 required
@@ -95,14 +100,14 @@ const AdminAddCustomer = () => {
           </div>
           <div className="dashboard__customer-card shadow-sm">
             <div className="dashboard__input-group--house-number">
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Unit Number"
                 type="number"
                 onChange={handleInputChange}
                 name="unitNumber"
                 value={unitNumber}
               />
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Street Number"
                 type="number"
                 required
@@ -112,7 +117,7 @@ const AdminAddCustomer = () => {
               />
             </div>
             <div className="dashboard__input--address-line">
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Address Line1"
                 type="text"
                 required
@@ -120,7 +125,7 @@ const AdminAddCustomer = () => {
                 name="addressLine1"
                 value={addressLine1}
               />
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Address Line2"
                 type="text"
                 required
@@ -151,7 +156,7 @@ const AdminAddCustomer = () => {
                 <select
                   name="countryName"
                   value={countryName}
-                  onChange={handleInputChange}
+                  onChange={handleSelectChange}
                 >
                   <option value="">-- Select a Country --</option>
                   <option value="United States">United States</option>
@@ -160,7 +165,7 @@ const AdminAddCustomer = () => {
                 </select>
               </div>
             </div>
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="City"
               type="text"
               required
@@ -168,7 +173,7 @@ const AdminAddCustomer = () => {
               name="city"
               value={city}
             />
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Region"
               type="text"
               required
@@ -176,7 +181,7 @@ const AdminAddCustomer = () => {
               name="region"
               value={region}
             />
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Postal Code"
               type="text"
               required

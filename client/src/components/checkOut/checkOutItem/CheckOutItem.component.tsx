@@ -5,21 +5,22 @@ import {
 } from "../../../app/stores/cart/cart.action";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "../../../app/stores/cart/cart.selector";
+import { CartItemData } from "../../../app/models/product.model";
 
-const CheckOutItem = ({ item }) => {
+const CheckOutItem = ({ item }: { item: CartItemData }) => {
   const cartItems = useSelector(selectCartItems);
 
   const dispatch = useDispatch();
 
-  const handleIncrementClick = (itemId) => {
+  const handleIncrementClick = (itemId: number) => {
     dispatch(updateItemQuantity(cartItems, itemId, "increment"));
   };
 
-  const handleDecrementClick = (itemId) => {
+  const handleDecrementClick = (itemId: number) => {
     dispatch(updateItemQuantity(cartItems, itemId, "decrement"));
   };
 
-  const handleRemoveItem = (itemId) => {
+  const handleRemoveItem = (itemId: number) => {
     dispatch(removeItem(cartItems, itemId));
   };
   return (
@@ -35,12 +36,18 @@ const CheckOutItem = ({ item }) => {
       <div className="app__product-price">${item.price}</div>
       <div className="app__product-quantity-container">
         <div className="app__product--quantity">
-          <button onClick={() => handleDecrementClick(item.id)}>-</button>
+          <button onClick={() => item.id && handleDecrementClick(item.id)}>
+            -
+          </button>
           <span className="app__product--value">{item.quantity}</span>
-          <button onClick={() => handleIncrementClick(item.id)}>+</button>
+          <button onClick={() => item.id && handleIncrementClick(item.id)}>
+            +
+          </button>
         </div>
         <div className="app__product--remove">
-          <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+          <button onClick={() => item.id && handleRemoveItem(item.id)}>
+            Remove
+          </button>
         </div>
       </div>
     </div>

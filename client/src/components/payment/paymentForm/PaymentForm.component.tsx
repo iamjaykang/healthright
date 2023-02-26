@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -7,20 +7,22 @@ import {
 } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../app/stores/user/user.selector";
+import { CurrentUser } from "../../../app/models/user.model";
+import { StripePaymentElementOptions } from "@stripe/stripe-js";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
 
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser) as CurrentUser;
 
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState(null);
+  const [email, setEmail] = useState<string>("");
+  const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (currentUser) {
-      setEmail(currentUser.user.email);
+      currentUser.user && setEmail(currentUser.user.email);
     }
     if (!stripe) {
       return;
@@ -35,24 +37,25 @@ export default function CheckoutForm() {
     }
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case "succeeded":
-          setMessage("Payment succeeded!");
-          break;
-        case "processing":
-          setMessage("Your payment is processing.");
-          break;
-        case "requires_payment_method":
-          setMessage("Your payment was not successful, please try again.");
-          break;
-        default:
-          setMessage("Something went wrong.");
-          break;
-      }
+      if (paymentIntent)
+        switch (paymentIntent.status) {
+          case "succeeded":
+            setMessage("Payment succeeded!");
+            break;
+          case "processing":
+            setMessage("Your payment is processing.");
+            break;
+          case "requires_payment_method":
+            setMessage("Your payment was not successful, please try again.");
+            break;
+          default:
+            setMessage("Something went wrong.");
+            break;
+        }
     });
   }, [stripe, currentUser]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -77,7 +80,7 @@ export default function CheckoutForm() {
     // be redirected to an intermediate site first to authorize the payment, then
     // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
-      setMessage(error.message);
+      setMessage(error.message || null);
     } else {
       setMessage("An unexpected error occurred.");
     }
@@ -85,7 +88,7 @@ export default function CheckoutForm() {
     setIsLoading(false);
   };
 
-  const paymentElementOptions = {
+  const paymentElementOptions: StripePaymentElementOptions = {
     layout: "tabs",
   };
 
@@ -99,8 +102,8 @@ export default function CheckoutForm() {
           },
         }}
         onChange={(e) => {
-          if (e && e.target) {
-            setEmail(e.target.value);
+          if (e.value) {
+            setEmail(e.value.email);
           }
         }}
       />

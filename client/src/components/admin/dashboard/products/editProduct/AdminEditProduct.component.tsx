@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import DashboardFormQuillInput from "../../../../../app/common/dashboardForm/DashboardFormQuillInput.common";
-import DashboardFormTextInput from "../../../../../app/common/dashboardForm/DashboardFormTextInput.common";
+import DashboardFormInput from "../../../../../app/common/dashboardForm/DashboardFormInput.common";
 import Spinner from "../../../../../app/common/spinner/Spinner.common";
 import {
   deleteProductLoading,
@@ -10,21 +10,22 @@ import {
   updateProductLoading,
 } from "../../../../../app/stores/products/product.action";
 import {
-  selectAdminProduct,
+  selectProduct,
   selectProductsIsLoading,
   selectProductsSuccess,
 } from "../../../../../app/stores/products/product.selector";
+import { AdminProduct } from "../../../../../app/models/product.model";
 
 const initialFormData = {
   name: "",
   description: "",
   productImage: "",
-  price: "",
-  qtyInStock: "",
+  price: 0.0,
+  qtyInStock: 0,
   categoryName: "",
   vendorName: "",
-  cost: "",
-  productLive: false,
+  cost: 0.0,
+  productLive: 0,
 };
 
 const AdminEditProduct = () => {
@@ -36,7 +37,7 @@ const AdminEditProduct = () => {
 
   const { productId } = useParams();
 
-  const adminProduct = useSelector(selectAdminProduct);
+  const adminProduct = useSelector(selectProduct) as AdminProduct;
 
   const productActionSuccess = useSelector(selectProductsSuccess);
 
@@ -55,7 +56,7 @@ const AdminEditProduct = () => {
         categoryName: adminProduct.category.categoryName,
         vendorName: adminProduct.vendor.vendorName,
         cost: adminProduct.cost,
-        productLive: adminProduct.productLive,
+        productLive: adminProduct.productLive ? 1 : 0,
       });
     }
   }, [adminProduct]);
@@ -72,26 +73,38 @@ const AdminEditProduct = () => {
     productLive,
   } = formData;
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setIsFormChanged(true);
   };
 
-  const handleQuillInputChange = (value) => {
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const booleanValue = value === "true";
+    setFormData({ ...formData, [name]: booleanValue });
+  };
+
+  const handleQuillInputChange = (value: string) => {
     setFormData({ ...formData, description: value });
     setIsFormChanged(true);
   };
   const handleReset = () => {
-    dispatch(fetchProductAdminLoading(productId));
+    if (productId) {
+      const id = parseInt(productId, 10);
+      dispatch(fetchProductAdminLoading(id));
+    }
     setIsFormChanged(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      dispatch(updateProductLoading(productId, formData));
+      if (productId) {
+        const id = parseInt(productId, 10);
+        dispatch(updateProductLoading(id, formData));
+      }
     } catch (error) {
       throw error;
     }
@@ -99,9 +112,12 @@ const AdminEditProduct = () => {
 
   const handleDelete = () => {
     try {
-      dispatch(deleteProductLoading(productId));
-      if (productActionSuccess) {
-        navigate("/admin/dashboard/products");
+      if (productId) {
+        const id = parseInt(productId, 10);
+        dispatch(deleteProductLoading(id));
+        if (productActionSuccess) {
+          navigate("/admin/dashboard/products");
+        }
       }
     } catch (error) {
       throw error;
@@ -109,7 +125,10 @@ const AdminEditProduct = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchProductAdminLoading(productId));
+    if (productId) {
+      const id = parseInt(productId, 10);
+      dispatch(fetchProductAdminLoading(id));
+    }
   }, [dispatch, productId]);
 
   if (adminProductIsLoading) {
@@ -121,10 +140,7 @@ const AdminEditProduct = () => {
       <div className="dashboard__products-header">
         <h2 className="dashboard__content-title">Edit Product</h2>
         <div className="dashboard__btn-container">
-          <button
-            onClick={handleDelete}
-            className="dashboard__btn shadow-sm"
-          >
+          <button onClick={handleDelete} className="dashboard__btn shadow-sm">
             Delete
           </button>
         </div>
@@ -132,7 +148,7 @@ const AdminEditProduct = () => {
       <form className="dashboard__product-form" onSubmit={handleSubmit}>
         <div className="dashboard__product-form--left">
           <div className="dashboard__product-card shadow-sm">
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Name"
               type="text"
               required
@@ -147,7 +163,7 @@ const AdminEditProduct = () => {
             />
           </div>
           <div className="dashboard__product-card shadow-sm">
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Media"
               type="text"
               required
@@ -157,7 +173,7 @@ const AdminEditProduct = () => {
             />
           </div>
           <div className="dashboard__product-card--pricing shadow-sm">
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Pricing"
               type="number"
               required
@@ -165,7 +181,7 @@ const AdminEditProduct = () => {
               name="price"
               value={price}
             />
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Cost"
               type="number"
               required
@@ -175,7 +191,7 @@ const AdminEditProduct = () => {
             />
           </div>
           <div className="dashboard__product-card shadow-sm">
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Quantity in Stock"
               type="number"
               required
@@ -188,14 +204,12 @@ const AdminEditProduct = () => {
         <div className="dashboard__product-form--right">
           <div className="dashboard__product-card shadow-sm">
             <div className="dashboard__input-group">
-              <span className="dashboard__input-label">
-                Product Status
-              </span>
+              <span className="dashboard__input-label">Product Status</span>
               <div className="dashboard__product-card--status-options">
                 <select
                   name="productLive"
                   value={productLive}
-                  onChange={handleInputChange}
+                  onChange={handleSelectChange}
                 >
                   <option value="">-- Select status --</option>
                   <option value="true">Available</option>
@@ -205,7 +219,7 @@ const AdminEditProduct = () => {
             </div>
           </div>
           <div className="dashboard__product-card shadow-sm">
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Category Name"
               type="text"
               required
@@ -213,7 +227,7 @@ const AdminEditProduct = () => {
               name="categoryName"
               value={categoryName}
             />
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Vendor"
               type="text"
               required

@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch } from "react-redux";
 import DashboardFormQuillInput from "../../../../../app/common/dashboardForm/DashboardFormQuillInput.common";
-import DashboardFormTextInput from "../../../../../app/common/dashboardForm/DashboardFormTextInput.common";
+import DashboardFormTextInput from "../../../../../app/common/dashboardForm/DashboardFormInput.common";
 import { addProductLoading } from "../../../../../app/stores/products/product.action";
 
 const initialFormData = {
   name: "",
   description: "",
   productImage: "",
-  price: "",
-  qtyInStock: "",
+  price: 0.00,
+  qtyInStock: 0,
   categoryName: "",
   vendorName: "",
-  cost: "",
-  productLive: false,
+  cost: 0.00,
+  productLive: 0,
 };
 
 const AdminAddProduct = () => {
@@ -32,16 +32,22 @@ const AdminAddProduct = () => {
     productLive,
   } = formData;
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleQuillInputChange = (value) => {
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const booleanValue = value === "true";
+    setFormData({ ...formData, [name]: booleanValue });
+  };
+
+  const handleQuillInputChange = (value: string) => {
     setFormData({ ...formData, description: value });
 };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -121,11 +127,11 @@ const AdminAddProduct = () => {
                 <select
                   name="productLive"
                   value={productLive}
-                  onChange={handleInputChange}
+                  onChange={handleSelectChange}
                 >
                   <option value="">-- Select status --</option>
-                  <option value="true">Available</option>
-                  <option value="false">Draft</option>
+                  <option value="1">Available</option>
+                  <option value="0">Draft</option>
                 </select>
               </div>
             </div>

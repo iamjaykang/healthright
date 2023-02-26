@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { AdminProduct } from "../../../../app/models/product.model";
 import {
   fetchProductsAdminLoading,
 } from "../../../../app/stores/products/product.action";
-import { selectAdminProductsArray } from "../../../../app/stores/products/product.selector";
+import { selectProductsArray } from "../../../../app/stores/products/product.selector";
 
 const AdminProducts = () => {
-  const adminProductsArray = useSelector(selectAdminProductsArray);
+  const adminProductsArray = useSelector(selectProductsArray) as AdminProduct[];
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -96,7 +97,7 @@ const AdminProducts = () => {
                   <tr className="dashboard__table-row">
                     <td
                       className="dashboard__table-cell"
-                      colSpan="6"
+                      colSpan={6}
                       style={{ textAlign: "center" }}
                     >
                       No Product(s) Available...

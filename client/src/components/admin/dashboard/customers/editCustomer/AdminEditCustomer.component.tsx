@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import DashboardFormTextInput from "../../../../../app/common/dashboardForm/DashboardFormTextInput.common";
+import DashboardFormInput from "../../../../../app/common/dashboardForm/DashboardFormInput.common";
 import Spinner from "../../../../../app/common/spinner/Spinner.common";
 import {
   deleteCustomerLoading,
@@ -29,10 +29,14 @@ const initialFormData = {
   countryName: "",
 };
 
+type RouteParams = {
+  customerId: string;
+};
+
 const AdminEditCustomer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { customerId } = useParams();
+  const { customerId } = useParams<RouteParams>();
   const [isFormChanged, setIsFormChanged] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
 
@@ -76,24 +80,33 @@ const AdminEditCustomer = () => {
     countryName,
   } = formData;
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setIsFormChanged(true);
   };
 
-  const handleCheckboxChange = (e) => {
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setIsFormChanged(true);
+  };
+
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     setFormData({ ...formData, [name]: checked });
     setIsFormChanged(true);
   };
 
   const handleReset = () => {
-    dispatch(fetchCustomerByIdLoading(customerId));
-    setIsFormChanged(false);
+    if (customerId) {
+      const id = parseInt(customerId, 10);
+      dispatch(fetchCustomerByIdLoading(id));
+      setIsFormChanged(false);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -105,9 +118,12 @@ const AdminEditCustomer = () => {
 
   const handleDelete = () => {
     try {
-      dispatch(deleteCustomerLoading(customerId));
-      if (customerActionSuccess) {
-        navigate("/admin/dashboard/customers");
+      if (customerId) {
+        const id = parseInt(customerId, 10);
+        dispatch(deleteCustomerLoading(id));
+        if (customerActionSuccess) {
+          navigate("/admin/dashboard/customers");
+        }
       }
     } catch (error) {
       throw error;
@@ -115,7 +131,10 @@ const AdminEditCustomer = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchCustomerByIdLoading(customerId));
+    if (customerId) {
+      const id = parseInt(customerId, 10);
+      dispatch(fetchCustomerByIdLoading(id));
+    }
   }, [dispatch, customerId]);
 
   if (customerIsLoading) {
@@ -136,7 +155,7 @@ const AdminEditCustomer = () => {
         <div className="dashboard__customer-form--left">
           <div className="dashboard__customer-card shadow-sm">
             <div className="dashboard__customer-card--email">
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Email Address"
                 type="email"
                 required
@@ -146,7 +165,7 @@ const AdminEditCustomer = () => {
               />
             </div>
             <div className="dashboard__input-group--name">
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="First Name"
                 type="text"
                 required
@@ -154,7 +173,7 @@ const AdminEditCustomer = () => {
                 name="firstName"
                 value={firstName}
               />
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Last Name"
                 type="text"
                 required
@@ -166,14 +185,14 @@ const AdminEditCustomer = () => {
           </div>
           <div className="dashboard__customer-card shadow-sm">
             <div className="dashboard__input-group--house-number">
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Unit Number"
                 type="number"
                 onChange={handleInputChange}
                 name="unitNumber"
                 value={unitNumber}
               />
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Street Number"
                 type="number"
                 required
@@ -183,7 +202,7 @@ const AdminEditCustomer = () => {
               />
             </div>
             <div className="dashboard__input--address-line">
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Address Line1"
                 type="text"
                 required
@@ -191,7 +210,7 @@ const AdminEditCustomer = () => {
                 name="addressLine1"
                 value={addressLine1}
               />
-              <DashboardFormTextInput
+              <DashboardFormInput
                 label="Address Line2"
                 type="text"
                 required
@@ -217,21 +236,21 @@ const AdminEditCustomer = () => {
         <div className="dashboard__customer-form--right">
           <div className="dashboard__customer-card shadow-sm">
             <div className="dashboard__input-group">
-                <span className="dashboard__customer-label">Country</span>
-                <div className="dashboard__customer-card--country-options">
-                  <select
-                    name="countryName"
-                    value={countryName}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">-- Select a Country --</option>
-                    <option value="United States">United States</option>
-                    <option value="Canada">Canada</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                  </select>
-                </div>
+              <span className="dashboard__customer-label">Country</span>
+              <div className="dashboard__customer-card--country-options">
+                <select
+                  name="countryName"
+                  value={countryName}
+                  onChange={handleSelectChange}
+                >
+                  <option value="">-- Select a Country --</option>
+                  <option value="United States">United States</option>
+                  <option value="Canada">Canada</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                </select>
+              </div>
             </div>
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="City"
               type="text"
               required
@@ -239,7 +258,7 @@ const AdminEditCustomer = () => {
               name="city"
               value={city}
             />
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Region"
               type="text"
               required
@@ -247,7 +266,7 @@ const AdminEditCustomer = () => {
               name="region"
               value={region}
             />
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Postal Code"
               type="text"
               required

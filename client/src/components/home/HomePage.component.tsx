@@ -2,10 +2,11 @@ import React from "react";
 import BrandsPreview from "../../app/common/brandsPreview/BrandsPreviewList.component";
 import CategoryList from "./categoryList/CategoryList.component";
 import HeroBanner from "./heroBanner/HeroBanner.component";
-import desktopBgImg from "../../assets/images/banner-desktop.png";
-import mobileBgImg from "../../assets/images/banner.png";
 import About from "./about/About.component";
 import MobileHeroBanner from "./mobileHeroBanner/MobileHeroBanner.component";
+
+const desktopBgImg = require("../../assets/images/banner-desktop.png");
+const mobileBgImg = require("../../assets/images/banner.png");
 
 const HomePage = () => {
   return (

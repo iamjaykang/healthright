@@ -14,7 +14,7 @@ const AdminOverview = () => {
             <div className="dashboard__stats-card-figure">$12,628</div>
             <div className="dashboard__stats-card-meta text-success">
               <AiOutlineArrowUp
-                style={{ width: "1rem", height: "1rem", viewBox: "0 0 16 16" }}
+                style={{ width: "1rem", height: "1rem"}}
               />
               20%
             </div>
@@ -26,7 +26,7 @@ const AdminOverview = () => {
             <div className="dashboard__stats-card-figure">$2,250</div>
             <div className="dashboard__stats-card-meta text-success">
               <AiOutlineArrowDown
-                style={{ width: "1rem", height: "1rem", viewBox: "0 0 16 16" }}
+                style={{ width: "1rem", height: "1rem"}}
               />
               5%
             </div>

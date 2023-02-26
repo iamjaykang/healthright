@@ -11,9 +11,11 @@ import {
   selectPaymentsIsSuccess,
 } from "../../app/stores/payments/payment.selector";
 import Spinner from "../../app/common/spinner/Spinner.common";
+import { Appearance } from "@stripe/stripe-js";
+
 
 const PaymentPage = () => {
-  const clientSecret = useSelector(selectClientSecret);
+  const clientSecret = useSelector(selectClientSecret) as string;
 
   const paymentIntentIsLoading = useSelector(selectPaymentsIsLoading);
 
@@ -29,9 +31,10 @@ const PaymentPage = () => {
     }
   }, [items, dispatch]);
 
-  const appearance = {
+  const appearance: Appearance = {
     theme: "stripe",
   };
+
   const options = {
     clientSecret,
     appearance,

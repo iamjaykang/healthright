@@ -12,16 +12,17 @@ import Button from "../../app/common/button/Button.common";
 import { addItemToCart } from "../../app/stores/cart/cart.action";
 import { selectCartItems } from "../../app/stores/cart/cart.selector";
 import Accordion from "../../app/common/accordion/Accordion.common";
+import { Product } from "../../app/models/product.model";
 
 const ProductDetailsPage = () => {
   const { productName } = useParams();
 
   let [quantity, setQuantity] = useState(1);
-  const [activeAccordionId, setActiveAccordionId] = useState(null);
+  const [activeAccordionId, setActiveAccordionId] = useState<string | null>(null);
 
   const dispatch = useDispatch();
 
-  const product = useSelector(selectProduct);
+  const product = useSelector(selectProduct) as Product;
 
   const isProductLoading = useSelector(selectProductsIsLoading);
 
@@ -44,11 +45,12 @@ const ProductDetailsPage = () => {
     resetQuantity();
   };
 
-  const handleAccordionClick = (id) => {
+  const handleAccordionClick = (id: string | null) => {
     setActiveAccordionId(id);
   };
 
   useEffect(() => {
+    if (productName)
     dispatch(fetchProductByNameLoading(productName));
   }, [dispatch, productName]);
 
@@ -67,8 +69,8 @@ const ProductDetailsPage = () => {
       </div>
       <div className="app__product-details-container--info">
         <h1 className="app__product-details--name">{product.name}</h1>
-        <div className="app__product-details--vendor"><Link to={`/brands/${product.vendor}`}>{product.vendor}</Link></div>
-        <div className="app__product-details--category">{product.category}</div>
+        <div className="app__product-details--vendor"><Link to={`/brands/${product.vendor}`}>{product.vendor as string}</Link></div>
+        <div className="app__product-details--category">{product.category as string}</div>
         <div className="app__product-details--price">${product.price}</div>
         <div className="app__product-details--description">
           {parse(product.description)}

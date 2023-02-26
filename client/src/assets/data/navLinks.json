@@ -1,35 +1,19 @@
 [
-    {
-      "id": 1,
-      "title": "Home",
-      "to": "/"
-    },
-    {
-      "id": 3,
-      "title": "Brands",
-      "to": "/brands",
-      "dropdown": [
-        {
-          "title": "kuku",
-          "to": "/brands/kuku"
-        },
-        {
-          "title": "Nu.Wise",
-          "to": "/brands/nu.wise"
-        },
-        {
-          "title": "Nzpurehealth",
-          "to": "/brands/nzpurehealth"
-        },
-        {
-          "title": "PaiOra",
-          "to": "/brands/paiora"
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "title": "Sign In",
-      "to": "/auth"
-    }
-  ]
+  { "id": 1, "title": "Home", "to": "/" },
+  {
+    "id": 2,
+    "title": "Brands",
+    "to": "/brands",
+    "dropdown": [
+      { "id": 3, "title": "kuku", "to": "/brands/kuku" },
+      { "id": 4, "title": "Nu.Wise", "to": "/brands/nu.wise" },
+      { "id": 5, "title": "Nzpurehealth", "to": "/brands/nzpurehealth" },
+      { "id": 6, "title": "PaiOra", "to": "/brands/paiora" }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Sign In",
+    "to": "/auth"
+  }
+]

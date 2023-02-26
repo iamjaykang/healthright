@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HeroBanner = (props) => {
+const HeroBanner = (props: {bgImg: string, title: string, subtitle: string, description: string}) => {
   return (
     <div
       className="app__hero-banner-section"
