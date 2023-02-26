@@ -1,6 +1,9 @@
 import { createSelector } from "reselect";
+import { RootState } from "../store";
+import { CustomerState } from "./customer.reducer";
 
-const selectCustomersReducer = (state) => state.customers;
+const selectCustomersReducer = (state: RootState): CustomerState =>
+  state.customers;
 
 export const selectCustomersArray = createSelector(
   [selectCustomersReducer],
