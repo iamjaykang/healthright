@@ -1,7 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 
-const NavDropdown = ({
+export interface NavDropdownProps {
+  dropdown: Array<{
+    id: number;
+    title: string;
+    to: string;
+  }>;
+  dropdownOpen: boolean;
+}
+
+const NavDropdown: FC<NavDropdownProps> = ({
   dropdown,
   dropdownOpen,
 }) => {

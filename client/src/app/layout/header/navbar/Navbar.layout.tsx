@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import navLinks from "../../../../assets/data/navLinks.json";
 import CartIcon from "../../../common/cartIcon/CartIcon.common";
@@ -7,11 +7,18 @@ import { useDispatch } from "react-redux";
 import { signOutLoading } from "../../../stores/user/user.action";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { UserData } from "../../../models/user.model";
 
-const Navbar = ({ currentUser }) => {
-  const [dropdownOpen, setDropdownOpen] = useState({});
-  const [hovered, setHovered] = useState(null);
-  let timeoutId;
+export interface NavBarProps {
+  currentUser: UserData;
+}
+
+const Navbar: FC<NavBarProps> = ({ currentUser }) => {
+  const [dropdownOpen, setDropdownOpen] = useState<{ [key: number]: boolean }>(
+    {}
+  );
+  const [hovered, setHovered] = useState<number | null>(null);
+  let timeoutId: NodeJS.Timeout;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,14 +29,14 @@ const Navbar = ({ currentUser }) => {
   }, [hovered]);
 
   // function to handle mouse enter event on a nav item
-  const handleMouseEnter = (id) => {
+  const handleMouseEnter = (id: number) => {
     // clear any previous timeout to close the dropdown
     clearTimeout(timeoutId);
     setHovered(id);
   };
 
   // function to handle mouse leave event on a nav item
-  const handleMouseLeave = (id) => {
+  const handleMouseLeave = (id: number) => {
     // set a timeout to close the dropdown after 300ms
     timeoutId = setTimeout(() => {
       if (hovered === id) {

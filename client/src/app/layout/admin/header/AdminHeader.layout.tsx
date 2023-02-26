@@ -31,7 +31,6 @@ const AdminHeader = () => {
                 style={{
                   width: "2rem",
                   height: "2rem",
-                  viewBox: "0 0 30 30",
                 }}
               />
             </span>
@@ -44,7 +43,7 @@ const AdminHeader = () => {
               <li className="dashboard__user-dropdown-list-item">Profile</li>
               <li className="dashboard__user-dropdown-list-item">Settings</li>
               <li className="dashboard__user-dropdown-list-item">
-                <Link onClick={signOutUser}>Sign Out</Link>
+                <Link onClick={signOutUser} to={""}>Sign Out</Link>
               </li>
             </ul>
           </div>

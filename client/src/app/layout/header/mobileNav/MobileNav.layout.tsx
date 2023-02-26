@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, FC } from "react";
 import { Link, NavLink } from "react-router-dom";
 import mobileNavLinks from "../../../../assets/data/mobileNavLinks.json";
 import CartIcon from "../../../common/cartIcon/CartIcon.common";
@@ -7,15 +7,24 @@ import MobileNavDropdown from "./mobileNavDropdown/MobileNavDropdown.layout";
 import { useDispatch } from "react-redux";
 import { setHamburgerMenuIsOpen } from "../../../stores/hamburgerMenu/hamburgerMenu.action";
 import Searchbar from "../../../common/searchbar/Searchbar.common";
+import { UserData } from "../../../models/user.model";
 
-const MobileNavbar = ({
+export interface MobileNavbarProps {
+  currentUser: UserData,
+  toggleHamburgerMenu: () => void,
+  isHamburgerMenuOpen: boolean,
+  hmDropdownOpen: { [key: string]: boolean },
+  setHmDropdownOpen: Dispatch<React.SetStateAction<{ [key: string]: boolean }>>,
+}
+
+const MobileNavbar: FC<MobileNavbarProps> = ({
   currentUser,
   toggleHamburgerMenu,
   isHamburgerMenuOpen,
   hmDropdownOpen,
   setHmDropdownOpen,
 }) => {
-  const dispatch = useDispatch({});
+  const dispatch = useDispatch();
 
   const signOutUser = () => {
     dispatch(signOutLoading());
@@ -27,7 +36,7 @@ const MobileNavbar = ({
     setHmDropdownOpen({});
   };
 
-  const toggleHmDropdown = (id) => {
+  const toggleHmDropdown = (id: string) => {
     setHmDropdownOpen((prevState) => ({
       ...prevState,
       [id]: !prevState[id],
@@ -62,11 +71,11 @@ const MobileNavbar = ({
               <li className="app__nav-item" key={navLink.id}>
                 <NavLink
                   className="app__nav-link"
-                  to={navLink.to}
+                  to={navLink.to || '#'}
                   onClick={
                     navLink.dropdown
                       ? () => {
-                          toggleHmDropdown(navLink.id);
+                          toggleHmDropdown(String(navLink.id));
                         }
                       : closeMenu
                   }

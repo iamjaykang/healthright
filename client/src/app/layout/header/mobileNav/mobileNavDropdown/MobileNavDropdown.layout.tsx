@@ -1,7 +1,21 @@
-import React from "react";
+import React, { FC, MouseEventHandler } from "react";
 import { NavLink } from "react-router-dom";
 
-const MobileNavDropdown = ({ dropdown, dropdownOpen, closeMenu }) => {
+export interface MobileNavDropdownProps {
+  dropdown: Array<{
+    id: number;
+    title: string;
+    to: string;
+  }>;
+  dropdownOpen: boolean;
+  closeMenu: MouseEventHandler<HTMLAnchorElement>;
+}
+
+const MobileNavDropdown: FC<MobileNavDropdownProps> = ({
+  dropdown,
+  dropdownOpen,
+  closeMenu,
+}) => {
   return (
     <ul className={`app__dropdown-list--mobile ${dropdownOpen ? "open" : ""}`}>
       {dropdown.map((item) => (

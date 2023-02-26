@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 import CartSidepanel from "./cartSidepanel/CartSidepanel.layout";
 import Navbar from "./navbar/Navbar.layout";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser } from "../../../app/stores/user/user.selector";
+import { selectCurrentUser } from "../../stores/user/user.selector";
 import MobileNav from "./mobileNav/MobileNav.layout";
 import { ImLeaf } from "react-icons/im";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { setHamburgerMenuIsOpen } from "../../stores/hamburgerMenu/hamburgerMenu.action";
 import { selectIsHamburgerMenuOpen } from "../../stores/hamburgerMenu/hamburgerMenu.selector";
 import Searchbar from "../../common/searchbar/Searchbar.common";
+import { UserData } from "../../models/user.model";
 
 const Header = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser) as UserData;
 
   const isHamburgerMenuOpen = useSelector(selectIsHamburgerMenuOpen);
 

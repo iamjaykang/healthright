@@ -1,6 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
+import { CartItemData } from "../../../../models/product.model";
 
-const CartItem = ({ cartItem }) => {
+interface CartItemProps {
+  cartItem: CartItemData
+}
+
+const CartItem: FC<CartItemProps> = ({ cartItem }) => {
   const { name, quantity, price, productImage } = cartItem;
   return (
     <div className="app__cart-item-container">

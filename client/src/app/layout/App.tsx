@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   checkUserSession,
   setRequiresAdminAuth,
-} from "../../app/stores/user/user.action";
-import { fetchProductsLoading } from "../../app/stores/products/product.action";
+} from "../stores/user/user.action";
+import { fetchProductsLoading } from "../stores/products/product.action";
 import {
   selectCurrentUser,
   selectRequiresAdminAuth,
@@ -32,7 +32,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchProductsLoading());
-  }, [dispatch]);
+  }, [location, dispatch]);
 
   useEffect(() => {
     if (location.pathname.startsWith("/admin")) {
@@ -43,11 +43,16 @@ const App = () => {
   }, [dispatch, location.pathname]);
 
   useEffect(() => {
-    const messengerElement = document.getElementById("my-chatbot");
-    if (location.pathname.startsWith("/admin") || location.pathname.startsWith("/checkout")) {
-      messengerElement.style.display = "none"
+    const messengerElement = document.getElementById(
+      "my-chatbot"
+    ) as HTMLElement;
+    if (
+      location.pathname.startsWith("/admin") ||
+      location.pathname.startsWith("/checkout")
+    ) {
+      messengerElement.style.display = "none";
     } else {
-      messengerElement.style.display = "block"
+      messengerElement.style.display = "block";
     }
   }, [location.pathname]);
 
