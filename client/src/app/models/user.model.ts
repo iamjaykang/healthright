@@ -7,10 +7,6 @@ export interface UserData {
   isAdmin: boolean;
 }
 
-export interface CurrentUser {
-  user?: UserData;
-}
-
 export interface AdditionalInformation {
   firstName?: string;
   lastName?: string;
