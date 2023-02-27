@@ -47,7 +47,7 @@ const CartSidepanel = () => {
           <Link to="checkout">
             <Button onClick={handleCartClose}>Go to Cart</Button>
           </Link>
-        <CartFrequentlyBought />
+        <CartFrequentlyBought/>
       </div>
     </>
   );
