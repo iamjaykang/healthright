@@ -14,9 +14,10 @@ const Button: FC<ButtonProps> = ({
   isLoading,
   ...otherProps
 }) => {
+  const btnTypeClass = btnType ? ` ${btnType}` : '';
   return (
     <button
-      className={`btn-container ${btnType}`}
+      className={`btn-container${btnTypeClass}`}
       {...otherProps}
       disabled={isLoading}
     >

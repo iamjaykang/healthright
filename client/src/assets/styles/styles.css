@@ -2252,11 +2252,11 @@ th {
   color: black;
   border: 1px solid black;
 }
-.btn-container.google-sign-in {
+.btn-container.google {
   background-color: #4285f4;
   color: white;
 }
-.btn-container.google-sign-in:hover {
+.btn-container.google:hover {
   background-color: #357ae8;
   border: none;
 }
