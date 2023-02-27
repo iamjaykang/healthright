@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ memo } from "react";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../../../../stores/cart/cart.selector";
 import { selectProductsArray } from "../../../../stores/products/product.selector";
@@ -29,4 +29,4 @@ const CartFrequentlyBought = () => {
   );
 };
 
-export default CartFrequentlyBought;
+export default memo(CartFrequentlyBought);

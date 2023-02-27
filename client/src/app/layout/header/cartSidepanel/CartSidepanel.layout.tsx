@@ -10,7 +10,7 @@ import {
 import CartFrequentlyBought from "./cartFrequentlyBought/CartFrequentlyBought.layout";
 import CartItem from "./cartItem/CartItem.layout";
 
-const CartDropdown = () => {
+const CartSidepanel = () => {
   const cartItems = useSelector(selectCartItems);
 
   const dispatch = useDispatch();
@@ -53,4 +53,4 @@ const CartDropdown = () => {
   );
 };
 
-export default CartDropdown;
+export default CartSidepanel;
