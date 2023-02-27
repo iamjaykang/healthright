@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouteObject } from "react-router-dom";
 import AuthenticationPage from "../../components/authentication/AuthenticationPage.component";
 import BrandsPage from "../../components/brands/BrandsPage.component";
 import App from "../layout/App";
@@ -6,7 +6,6 @@ import BrandPage from "../../components/brand/BrandPage.component";
 import PaymentPage from "../../components/payment/PaymentPage.component";
 import NotFoundPage from "../../components/notFound/NotFoundPage.component";
 import CheckOutPage from "../../components/checkOut/CheckOutPage.component";
-import RequireAuth from "./RequireAuth";
 import AdminAuthenticationPage from "../../components/admin/authentication/AdminAuthentication.component";
 import AdminOverview from "../../components/admin/dashboard/overview/AdminOverview.component";
 import AdminOrders from "../../components/admin/dashboard/orders/AdminOrders.components";
@@ -18,59 +17,20 @@ import AdminAddCustomer from "../../components/admin/dashboard/customers/addCust
 import AdminEditCustomer from "../../components/admin/dashboard/customers/editCustomer/AdminEditCustomer.component";
 import ProductDetailsPage from "../../components/productDetails/ProductDetailsPage.component";
 import ProductSearchPage from "../../components/productSearch/ProductSearchPage.component";
+import RequireAdminAuth from "./RequireAdminAuth";
+import Dashboard from "../layout/Dashboard";
 
-export const routes = [
+export const routes: RouteObject[] = [
   {
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "/admin",
-        element: <RequireAuth />,
-        children: [
-          {
-            path: "/admin/dashboard/overview",
-            element: <AdminOverview />,
-          },
-          {
-            path: "/admin/dashboard/orders",
-            element: <AdminOrders />,
-          },
-          {
-            path: "/admin/dashboard/customers",
-            element: <AdminCustomers />,
-          },
-          {
-            path: "/admin/dashboard/customer/add",
-            element: <AdminAddCustomer />,
-          },
-          {
-            path: "/admin/dashboard/customer/edit/:customerId",
-            element: <AdminEditCustomer />,
-          },
-          {
-            path: "/admin/dashboard/products",
-            element: <AdminProducts />,
-          },
-          {
-            path: "/admin/dashboard/products/add",
-            element: <AdminAddProduct />,
-          },
-          {
-            path: "/admin/dashboard/product/edit/:productId",
-            element: <AdminEditProduct />,
-          },
-        ],
-      },
       { path: "brands", element: <BrandsPage /> },
       { path: "brands/:vendor", element: <BrandPage /> },
       { path: "auth", element: <AuthenticationPage /> },
       { path: "product/:productName", element: <ProductDetailsPage /> },
       { path: "search", element: <ProductSearchPage /> },
-      {
-        path: "/admin/sign-in",
-        element: <AdminAuthenticationPage />,
-      },
+
       { path: "checkout", element: <CheckOutPage /> },
       {
         path: "checkout/payment",
@@ -79,6 +39,60 @@ export const routes = [
       { path: "not-found", element: <NotFoundPage /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
+  },
+  {
+    path: "/admin",
+    element: (
+      <RequireAdminAuth>
+        <Dashboard />
+      </RequireAdminAuth>
+    ),
+    children: [
+      {
+        path: ".",
+        element: <Navigate replace to="/admin/dashboard/overview" />,
+      },
+      {
+        path: "dashboard/overview",
+        element: <AdminOverview />,
+      },
+      {
+        path: "dashboard/orders",
+        element: <AdminOrders />,
+      },
+      {
+        path: "dashboard/customers",
+        element: <AdminCustomers />,
+      },
+      {
+        path: "dashboard/customer/add",
+        element: <AdminCustomers />,
+      },
+      {
+        path: "dashboard/customer/add",
+        element: <AdminAddCustomer />,
+      },
+      {
+        path: "dashboard/customer/edit/:customerId",
+        element: <AdminEditCustomer />,
+      },
+      {
+        path: "dashboard/products",
+        element: <AdminProducts />,
+      },
+      {
+        path: "dashboard/products/add",
+        element: <AdminAddProduct />,
+      },
+      {
+        path: "dashboard/product/edit/:productId",
+        element: <AdminEditProduct />,
+      },
+    ],
+  },
+  {
+    path: "admin/sign-in",
+    element: <AdminAuthenticationPage />,
   },
 ];
 

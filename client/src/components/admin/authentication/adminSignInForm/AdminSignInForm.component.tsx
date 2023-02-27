@@ -1,11 +1,8 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, { ChangeEvent, FormEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 import Button from "../../../../app/common/button/Button.common";
 import MyTextInput from "../../../../app/common/form/MyFormInput.common";
-import { CurrentUser } from "../../../../app/models/user.model";
 import { adminEmailSignInLoading } from "../../../../app/stores/user/user.action";
-import { selectCurrentUser } from "../../../../app/stores/user/user.selector";
 
 const initialFormValues = {
   email: "",
@@ -16,9 +13,6 @@ const AdminSignInForm = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const { email, password } = formValues;
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const currentUser = useSelector(selectCurrentUser) as CurrentUser
 
   const resetFormValues = () => {
     setFormValues(initialFormValues);
@@ -40,12 +34,6 @@ const AdminSignInForm = () => {
       throw error;
     }
   };
-
-  useEffect(() => {
-    if (currentUser && currentUser.user && currentUser.user.isAdmin) {
-      navigate("/admin/dashboard/overview");
-    }
-  }, [currentUser, navigate]);
 
   return (
     <form className="app__auth-form" onSubmit={handleSubmit}>

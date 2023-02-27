@@ -24,6 +24,7 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import { User } from "firebase/auth";
 import { AdditionalInformation } from "../../models/user.model";
+import { router } from "../../routes/Routes";
 
 // Saga to get the snapshot of the user from firebase auth
 export function* getSnapshotFromUserAuth(
@@ -132,10 +133,19 @@ export function* signInWithAdminEmail({ payload }: AdminEmailSignInLoading) {
     const userCredential = yield* call(signInAuthUserForAdmin, email, password);
 
     if (userCredential) {
+      console.log(userCredential);
       //call the getSnapshotFromUserAuth function
       yield* call(getSnapshotFromUserAuth, userCredential);
+      router.navigate("/admin/dashboard/overview");
     }
   } catch (error) {
+    if (
+      (error as Error).message ===
+      "You are not authorized to sign in as an admin."
+    ) {
+      signOutUser();
+    }
+
     //dispatch the signin failed action
     yield* put(signInFailed(error as Error));
   }

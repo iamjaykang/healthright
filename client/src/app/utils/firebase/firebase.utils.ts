@@ -119,16 +119,14 @@ export const signInAuthUserWithEmailAndPassword = async (
     if (error instanceof FirebaseError) {
       switch (error.code) {
         case "auth/wrong-password":
-          console.log("Incorrect password or email");
-          break;
+          throw new Error("Incorrect password or email");
         case "auth/user-not-found":
-          console.log("No user associated with this email");
-          break;
+          throw new Error("No user associated with this email");
         default:
-          console.log(error);
-          break;
+          throw new Error(error.message);
       }
     }
+    throw error;
   }
 };
 
@@ -146,24 +144,20 @@ export const signInAuthUserForAdmin = async (
     if (isAdmin.claims.admin) {
       return user;
     } else {
-      console.log("You are not authorized to sign in as an admin.");
-      signOutUser();
-      return null;
+      throw new Error("You are not authorized to sign in as an admin.");
     }
   } catch (error: unknown) {
     if (error instanceof FirebaseError) {
       switch (error.code) {
         case "auth/wrong-password":
-          console.log("Incorrect password or email");
-          break;
+          throw new Error("Incorrect password or email");
         case "auth/user-not-found":
-          console.log("No user associated with this email");
-          break;
+          throw new Error("No user associated with this email");
         default:
-          console.log(error);
-          break;
+          throw new Error(error.message);
       }
     }
+    throw error;
   }
 };
 

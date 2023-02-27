@@ -29,6 +29,12 @@ export const selectAuthError = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.error
 );
+
+export const selectAuthSuccess = createSelector(
+  [selectUserReducer],
+  (userSlice) => userSlice.success
+);
+
 export const selectAuthMessage = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.message
