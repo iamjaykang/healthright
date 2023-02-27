@@ -6,6 +6,7 @@ const userRoutes = require("./routes/user.route");
 const paymentRoute = require("./routes/payment.route");
 const firebaseRoutes = require("./routes/firebase.route");
 var cookieParser = require("cookie-parser");
+require("dotenv").config();
 
 // Create an instance of express.
 const app = express();
@@ -14,13 +15,14 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 let corsOptions = {
-  origin: [process.env.CORS_ORIGIN],
-  optionsSuccessStatus: 200,
+  origin: process.env.CORS_ORIGIN,
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin'],
+  credentials: true,
+  optionSuccessStatus: 200,
 };
 
-process.env.NODE_ENV === "production"
-  ? app.use(cors(corsOptions))
-  : app.use(cors());
+app.use(cors(corsOptions))
 
 app.use(cookieParser());
 

@@ -21,5 +21,9 @@
     "pg": "^8.9.0",
     "sequelize": "^6.28.0",
     "stripe": "^11.9.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.13"
   }
 }
