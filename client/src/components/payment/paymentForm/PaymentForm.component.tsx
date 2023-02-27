@@ -7,14 +7,13 @@ import {
 } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../app/stores/user/user.selector";
-import { CurrentUser } from "../../../app/models/user.model";
 import { StripePaymentElementOptions } from "@stripe/stripe-js";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
 
-  const currentUser = useSelector(selectCurrentUser) as CurrentUser;
+  const currentUser = useSelector(selectCurrentUser);
 
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string | null>(null);
@@ -22,7 +21,7 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     if (currentUser) {
-      currentUser.user && setEmail(currentUser.user.email);
+      setEmail(currentUser.email);
     }
     if (!stripe) {
       return;
