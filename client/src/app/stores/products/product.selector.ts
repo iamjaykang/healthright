@@ -13,6 +13,12 @@ export const selectProductsArray = createSelector(
   (productsSlice) => productsSlice.productsArray
 );
 
+// returns the "productsArray" property from the "products" slice
+export const selectSearchedProductsArray = createSelector(
+  [selectProductsReducer],
+  (productsSlice) => productsSlice.searchedProductsArray
+);
+
 // returns the "product" property from the "products" slice
 export const selectProduct = createSelector(
   [selectProductsReducer],

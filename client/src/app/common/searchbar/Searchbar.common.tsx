@@ -4,20 +4,22 @@ import React, {
   FC,
   FormEvent,
   SetStateAction,
+  useMemo,
   useRef,
+  useState,
 } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { setHamburgerMenuIsOpen } from "../../stores/hamburgerMenu/hamburgerMenu.action";
 import { useDispatch } from "react-redux";
+import { searchProductsLoading } from "../../stores/products/product.action";
 
 export interface SearchBarProps {
   setHmDropdownOpen?: Dispatch<SetStateAction<{}>>;
 }
 
 const Searchbar: FC<SearchBarProps> = ({ setHmDropdownOpen }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const searchTerm = searchParams.get("q");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const dispatch = useDispatch();
 
@@ -25,26 +27,13 @@ const Searchbar: FC<SearchBarProps> = ({ setHmDropdownOpen }) => {
 
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // This function will be called whenever the text input changes
-  const searchHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    let search;
-    if (event.target.value) {
-      search = {
-        q: event.target.value,
-      };
-    } else {
-      search = undefined;
-    }
-
-    setSearchParams(search, { replace: true });
-  };
-
   const resetForm = () => {
-    setSearchParams({ q: "" }, { replace: true });
+    setSearchTerm("");
     if (searchInputRef.current) {
       searchInputRef.current.value = "";
     }
   };
+  
 
   const closeMenu = () => {
     dispatch(setHamburgerMenuIsOpen(false));
@@ -53,17 +42,31 @@ const Searchbar: FC<SearchBarProps> = ({ setHmDropdownOpen }) => {
     }
   };
 
+  const searchHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!searchTerm) {
+      return;
+    }
+
     try {
       resetForm();
-      navigate(`/search${searchTerm ? `?q=${searchTerm}` : ""}`);
+      dispatch(searchProductsLoading(searchTerm));
+      navigate(`/search?q=${searchTerm}`);
       closeMenu();
     } catch (error) {
       throw error;
     }
+
   };
+
+  const searchInputValue = useMemo(() => searchTerm, [searchTerm]);
+
   return (
     <form className="app__search-form" onSubmit={handleSubmit}>
       <input
@@ -71,7 +74,7 @@ const Searchbar: FC<SearchBarProps> = ({ setHmDropdownOpen }) => {
         className="app__search-input"
         type="text"
         placeholder="Search..."
-        value={searchParams ? searchParams.get("q") || "" : ""}
+        value={searchInputValue}
         onChange={searchHandler}
       />
       <button className="app__search-btn" type="submit" disabled={!searchTerm}>

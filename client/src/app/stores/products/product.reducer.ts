@@ -31,6 +31,7 @@ import {
 export type ProductState = {
   isLoading: boolean;
   productsArray: Product[] | AdminProduct[];
+  searchedProductsArray: Product[] | AdminProduct[];
   product: Product | AdminProduct | null;
   success: boolean;
   message: string | null;
@@ -40,6 +41,7 @@ export type ProductState = {
 const PRODUCT_INITIAL_STATE: ProductState = {
   isLoading: false,
   productsArray: [],
+  searchedProductsArray: [],
   product: null,
   success: false,
   message: null,
@@ -71,8 +73,7 @@ const productsReducer = (
     fetchProductsLoading.match(action) ||
     fetchProductsByVendorLoading.match(action) ||
     fetchProductByNameLoading.match(action) ||
-    fetchProductsAdminLoading.match(action) ||
-    searchProductsLoading.match(action)
+    fetchProductsAdminLoading.match(action)
   ) {
     return {
       ...state,
@@ -83,6 +84,18 @@ const productsReducer = (
       success: false
     };
   }
+
+  if (
+    searchProductsLoading.match(action)) {
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+        searchedProductsArray: [],
+        message: null,
+        success: false
+      }
+    }
 
   if (
     fetchProductByNameSuccess.match(action) ||
@@ -104,14 +117,25 @@ const productsReducer = (
     fetchProductsSuccess.match(action) ||
     fetchProductsByVendorSuccess.match(action) ||
     fetchProductByNameSuccess.match(action) ||
-    fetchProductsAdminSuccess.match(action) ||
-    searchProductsSuccess.match(action)
+    fetchProductsAdminSuccess.match(action)
+    
   ) {
     return {
       ...state,
       isLoading: false,
       error: null,
       productsArray: action.payload.data,
+      message: action.payload.message,
+      success: action.payload.success,
+    };
+  }
+
+  if (searchProductsSuccess.match(action)) {
+    return {
+      ...state,
+      isLoading: false,
+      error: null,
+      searchedProductsArray: action.payload.data,
       message: action.payload.message,
       success: action.payload.success,
     };

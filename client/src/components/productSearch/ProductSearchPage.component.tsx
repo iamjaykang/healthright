@@ -5,23 +5,31 @@ import ProductCard from "../../app/common/productCard/ProductCard.component";
 import Spinner from "../../app/common/spinner/Spinner.common";
 import { Product } from "../../app/models/product.model";
 import { searchProductsLoading } from "../../app/stores/products/product.action";
-import { selectProductsArray, selectProductsIsLoading } from "../../app/stores/products/product.selector";
+import {
+  selectProductsIsLoading,
+  selectSearchedProductsArray,
+} from "../../app/stores/products/product.selector";
 
 const ProductSearchPage = () => {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("q") as string;
+
   const dispatch = useDispatch();
 
-  const searchedProducts = useSelector(selectProductsArray) as Product[];
+  const searchedProducts = useSelector(
+    selectSearchedProductsArray
+  ) as Product[];
 
   const searchProductsIsLoading = useSelector(selectProductsIsLoading);
 
   useEffect(() => {
-    dispatch(searchProductsLoading(searchTerm));
+    if (searchTerm) {
+      dispatch(searchProductsLoading(searchTerm));
+    }
   }, [dispatch,searchTerm]);
 
   if (searchProductsIsLoading) {
-    <Spinner />
+    <Spinner />;
   }
 
   return (
