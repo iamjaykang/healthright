@@ -133,7 +133,6 @@ export function* signInWithAdminEmail({ payload }: AdminEmailSignInLoading) {
     const userCredential = yield* call(signInAuthUserForAdmin, email, password);
 
     if (userCredential) {
-      console.log(userCredential);
       //call the getSnapshotFromUserAuth function
       yield* call(getSnapshotFromUserAuth, userCredential);
       router.navigate("/admin/dashboard/overview");
