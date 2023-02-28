@@ -23,7 +23,6 @@ exports.getAllUsers = async () => {
 };
 
 exports.getUserById = async (customerId) => {
-  console.log(customerId)
   try {
     const user = await User.findByPk(customerId, {
       ...userDetails(UserAddress, Address, Country)
