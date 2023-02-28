@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const productRoutes = require("./routes/product.route");
 const userRoutes = require("./routes/user.route");
+const orderRoutes = require("./routes/order.route");
 const paymentRoute = require("./routes/payment.route");
 const firebaseRoutes = require("./routes/firebase.route");
 var cookieParser = require("cookie-parser");
@@ -42,6 +43,9 @@ app.use("/api/products", productRoutes);
 
 // endpoint handlers for the user-related functionality
 app.use("/api/users", userRoutes);
+
+// endpoint handlers for the order-related functionality
+app.use("/api/orders", orderRoutes);
 
 const db = require("./models");
 const errorHandler = require("./middleware/errorHandler.middleware");
