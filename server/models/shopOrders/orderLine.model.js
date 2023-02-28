@@ -2,8 +2,8 @@ const productModel = require("../products/product.model");
 const shopOrderModel = require("./shopOrder.model");
 
 module.exports = (sequelize, DataTypes) => {
-  const orderStatus = sequelize.define(
-    "orderStatus",
+  const orderLine = sequelize.define(
+    "orderLine",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -37,5 +37,5 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
-  return orderStatus;
+  return orderLine;
 };

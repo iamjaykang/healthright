@@ -47,7 +47,7 @@ const db = require("./models");
 const errorHandler = require("./middleware/errorHandler.middleware");
 
 if (process.env.NODE_ENV !== "production") {
-  db.sequelize.sync({ force: false }).then(() => {
+  db.sequelize.sync({ force: true }).then(() => {
     console.log("re-sync db.");
   });
 }
