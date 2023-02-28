@@ -79,26 +79,35 @@ const shopOrderDetails = (
   Address,
   OrderStatus,
   ShippingMethod,
-  OrderLine
+  OrderLine,
+  Product,
+  Country
 ) => ({
   // Only select the necessary attributes from the products table
   attributes: ["id", "orderTotal", "createdAt", "updatedAt"],
   include: [
     {
       model: User,
+      attributes: ["id", "firstName", "lastName", "emailAddress"]
     },
     {
       model: Address,
       as: "shippingAddress",
+      attributes: ["id", "unitNumber", "streetNumber", "addressLine1", "addressLine2", "city","region", "postalCode"],
+      include: [{model: Country, attributes: ["id", "countryName"]}]
     },
     {
       model: OrderStatus,
+      attributes: ["id", "status"]
     },
     {
       model: ShippingMethod,
+      attributes: ["id", "name", "price"]
     },
     {
       model: OrderLine,
+      attributes: ["id", "qty", "price"],
+      include: [{ model: Product, as: 'orderItem', attributes: ["id","name"] }],
     },
   ],
 });

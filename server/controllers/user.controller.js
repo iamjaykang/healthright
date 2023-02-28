@@ -22,7 +22,6 @@ exports.getUsers = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
   try {
-    console.log(req.params);
     const { id } = req.params;
     const user = await getUserById(id);
     res.status(200).send({

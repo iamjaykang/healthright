@@ -35,7 +35,7 @@ const defineAssociations = (db) => {
   db.orderStatuses.hasMany(db.shopOrders, { foreignKey: "orderStatusId" });
   db.shopOrders.belongsTo(db.orderStatuses, { foreignKey: "orderStatusId" });
 
-  db.orderLines.belongsTo(db.products, { foreignKey: "productItemId" });
+  db.orderLines.belongsTo(db.products, { foreignKey: "productItemId", as: "orderItem" });
   db.products.hasMany(db.orderLines, { foreignKey: "productItemId" });
 
   db.shopOrders.hasMany(db.orderLines, { foreignKey: "orderId" })
