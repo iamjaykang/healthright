@@ -6,6 +6,6 @@ const checkAuthorization = require("../middleware/authorization.middleware");
 
 const router = express.Router();
 
-router.get("/", getOrders);
+router.get("/",checkAuthorization, getOrders);
 
 module.exports = router;
