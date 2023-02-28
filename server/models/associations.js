@@ -24,12 +24,12 @@ const defineAssociations = (db) => {
   db.shopOrders.belongsTo(db.users, { foreignKey: "userId" });
   db.users.hasMany(db.shopOrders, { foreignKey: "userId" });
 
-  db.shopOrders.belongsTo(db.addresses, { foreignKey: "shippingAddressId" });
+  db.shopOrders.belongsTo(db.addresses, { foreignKey: "shippingAddressId", as: "shippingAddress" });
   db.addresses.hasMany(db.shopOrders, { foreignKey: "shippingAddressId" });
 
   db.shippingMethods.hasMany(db.shopOrders, { foreignKey: "shippingMethodId" });
   db.shopOrders.belongsTo(db.shippingMethods, {
-    foreignKey: "shippingMethodId",
+    foreignKey: "shippingMethodId"
   });
 
   db.orderStatuses.hasMany(db.shopOrders, { foreignKey: "orderStatusId" });
@@ -37,6 +37,9 @@ const defineAssociations = (db) => {
 
   db.orderLines.belongsTo(db.products, { foreignKey: "productItemId" });
   db.products.hasMany(db.orderLines, { foreignKey: "productItemId" });
+
+  db.shopOrders.hasMany(db.orderLines, { foreignKey: "orderId" })
+  db.orderLines.belongsTo(db.shopOrders, { foreignKey: "orderId" })
 };
 
 module.exports = defineAssociations;
