@@ -25,7 +25,7 @@ exports.getAllUsers = async () => {
 exports.getUserById = async (customerId) => {
   try {
     const user = await User.findByPk(customerId, {
-      ...userDetails(UserAddress, Address, Country)
+      ...userDetails(UserAddress, Address, Country),
     });
     if (!user) throw new NotFoundError(`User with id ${customerId} not found`);
     return user;
@@ -91,32 +91,11 @@ exports.createUser = async (userData) => {
       addressId: address.id,
       isDefault,
     };
-    const userAddress = await UserAddress.create(userAddressData);
+    await UserAddress.create(userAddressData);
 
-    // Return success message
-    return {
-      user: {
-        id: user.id,
-        emailAddress: user.emailAddress,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        address: {
-          id: address.id,
-          unitNumber: address.unitNumber,
-          streetNumber: address.streetNumber,
-          addressLine1: address.addressLine1,
-          addressLine2: address.addressLine2,
-          city: address.city,
-          region: address.region,
-          postalCode: address.postalCode,
-          country: {
-            id: country.id,
-            name: country.countryName,
-          },
-        },
-        isDefault: userAddress.isDefault,
-      },
-    };
+    return await User.findByPk(user.id, {
+      ...userDetails(UserAddress, Address, Country),
+    });
   } catch (error) {
     throw error;
   }
@@ -210,12 +189,13 @@ exports.updateUserById = async (id, newUserData) => {
     await user.save();
     await address.save();
 
-    return user;
+    return await User.findByPk(user.id, {
+      ...userDetails(UserAddress, Address, Country),
+    });
   } catch (error) {
     throw error;
   }
 };
-
 
 exports.deleteUser = async (id) => {
   try {
@@ -242,7 +222,6 @@ exports.deleteUser = async (id) => {
 
     // Delete the user
     await user.destroy();
-
   } catch (error) {
     throw error;
   }
