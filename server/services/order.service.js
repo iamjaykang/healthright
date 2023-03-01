@@ -352,3 +352,36 @@ exports.updateShopOrderById = async (shopOrderId, newOrderData) => {
     throw new InternalServerError(error.message);
   }
 };
+
+exports.deleteShopOrderById = async (shopOrderId) => {
+  try {
+    const shopOrder = await ShopOrder.findByPk(shopOrderId, {
+      include: [
+        {
+          model: OrderLine,
+          include: [{ model: Product, as: "orderItem" }],
+        },
+      ],
+    });
+
+    if (!shopOrder) {
+      throw new NotFoundError(`Shop order with the id not found`);
+    }
+
+    // Delete the order lines and update qty in stock for each product item
+    await Promise.all(
+      shopOrder.orderLines.map(async (orderLine) => {
+        const productItem = orderLine.orderItem;
+        productItem.qtyInStock += orderLine.qty;
+        await productItem.save();
+        await orderLine.destroy();
+      })
+    );
+
+    // Delete the shop order
+    await shopOrder.destroy();
+  } catch (error) {
+    throw error;
+  }
+};
+

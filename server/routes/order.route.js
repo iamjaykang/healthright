@@ -1,5 +1,5 @@
 const express = require("express");
-const { getShopOrders, getShopOrder, createNewShopOrder, updateExistingShopOrder } = require("../controllers/order.controller");
+const { getShopOrders, getShopOrder, createNewShopOrder, updateExistingShopOrder, deleteShopOrder } = require("../controllers/order.controller");
 
 const checkAuthorization = require("../middleware/authorization.middleware");
 
@@ -12,5 +12,7 @@ router.get("/:shopOrderId", getShopOrder);
 router.post("/", createNewShopOrder);
 
 router.put("/:shopOrderId",checkAuthorization, updateExistingShopOrder);
+
+router.delete("/:shopOrderId",checkAuthorization, deleteShopOrder);
 
 module.exports = router;

@@ -3,6 +3,7 @@ const {
   getShopOrderById,
   createShopOrder,
   updateShopOrderById,
+  deleteShopOrderById,
 } = require("../services/order.service");
 
 exports.getShopOrders = async (req, res, next) => {
@@ -60,6 +61,16 @@ exports.updateExistingShopOrder = async (req, res, next) => {
       success: true,
       message: "Order updated successfully",
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteShopOrder = async (req, res, next) => {
+  try {
+    const { shopOrderId } = req.params;
+    await deleteShopOrderById(shopOrderId);
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }
