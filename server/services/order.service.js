@@ -15,7 +15,7 @@ const OrderLine = db.orderLines;
 const Product = db.products;
 const Country = db.countries;
 
-exports.getAllOrders = async () => {
+exports.getAllShopOrders = async () => {
   try {
     const shopOrders = await ShopOrder.findAll({
       ...shopOrderDetails(
@@ -35,7 +35,7 @@ exports.getAllOrders = async () => {
   }
 };
 
-exports.getOrderById = async (orderId) => {
+exports.getShopOrderById = async (orderId) => {
   try {
     const order = await ShopOrder.findByPk(orderId, {
       ...shopOrderDetails(
@@ -55,7 +55,7 @@ exports.getOrderById = async (orderId) => {
   }
 };
 
-exports.createOrder = async (orderData) => {
+exports.createShopOrder = async (orderData) => {
   const {
     emailAddress,
     firstName,
@@ -152,6 +152,9 @@ exports.createOrder = async (orderData) => {
       orderTotal += parseFloat(productItem.price) * qty;
     }
 
+    // Add the shipping method price to the order total
+    orderTotal += parseFloat(shippingMethod.price);
+
     // Update the order status
     const orderStatus = await OrderStatus.findOne({
       where: { status: "Processing" },
@@ -208,3 +211,5 @@ exports.createOrder = async (orderData) => {
     throw new InternalServerError(error.message);
   }
 };
+
+
