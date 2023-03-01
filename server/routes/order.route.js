@@ -1,15 +1,18 @@
 const express = require("express");
+const { getShopOrders, getShopOrder, createNewShopOrder, updateExistingShopOrder } = require("../controllers/order.controller");
 
-const { getOrders, getOrder, createNewOrder } = require("../controllers/order.controller");
+
 
 const checkAuthorization = require("../middleware/authorization.middleware");
 
 const router = express.Router();
 
-router.get("/",checkAuthorization, getOrders);
+router.get("/",checkAuthorization, getShopOrders);
 
-router.get("/:orderId", getOrder);
+router.get("/:shopOrderId", getShopOrder);
 
-router.post("/", createNewOrder);
+router.post("/", createNewShopOrder);
+
+router.put("/update/:shopOrderId", updateExistingShopOrder);
 
 module.exports = router;

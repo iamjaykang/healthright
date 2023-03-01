@@ -212,4 +212,143 @@ exports.createShopOrder = async (orderData) => {
   }
 };
 
+exports.updateShopOrderById = async (shopOrderId, newOrderData) => {
+  const {
+    emailAddress,
+    firstName,
+    lastName,
+    unitNumber,
+    streetNumber,
+    addressLine1,
+    addressLine2,
+    city,
+    region,
+    postalCode,
+    countryId,
+    shippingMethodId,
+    orderStatusId,
+    orderLines,
+  } = newOrderData;
+  try {
+    // Find the shop order by ID and include related models
+    const shopOrder = await ShopOrder.findByPk(shopOrderId, {
+      include: [
+        {
+          model: User,
+        },
+        {
+          model: Address,
+          as: "shippingAddress",
+          include: [{ model: Country }],
+        },
+        {
+          model: OrderStatus,
+        },
+        {
+          model: ShippingMethod,
+        },
+        {
+          model: OrderLine,
+          include: [{ model: Product, as: "orderItem" }],
+        },
+      ],
+    });
 
+    if (!shopOrder) {
+      throw new NotFoundError(`Shop order with the id not found`);
+    }
+
+    // Get the user from the shop order
+    const user = shopOrder.user;
+
+    // Check if the email address in the new order data is different from the user's current email address
+    if (emailAddress && emailAddress !== user.emailAddress) {
+      // Check if the new email address is already in use by another user
+      const existingUser = await User.findOne({ where: { emailAddress } });
+      if (existingUser) {
+        throw new BadRequestError(
+          `Email address '${emailAddress}' is already in use.`
+        );
+      }
+    }
+
+    // Update the user's details
+    await User.update(
+      { firstName, lastName, emailAddress },
+      { where: { id: user.id } }
+    );
+
+    // Get the shipping address from the shop order
+    const shippingAddress = shopOrder.shippingAddress;
+
+    // Get the shipping address country from the new order data
+    const shippingAddressCountry = await Country.findByPk(countryId);
+    if (!shippingAddressCountry) {
+      throw new BadRequestError(`Country with id ${countryId} does not exist`);
+    }
+
+    // Update the shipping address with the new data
+    await Address.update(
+      {
+        unitNumber,
+        streetNumber,
+        addressLine1,
+        addressLine2,
+        city,
+        region,
+        postalCode,
+        countryId,
+      },
+      { where: { id: shippingAddress.id } }
+    );
+
+    // Get the order status from the new order data
+    const orderStatus = await OrderStatus.findByPk(orderStatusId);
+    if (!orderStatus) {
+      throw new BadRequestError(
+        `Order status with id ${orderStatusId} does not exist`
+      );
+    }
+    shopOrder.orderStatusId = orderStatus.id;
+
+    // Calculate the order total and update the order lines
+    let orderTotal = 0;
+    for (const orderLine of orderLines) {
+      const { productItemId, qty } = orderLine;
+      if (!productItemId) {
+        throw new BadRequestError(`Invalid product item ID: ${productItemId}`);
+      }
+      const productItem = await Product.findByPk(productItemId);
+      if (!productItem) {
+        throw new BadRequestError(
+          `Product item with id ${productItemId} does not exist.`
+        );
+      }
+      const orderLineData = {
+        orderId: shopOrder.id,
+        productItemId: productItem.id,
+        qty: qty,
+        price: productItem.price,
+      };
+      await OrderLine.upsert(orderLineData);
+      orderTotal += parseFloat(productItem.price) * qty;
+    }
+    // Get the shipping method from the new order data
+    const shippingMethod = await ShippingMethod.findByPk(shippingMethodId);
+    if (!shippingMethod) {
+      throw new BadRequestError(
+        `Shipping method with id ${shippingMethodId} does not exist`
+      );
+    }
+    shopOrder.shippingMethodId = shippingMethod.id;
+    // Add shipping price to order total
+    orderTotal += parseFloat(shippingMethod.price);
+
+    shopOrder.orderTotal = orderTotal;
+
+    await shopOrder.save();
+    return shopOrder;
+  } catch (error) {
+    throw new InternalServerError(error.message);
+  }
+};
