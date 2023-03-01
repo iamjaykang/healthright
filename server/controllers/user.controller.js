@@ -2,7 +2,6 @@ const {
   getAllUsers,
   getUserById,
   createUser,
-  updateUser,
   deleteUser,
   updateUserById,
 } = require("../services/user.service");
@@ -69,9 +68,7 @@ exports.deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
     await deleteUser(id);
-    res
-      .status(204)
-      .send({ success: true, message: "User deleted successfully" });
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }

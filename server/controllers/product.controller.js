@@ -119,13 +119,11 @@ exports.findOne = async (req, res, next) => {
   try {
     const { productName } = req.params;
     const product = await productService.getProductByName(productName);
-    return res
-      .status(200)
-      .send({
-        data: product,
-        success: true,
-        message: "Product retrieved successfully",
-      });
+    return res.status(200).send({
+      data: product,
+      success: true,
+      message: "Product retrieved successfully",
+    });
   } catch (error) {
     next(error);
   }
@@ -150,12 +148,8 @@ exports.findOneByIdForAdmin = async (req, res, next) => {
 exports.delete = async (req, res, next) => {
   try {
     const { productId } = req.params;
-    const product = await productService.deleteProduct(productId);
-    res.status(200).send({
-      success: true,
-      message: "Product deleted successfully!",
-      data: product,
-    });
+    await productService.deleteProduct(productId);
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }
@@ -164,16 +158,9 @@ exports.delete = async (req, res, next) => {
 // Delete all Products from the database.
 exports.deleteAll = async (req, res, next) => {
   try {
-    const products = await productService.deleteAllProducts();
-    res.status(200).send({
-      success: true,
-      message: "All products deleted successfully!",
-      data: products,
-    });
+    await productService.deleteAllProducts();
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }
 };
-
-// Find all published Products
-exports.findAllPublished = (req, res) => {};
