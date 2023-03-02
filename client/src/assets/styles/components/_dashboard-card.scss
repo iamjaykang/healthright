@@ -1,4 +1,5 @@
 .dashboard {
+
     &__card {
         position: relative;
         background: $white-color;
@@ -18,62 +19,73 @@
             font-weight: bold;
             border-bottom: $gray-color 1px solid;
         }
-    }
 
-    &__product-card,
-    &__customer-card {
-        @extend .dashboard__card;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 1rem;
-        padding: 0.5rem;
+        &--stats {
+            @extend .dashboard__card;
+            text-align: center;
+        }
 
-        &--pricing {
-            @extend .dashboard__product-card;
-            display: grid;
-            @include grid(1);
+        &--product {
+            @extend .dashboard__card;
+            display: flex;
+            flex-direction: column;
             margin-bottom: 1rem;
             padding: 0.5rem;
 
-            @include screen(lg) {
-                @include grid(2);
+            &-pricing {
+                @extend .dashboard__card;
+                display: grid;
+                @include grid(1);
+                margin-bottom: 1rem;
+                padding: 0.5rem;
+    
+                @include screen(lg) {
+                    @include grid(2);
+                }
             }
         }
-    }
 
-    &__stats-card {
-        @extend .dashboard__card;
-        text-align: center;
-
-        &-body {
-            position: relative;
-            padding: 1rem;
-            padding-right: 1.5rem;
-            width: 100%;
+        &--customer {
+            @extend .dashboard__card;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
         }
 
-        &-text {
-            margin: 0 0 0.5rem 0;
-            font-size: 1rem;
-            color: $black-color;
-            text-transform: uppercase;
-        }
-
-        &-figure {
-            font-size: 1.5rem;
-            color: $primary-color;
-        }
-
-        &-meta {
-            font-size: 0.875rem;
-            color: $theme-primary-color-light;
-        }
-    }
-
-    &__products-card {
         &-body {
             max-width: 100%;
             overflow-x: auto;
+
+            &--stats {
+                position: relative;
+                padding: 1rem;
+                padding-right: 1.5rem;
+                width: 100%;
+            }
+        }
+
+        &-title {
+            &--stats {
+                margin: 0 0 0.5rem 0;
+                font-size: 1rem;
+                color: $black-color;
+                text-transform: uppercase;
+            }
+        }
+
+        &-figure {
+            &--stats {
+                font-size: 1.5rem;
+                color: $primary-color;
+            }
+        }
+
+        &-meta {
+            &--stats {
+                font-size: 0.875rem;
+                color: $theme-primary-color-light;
+            }
         }
     }
 }

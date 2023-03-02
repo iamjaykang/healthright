@@ -1,20 +1,5 @@
 .dashboard {
 
-    &__customers-btn-container,
-    &__products-btn-container {
-        margin-bottom: 1rem;
-    }
-
-    &__btns-container {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-
-        @include screen(md) {
-            gap: 1rem
-        }
-    }
-
     &__auth-container {
         height: 100vh;
         width: 100vw;

@@ -12,15 +12,4 @@
             justify-content: right;
         }
     }
-
-    &__customers-header,
-    &__products-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        &-title {
-            margin-top: 1rem;
-        }
-    }
 }

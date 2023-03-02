@@ -67,62 +67,6 @@
     }
 }
 
-.dashboard {
-    &__form {
-        grid-gap: 1rem;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 100%;
-        padding: 1rem;
-    }
-
-
-    &__customer-form {
-        @extend .dashboard__form;
-        display: grid;
-        @include grid(1);
-
-        @include screen(md) {
-            @include grid(6);
-        }
-
-        &--left {
-            @include screen(md) {
-                grid-column: 1 / span 4
-            }
-        }
-
-        &--right {
-            @include screen(md) {
-                grid-column: 5 / span 2;
-            }
-        }
-    }
-
-
-    &__product-form {
-        @extend .dashboard__form;
-        display: grid;
-        @include grid(1);
-
-        @include screen(md) {
-            @include grid(6);
-        }
-
-        &--left {
-            @include screen(md) {
-                grid-column: 1 / span 5
-            }
-        }
-
-        &--right {
-            @include screen(md) {
-                grid-column: 6 / span 1;
-            }
-        }
-    }
-}
-
 .payment-form {
     width: 25vw;
     min-width: 500px;

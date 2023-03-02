@@ -6,17 +6,30 @@
         width: 100%;
         border-collapse: collapse;
 
-        &-header{
-            padding: 0.8rem;
+        &-header {
+            color: $table-header;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+            padding: 1.2rem;
         }
+
         &-cell {
-            padding: 0.8rem;
-            &--name {
-                font-size: 1rem;
-                font-weight: bold;
+            padding: 1.2rem;
+
+            &--product {
+                @extend .dashboard__table-cell;
+                display: flex;
+                align-items: center;
             }
-            &--address {
-                color: $gray-color;
+
+            &--customer {
+                @extend .dashboard__table-cell;
+
+                a {
+                    display: grid;
+                    @include grid(1)
+                }
             }
         }
 
@@ -27,24 +40,38 @@
         &-body {
             font-size: 0.875rem;
         }
+    }
 
-        &-header {
-            color: $table-header;
-            font-size: 1rem;
-            font-weight: 500;
+    &__cell {
+        &-status {
             text-align: left;
+
+            &--available {
+                color: $success-color;
+            }
+
+            &--unavailable {
+                color: $neutral-color;
+            }
+        }
+
+        &-name {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        &-address {
+            color: $gray-color;
         }
     }
+}
 
-    &__product-table {
-        padding: 1rem;
-    }
+.dashboard__cell-image--product {
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+}
 
-    &__sales-table {
-        padding: 1rem;
-    }
-
-    &__table-container {
-        overflow-x: auto;
-    }
+.dashboard__cell-title--product {
+    font-size: 0.875rem;
 }

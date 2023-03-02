@@ -4,6 +4,14 @@
         flex-direction: column;
         padding: 1rem;
         height: auto;
+
+        &-container--default {
+            display: grid;
+            grid-column-gap: 2rem;
+            align-items: center;
+            justify-items: center;
+            @include grid(2);
+        }
     }
 
     &__input-label {
@@ -23,16 +31,19 @@
             outline-color: $input-field-outline;
         }
 
-        &--default {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            position: relative;
-            top: 3px;
+        &-checkbox {
+
+            &--default {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+                position: relative;
+                top: 3px;
+            }
         }
 
-        &-group--house-number {
+        &-group-container--house-number {
             display: grid;
             @include grid(1);
 
@@ -41,7 +52,7 @@
             }
         }
 
-        &-group--name {
+        &-group-container--name {
 
             display: grid;
             @include grid(1);
@@ -57,10 +68,7 @@
         min-height: 300px;
     }
 
-    &__product,
     &__customer {
-
-        &-card--status-options,
         &-card--country-options {
             select {
                 background-color: $input-field;
@@ -69,15 +77,5 @@
                 font-size: 1.2rem;
             }
         }
-
-
     }
-}
-
-.default-group {
-    display: grid;
-    grid-column-gap: 2rem;
-    align-items: center;
-    justify-items: center;
-    @include grid(2);
 }

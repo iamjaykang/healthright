@@ -8,7 +8,7 @@ import NotFoundPage from "../../components/notFound/NotFoundPage.component";
 import CheckOutPage from "../../components/checkOut/CheckOutPage.component";
 import AdminAuthenticationPage from "../../components/admin/authentication/AdminAuthentication.component";
 import AdminOverview from "../../components/admin/dashboard/overview/AdminOverview.component";
-import AdminOrders from "../../components/admin/dashboard/orders/AdminOrders.components";
+import AdminOrders from "../../components/admin/dashboard/orders/AdminOrders.component";
 import AdminProducts from "../../components/admin/dashboard/products/AdminProducts.component";
 import AdminAddProduct from "../../components/admin/dashboard/products/addProduct/AdminAddProduct.component";
 import AdminEditProduct from "../../components/admin/dashboard/products/editProduct/AdminEditProduct.component";
@@ -19,6 +19,8 @@ import ProductDetailsPage from "../../components/productDetails/ProductDetailsPa
 import ProductSearchPage from "../../components/productSearch/ProductSearchPage.component";
 import RequireAdminAuth from "./RequireAdminAuth";
 import Dashboard from "../layout/Dashboard";
+import AdminAddOrder from "../../components/admin/dashboard/orders/addOrder/AdminAddOrder.component";
+import AdminEditOrder from "../../components/admin/dashboard/orders/editOrder/AdminEditOrder.componet";
 
 export const routes: RouteObject[] = [
   {
@@ -61,11 +63,15 @@ export const routes: RouteObject[] = [
         element: <AdminOrders />,
       },
       {
-        path: "dashboard/customers",
-        element: <AdminCustomers />,
+        path: "dashboard/order/add",
+        element: <AdminAddOrder />,
       },
       {
-        path: "dashboard/customer/add",
+        path: "dashboard/order/edit/:orderId",
+        element: <AdminEditOrder />,
+      },
+      {
+        path: "dashboard/customers",
         element: <AdminCustomers />,
       },
       {

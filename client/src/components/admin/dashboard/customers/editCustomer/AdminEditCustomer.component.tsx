@@ -143,18 +143,17 @@ const AdminEditCustomer = () => {
 
   return (
     <div className="dashboard__page">
-      <div className="dashboard__products-header">
-        <h2 className="dashboard__content-title">Edit Customer</h2>
+      <div className="dashboard__page-header">
+        <h2 className="dashboard__page-title">Edit Customer</h2>
         <div className="dashboard__btn-container">
           <button onClick={handleDelete} className="dashboard__btn shadow-sm">
             Delete
           </button>
         </div>
       </div>
-      <form className="dashboard__customer-form" onSubmit={handleSubmit}>
-        <div className="dashboard__customer-form--left">
-          <div className="dashboard__customer-card shadow-sm">
-            <div className="dashboard__customer-card--email">
+      <form className="dashboard__form--customer" onSubmit={handleSubmit}>
+        <div className="dashboard__form-container--customer-left">
+          <div className="dashboard__card--customer shadow-sm">
               <DashboardFormInput
                 label="Email Address"
                 type="email"
@@ -163,8 +162,7 @@ const AdminEditCustomer = () => {
                 name="emailAddress"
                 value={emailAddress}
               />
-            </div>
-            <div className="dashboard__input-group--name">
+            <div className="dashboard__input-group-container--name">
               <DashboardFormInput
                 label="First Name"
                 type="text"
@@ -183,8 +181,8 @@ const AdminEditCustomer = () => {
               />
             </div>
           </div>
-          <div className="dashboard__customer-card shadow-sm">
-            <div className="dashboard__input-group--house-number">
+          <div className="dashboard__card--customer shadow-sm">
+            <div className="dashboard__input-group-container--house-number">
               <DashboardFormInput
                 label="Unit Number"
                 type="number"
@@ -201,7 +199,7 @@ const AdminEditCustomer = () => {
                 value={streetNumber}
               />
             </div>
-            <div className="dashboard__input--address-line">
+            <div className="dashboard__input-group-container--address-line">
               <DashboardFormInput
                 label="Address Line1"
                 type="text"
@@ -219,7 +217,7 @@ const AdminEditCustomer = () => {
                 value={addressLine2}
               />
             </div>
-            <div className="dashboard__input-group default-group">
+            <div className="dashboard__input-group-container--default">
               <label className="dashboard__input-label" htmlFor="isDefault">
                 Is This Your Main Address?
               </label>
@@ -233,8 +231,9 @@ const AdminEditCustomer = () => {
             </div>
           </div>
         </div>
-        <div className="dashboard__customer-form--right">
-          <div className="dashboard__customer-card shadow-sm">
+        <div className="dashboard__form-container--customer-right">
+          <div className="dashboard__card--customer shadow-sm">
+            {/* TODO: Refactor code to use country Id and implement changes accoringly */}
             <div className="dashboard__input-group">
               <span className="dashboard__customer-label">Country</span>
               <div className="dashboard__customer-card--country-options">
