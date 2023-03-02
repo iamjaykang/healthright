@@ -63,11 +63,11 @@ export const routes: RouteObject[] = [
         element: <AdminOrders />,
       },
       {
-        path: "dashboard/order/add",
+        path: "dashboard/orders/add",
         element: <AdminAddOrder />,
       },
       {
-        path: "dashboard/order/edit/:orderId",
+        path: "dashboard/orders/edit/:orderId",
         element: <AdminEditOrder />,
       },
       {
@@ -75,11 +75,11 @@ export const routes: RouteObject[] = [
         element: <AdminCustomers />,
       },
       {
-        path: "dashboard/customer/add",
+        path: "dashboard/customers/add",
         element: <AdminAddCustomer />,
       },
       {
-        path: "dashboard/customer/edit/:customerId",
+        path: "dashboard/customers/edit/:customerId",
         element: <AdminEditCustomer />,
       },
       {
@@ -91,7 +91,7 @@ export const routes: RouteObject[] = [
         element: <AdminAddProduct />,
       },
       {
-        path: "dashboard/product/edit/:productId",
+        path: "dashboard/products/edit/:productId",
         element: <AdminEditProduct />,
       },
     ],

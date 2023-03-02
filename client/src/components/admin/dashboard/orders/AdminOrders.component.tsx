@@ -7,7 +7,7 @@ const AdminOrders = () => {
       <div className="dashboard__page-header">
         <h2 className="dashboard__page-title">Orders</h2>
         <div className="dashboard__btn-container">
-          <Link to="/admin/dashboard/order/add" className="dashboard__btn">
+          <Link to="/admin/dashboard/orders/add" className="dashboard__btn">
             Add Order
           </Link>
         </div>
@@ -29,7 +29,7 @@ const AdminOrders = () => {
               <tbody className="dashboard__table-body">
                 <tr className="dashboard__table-row">
                   <td className="dashboard__table-cell">
-                    <Link to={`/admin/dashboard/order/edit/1`}>#1001</Link>
+                    <Link to={`/admin/dashboard/orders/edit/1`}>#1001</Link>
                   </td>
                   <td className="dashboard__table-cell customer-cell">
                     John Doe
@@ -39,7 +39,7 @@ const AdminOrders = () => {
                 </tr>
                 <tr className="dashboard__table-row">
                   <td className="dashboard__table-cell">
-                    <Link to={`/admin/dashboard/order/edit/2`}>#1002</Link>
+                    <Link to={`/admin/dashboard/orders/edit/2`}>#1002</Link>
                   </td>
                   <td className="dashboard__table-cell">Jane Smith</td>
                   <td className="dashboard__table-cell">Shipped</td>

@@ -18,7 +18,7 @@ const AdminCustomers = () => {
       <div className="dashboard__page-header">
         <h2 className="dashboard__page-title">Customers</h2>
         <div className="dashboard__btn-container">
-          <Link to="/admin/dashboard/customer/add" className="dashboard__btn">
+          <Link to="/admin/dashboard/customers/add" className="dashboard__btn">
             Add Customer
           </Link>
         </div>
@@ -46,7 +46,7 @@ const AdminCustomers = () => {
                     <tr key={customer.id} className="dashboard__table-row">
                       <td className="dashboard__table-cell--customer">
                         <Link
-                          to={`/admin/dashboard/customer/edit/${customer.id}`}
+                          to={`/admin/dashboard/customers/edit/${customer.id}`}
                         >
                           <span className="dashboard__cell-name">
                             {customer.firstName ?? ""} {customer.lastName ?? ""}

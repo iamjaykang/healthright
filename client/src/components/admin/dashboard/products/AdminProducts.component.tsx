@@ -48,7 +48,7 @@ const AdminProducts = () => {
                       </td>
                       <td className="dashboard__table-cell--product">
                         <Link
-                          to={`/admin/dashboard/product/edit/${product.id}`}
+                          to={`/admin/dashboard/products/edit/${product.id}`}
                         >
                           <img
                             className="dashboard__cell-image--product"
