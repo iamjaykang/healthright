@@ -4,13 +4,11 @@ export interface UserData {
   id: string;
   firstName: string;
   lastName: string;
-  isAdmin: boolean;
 }
 
 export interface AdditionalInformation {
   firstName?: string;
   lastName?: string;
-  isAdmin?: boolean;
 }
 
 export interface Customer {
@@ -18,9 +16,9 @@ export interface Customer {
   firstName: string;
   lastName: string;
   emailAddress: string;
-  createdAt: Date;
-  updatedAt: Date;
-  userAddresses: UserAddress[];
+  createdAt?: Date;
+  updatedAt?: Date;
+  userAddresses?: UserAddress[];
 }
 
 export interface UserAddress {
@@ -43,16 +41,16 @@ export interface Address {
   region: string;
   postalCode: string;
   countryId: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   country: Country;
 }
 
 export interface Country {
   id: number;
   countryName: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export class UserFormValues {

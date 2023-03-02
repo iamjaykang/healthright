@@ -45,14 +45,17 @@ const AdminCustomers = () => {
                   customersArray.map((customer) => (
                     <tr key={customer.id} className="dashboard__table-row">
                       <td className="dashboard__table-cell customer-cell">
-                        <Link to={`/admin/dashboard/customer/edit/${customer.id}`}>
-                        <span className="dashboard__table-cell--name">
-                          {customer.firstName ?? ""} {customer.lastName ?? ""}
-                        </span>
-                        <span className="dashboard__table-cell--address">
-                          {customer.userAddresses.length > 0 &&
-                            `${customer.userAddresses[0].address.city}, ${customer.userAddresses[0].address.country.countryName}`}
-                        </span>
+                        <Link
+                          to={`/admin/dashboard/customer/edit/${customer.id}`}
+                        >
+                          <span className="dashboard__table-cell--name">
+                            {customer.firstName ?? ""} {customer.lastName ?? ""}
+                          </span>
+                          <span className="dashboard__table-cell--address">
+                            {customer.userAddresses &&
+                              customer.userAddresses.length > 0 &&
+                              `${customer.userAddresses[0].address.city}, ${customer.userAddresses[0].address.country.countryName}`}
+                          </span>
                         </Link>
                       </td>
                       <td className="dashboard__table-cell stat-cell">

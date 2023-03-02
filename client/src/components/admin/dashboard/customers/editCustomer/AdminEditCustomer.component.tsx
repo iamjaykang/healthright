@@ -46,7 +46,7 @@ const AdminEditCustomer = () => {
   const customerIsLoading = useSelector(selectCustomersIsLoading);
 
   useEffect(() => {
-    if (customerData) {
+    if (customerData && customerData.userAddresses) {
       setFormData({
         emailAddress: customerData.emailAddress ?? "",
         firstName: customerData.firstName ?? "",
