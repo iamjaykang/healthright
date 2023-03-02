@@ -14,20 +14,10 @@ import {
   selectProductsIsLoading,
   selectProductsSuccess,
 } from "../../../../../app/stores/products/product.selector";
-import { AdminProduct } from "../../../../../app/models/product.model";
+import { AdminProduct, AdminProductFormValues } from "../../../../../app/models/product.model";
 import DashboardFormSelect from "../../../../../app/common/dashboardForm/DashboardFormSelect.common";
 
-const initialFormData = {
-  name: "",
-  description: "",
-  productImage: "",
-  price: 0.0,
-  qtyInStock: 0,
-  categoryName: "",
-  vendorName: "",
-  cost: 0.0,
-  productLive: 0,
-};
+const initialFormData = new AdminProductFormValues();
 
 const AdminEditProduct = () => {
   const [isFormChanged, setIsFormChanged] = useState(false);

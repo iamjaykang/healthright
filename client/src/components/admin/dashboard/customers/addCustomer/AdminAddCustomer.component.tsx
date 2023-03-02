@@ -2,22 +2,10 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch } from "react-redux";
 import DashboardFormInput from "../../../../../app/common/dashboardForm/DashboardFormInput.common";
+import { CustomerFormValues } from "../../../../../app/models/user.model";
 import { addCustomerLoading } from "../../../../../app/stores/customers/customer.action";
 
-const initialFormData = {
-  emailAddress: "",
-  firstName: "",
-  lastName: "",
-  isDefault: false,
-  unitNumber: "",
-  streetNumber: "",
-  addressLine1: "",
-  addressLine2: "",
-  city: "",
-  region: "",
-  postalCode: "",
-  countryName: "",
-};
+const initialFormData = new CustomerFormValues();
 
 const AdminAddCustomer = () => {
   const dispatch = useDispatch();
@@ -103,7 +91,7 @@ const AdminAddCustomer = () => {
                 type="number"
                 onChange={handleInputChange}
                 name="unitNumber"
-                value={unitNumber}
+                value={unitNumber ?? ""}
               />
               <DashboardFormInput
                 label="Street Number"
@@ -129,7 +117,7 @@ const AdminAddCustomer = () => {
                 required
                 onChange={handleInputChange}
                 name="addressLine2"
-                value={addressLine2}
+                value={addressLine2 ?? ""}
               />
             </div>
             <div className="dashboard__input-group-container--default">

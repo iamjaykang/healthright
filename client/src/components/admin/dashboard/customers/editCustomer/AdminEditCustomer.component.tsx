@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import DashboardFormInput from "../../../../../app/common/dashboardForm/DashboardFormInput.common";
 import Spinner from "../../../../../app/common/spinner/Spinner.common";
+import { CustomerFormValues } from "../../../../../app/models/user.model";
 import {
   deleteCustomerLoading,
   fetchCustomerByIdLoading,
@@ -14,20 +15,7 @@ import {
   selectCustomersSuccess,
 } from "../../../../../app/stores/customers/customer.selector";
 
-const initialFormData = {
-  emailAddress: "",
-  firstName: "",
-  lastName: "",
-  isDefault: false,
-  unitNumber: "",
-  streetNumber: "",
-  addressLine1: "",
-  addressLine2: "",
-  city: "",
-  region: "",
-  postalCode: "",
-  countryName: "",
-};
+const initialFormData = new CustomerFormValues();
 
 type RouteParams = {
   customerId: string;
@@ -188,7 +176,7 @@ const AdminEditCustomer = () => {
                 type="number"
                 onChange={handleInputChange}
                 name="unitNumber"
-                value={unitNumber}
+                value={unitNumber ?? ""}
               />
               <DashboardFormInput
                 label="Street Number"
@@ -214,7 +202,7 @@ const AdminEditCustomer = () => {
                 required
                 onChange={handleInputChange}
                 name="addressLine2"
-                value={addressLine2}
+                value={addressLine2 ?? ""}
               />
             </div>
             <div className="dashboard__input-group-container--default">

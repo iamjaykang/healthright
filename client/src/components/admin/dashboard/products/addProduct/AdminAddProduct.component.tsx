@@ -5,18 +5,9 @@ import DashboardFormQuillInput from "../../../../../app/common/dashboardForm/Das
 import DashboardFormInput from "../../../../../app/common/dashboardForm/DashboardFormInput.common";
 import { addProductLoading } from "../../../../../app/stores/products/product.action";
 import DashboardFormSelect from "../../../../../app/common/dashboardForm/DashboardFormSelect.common";
+import { AdminProductFormValues } from "../../../../../app/models/product.model";
 
-const initialFormData = {
-  name: "",
-  description: "",
-  productImage: "",
-  price: 0.0,
-  qtyInStock: 0,
-  categoryName: "",
-  vendorName: "",
-  cost: 0.0,
-  productLive: 0,
-};
+const initialFormData = new AdminProductFormValues;
 
 const AdminAddProduct = () => {
   const dispatch = useDispatch();
