@@ -337,7 +337,6 @@ exports.updateShopOrderById = async (shopOrderId, newOrderData) => {
       orderTotal += lineTotal;
     });
 
-    
     shopOrder.orderTotal = orderTotal += parseFloat(shippingMethod.price);
 
     await shopOrder.save();
@@ -384,38 +383,51 @@ const updateOrderLinesForShopOrder = async (shopOrder, orderLines) => {
       // If the order line already exists, update the quantity and product
       const { qty: existingQty, productItemId: existingProductItemId } =
         existingOrderLine;
-      const qtyDiff = qty - existingQty;
 
-      if (qtyDiff !== 0 || existingProductItemId !== productItemId) {
+      if (existingProductItemId === productItemId) {
         // Update the existing order line
+        await existingOrderLine.update({
+          qty,
+          price: productItem.price,
+        });
+
+        // Update the quantity in stock for the product item
+        const qtyInStockDiff = existingQty - qty;
+        const newQtyInStock = productItem.qtyInStock + qtyInStockDiff;
+        await productItem.update({
+          qtyInStock: newQtyInStock,
+        });
+      } else {
+        // Update the existing order line and the quantity in stock for the products
         await existingOrderLine.update({
           productItemId,
           qty,
           price: productItem.price,
         });
 
-        // Update the quantity in stock for the previous product item
-        if (existingProductItemId !== productItemId) {
-          const existingProductItem = await Product.findByPk(
-            existingProductItemId
-          );
-          const existingQtyInStock =
-            existingProductItem.qtyInStock + existingQty;
-          await existingProductItem.update({
-            qtyInStock: existingQtyInStock,
-          });
-        }
+        const existingProductItem = await Product.findByPk(
+          existingProductItemId
+        );
+        const existingQtyInStock = existingProductItem.qtyInStock + existingQty;
+        await existingProductItem.update({
+          qtyInStock: existingQtyInStock,
+        });
+
+        const newQtyInStock = productItem.qtyInStock - qty;
+        await productItem.update({
+          qtyInStock: newQtyInStock,
+        });
       }
     } else {
       // If the order line doesn't exist, insert a new one
       await OrderLine.create(orderLineData);
-    }
 
-    // Update the quantity in stock for the product item
-    const newQtyInStock = productItem.qtyInStock - qty;
-    await productItem.update({
-      qtyInStock: newQtyInStock,
-    });
+      // Update the quantity in stock for the product item
+      const newQtyInStock = productItem.qtyInStock - qty;
+      await productItem.update({
+        qtyInStock: newQtyInStock,
+      });
+    }
   }
 
   // Remove any order lines that were not included in the new order data
