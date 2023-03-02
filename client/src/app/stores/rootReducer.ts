@@ -6,6 +6,7 @@ import { sidepanelReducer } from './sidepanel/sidepanel.reducer';
 import customersReducer from './customers/customer.reducer';
 import paymentsReducer from './payments/payment.reducer';
 import hamburgerMenuReducer from './hamburgerMenu/hamburgerMenu.reducer';
+import ordersReducer from './orders/order.reducer';
 
 export const rootReducer = combineReducers({
     user: userReducer,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
     cart: cartReducer,
     sidepanel: sidepanelReducer,
     payments: paymentsReducer,
+    orders: ordersReducer,
     hamburgerMenu: hamburgerMenuReducer
 })
