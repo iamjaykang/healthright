@@ -311,45 +311,131 @@ exports.updateShopOrderById = async (shopOrderId, newOrderData) => {
     }
     shopOrder.orderStatusId = orderStatus.id;
 
-    // Calculate the order total and update the order lines
-    let orderTotal = 0;
-    for (const orderLine of orderLines) {
-      const { productItemId, qty } = orderLine;
-      if (!productItemId) {
-        throw new BadRequestError(`Invalid product item ID: ${productItemId}`);
-      }
-      const productItem = await Product.findByPk(productItemId);
-      if (!productItem) {
-        throw new BadRequestError(
-          `Product item with id ${productItemId} does not exist.`
-        );
-      }
-      const orderLineData = {
-        orderId: shopOrder.id,
-        productItemId: productItem.id,
-        qty: qty,
-        price: productItem.price,
-      };
-      await OrderLine.upsert(orderLineData);
-      orderTotal += parseFloat(productItem.price) * qty;
-    }
-    // Get the shipping method from the new order data
+    // Get the order status from the new order data
     const shippingMethod = await ShippingMethod.findByPk(shippingMethodId);
     if (!shippingMethod) {
       throw new BadRequestError(
-        `Shipping method with id ${shippingMethodId} does not exist`
+        `Order status with id ${shippingMethodId} does not exist`
       );
     }
     shopOrder.shippingMethodId = shippingMethod.id;
-    // Add shipping price to order total
-    orderTotal += parseFloat(shippingMethod.price);
 
-    shopOrder.orderTotal = orderTotal;
+    // Update the order lines for the shop order
+    await updateOrderLinesForShopOrder(shopOrder, orderLines);
+
+    // Calculate the order total
+    const updatedOrderLines = await OrderLine.findAll({
+      where: { orderId: shopOrderId },
+      include: [{ model: Product, as: "orderItem" }],
+    });
+
+    let orderTotal = 0;
+
+    updatedOrderLines.forEach((orderLine) => {
+      const { qty, orderItem } = orderLine;
+      const lineTotal = parseFloat(orderItem.price) * qty;
+      orderTotal += lineTotal;
+    });
+
+    
+    shopOrder.orderTotal = orderTotal += parseFloat(shippingMethod.price);
 
     await shopOrder.save();
     return shopOrder;
   } catch (error) {
     throw new InternalServerError(error.message);
+  }
+};
+
+const updateOrderLinesForShopOrder = async (shopOrder, orderLines) => {
+  // Fetch the existing order lines for the given orderId
+  const existingOrderLines = await OrderLine.findAll({
+    where: { orderId: shopOrder.id },
+    include: [{ model: Product, as: "orderItem" }],
+  });
+
+  // Iterate over the new order lines and update or insert them
+  for (const orderLine of orderLines) {
+    const { id, productItemId, qty } = orderLine;
+    if (!productItemId) {
+      throw new BadRequestError(`Invalid product item ID: ${productItemId}`);
+    }
+    const productItem = await Product.findByPk(productItemId);
+    if (!productItem) {
+      throw new BadRequestError(
+        `Product item with id ${productItemId} does not exist.`
+      );
+    }
+
+    // Check if the order line already exists
+    const existingOrderLine = existingOrderLines.find(
+      (orderLine) => orderLine.id === id
+    );
+
+    // Update or insert the order line data
+    const orderLineData = {
+      orderId: shopOrder.id,
+      productItemId: productItem.id,
+      qty: qty,
+      price: productItem.price,
+    };
+
+    if (existingOrderLine) {
+      // If the order line already exists, update the quantity and product
+      const { qty: existingQty, productItemId: existingProductItemId } =
+        existingOrderLine;
+      const qtyDiff = qty - existingQty;
+
+      if (qtyDiff !== 0 || existingProductItemId !== productItemId) {
+        // Update the existing order line
+        await existingOrderLine.update({
+          productItemId,
+          qty,
+          price: productItem.price,
+        });
+
+        // Update the quantity in stock for the previous product item
+        if (existingProductItemId !== productItemId) {
+          const existingProductItem = await Product.findByPk(
+            existingProductItemId
+          );
+          const existingQtyInStock =
+            existingProductItem.qtyInStock + existingQty;
+          await existingProductItem.update({
+            qtyInStock: existingQtyInStock,
+          });
+        }
+      }
+    } else {
+      // If the order line doesn't exist, insert a new one
+      await OrderLine.create(orderLineData);
+    }
+
+    // Update the quantity in stock for the product item
+    const newQtyInStock = productItem.qtyInStock - qty;
+    await productItem.update({
+      qtyInStock: newQtyInStock,
+    });
+  }
+
+  // Remove any order lines that were not included in the new order data
+  const existingOrderLineIds = existingOrderLines.map((ol) => ol.id);
+  const updatedOrderLineIds = orderLines
+    .filter((ol) => ol.id)
+    .map((ol) => ol.id);
+  const orderLinesToDelete = existingOrderLines.filter(
+    (ol) => !updatedOrderLineIds.includes(ol.id)
+  );
+  if (orderLinesToDelete.length > 0) {
+    await OrderLine.destroy({ where: { id: existingOrderLineIds } });
+
+    // Add back the quantity to the corresponding product items
+    for (const orderLine of orderLinesToDelete) {
+      const { productItemId, qty } = orderLine;
+      const productItem = await Product.findByPk(productItemId);
+      const newQtyInStock = productItem.qtyInStock + qty;
+      await productItem.update({ qtyInStock: newQtyInStock });
+    }
   }
 };
 
@@ -384,4 +470,3 @@ exports.deleteShopOrderById = async (shopOrderId) => {
     throw error;
   }
 };
-

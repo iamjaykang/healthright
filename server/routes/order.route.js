@@ -11,7 +11,7 @@ router.get("/:shopOrderId", getShopOrder);
 
 router.post("/", createNewShopOrder);
 
-router.put("/:shopOrderId",checkAuthorization, updateExistingShopOrder);
+router.put("/:shopOrderId", updateExistingShopOrder);
 
 router.delete("/:shopOrderId",checkAuthorization, deleteShopOrder);
 
