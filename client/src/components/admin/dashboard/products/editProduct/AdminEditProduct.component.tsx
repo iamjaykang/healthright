@@ -15,6 +15,7 @@ import {
   selectProductsSuccess,
 } from "../../../../../app/stores/products/product.selector";
 import { AdminProduct } from "../../../../../app/models/product.model";
+import DashboardFormSelect from "../../../../../app/common/dashboardForm/DashboardFormSelect.common";
 
 const initialFormData = {
   name: "",
@@ -81,8 +82,8 @@ const AdminEditProduct = () => {
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    const booleanValue = value === "true";
-    setFormData({ ...formData, [name]: booleanValue });
+    const boolValue = value === "1" ? true : false;
+    setFormData({ ...formData, [name]: boolValue });
   };
 
   const handleQuillInputChange = (value: string) => {
@@ -137,17 +138,17 @@ const AdminEditProduct = () => {
 
   return (
     <div className="dashboard__page">
-      <div className="dashboard__products-header">
-        <h2 className="dashboard__content-title">Edit Product</h2>
+      <div className="dashboard__page-header">
+        <h2 className="dashboard__page-title">Edit Product</h2>
         <div className="dashboard__btn-container">
           <button onClick={handleDelete} className="dashboard__btn shadow-sm">
             Delete
           </button>
         </div>
       </div>
-      <form className="dashboard__product-form" onSubmit={handleSubmit}>
-        <div className="dashboard__product-form--left">
-          <div className="dashboard__product-card shadow-sm">
+      <form className="dashboard__form--product" onSubmit={handleSubmit}>
+        <div className="dashboard__form-container--product-left">
+          <div className="dashboard__card--product shadow-sm">
             <DashboardFormInput
               label="Name"
               type="text"
@@ -162,7 +163,7 @@ const AdminEditProduct = () => {
               value={description}
             />
           </div>
-          <div className="dashboard__product-card shadow-sm">
+          <div className="dashboard__card--product shadow-sm">
             <DashboardFormInput
               label="Media"
               type="text"
@@ -172,7 +173,7 @@ const AdminEditProduct = () => {
               value={productImage}
             />
           </div>
-          <div className="dashboard__product-card--pricing shadow-sm">
+          <div className="dashboard__card--product-pricing shadow-sm">
             <DashboardFormInput
               label="Pricing"
               type="number"
@@ -190,7 +191,7 @@ const AdminEditProduct = () => {
               value={cost}
             />
           </div>
-          <div className="dashboard__product-card shadow-sm">
+          <div className="dashboard__card--product shadow-sm">
             <DashboardFormInput
               label="Quantity in Stock"
               type="number"
@@ -201,24 +202,20 @@ const AdminEditProduct = () => {
             />
           </div>
         </div>
-        <div className="dashboard__product-form--right">
-          <div className="dashboard__product-card shadow-sm">
-            <div className="dashboard__input-group">
-              <span className="dashboard__input-label">Product Status</span>
-              <div className="dashboard__product-card--status-options">
-                <select
-                  name="productLive"
-                  value={productLive}
-                  onChange={handleSelectChange}
-                >
-                  <option value="">-- Select status --</option>
-                  <option value="true">Available</option>
-                  <option value="false">Draft</option>
-                </select>
-              </div>
-            </div>
+        <div className="dashboard__form-container--product-right">
+          <div className="dashboard__card--product shadow-sm">
+          <DashboardFormSelect
+              label="Product Status"
+              name="productLive"
+              value={productLive}
+              onChange={handleSelectChange}
+              options={[
+                { value: "0", label: "Draft" },
+                { value: "1", label: "Available" },
+              ]}
+            />
           </div>
-          <div className="dashboard__product-card shadow-sm">
+          <div className="dashboard__card--product shadow-sm">
             <DashboardFormInput
               label="Category Name"
               type="text"

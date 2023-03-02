@@ -2,18 +2,19 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch } from "react-redux";
 import DashboardFormQuillInput from "../../../../../app/common/dashboardForm/DashboardFormQuillInput.common";
-import DashboardFormTextInput from "../../../../../app/common/dashboardForm/DashboardFormInput.common";
+import DashboardFormInput from "../../../../../app/common/dashboardForm/DashboardFormInput.common";
 import { addProductLoading } from "../../../../../app/stores/products/product.action";
+import DashboardFormSelect from "../../../../../app/common/dashboardForm/DashboardFormSelect.common";
 
 const initialFormData = {
   name: "",
   description: "",
   productImage: "",
-  price: 0.00,
+  price: 0.0,
   qtyInStock: 0,
   categoryName: "",
   vendorName: "",
-  cost: 0.00,
+  cost: 0.0,
   productLive: 0,
 };
 
@@ -39,13 +40,13 @@ const AdminAddProduct = () => {
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    const booleanValue = value === "true";
-    setFormData({ ...formData, [name]: booleanValue });
+    const boolValue = value === "1" ? true : false;
+    setFormData({ ...formData, [name]: boolValue });
   };
 
   const handleQuillInputChange = (value: string) => {
     setFormData({ ...formData, description: value });
-};
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,11 +61,11 @@ const AdminAddProduct = () => {
 
   return (
     <div className="dashboard__page">
-      <h2 className="dashboard__content-title">Add Product</h2>
-      <form className="dashboard__product-form" onSubmit={handleSubmit}>
-        <div className="dashboard__product-form--left">
-          <div className="dashboard__product-card shadow-sm">
-            <DashboardFormTextInput
+      <h2 className="dashboard__page-title">Add Product</h2>
+      <form className="dashboard__form--product" onSubmit={handleSubmit}>
+        <div className="dashboard__form-container--product-left">
+          <div className="dashboard__card--product shadow-sm">
+            <DashboardFormInput
               label="Name"
               type="text"
               required
@@ -78,8 +79,8 @@ const AdminAddProduct = () => {
               value={description}
             />
           </div>
-          <div className="dashboard__product-card shadow-sm">
-            <DashboardFormTextInput
+          <div className="dashboard__card--product shadow-sm">
+            <DashboardFormInput
               label="Media"
               type="text"
               required
@@ -88,8 +89,8 @@ const AdminAddProduct = () => {
               value={productImage}
             />
           </div>
-          <div className="dashboard__product-card--pricing shadow-sm">
-            <DashboardFormTextInput
+          <div className="dashboard__card--product-pricing shadow-sm">
+            <DashboardFormInput
               label="Pricing"
               type="number"
               required
@@ -97,7 +98,7 @@ const AdminAddProduct = () => {
               name="price"
               value={price}
             />
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Cost"
               type="number"
               required
@@ -106,8 +107,8 @@ const AdminAddProduct = () => {
               value={cost}
             />
           </div>
-          <div className="dashboard__product-card shadow-sm">
-            <DashboardFormTextInput
+          <div className="dashboard__card--product shadow-sm">
+            <DashboardFormInput
               label="Quantity in Stock"
               type="number"
               required
@@ -117,27 +118,21 @@ const AdminAddProduct = () => {
             />
           </div>
         </div>
-        <div className="dashboard__product-form--right">
-          <div className="dashboard__product-card shadow-sm">
-            <div className="dashboard__input-group">
-              <span className="dashboard__label">
-                Product Status
-              </span>
-              <div className="dashboard__product-card--status-options">
-                <select
-                  name="productLive"
-                  value={productLive}
-                  onChange={handleSelectChange}
-                >
-                  <option value="">-- Select status --</option>
-                  <option value="1">Available</option>
-                  <option value="0">Draft</option>
-                </select>
-              </div>
-            </div>
+        <div className="dashboard__form-container--product-right">
+          <div className="dashboard__card--product shadow-sm">
+            <DashboardFormSelect
+              label="Product Status"
+              name="productLive"
+              value={productLive}
+              onChange={handleSelectChange}
+              options={[
+                { value: "0", label: "Draft" },
+                { value: "1", label: "Available" },
+              ]}
+            />
           </div>
-          <div className="dashboard__product-card shadow-sm">
-            <DashboardFormTextInput
+          <div className="dashboard__card--product shadow-sm">
+            <DashboardFormInput
               label="Category Name"
               type="text"
               required
@@ -145,7 +140,7 @@ const AdminAddProduct = () => {
               name="categoryName"
               value={categoryName}
             />
-            <DashboardFormTextInput
+            <DashboardFormInput
               label="Vendor"
               type="text"
               required
