@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchAllOrdersLoading } from "../../../../app/stores/orders/order.action";
+import { selectOrdersArray } from "../../../../app/stores/orders/order.selector";
 
 const AdminOrders = () => {
+  const dispatch = useDispatch();
+
+  const ordersArray = useSelector(selectOrdersArray);
+
+  useEffect(() => {
+    dispatch(fetchAllOrdersLoading());
+  }, [dispatch]);
+
   return (
     <div className="dashboard__page">
       <div className="dashboard__page-header">
@@ -27,24 +38,27 @@ const AdminOrders = () => {
                 </tr>
               </thead>
               <tbody className="dashboard__table-body">
-                <tr className="dashboard__table-row">
-                  <td className="dashboard__table-cell">
-                    <Link to={`/admin/dashboard/orders/edit/1`}>#1001</Link>
-                  </td>
-                  <td className="dashboard__table-cell customer-cell">
-                    John Doe
-                  </td>
-                  <td className="dashboard__table-cell">Processing</td>
-                  <td className="dashboard__table-cell text-right">$50.00</td>
-                </tr>
-                <tr className="dashboard__table-row">
-                  <td className="dashboard__table-cell">
-                    <Link to={`/admin/dashboard/orders/edit/2`}>#1002</Link>
-                  </td>
-                  <td className="dashboard__table-cell">Jane Smith</td>
-                  <td className="dashboard__table-cell">Shipped</td>
-                  <td className="dashboard__table-cell text-right">$75.00</td>
-                </tr>
+                {ordersArray &&
+                  ordersArray.map((order) => (
+                    <tr key={order.id} className="dashboard__table-row">
+                      <td className="dashboard__table-cell">
+                        <Link to={`/admin/dashboard/orders/edit/${order.id}`}>
+                          #{order.id}
+                        </Link>
+                      </td>
+                      <td className="dashboard__table-cell customer-cell">
+                        {order.user.firstName} {order.user.lastName}
+                      </td>
+                      <td
+                        className={`dashboard__table-cell status-${order.orderStatus.status.toLowerCase()}`}
+                      >
+                        {order.orderStatus.status}
+                      </td>
+                      <td className="dashboard__table-cell text-right">
+                        ${order.orderTotal}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

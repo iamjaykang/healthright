@@ -149,9 +149,9 @@ const AdminAddOrder = () => {
               value={shippingMethodId}
               onChange={handleSelectChange}
               options={[
-                { value: "1", label: "Ground Shipping" },
-                { value: "2", label: "2-Day Shipping" },
-                { value: "3", label: "Overnight Shipping" },
+                { value: "1", label: "Pick up" },
+                { value: "2", label: "Standard Shipping" },
+                { value: "3", label: "Express Shipping" },
               ]}
             />
             <DashboardFormSelect

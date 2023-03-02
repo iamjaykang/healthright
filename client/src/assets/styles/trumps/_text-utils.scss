@@ -13,3 +13,18 @@
 .text-center {
     text-align: center;
 }
+
+.status {
+    &-pending {
+        color: $order-status-pending;
+    }
+    &-processing {
+        color: $order-status-processing;
+    }
+    &-shipped {
+        color: $order-status-shipped;
+    }
+    &-delivered {
+        color: $order-status-delivered;
+    }
+}

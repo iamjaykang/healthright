@@ -2319,6 +2319,19 @@ th {
   text-align: center;
 }
 
+.status-pending {
+  color: #FCA311;
+}
+.status-processing {
+  color: #EF476F;
+}
+.status-shipped {
+  color: #118AB2;
+}
+.status-delivered {
+  color: #06D6A0;
+}
+
 .fixed-top {
   position: fixed;
   top: 0;
