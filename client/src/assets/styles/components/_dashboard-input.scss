@@ -62,6 +62,15 @@
             }
 
         }
+
+        &-group-container--location {
+            display: grid;
+            @include grid(1);
+
+            @include screen(lg) {
+                @include grid(3);
+            }
+        }
     }
 
     &-html {

@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 const AdminOrders = () => {
   return (
     <div className="dashboard__page">
-      <div className="dashboard__customers-header">
-        <h2 className="dashboard__content-title">Orders</h2>
-        <div className="dashboard__customers-btn-container">
+      <div className="dashboard__page-header">
+        <h2 className="dashboard__page-title">Orders</h2>
+        <div className="dashboard__btn-container">
           <Link to="/admin/dashboard/order/add" className="dashboard__btn">
             Add Order
           </Link>
         </div>
       </div>
       <div className="dashboard__card shadow-sm">
-        <div className="dashboard__customers-card-body">
+        <div className="dashboard__card-body--order">
           <div className="dashboard__table-container">
             <table className="dashboard__table">
               <thead className="dashboard__table-head">
@@ -23,7 +23,7 @@ const AdminOrders = () => {
                     Customer
                   </th>
                   <th className="dashboard__table-header">Status</th>
-                  <th className="dashboard__table-header stat-cell">Total</th>
+                  <th className="dashboard__table-header text-right">Total</th>
                 </tr>
               </thead>
               <tbody className="dashboard__table-body">
@@ -35,7 +35,7 @@ const AdminOrders = () => {
                     John Doe
                   </td>
                   <td className="dashboard__table-cell">Processing</td>
-                  <td className="dashboard__table-cell stat-cell">$50.00</td>
+                  <td className="dashboard__table-cell text-right">$50.00</td>
                 </tr>
                 <tr className="dashboard__table-row">
                   <td className="dashboard__table-cell">
@@ -43,7 +43,7 @@ const AdminOrders = () => {
                   </td>
                   <td className="dashboard__table-cell">Jane Smith</td>
                   <td className="dashboard__table-cell">Shipped</td>
-                  <td className="dashboard__table-cell stat-cell">$75.00</td>
+                  <td className="dashboard__table-cell text-right">$75.00</td>
                 </tr>
               </tbody>
             </table>

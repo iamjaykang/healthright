@@ -15,6 +15,10 @@
             @extend .dashboard__form;
         }
 
+        &--order {
+            @extend .dashboard__form;
+        }
+
         &-container {
             &--product {
                 @include grid(1);
@@ -55,14 +59,26 @@
                     }
                 }
             }
+
+            &--order {
+                @include grid(1);
+
+                @include screen(md) {
+                    @include grid(6);
+                }
+        
+                &-left {
+                    @include screen(md) {
+                        grid-column: 1 / span 4
+                    }
+                }
+        
+                &-right {
+                    @include screen(md) {
+                        grid-column: 5 / span 2;
+                    }
+                }
+            }
         }
     }
-
-
-    &__customer-form {
-        @extend .dashboard__form;
-        display: grid;
-       
-    }
-
 }
