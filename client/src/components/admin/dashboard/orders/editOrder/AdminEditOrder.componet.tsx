@@ -1,12 +1,28 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import DashboardFormInput from "../../../../../app/common/dashboardForm/DashboardFormInput.common";
 import DashboardFormSelect from "../../../../../app/common/dashboardForm/DashboardFormSelect.common";
 import { OrderFormValues } from "../../../../../app/models/order.model";
+import { fetchOrderByIdLoading } from "../../../../../app/stores/orders/order.action";
+import { selectOrder } from "../../../../../app/stores/orders/order.selector";
 
 const initialFormData = new OrderFormValues();
 
+type RouteParams = {
+  orderId: string;
+};
+
 const AdminEditOrder = () => {
   const [formData, setFormData] = useState(initialFormData);
+
+  const { orderId } = useParams<RouteParams>();
+
+  const dispatch = useDispatch();
+
+  const orderData = useSelector(selectOrder);
+
+  const [isFormChanged, setIsFormChanged] = useState(false);
 
   const {
     emailAddress,
@@ -22,18 +38,27 @@ const AdminEditOrder = () => {
     shippingMethodId,
     orderStatusId,
     countryId,
-    orderLines
   } = formData;
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setIsFormChanged(true);
   };
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     const intValue = parseInt(value, 10);
     setFormData({ ...formData, [name]: intValue });
+    setIsFormChanged(true);
+  };
+
+  const handleReset = () => {
+    if (orderId) {
+      const id = parseInt(orderId, 10);
+      dispatch(fetchOrderByIdLoading(id));
+      setIsFormChanged(false);
+    }
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -41,12 +66,47 @@ const AdminEditOrder = () => {
     console.log(formData);
   };
 
+  useEffect(() => {
+    if (orderData) {
+      const newFormData: OrderFormValues = {
+        emailAddress: orderData.user?.emailAddress ?? "",
+        firstName: orderData.user?.firstName ?? "",
+        lastName: orderData.user?.lastName ?? "",
+        unitNumber: orderData.shippingAddress?.unitNumber ?? "",
+        streetNumber: orderData.shippingAddress?.streetNumber ?? "",
+        addressLine1: orderData.shippingAddress?.addressLine1 ?? "",
+        addressLine2: orderData.shippingAddress?.addressLine2 ?? "",
+        city: orderData.shippingAddress?.city ?? "",
+        region: orderData.shippingAddress?.region ?? "",
+        postalCode: orderData.shippingAddress?.postalCode ?? "",
+        shippingMethodId: orderData.shippingMethod?.id ?? 0,
+        orderStatusId: orderData.orderStatus?.id ?? 0,
+        countryId: orderData.shippingAddress?.country?.id ?? 0,
+        orderLines: [],
+      };
+
+      setFormData(newFormData);
+    } else {
+      setFormData(initialFormData);
+    }
+  }, [orderData]);
+
+  useEffect(() => {
+    if (orderId) {
+      const id = parseInt(orderId, 10);
+      dispatch(fetchOrderByIdLoading(id));
+    }
+  }, [dispatch, orderId]);
+
   return (
     <div className="dashboard__page">
       <div className="dashboard__page-header">
         <h2 className="dashboard__page-title">Edit Customer</h2>
         <div className="dashboard__btn-container">
-          <button onClick={() => console.log('deleteAction')} className="dashboard__btn shadow-sm">
+          <button
+            onClick={() => console.log("deleteAction")}
+            className="dashboard__btn shadow-sm"
+          >
             Delete
           </button>
         </div>
@@ -90,7 +150,7 @@ const AdminEditOrder = () => {
                 type="text"
                 onChange={handleInputChange}
                 name="unitNumber"
-                value={unitNumber?? ""}
+                value={unitNumber ?? ""}
               />
               <DashboardFormInput
                 label="Street Number"
@@ -188,12 +248,15 @@ const AdminEditOrder = () => {
           <button
             className="dashboard__btn--discard shadow-sm"
             type="button"
+            disabled={!isFormChanged}
+            onClick={handleReset}
           >
             Discard
           </button>
           <button
             className="dashboard__btn shadow-sm"
             type="submit"
+            disabled={!isFormChanged}
           >
             Save
           </button>
