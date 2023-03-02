@@ -1,6 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
-import { CustomerResponse, CustomersResponse, PaymentResponse, ProductResponse, ProductsResponse } from "../models/apiResponses.model";
+import {
+  CustomerResponse,
+  CustomersResponse,
+  OrderResponse,
+  OrdersResponse,
+  PaymentResponse,
+  ProductResponse,
+  ProductsResponse,
+} from "../models/apiResponses.model";
+import { OrderFormValues } from "../models/order.model";
 import { AdminProductFormValues, CartItemData } from "../models/product.model";
 import { CustomerFormValues } from "../models/user.model";
 import { router } from "../routes/Routes";
@@ -49,7 +58,8 @@ axios.interceptors.request.use((config) => {
 
 const requests = {
   get: <T>(url: string) => axios.get<T>(url).then(responseBody),
-  post: <T>(url: string, body: {}) => axios.post<T>(url, body).then(responseBody),
+  post: <T>(url: string, body: {}) =>
+    axios.post<T>(url, body).then(responseBody),
   put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
   del: <T>(url: string) => axios.delete<T>(url).then(responseBody),
 };
@@ -59,22 +69,42 @@ const Products = {
   searchByTerm: (searchTerm: string) =>
     requests.get<ProductsResponse>(`/products/search?q=${searchTerm}`),
   listForAdmin: () => requests.get<ProductsResponse>("/products/admin"),
-  listFilteredByVendor: (vendor: string) => requests.get<ProductsResponse>(`/products/vendor/${vendor}`),
-  detailsByName: (productName: string) => requests.get<ProductResponse>(`/products/${productName}`),
-  detailsForAdmin: (productId: number) => requests.get<ProductResponse>(`/products/admin/${productId}`),
-  create: (productFormData: AdminProductFormValues) => requests.post<ProductResponse>("/products", productFormData),
+  listFilteredByVendor: (vendor: string) =>
+    requests.get<ProductsResponse>(`/products/vendor/${vendor}`),
+  detailsByName: (productName: string) =>
+    requests.get<ProductResponse>(`/products/${productName}`),
+  detailsForAdmin: (productId: number) =>
+    requests.get<ProductResponse>(`/products/admin/${productId}`),
+  create: (productFormData: AdminProductFormValues) =>
+    requests.post<ProductResponse>("/products", productFormData),
   update: (productId: number, newProductFormData: AdminProductFormValues) =>
     requests.put<ProductResponse>(`/products/${productId}`, newProductFormData),
-  delete: (productId: number) => requests.del<ProductResponse>(`/products/${productId}`),
+  delete: (productId: number) =>
+    requests.del<ProductResponse>(`/products/${productId}`),
 };
 
 const Users = {
   list: () => requests.get<CustomersResponse>("/users"),
-  details: (customerId: number) => requests.get<CustomerResponse>(`/users/${customerId}`),
-  create: (userFormData: CustomerFormValues) => requests.post<CustomerResponse>("/users", userFormData),
+  details: (customerId: number) =>
+    requests.get<CustomerResponse>(`/users/${customerId}`),
+  create: (userFormData: CustomerFormValues) =>
+    requests.post<CustomerResponse>("/users", userFormData),
   update: (customerId: number, newCustomerFormData: CustomerFormValues) =>
     requests.put<CustomerResponse>(`/users/${customerId}`, newCustomerFormData),
-  delete: (customerId: number) => requests.del<CustomerResponse>(`/users/${customerId}`),
+  delete: (customerId: number) =>
+    requests.del<CustomerResponse>(`/users/${customerId}`),
+};
+
+const Orders = {
+  list: () => requests.get<OrdersResponse>("/orders"),
+  details: (orderId: number) =>
+    requests.get<OrderResponse>(`/orders/${orderId}`),
+  create: (orderFormData: OrderFormValues) =>
+    requests.post<OrderResponse>("/orders", orderFormData),
+  update: (orderId: number, newOrderFormData: OrderFormValues) =>
+    requests.put<OrderResponse>(`/orders/${orderId}`, newOrderFormData),
+  delete: (orderId: number) =>
+    requests.del<OrderResponse>(`/orders/${orderId}`),
 };
 
 const Payments = {
@@ -86,6 +116,7 @@ const agent = {
   Products,
   Users,
   Payments,
+  Orders
 };
 
 export default agent;

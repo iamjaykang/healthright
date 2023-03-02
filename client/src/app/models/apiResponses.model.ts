@@ -1,3 +1,4 @@
+import { Order } from "./order.model";
 import { AdminProduct, Product } from "./product.model";
 import { Customer } from "./user.model";
 
@@ -27,6 +28,18 @@ export interface CustomerResponse {
 
 export interface PaymentResponse {
   data: string;
+  success: boolean;
+  message: string;
+}
+
+export interface OrdersResponse {
+  data: Order[];
+  success: boolean;
+  message: string;
+}
+
+export interface OrderResponse {
+  data: Order;
   success: boolean;
   message: string;
 }
