@@ -9,8 +9,6 @@ const AdminCustomers = () => {
 
   const customersArray = useSelector(selectCustomersArray);
 
-  console.log(customersArray);
-
   useEffect(() => {
     dispatch(fetchAllCustomersLoading());
   }, [dispatch]);
