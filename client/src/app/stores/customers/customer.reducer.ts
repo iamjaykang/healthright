@@ -117,8 +117,7 @@ const customersReducer = (
     fetchAllCustomersFailed.match(action) ||
     fetchCustomerByIdFailed.match(action) ||
     addCustomerFailed.match(action) ||
-    updateCustomerFailed.match(action) ||
-    deleteCustomerFailed.match(action)
+    updateCustomerFailed.match(action)
   ) {
     return {
       ...state,
@@ -126,6 +125,17 @@ const customersReducer = (
       success: false,
       message: action.payload.message,
       error: action.payload.stack,
+    };
+  }
+
+  if (deleteCustomerFailed.match(action)) {
+    return {
+      ...state,
+      isLoading: false,
+      customer: null,
+      success: true,
+      message: "User deleted successfully",
+      error: null,
     };
   }
 
