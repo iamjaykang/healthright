@@ -9,6 +9,8 @@ const AdminCustomers = () => {
 
   const customersArray = useSelector(selectCustomersArray);
 
+  console.log(customersArray);
+
   useEffect(() => {
     dispatch(fetchAllCustomersLoading());
   }, [dispatch]);
@@ -29,9 +31,7 @@ const AdminCustomers = () => {
             <table className="dashboard__table">
               <thead className="dashboard__table-head">
                 <tr>
-                  <th className="dashboard__table-header">
-                    Customer
-                  </th>
+                  <th className="dashboard__table-header">Customer</th>
                   <th className="dashboard__table-header text-right">
                     Order(s)
                   </th>
@@ -59,10 +59,19 @@ const AdminCustomers = () => {
                         </Link>
                       </td>
                       <td className="dashboard__table-cell text-right">
-                        1 Order(s)
+                        {customer.shopOrders && customer.shopOrders.length}
+                        {" Order(s)"}
                       </td>
                       <td className="dashboard__table-cell text-right">
-                        $25.00 Spent
+                        ${customer.shopOrders &&
+                          customer.shopOrders
+                            .reduce(
+                              (total, order) =>
+                                total + parseFloat(order.orderTotal),
+                              0
+                            )
+                            .toFixed(2)}
+                        {" Spent"}
                       </td>
                     </tr>
                   ))}

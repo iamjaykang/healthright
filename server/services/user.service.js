@@ -9,11 +9,12 @@ const User = db.users;
 const UserAddress = db.userAddresses;
 const Country = db.countries;
 const Address = db.addresses;
+const ShopOrder = db.shopOrders;
 
 exports.getAllUsers = async () => {
   try {
     const users = await User.findAll({
-      ...userDetails(UserAddress, Address, Country),
+      ...userDetails(UserAddress, Address, Country, ShopOrder),
     });
     if (!users) throw new NotFoundError("Failed to retrieve users");
     return users;
@@ -25,7 +26,7 @@ exports.getAllUsers = async () => {
 exports.getUserById = async (customerId) => {
   try {
     const user = await User.findByPk(customerId, {
-      ...userDetails(UserAddress, Address, Country),
+      ...userDetails(UserAddress, Address, Country, ShopOrder),
     });
     if (!user) throw new NotFoundError(`User with id ${customerId} not found`);
     return user;

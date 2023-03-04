@@ -56,7 +56,7 @@ const productDetailsForAdmin = (ProductVendor, ProductCategory) => ({
   ],
 });
 
-const userDetails = (UserAddress, Address, Country) => ({
+const userDetails = (UserAddress, Address, Country, ShopOrder) => ({
   // Only select the necessary attributes from the users table
   attributes: [
     "id",
@@ -71,6 +71,10 @@ const userDetails = (UserAddress, Address, Country) => ({
       model: UserAddress,
       include: [{ model: Address, include: [{ model: Country }] }],
     },
+    {
+      model: ShopOrder,
+      required: false,
+    }
   ],
 });
 

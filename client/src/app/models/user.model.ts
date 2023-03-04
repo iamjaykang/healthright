@@ -1,3 +1,5 @@
+import { Order } from "./order.model";
+
 export interface UserData {
   createdAt: Date;
   email: string;
@@ -19,6 +21,7 @@ export interface Customer {
   createdAt?: Date;
   updatedAt?: Date;
   userAddresses?: UserAddress[];
+  shopOrders: Order[];
 }
 
 export interface UserAddress {
