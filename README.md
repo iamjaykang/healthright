@@ -6,14 +6,14 @@ Live: https://healthrightnz.com/
 
 ## Introduction
 
-This project is an e-commerce website built using React TypeScript, Node.Js, Express.Js, Firebase Auth, Postgres SQL Sequelize ORM, styled with SCSS, and state management by Redux. The website allows users to browse and purchase products, as well as manage their shopping carts. The project also integrates with Google Dialogflow for conversational user experience. The website also has an admin route that allows authenticated users with admin privileges to perform CRUD (Create, Read, Update, Delete) operations for products and customers. This functionality is intended for website administrators to manage the products and customers available on the site. The admin route can only be accessed by users with valid admin credentials.
+This project is an e-commerce website built using React TypeScript, Node.Js, Express.Js, Firebase Auth, PostgreSQL Sequelize ORM, styled with SCSS, and state management by Redux. The website allows users to browse and purchase products, as well as manage their shopping carts. The project also integrates with Google Dialogflow for conversational user experience. The website also has an admin route that allows authenticated users with admin privileges to perform CRUD (Create, Read, Update, Delete) operations for products and customers. This functionality is intended for website administrators to manage the products and customers available on the site. The admin route can only be accessed by users with valid admin credentials.
 
 ### Technologies & Tools Used
 
 - React TypeScript
 - Firebase Client SDK
 - Firebase Admin SDK
-- Postgres SQL
+- PostgreSQL
 - Chart.js
 - Node JS
 - Express JS
